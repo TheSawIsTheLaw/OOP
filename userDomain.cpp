@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 #include "userDomain.h"
-#include "choosemodelselection.h"
 
 #include "defines.h"
 
 int taskManager(int choice){
     if (!choice){
-        printf("Жопа");
+
+
     }
     else if (choice == 1){
         printf("Ход влево");

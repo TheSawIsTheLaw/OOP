@@ -1,8 +1,8 @@
-#ifndef __USER_DOMAIN_H__
-#define __USER_DOMAIN_H__
+#ifndef USER_DOMAIN_H
+#define USER_DOMAIN_H
 
 
 int taskManager(int choice);
 
 
-#endif
+#endif // USER_DOMAIN_H

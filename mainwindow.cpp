@@ -1,12 +1,12 @@
 #include "mainwindow.h"
-#include "choosemodelselection.h"
 #include "ui_mainwindow.h"
 #include "userDomain.h"
+#include "modelDomain.h"
+#include <string.h>
 
 #include "defines.h"
 
-#include <sys/types.h>
-#include <dirent.h>
+static model_t model;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -19,23 +19,10 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
-
 void MainWindow::on_chooseModelButton_clicked(){
-    ChooseWindow = new ChooseModelSelection();
-    DIR *directory;
-    directory = opendir("startModels");
-
-    dirent *curFile;
-
-    curFile = readdir(directory);
-
-    while (curFile){
-        chooseUi->listWidget->addItem(curFile->d_name);
-        curFile = readdir(directory);
-    }
-
-    closedir(directory);
-    ChooseWindow->show();
+    QString qFileName = QFileDialog::getOpenFileName(this, tr("Open Model"), "../startModels", tr("Model Files (*.txt)"));
+    qDebug("%s", qUtf8Printable(qFileName));
+    setModel(qFileName);
 }
 
 void MainWindow::on_goLeftButton_clicked(){

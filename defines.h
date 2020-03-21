@@ -1,8 +1,9 @@
-#ifndef __DEFINES_H__
-#define __DEFINES_H__
+#ifndef DEFINES_H
+#define DEFINES_H
 
 
 #define DIRECTORY_ERROR -1
+#define FILE_ERROR -2
 
 
 #define SUCCESS 0
