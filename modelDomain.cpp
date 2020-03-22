@@ -91,6 +91,13 @@ int readModelWrap(modelT &model, FILE *modelFile){
     return SUCCESS;
 }
 
+int showModelWrap(modelT &model){
+    if (!model.edges || !model.nodes || model.numOfEdges <= 0 || model.numOfNodes <= 0)
+        return MODEL_IS_NOT_READY;
+
+    return SUCCESS;
+}
+
 int setModel(QString wayToFile, modelT &model){
     QDEB("setModel")
     initModel(model);
@@ -110,8 +117,18 @@ int setModel(QString wayToFile, modelT &model){
 
 #if DEBUG == 1
     for (int i = 0; i < model.numOfNodes; i++)
-        qDebug("%lf %f %lf\n", model.nodes[i].xCoord, model.nodes[i].yCoord, model.nodes[i].zCoord);
+        qDebug("%f %f %f\n", model.nodes[i].xCoord, model.nodes[i].yCoord, model.nodes[i].zCoord);
+
+    for (int i = 0; i < model.numOfEdges; i++)
+        qDebug("%d %d\n", model.edges[i].firstNode, model.edges[i].secondNode);
 #endif
+
+    check = showModelWrap(model);
+    if (check){
+        freeModel(model);
+
+        return check;
+    }
 
     return SUCCESS;
 }

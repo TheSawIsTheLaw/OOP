@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QGraphicsScene>
+
+#include "modelDomain.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,7 +46,12 @@ private slots:
 
     void on_minusMasstButton_clicked();
 
+    void on_showModel_clicked();
+
 private:
+
     Ui::MainWindow *ui;
+    QVector<QGraphicsLineItem *> line;
+    QGraphicsScene *scene;
 };
 #endif // MAINWINDOW_H

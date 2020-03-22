@@ -29,5 +29,9 @@ int readModelWrap(modelT &model, FILE *modelFile);
 
 int readModel(modelT &model, FILE *modelFile);
 
+int showModelWrap(modelT &model);
+
+void showModel(modelT &model);
+
 #endif // MODEL_DOMAIN_H
 

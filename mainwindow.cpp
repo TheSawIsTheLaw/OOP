@@ -18,6 +18,28 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
+void MainWindow::on_showModel_clicked()
+{
+    QPen whitePen(Qt::white);
+    nodeT firstNode, secondNode;
+
+    scene = new QGraphicsScene(this);
+    scene->setSceneRect(0, 0, 1000, 1000);
+
+    if (line.length() != 0) {
+        line.clear();
+    }
+
+    for (int i = 0; i < model.numOfEdges; i++) {
+        firstNode = model.nodes[model.edges[i].firstNode];
+        secondNode = model.nodes[model.edges[i].secondNode];
+        line.append(scene->addLine(firstNode.xCoord, firstNode.yCoord,
+                                   secondNode.xCoord, secondNode.yCoord, whitePen));
+    }
+
+    ui->graphicsView->setScene(scene);
+}
+
 void MainWindow::on_chooseModelButton_clicked(){
     QString qFileName = QFileDialog::getOpenFileName(this, tr("Open Model"), "../startModels", tr("Model Files (*.txt)"));
     qDebug("%s", qUtf8Printable(qFileName));
@@ -71,3 +93,4 @@ void MainWindow::on_plusMasstButton_clicked(){
 void MainWindow::on_minusMasstButton_clicked(){
     taskManager(SCALE_MINUS);
 }
+
