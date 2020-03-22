@@ -5,49 +5,41 @@
 
 int taskManager(int choice){
     if (!choice){
-
-
-    }
-    else if (choice == 1){
         printf("Ход влево");
     }
-    else if (choice == 2){
+    else if (choice == GO_DOWN){
         printf("Ход вниз");
     }
-    else if (choice == 3){
+    else if (choice == GO_UP){
         printf("Ход вверх");
     }
-    else if (choice == 4){
+    else if (choice == GO_RIGHT){
         printf("Ход вниз");
     }
-    else if (choice == 5){
+    else if (choice == ROTATE_Z_R){
         printf("Ход вправо");
     }
-    else if (choice == 6){
+    else if (choice == ROTATE_Z_L){
         printf("Верчение...");
     }
-    else if (choice == 7){
+    else if (choice == ROTATE_Y_D){
         printf("Что-то...");
     }
-    else if (choice == 8){
+    else if (choice == ROTATE_Y_U){
         printf("Что-то...");
     }
-    else if (choice == 9){
+    else if (choice == ROTATE_X_R){
         printf("Что-то...");
     }
-    else if (choice == 10){
+    else if (choice == ROTATE_X_L){
         printf("Что-то...");
     }
-    else if (choice == 11){
+    else if (choice == SCALE_PLUS){
         printf("Что-то...");
     }
-    else if (choice == 12){
+    else if (choice == SCALE_MINUS){
         printf("Что-то...");
     }
-    else if (choice == 13){
-        printf("Что-то...");
-    }
-
 
     return SUCCESS;
 }

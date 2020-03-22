@@ -6,18 +6,27 @@ typedef struct{
     double xCoord;
     double yCoord;
     double zCoord;
-}node_t;
+}nodeT;
 
 typedef struct{
     int firstNode;
     int secondNode;
-}edge_t;
+}edgeT;
 
 typedef struct{
+    nodeT *nodes;
+    edgeT *edges;
+}modelT;
 
-}model_t;
+int setModel(QString wayToFile, modelT &model);
 
-int setModel(QString wayToFile);
+int initModelWrap(modelT &model);
+
+void initModel(modelT &model);
+
+int readModelWprap(modelT &model, FILE *modelFile);
+
+void readModel(modelT &model, FILE *modelFile);
 
 #endif // MODEL_DOMAIN_H
 

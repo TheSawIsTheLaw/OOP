@@ -6,8 +6,7 @@
 
 #include "defines.h"
 
-static model_t model;
-
+static modelT model;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,7 +21,7 @@ MainWindow::~MainWindow(){
 void MainWindow::on_chooseModelButton_clicked(){
     QString qFileName = QFileDialog::getOpenFileName(this, tr("Open Model"), "../startModels", tr("Model Files (*.txt)"));
     qDebug("%s", qUtf8Printable(qFileName));
-    setModel(qFileName);
+    setModel(qFileName, model);
 }
 
 void MainWindow::on_goLeftButton_clicked(){
