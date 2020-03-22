@@ -5,6 +5,7 @@
 
 // Возможно, следует рассматривать случай, когда подана уже использованная модель
 void initModel(modelT &model){
+    QDEB("initModel")
     model.numOfEdges = 0;
     model.edges = nullptr;
 
@@ -15,6 +16,7 @@ void initModel(modelT &model){
 }
 
 void freeModel(modelT &model){
+    QDEB("freeModel")
     if (model.edges)
         free(model.edges);
     model.numOfEdges = 0;
@@ -25,12 +27,12 @@ void freeModel(modelT &model){
 }
 
 int readModel(modelT &model, FILE *modelFile){
+    QDEB("readModel")
     int check;
 
     check = fscanf(modelFile, "%d %d", &model.numOfNodes, &model.numOfEdges);
     if (check != 2)
         return FILE_FORMAT_ERROR;
-
     model.edges = (edgeT *)calloc(model.numOfEdges, sizeof(edgeT));
     if (!model.edges){
         freeModel(model);
@@ -45,8 +47,9 @@ int readModel(modelT &model, FILE *modelFile){
         return MEMORY_ALLOCATION_ERROR;
     }
 
+
     for (int i = 0; i < model.numOfNodes; i++){
-        check = scanf("%lf %lf %lf", &model.nodes[i].xCoord, &model.nodes[i].yCoord, &model.nodes[i].zCoord);
+        check = fscanf(modelFile, "%lf %lf %lf", &model.nodes[i].xCoord, &model.nodes[i].yCoord, &model.nodes[i].zCoord);
 
         if (check != 3){
             freeModel(model);
@@ -56,7 +59,7 @@ int readModel(modelT &model, FILE *modelFile){
     }
 
     for (int i = 0; i < model.numOfEdges; i++){
-        check = scanf("%d %d", &model.edges[i].firstNode, &model.edges[i].secondNode);
+        check = fscanf(modelFile, "%d %d", &model.edges[i].firstNode, &model.edges[i].secondNode);
 
         if (check != 2){
             free(model.edges);
@@ -73,6 +76,7 @@ int readModel(modelT &model, FILE *modelFile){
 }
 
 int readModelWrap(modelT &model, FILE *modelFile){
+    QDEB("readModelWrap")
     if (!modelFile)
         return FILE_ERROR;
 
@@ -80,9 +84,7 @@ int readModelWrap(modelT &model, FILE *modelFile){
         return MODEL_IS_NOT_INITED_ERROR;
 
     int check;
-
     check = readModel(model, modelFile);
-
     if (check)
         return check;
 
@@ -90,19 +92,26 @@ int readModelWrap(modelT &model, FILE *modelFile){
 }
 
 int setModel(QString wayToFile, modelT &model){
+    QDEB("setModel")
     initModel(model);
 
     FILE *modelFile = fopen(qUtf8Printable(wayToFile), "r");
     if (!modelFile)
         return FILE_ERROR;
 
-    int check = readModelWprap(model, modelFile);
+    int check = readModelWrap(model, modelFile);
     if (check){
         fclose(modelFile);
+
         return check;
     }
 
     fclose(modelFile);
+
+#if DEBUG == 1
+    for (int i = 0; i < model.numOfNodes; i++)
+        qDebug("%lf %f %lf\n", model.nodes[i].xCoord, model.nodes[i].yCoord, model.nodes[i].zCoord);
+#endif
 
     return SUCCESS;
 }

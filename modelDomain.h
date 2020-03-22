@@ -25,7 +25,7 @@ int setModel(QString wayToFile, modelT &model);
 
 void initModel(modelT &model);
 
-int readModelWprap(modelT &model, FILE *modelFile);
+int readModelWrap(modelT &model, FILE *modelFile);
 
 int readModel(modelT &model, FILE *modelFile);
 

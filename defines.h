@@ -1,6 +1,13 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#define DEBUG 1
+
+#if DEBUG == 1
+#define QDEB(s) qDebug("%s",s);
+#elif DEBUG == 0
+#define QDEB(s) {};
+#endif
 
 #define DIRECTORY_ERROR -1
 #define FILE_ERROR -2
