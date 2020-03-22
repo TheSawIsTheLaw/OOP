@@ -14,19 +14,20 @@ typedef struct{
 }edgeT;
 
 typedef struct{
+    int numOfNodes;
     nodeT *nodes;
+    int numOfEdges;
     edgeT *edges;
+    int distanceToUser;
 }modelT;
 
 int setModel(QString wayToFile, modelT &model);
-
-int initModelWrap(modelT &model);
 
 void initModel(modelT &model);
 
 int readModelWprap(modelT &model, FILE *modelFile);
 
-void readModel(modelT &model, FILE *modelFile);
+int readModel(modelT &model, FILE *modelFile);
 
 #endif // MODEL_DOMAIN_H
 
