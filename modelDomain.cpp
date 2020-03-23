@@ -154,3 +154,38 @@ int setModel(QString wayToFile, modelT &model){
 
     return SUCCESS;
 }
+
+void moveModel(int direction, nodeT *nodes, int numOfNodes){
+    int moveDirection;
+    if (!direction || direction == 3){
+        if (direction)
+            moveDirection = 10;
+        else
+            moveDirection = -10;
+        for (int i = 0; i < numOfNodes; i++)
+            nodes[i].xCoord += moveDirection;
+    }
+    else{
+        if (direction == 2)
+            moveDirection = -10;
+        else
+            moveDirection = 10;
+        for (int i = 0; i < numOfNodes; i++)
+            nodes[i].yCoord += moveDirection;
+    }
+}
+
+int moveModelWarp(int direction, nodeT *nodes, int numOfNodes){
+    if (direction < GO_LEFT || direction > GO_RIGHT)
+        return WRONG_DIRECTION_ERROR;
+
+    if (!nodes)
+        return INVALID_NODES_MOVE_POINTER_ERROR;
+
+    if (numOfNodes <= 0)
+        return WRONG_NUMBER_OF_NODES_ERROR;
+
+    moveModel(direction, nodes, numOfNodes);
+
+    return SUCCESS;
+}

@@ -1,45 +1,71 @@
-#include "mainwindow.h"
 #include "userDomain.h"
 
-#include "defines.h"
-
-int taskManager(int choice){
+int taskManager(int choice, modelT &model){
+    int check;
     if (!choice){
-        printf("Ход влево");
+        check = moveModelWarp(GO_LEFT, model.nodes, model.numOfNodes);
+        if (check)
+            return check;
     }
     else if (choice == GO_DOWN){
-        printf("Ход вниз");
+        check = moveModelWarp(GO_DOWN, model.nodes, model.numOfNodes);
+        if (check)
+            return check;
     }
     else if (choice == GO_UP){
-        printf("Ход вверх");
+        check = moveModelWarp(GO_UP, model.nodes, model.numOfNodes);
+        if (check)
+            return check;
     }
     else if (choice == GO_RIGHT){
-        printf("Ход вниз");
+        check = moveModelWarp(GO_RIGHT, model.nodes, model.numOfNodes);
+        if (check)
+            return check;
     }
     else if (choice == ROTATE_Z_R){
-        printf("Ход вправо");
+        check = printf("Ход вправо");
+        if (check)
+            return check;
     }
     else if (choice == ROTATE_Z_L){
-        printf("Верчение...");
+        check = printf("Верчение...");
+        if (check)
+            return check;
     }
     else if (choice == ROTATE_Y_D){
-        printf("Что-то...");
+        check = printf("Что-то...");
+        if (check)
+            return check;
     }
     else if (choice == ROTATE_Y_U){
-        printf("Что-то...");
+        check = printf("Что-то...");
+        if (check)
+            return check;
     }
     else if (choice == ROTATE_X_R){
-        printf("Что-то...");
+        check = printf("Что-то...");
+        if (check)
+            return check;
     }
     else if (choice == ROTATE_X_L){
-        printf("Что-то...");
+        check = printf("Что-то...");
+        if (check)
+            return check;
     }
     else if (choice == SCALE_PLUS){
-        printf("Что-то...");
+        check = printf("Что-то...");
+        if (check)
+            return check;
     }
     else if (choice == SCALE_MINUS){
-        printf("Что-то...");
+        check = printf("Что-то...");
+        if (check)
+            return check;
     }
+
+    check = showModelWrap(model);
+    if (check)
+        return check;
 
     return SUCCESS;
 }

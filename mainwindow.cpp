@@ -18,7 +18,11 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::showAll(modelT &model){
-    isModelInited(model);
+    int check;
+    check = isModelInited(model);
+    if (check)
+        return ;
+
 
     QPen whitePen(Qt::white);
     nodeT firstNode, secondNode;
@@ -63,53 +67,64 @@ void MainWindow::on_chooseModelButton_clicked(){
         QMessageBox::critical(this, "Ошибка!", "Переданная модель не инициализированна. Код программы был изменён. Не в лучшую сторону.");
     else if (check == MODEL_IS_NOT_READY_ERROR)
         QMessageBox::critical(this, "Ошибка!", "Ошибка формата файла.");
+    else
+        showAll(model);
 }
 
 void MainWindow::on_goLeftButton_clicked(){
-    taskManager(GO_LEFT);
+    taskManager(GO_LEFT, model);
+    showAll(model);
 }
 
 void MainWindow::on_goDownButton_clicked(){
-    taskManager(GO_DOWN);
+    taskManager(GO_DOWN, model);
+    showAll(model);
 }
 
 void MainWindow::on_goUpButton_clicked(){
-    taskManager(GO_UP);
+    taskManager(GO_UP, model);
+    showAll(model);
 }
 
 void MainWindow::on_goRightButton_clicked(){
-    taskManager(GO_RIGHT);
+    taskManager(GO_RIGHT, model);
+    showAll(model);
 }
 
 void MainWindow::on_rotateZRightButton_clicked(){
-    taskManager(ROTATE_Z_R);
+    taskManager(ROTATE_Z_R, model);
+    showAll(model);
 }
 
 void MainWindow::on_toratateZLeftButton_clicked(){
-    taskManager(ROTATE_Z_L);
+    taskManager(ROTATE_Z_L, model);
+    showAll(model);
 }
 
 void MainWindow::on_rotateYdownButton_clicked(){
-    taskManager(ROTATE_Y_D);
+    taskManager(ROTATE_Y_D, model);
+    showAll(model);
 }
 
 void MainWindow::on_rotateYupButton_clicked(){
-    taskManager(ROTATE_Y_U);
+    taskManager(ROTATE_Y_U, model);
+    showAll(model);
 }
 
 void MainWindow::on_rotateXRightButton_clicked(){
-    taskManager(ROTATE_X_R);
+    taskManager(ROTATE_X_R, model);
+    showAll(model);
 }
 
 void MainWindow::on_rotateXLeftButton_clicked(){
-    taskManager(ROTATE_X_L);
+    taskManager(ROTATE_X_L, model);
 }
 
 void MainWindow::on_plusMasstButton_clicked(){
-    taskManager(SCALE_PLUS);
+    taskManager(SCALE_PLUS, model);
 }
 
 void MainWindow::on_minusMasstButton_clicked(){
-    taskManager(SCALE_MINUS);
+    taskManager(SCALE_MINUS, model);
 }
 

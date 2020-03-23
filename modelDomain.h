@@ -1,5 +1,6 @@
 #ifndef MODEL_DOMAIN_H
 #define MODEL_DOMAIN_H
+
 #include "mainwindow.h"
 
 typedef struct{
@@ -34,6 +35,10 @@ int readModel(modelT &model, FILE *modelFile);
 int showModelWrap(modelT &model);
 
 void showModel(modelT &model);
+
+int moveModelWarp(int direction, nodeT *nodes, int numOfNodes);
+
+void moveModel(int direction, nodeT *nodes, int numOfNodes);
 
 #endif // MODEL_DOMAIN_H
 
