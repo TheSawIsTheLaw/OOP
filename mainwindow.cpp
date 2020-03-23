@@ -128,9 +128,13 @@ void MainWindow::on_rotateXLeftButton_clicked(){
 
 void MainWindow::on_plusMasstButton_clicked(){
     taskManager(SCALE_PLUS, model);
+    qDebug("sP");
+    showAll(model);
 }
 
 void MainWindow::on_minusMasstButton_clicked(){
     taskManager(SCALE_MINUS, model);
+    qDebug("sM");
+    showAll(model);
 }
 

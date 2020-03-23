@@ -53,12 +53,12 @@ int taskManager(int choice, modelT &model){
             return check;
     }
     else if (choice == SCALE_PLUS){
-        check = printf("Что-то...");
+        check = scaleModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == SCALE_MINUS){
-        check = printf("Что-то...");
+        check = scaleModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }

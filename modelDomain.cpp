@@ -208,11 +208,11 @@ void zRotateModel(int direction, nodeT *nodes, int numOfnodes){
 
     double xTemp, yTemp;
     for (int i = 0; i < numOfnodes; i++){
-      xTemp = X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle);
-      yTemp = Y_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle);
+        xTemp = round(X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle));
+        yTemp = round(Y_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle));
 
-      nodes[i].xCoord = xTemp;
-      nodes[i].yCoord = yTemp;
+        nodes[i].xCoord = xTemp;
+        nodes[i].yCoord = yTemp;
     }
 }
 
@@ -238,11 +238,11 @@ void yRotateModel(int direction, nodeT *nodes, int numOfnodes){
 
     double xTemp, zTemp;
     for (int i = 0; i < numOfnodes; i++){
-      xTemp = X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle);
-      zTemp = Z_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle);
+        xTemp = round(X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle));
+        zTemp = round(Z_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle));
 
-      nodes[i].xCoord = xTemp;
-      nodes[i].zCoord = zTemp;
+        nodes[i].xCoord = xTemp;
+        nodes[i].zCoord = zTemp;
     }
 }
 
@@ -268,11 +268,11 @@ void xRotateModel(int direction, nodeT *nodes, int numOfnodes){
 
     double yTemp, zTemp;
     for (int i = 0; i < numOfnodes; i++){
-      yTemp = Y_CENTER_SCENE + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle);
-      zTemp = Z_CENTER_SCENE - (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle);
+        yTemp = round(Y_CENTER_SCENE + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle));
+        zTemp = round(Z_CENTER_SCENE - (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle));
 
-      nodes[i].yCoord = yTemp;
-      nodes[i].zCoord = zTemp;
+        nodes[i].yCoord = yTemp;
+        nodes[i].zCoord = zTemp;
     }
 }
 
@@ -287,6 +287,34 @@ int xRotateModelWarp(int direction, nodeT *nodes, int numOfNodes){
         return check;
 
     xRotateModel(direction, nodes, numOfNodes);
+
+    return SUCCESS;
+}
+
+void scaleModel(int direction, nodeT *nodes, int numOfnodes){
+    double scaleCoef = 0.9;
+    if (direction == SCALE_PLUS)
+        scaleCoef = 1.1;
+
+    qDebug("scale");
+
+    for (int i = 0; i < numOfnodes; i++){
+        nodes[i].xCoord = round(nodes[i].xCoord * scaleCoef + (1 - scaleCoef) * X_CENTER_SCENE);
+        nodes[i].yCoord = round(nodes[i].yCoord * scaleCoef + (1 - scaleCoef) * Y_CENTER_SCENE);
+    }
+}
+
+int scaleModelWarp(int direction, nodeT *nodes, int numOfNodes){
+    if (direction < SCALE_PLUS || direction > SCALE_MINUS)
+        return WRONG_DIRECTION_ERROR;
+
+    int check;
+    check = areNodesLigit(nodes, numOfNodes);
+
+    if (check)
+        return check;
+
+    scaleModel(direction, nodes, numOfNodes);
 
     return SUCCESS;
 }

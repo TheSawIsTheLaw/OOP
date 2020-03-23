@@ -53,5 +53,9 @@ int xRotateModelWarp(int direction, nodeT *nodes, int numOfNodes);
 
 void xRotateModel(int direction, nodeT *nodes, int numOfNodes);
 
+int scaleModelWarp(int direction, nodeT *nodes, int numOfNodes);
+
+void scaleModel(int direction, nodeT *nodes, int numOfNodes);
+
 #endif // MODEL_DOMAIN_H
 
