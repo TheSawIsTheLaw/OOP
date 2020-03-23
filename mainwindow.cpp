@@ -47,11 +47,6 @@ void MainWindow::showAll(modelT &model){
     ui->graphicsView->setScene(scene);
 }
 
-void MainWindow::on_showModel_clicked()
-{
-    showAll(model);
-}
-
 void MainWindow::on_chooseModelButton_clicked(){
     QString qFileName = QFileDialog::getOpenFileName(this, tr("Open Model"), "../startModels", tr("Model Files (*.txt)"));
     qDebug("%s", qUtf8Printable(qFileName));
@@ -73,51 +68,62 @@ void MainWindow::on_chooseModelButton_clicked(){
 
 void MainWindow::on_goLeftButton_clicked(){
     taskManager(GO_LEFT, model);
+    qDebug("left");
     showAll(model);
 }
 
 void MainWindow::on_goDownButton_clicked(){
     taskManager(GO_DOWN, model);
+    qDebug("down");
     showAll(model);
 }
 
 void MainWindow::on_goUpButton_clicked(){
     taskManager(GO_UP, model);
+    qDebug("up");
     showAll(model);
 }
 
 void MainWindow::on_goRightButton_clicked(){
     taskManager(GO_RIGHT, model);
+    qDebug("down");
     showAll(model);
 }
 
 void MainWindow::on_rotateZRightButton_clicked(){
     taskManager(ROTATE_Z_R, model);
+    qDebug("zR");
     showAll(model);
 }
 
 void MainWindow::on_toratateZLeftButton_clicked(){
     taskManager(ROTATE_Z_L, model);
+    qDebug("zL");
     showAll(model);
 }
 
 void MainWindow::on_rotateYdownButton_clicked(){
-    taskManager(ROTATE_Y_D, model);
+    taskManager(ROTATE_Y_R, model);
+    qDebug("yR");
     showAll(model);
 }
 
 void MainWindow::on_rotateYupButton_clicked(){
-    taskManager(ROTATE_Y_U, model);
+    taskManager(ROTATE_Y_L, model);
+    qDebug("yL");
     showAll(model);
 }
 
 void MainWindow::on_rotateXRightButton_clicked(){
     taskManager(ROTATE_X_R, model);
+    qDebug("xR");
     showAll(model);
 }
 
 void MainWindow::on_rotateXLeftButton_clicked(){
     taskManager(ROTATE_X_L, model);
+    qDebug("xL");
+    showAll(model);
 }
 
 void MainWindow::on_plusMasstButton_clicked(){

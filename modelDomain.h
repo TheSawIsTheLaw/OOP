@@ -2,6 +2,7 @@
 #define MODEL_DOMAIN_H
 
 #include "mainwindow.h"
+#include <math.h>
 
 typedef struct{
     double xCoord;
@@ -39,6 +40,18 @@ void showModel(modelT &model);
 int moveModelWarp(int direction, nodeT *nodes, int numOfNodes);
 
 void moveModel(int direction, nodeT *nodes, int numOfNodes);
+
+int zRotateModelWarp(int direction, nodeT *nodes, int numOfNodes);
+
+void zRotateModel(int direction, nodeT *nodes, int numOfNodes);
+
+int yRotateModelWarp(int direction, nodeT *nodes, int numOfNodes);
+
+void yRotateModel(int direction, nodeT *nodes, int numOfNodes);
+
+int xRotateModelWarp(int direction, nodeT *nodes, int numOfNodes);
+
+void xRotateModel(int direction, nodeT *nodes, int numOfNodes);
 
 #endif // MODEL_DOMAIN_H
 

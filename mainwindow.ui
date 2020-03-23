@@ -34,7 +34,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>▲</string>
+     <string>↑</string>
     </property>
     <property name="autoRepeatInterval">
      <number>0</number>
@@ -56,7 +56,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>◀</string>
+     <string>←</string>
     </property>
     <property name="autoExclusive">
      <bool>false</bool>
@@ -78,7 +78,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>▶</string>
+     <string>→</string>
     </property>
     <property name="autoRepeatInterval">
      <number>0</number>
@@ -97,7 +97,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>▼</string>
+     <string>↓</string>
     </property>
     <property name="autoRepeatInterval">
      <number>0</number>
@@ -123,33 +123,59 @@
     <property name="geometry">
      <rect>
       <x>700</x>
-      <y>460</y>
+      <y>420</y>
       <width>41</width>
-      <height>26</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>↪</string>
+     <string>↻</string>
     </property>
    </widget>
    <widget class="QPushButton" name="toratateZLeftButton">
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>460</y>
+      <y>420</y>
       <width>41</width>
-      <height>26</height>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↺</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateYdownButton">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>450</y>
+      <width>31</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>↩</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="rotateYdownButton">
+   <widget class="QPushButton" name="rotateYupButton">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>450</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↪</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateXRightButton">
     <property name="geometry">
      <rect>
       <x>740</x>
-      <y>445</y>
+      <y>430</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -158,43 +184,17 @@
      <string>⤵</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="rotateYupButton">
+   <widget class="QPushButton" name="rotateXLeftButton">
     <property name="geometry">
      <rect>
       <x>740</x>
-      <y>470</y>
+      <y>460</y>
       <width>31</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>⤴</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="rotateXRightButton">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>440</y>
-      <width>41</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>↻</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="rotateXLeftButton">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>440</y>
-      <width>41</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>↺</string>
     </property>
    </widget>
    <widget class="QPushButton" name="plusMasstButton">
@@ -221,19 +221,6 @@
     </property>
     <property name="text">
      <string>-</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="showModel">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>500</y>
-      <width>161</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Show model</string>
     </property>
    </widget>
   </widget>

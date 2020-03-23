@@ -3,52 +3,52 @@
 int taskManager(int choice, modelT &model){
     int check;
     if (!choice){
-        check = moveModelWarp(GO_LEFT, model.nodes, model.numOfNodes);
+        check = moveModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == GO_DOWN){
-        check = moveModelWarp(GO_DOWN, model.nodes, model.numOfNodes);
+        check = moveModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == GO_UP){
-        check = moveModelWarp(GO_UP, model.nodes, model.numOfNodes);
+        check = moveModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == GO_RIGHT){
-        check = moveModelWarp(GO_RIGHT, model.nodes, model.numOfNodes);
+        check = moveModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == ROTATE_Z_R){
-        check = printf("Ход вправо");
+        check = zRotateModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == ROTATE_Z_L){
-        check = printf("Верчение...");
+        check = zRotateModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
-    else if (choice == ROTATE_Y_D){
-        check = printf("Что-то...");
+    else if (choice == ROTATE_Y_R){
+        check = yRotateModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
-    else if (choice == ROTATE_Y_U){
-        check = printf("Что-то...");
+    else if (choice == ROTATE_Y_L){
+        check = yRotateModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == ROTATE_X_R){
-        check = printf("Что-то...");
+        check = xRotateModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }
     else if (choice == ROTATE_X_L){
-        check = printf("Что-то...");
+        check = xRotateModelWarp(choice, model.nodes, model.numOfNodes);
         if (check)
             return check;
     }

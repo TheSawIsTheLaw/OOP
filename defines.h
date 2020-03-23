@@ -28,14 +28,18 @@
 #define GO_DOWN 1
 #define GO_UP 2
 #define GO_RIGHT 3
-#define ROTATE_Z_R 4
-#define ROTATE_Z_L 5
-#define ROTATE_Y_D 6
-#define ROTATE_Y_U 7
-#define ROTATE_X_R 8
-#define ROTATE_X_L 9
+#define ROTATE_Z_R 8
+#define ROTATE_Z_L 9
+#define ROTATE_Y_R 6
+#define ROTATE_Y_L 7
+#define ROTATE_X_R 4
+#define ROTATE_X_L 5
 #define SCALE_PLUS 10
 #define SCALE_MINUS 11
+
+#define X_CENTER_SCENE 490
+#define Y_CENTER_SCENE 200
+#define Z_CENTER_SCENE 100
 
 
 #endif

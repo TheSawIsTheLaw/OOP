@@ -47,8 +47,6 @@ private slots:
 
     void on_minusMasstButton_clicked();
 
-    void on_showModel_clicked();
-
 private:
 
     Ui::MainWindow *ui;
