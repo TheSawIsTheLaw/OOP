@@ -4,6 +4,21 @@
 #include "defines.h"
 
 // Возможно, следует рассматривать случай, когда подана уже использованная модель
+
+int isModelInited(modelT &model){
+    if (!model.edges || !model.nodes || model.numOfEdges <= 0 || model.numOfNodes <= 0)
+        return MODEL_IS_NOT_INITED_ERROR;
+
+    return SUCCESS;
+}
+
+int isModelReady(modelT &model){
+    if (model.edges || model.nodes || model.numOfEdges != 0 || model.numOfNodes != 0)
+        return MODEL_IS_NOT_READY_ERROR;
+
+    return SUCCESS;
+}
+
 void initModel(modelT &model){
     QDEB("initModel")
     model.numOfEdges = 0;
@@ -24,6 +39,8 @@ void freeModel(modelT &model){
     if (model.nodes)
         free(model.nodes);
     model.numOfNodes = 0;
+
+    model.distanceToUser = 0;
 }
 
 int readModel(modelT &model, FILE *modelFile){
@@ -32,7 +49,7 @@ int readModel(modelT &model, FILE *modelFile){
 
     check = fscanf(modelFile, "%d %d", &model.numOfNodes, &model.numOfEdges);
     if (check != 2)
-        return FILE_FORMAT_ERROR;
+        return FILE_STRUCTURE_ERROR;
     model.edges = (edgeT *)calloc(model.numOfEdges, sizeof(edgeT));
     if (!model.edges){
         freeModel(model);
@@ -80,10 +97,12 @@ int readModelWrap(modelT &model, FILE *modelFile){
     if (!modelFile)
         return FILE_ERROR;
 
-    if (model.edges || model.nodes)
-        return MODEL_IS_NOT_INITED_ERROR;
-
     int check;
+    check = isModelReady(model);
+
+    if (check)
+        return check;
+
     check = readModel(model, modelFile);
     if (check)
         return check;
@@ -92,8 +111,11 @@ int readModelWrap(modelT &model, FILE *modelFile){
 }
 
 int showModelWrap(modelT &model){
-    if (!model.edges || !model.nodes || model.numOfEdges <= 0 || model.numOfNodes <= 0)
-        return MODEL_IS_NOT_READY;
+    int check;
+    check = isModelInited(model);
+
+    if (check)
+        return check;
 
     return SUCCESS;
 }

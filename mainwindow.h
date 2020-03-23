@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QGraphicsScene>
 
 #include "modelDomain.h"
@@ -53,5 +54,7 @@ private:
     Ui::MainWindow *ui;
     QVector<QGraphicsLineItem *> line;
     QGraphicsScene *scene;
+
+    void showAll(modelT &model);
 };
 #endif // MAINWINDOW_H

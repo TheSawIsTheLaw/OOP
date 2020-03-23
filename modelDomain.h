@@ -21,6 +21,8 @@ typedef struct{
     int distanceToUser;
 }modelT;
 
+int isModelInited(modelT &model);
+
 int setModel(QString wayToFile, modelT &model);
 
 void initModel(modelT &model);
