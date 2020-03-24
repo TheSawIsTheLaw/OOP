@@ -41,5 +41,7 @@
 #define Y_CENTER_SCENE 200
 #define Z_CENTER_SCENE 100
 
+#define PI_EIGHTEEN 0.174533
+
 
 #endif

@@ -202,14 +202,14 @@ int moveModelWarp(int direction, nodeT *nodes, int numOfNodes){
 }
 
 void zRotateModel(int direction, nodeT *nodes, int numOfnodes){
-    double rotateAngle = 0.17453292519;
+    double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_Z_R)
         rotateAngle *= -1;
 
     double xTemp, yTemp;
     for (int i = 0; i < numOfnodes; i++){
-        xTemp = round(X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle));
-        yTemp = round(Y_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle));
+        xTemp = X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle);
+        yTemp = Y_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle);
 
         nodes[i].xCoord = xTemp;
         nodes[i].yCoord = yTemp;
@@ -232,14 +232,14 @@ int zRotateModelWarp(int direction, nodeT *nodes, int numOfNodes){
 }
 
 void yRotateModel(int direction, nodeT *nodes, int numOfnodes){
-    double rotateAngle = 0.17453292519;
+    double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_Y_R)
         rotateAngle *= -1;
 
     double xTemp, zTemp;
     for (int i = 0; i < numOfnodes; i++){
-        xTemp = round(X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle));
-        zTemp = round(Z_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle));
+        xTemp = X_CENTER_SCENE + (nodes[i].xCoord - X_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle);
+        zTemp = Z_CENTER_SCENE - (nodes[i].xCoord - X_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle);
 
         nodes[i].xCoord = xTemp;
         nodes[i].zCoord = zTemp;
@@ -262,14 +262,14 @@ int yRotateModelWarp(int direction, nodeT *nodes, int numOfNodes){
 }
 
 void xRotateModel(int direction, nodeT *nodes, int numOfnodes){
-    double rotateAngle = 0.17453292519;
+    double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_X_R)
         rotateAngle *= -1;
 
     double yTemp, zTemp;
     for (int i = 0; i < numOfnodes; i++){
-        yTemp = round(Y_CENTER_SCENE + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle));
-        zTemp = round(Z_CENTER_SCENE - (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle));
+        yTemp = Y_CENTER_SCENE + (nodes[i].yCoord - Y_CENTER_SCENE) * cos(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * sin(rotateAngle);
+        zTemp = Z_CENTER_SCENE - (nodes[i].yCoord - Y_CENTER_SCENE) * sin(rotateAngle) + (nodes[i].zCoord - Z_CENTER_SCENE) * cos(rotateAngle);
 
         nodes[i].yCoord = yTemp;
         nodes[i].zCoord = zTemp;
@@ -299,8 +299,9 @@ void scaleModel(int direction, nodeT *nodes, int numOfnodes){
     qDebug("scale");
 
     for (int i = 0; i < numOfnodes; i++){
-        nodes[i].xCoord = round(nodes[i].xCoord * scaleCoef + (1 - scaleCoef) * X_CENTER_SCENE);
-        nodes[i].yCoord = round(nodes[i].yCoord * scaleCoef + (1 - scaleCoef) * Y_CENTER_SCENE);
+        nodes[i].xCoord = nodes[i].xCoord * scaleCoef + (1 - scaleCoef) * X_CENTER_SCENE;
+        nodes[i].yCoord = nodes[i].yCoord * scaleCoef + (1 - scaleCoef) * Y_CENTER_SCENE;
+        nodes[i].zCoord = nodes[i].zCoord * scaleCoef + (1 - scaleCoef) * Z_CENTER_SCENE;
     }
 }
 
