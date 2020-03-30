@@ -7,14 +7,14 @@
 
 static modelT model;
 
-MainWindow::MainWindow(QWidget* parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
 }
 
 MainWindow::~MainWindow() { delete ui; }
 
-void MainWindow::showAll(modelT& model) {
+void MainWindow::showAll(modelT &model) {
   int check;
   check = isModelInited(model);
   if (check) return;
