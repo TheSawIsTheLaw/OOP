@@ -48,20 +48,34 @@ void MainWindow::showAll(modelT &model){
 }
 
 void MainWindow::on_chooseModelButton_clicked(){
-    QString qFileName = QFileDialog::getOpenFileName(this, tr("Open Model"), "../startModels", tr("Model Files (*.txt)"));
+    QString qFileName = QFileDialog::getOpenFileName(this,
+                                                     tr("Open Model"),
+                                                     "../startModels",
+                                                     tr("Model Files (*.txt)"));
     qDebug("%s", qUtf8Printable(qFileName));
-    int check = setModel(qFileName, model);
+    int check = setModel(qFileName,
+                         model);
     qDebug("%d", check);
     if (check == FILE_ERROR)
-        QMessageBox::critical(this, "Ошибка!", "Произошла ошибка при открытии файла.");
+        QMessageBox::critical(this,
+                              "Ошибка!",
+                              "Возможно, что не был выбран файл, либо файл недоступен.");
     else if (check == MEMORY_ALLOCATION_ERROR)
-        QMessageBox::critical(this, "Ошибка!", "Произошла ошибка при вылении памяти под данные.");
+        QMessageBox::critical(this,
+                              "Ошибка!",
+                              "Произошла ошибка при выделении памяти под данные.");
     else if (check == FILE_STRUCTURE_ERROR)
-        QMessageBox::critical(this, "Ошибка!", "Переданный файл обладает нарушенной структурой и не может быть обработан.");
+        QMessageBox::critical(this,
+                              "Ошибка!",
+                              "Переданный файл обладает нарушенной структурой и не может быть обработан.");
     else if (check == MODEL_IS_NOT_INITED_ERROR)
-        QMessageBox::critical(this, "Ошибка!", "Переданная модель не инициализированна. Код программы был изменён. Не в лучшую сторону.");
+        QMessageBox::critical(this,
+                              "Ошибка!",
+                              "Переданная модель не инициализированна. Код программы был изменён. Не в лучшую сторону.");
     else if (check == MODEL_IS_NOT_READY_ERROR)
-        QMessageBox::critical(this, "Ошибка!", "Ошибка формата файла.");
+        QMessageBox::critical(this,
+                              "Ошибка!",
+                              "Ошибка формата файла.");
     else
         showAll(model);
 }

@@ -3,22 +3,23 @@
 
 #include "defines.h"
 
-// Возможно, следует рассматривать случай, когда подана уже использованная модель
-
-int isModelInited(modelT &model){
+//! Checks
+int isModelInited(const modelT &model){
     if (!model.edges || !model.nodes || model.numOfEdges <= 0 || model.numOfNodes <= 0)
         return MODEL_IS_NOT_INITED_ERROR;
 
     return SUCCESS;
 }
 
-int isModelReady(modelT &model){
+int isModelReady(const modelT &model){
     if (model.edges || model.nodes || model.numOfEdges != 0 || model.numOfNodes != 0)
         return MODEL_IS_NOT_READY_ERROR;
 
     return SUCCESS;
 }
+//< End
 
+//! Initialization and free
 void initModel(modelT &model){
     QDEB("initModel")
     model.numOfEdges = 0;
@@ -43,7 +44,19 @@ void freeModel(modelT &model){
     model.distanceToUser = 0;
 }
 
-int readModel(modelT &model, FILE *modelFile){
+int areNodesLigit(const nodeT *const nodes, const int numOfNodes){
+    if (!nodes)
+        return INVALID_NODES_MOVE_POINTER_ERROR;
+
+    if (numOfNodes <= 0)
+        return WRONG_NUMBER_OF_NODES_ERROR;
+
+    return SUCCESS;
+}
+//< End
+
+//! Actions
+int readModel(modelT &model, FILE *const modelFile){
     QDEB("readModel")
     int check;
 
@@ -92,35 +105,7 @@ int readModel(modelT &model, FILE *modelFile){
     return SUCCESS;
 }
 
-int readModelWrap(modelT &model, FILE *modelFile){
-    QDEB("readModelWrap")
-    if (!modelFile)
-        return FILE_ERROR;
-
-    int check;
-    check = isModelReady(model);
-
-    if (check)
-        return check;
-
-    check = readModel(model, modelFile);
-    if (check)
-        return check;
-
-    return SUCCESS;
-}
-
-int showModelWrap(modelT &model){
-    int check;
-    check = isModelInited(model);
-
-    if (check)
-        return check;
-
-    return SUCCESS;
-}
-
-int setModel(QString wayToFile, modelT &model){
+int setModel(const QString wayToFile, modelT &model){
     QDEB("setModel")
     initModel(model);
 
@@ -155,17 +140,7 @@ int setModel(QString wayToFile, modelT &model){
     return SUCCESS;
 }
 
-int areNodesLigit(nodeT *nodes, int numOfNodes){
-    if (!nodes)
-        return INVALID_NODES_MOVE_POINTER_ERROR;
-
-    if (numOfNodes <= 0)
-        return WRONG_NUMBER_OF_NODES_ERROR;
-
-    return SUCCESS;
-}
-
-void moveModel(int direction, nodeT *nodes, int numOfNodes){
+void moveModel(const int direction, nodeT *const nodes, const int numOfNodes){
     int moveDirection;
     if (!direction || direction == 3){
         if (direction)
@@ -185,23 +160,7 @@ void moveModel(int direction, nodeT *nodes, int numOfNodes){
     }
 }
 
-
-int moveModelWarp(int direction, nodeT *nodes, int numOfNodes){
-    if (direction < GO_LEFT || direction > GO_RIGHT)
-        return WRONG_DIRECTION_ERROR;
-
-    int check;
-    check = areNodesLigit(nodes, numOfNodes);
-
-    if (check)
-        return check;
-
-    moveModel(direction, nodes, numOfNodes);
-
-    return SUCCESS;
-}
-
-void zRotateModel(int direction, nodeT *nodes, int numOfnodes){
+void zRotateModel(const int direction, nodeT *const nodes, const int numOfnodes){
     double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_Z_R)
         rotateAngle *= -1;
@@ -216,22 +175,7 @@ void zRotateModel(int direction, nodeT *nodes, int numOfnodes){
     }
 }
 
-int zRotateModelWarp(int direction, nodeT *nodes, int numOfNodes){
-    if (direction < ROTATE_Z_R || direction > ROTATE_Z_L)
-        return WRONG_DIRECTION_ERROR;
-
-    int check;
-    check = areNodesLigit(nodes, numOfNodes);
-
-    if (check)
-        return check;
-
-    zRotateModel(direction, nodes, numOfNodes);
-
-    return SUCCESS;
-}
-
-void yRotateModel(int direction, nodeT *nodes, int numOfnodes){
+void yRotateModel(const int direction, nodeT *const nodes, const int numOfnodes){
     double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_Y_R)
         rotateAngle *= -1;
@@ -246,22 +190,7 @@ void yRotateModel(int direction, nodeT *nodes, int numOfnodes){
     }
 }
 
-int yRotateModelWarp(int direction, nodeT *nodes, int numOfNodes){
-    if (direction < ROTATE_Y_R || direction > ROTATE_Y_L)
-        return WRONG_DIRECTION_ERROR;
-
-    int check;
-    check = areNodesLigit(nodes, numOfNodes);
-
-    if (check)
-        return check;
-
-    yRotateModel(direction, nodes, numOfNodes);
-
-    return SUCCESS;
-}
-
-void xRotateModel(int direction, nodeT *nodes, int numOfnodes){
+void xRotateModel(const int direction, nodeT *const nodes, const int numOfnodes){
     double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_X_R)
         rotateAngle *= -1;
@@ -276,7 +205,96 @@ void xRotateModel(int direction, nodeT *nodes, int numOfnodes){
     }
 }
 
-int xRotateModelWarp(int direction, nodeT *nodes, int numOfNodes){
+void scaleModel(const int direction, nodeT *const nodes, const int numOfnodes){
+    double scaleCoef = 0.9;
+    if (direction == SCALE_PLUS)
+        scaleCoef = 1.1;
+
+    qDebug("scale");
+
+    for (int i = 0; i < numOfnodes; i++){
+        nodes[i].xCoord = nodes[i].xCoord * scaleCoef + (1 - scaleCoef) * X_CENTER_SCENE;
+        nodes[i].yCoord = nodes[i].yCoord * scaleCoef + (1 - scaleCoef) * Y_CENTER_SCENE;
+        nodes[i].zCoord = nodes[i].zCoord * scaleCoef + (1 - scaleCoef) * Z_CENTER_SCENE;
+    }
+}
+// End
+
+//! Wraps
+int readModelWrap(modelT &model, FILE *const modelFile){
+    QDEB("readModelWrap")
+    if (!modelFile)
+        return FILE_ERROR;
+
+    int check;
+    check = isModelReady(model);
+
+    if (check)
+        return check;
+
+    check = readModel(model, modelFile);
+    if (check)
+        return check;
+
+    return SUCCESS;
+}
+
+int showModelWrap(const modelT &model){
+    int check;
+    check = isModelInited(model);
+
+    if (check)
+        return check;
+
+    return SUCCESS;
+}
+
+int moveModelWrap(const int direction, nodeT *const nodes, const int numOfNodes){
+    if (direction < GO_LEFT || direction > GO_RIGHT)
+        return WRONG_DIRECTION_ERROR;
+
+    int check;
+    check = areNodesLigit(nodes, numOfNodes);
+
+    if (check)
+        return check;
+
+    moveModel(direction, nodes, numOfNodes);
+
+    return SUCCESS;
+}
+
+int zRotateModelWrap(const int direction, nodeT *const nodes, const int numOfNodes){
+    if (direction < ROTATE_Z_R || direction > ROTATE_Z_L)
+        return WRONG_DIRECTION_ERROR;
+
+    int check;
+    check = areNodesLigit(nodes, numOfNodes);
+
+    if (check)
+        return check;
+
+    zRotateModel(direction, nodes, numOfNodes);
+
+    return SUCCESS;
+}
+
+int yRotateModelWrap(const int direction, nodeT *const nodes, const int numOfNodes){
+    if (direction < ROTATE_Y_R || direction > ROTATE_Y_L)
+        return WRONG_DIRECTION_ERROR;
+
+    int check;
+    check = areNodesLigit(nodes, numOfNodes);
+
+    if (check)
+        return check;
+
+    yRotateModel(direction, nodes, numOfNodes);
+
+    return SUCCESS;
+}
+
+int xRotateModelWrap(const int direction, nodeT *const nodes, const int numOfNodes){
     if (direction < ROTATE_X_R || direction > ROTATE_X_L)
         return WRONG_DIRECTION_ERROR;
 
@@ -291,21 +309,7 @@ int xRotateModelWarp(int direction, nodeT *nodes, int numOfNodes){
     return SUCCESS;
 }
 
-void scaleModel(int direction, nodeT *nodes, int numOfnodes){
-    double scaleCoef = 0.9;
-    if (direction == SCALE_PLUS)
-        scaleCoef = 1.1;
-
-    qDebug("scale");
-
-    for (int i = 0; i < numOfnodes; i++){
-        nodes[i].xCoord = nodes[i].xCoord * scaleCoef + (1 - scaleCoef) * X_CENTER_SCENE;
-        nodes[i].yCoord = nodes[i].yCoord * scaleCoef + (1 - scaleCoef) * Y_CENTER_SCENE;
-        nodes[i].zCoord = nodes[i].zCoord * scaleCoef + (1 - scaleCoef) * Z_CENTER_SCENE;
-    }
-}
-
-int scaleModelWarp(int direction, nodeT *nodes, int numOfNodes){
+int scaleModelWrap(const int direction, nodeT *const nodes, const int numOfNodes){
     if (direction < SCALE_PLUS || direction > SCALE_MINUS)
         return WRONG_DIRECTION_ERROR;
 
@@ -319,4 +323,4 @@ int scaleModelWarp(int direction, nodeT *nodes, int numOfNodes){
 
     return SUCCESS;
 }
-
+//< End

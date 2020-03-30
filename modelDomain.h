@@ -4,17 +4,22 @@
 #include "mainwindow.h"
 #include <math.h>
 
+//! Node
 typedef struct{
     double xCoord;
     double yCoord;
     double zCoord;
 }nodeT;
+//< End
 
+//! Edge
 typedef struct{
     int firstNode;
     int secondNode;
 }edgeT;
+//< End
 
+//! model
 typedef struct{
     int numOfNodes;
     nodeT *nodes;
@@ -22,40 +27,53 @@ typedef struct{
     edgeT *edges;
     int distanceToUser;
 }modelT;
+//< End
 
-int isModelInited(modelT &model);
+/// ! WRAPS HERE ARE CHECKS FOR UNITIALIZED/WRONG DATA
 
-int setModel(QString wayToFile, modelT &model);
+// Check
+int isModelInited(const modelT &model);
 
+// Set model
+int setModel(const QString wayToFile, modelT &model);
+
+// Init model
 void initModel(modelT &model);
 
-int readModelWrap(modelT &model, FILE *modelFile);
+//! Read model
+int readModelWrap(modelT &model, FILE *const modelFile);
+int readModel(modelT &model, FILE *const modelFile);
+//< End
 
-int readModel(modelT &model, FILE *modelFile);
-
+//! Show model
 int showModelWrap(modelT &model);
-
 void showModel(modelT &model);
+//< End
 
-int moveModelWarp(int direction, nodeT *nodes, int numOfNodes);
+//! Move model
+int moveModelWrap(const int direction, nodeT *const nodes, const int numOfNodes);
+void moveModel(const int direction, nodeT *const nodes, const int numOfNodes);
+//< End
 
-void moveModel(int direction, nodeT *nodes, int numOfNodes);
+//! Z rotate
+int zRotateModelWrap(const int direction, nodeT *const nodes, const int numOfNodes);
+void zRotateModel(const int direction, nodeT *const nodes, const int numOfNodes);
+//< End
 
-int zRotateModelWarp(int direction, nodeT *nodes, int numOfNodes);
+//! Y rotate
+int yRotateModelWrap(const int direction, nodeT *nodes, const int numOfNodes);
+void yRotateModel(const int direction, nodeT *const nodes, const int numOfNodes);
+//< End
 
-void zRotateModel(int direction, nodeT *nodes, int numOfNodes);
+//! X rotate
+int xRotateModelWrap(const int direction, nodeT *const nodes, const int numOfNodes);
+void xRotateModel(const int direction, nodeT *const nodes, const int numOfNodes);
+//< End
 
-int yRotateModelWarp(int direction, nodeT *nodes, int numOfNodes);
-
-void yRotateModel(int direction, nodeT *nodes, int numOfNodes);
-
-int xRotateModelWarp(int direction, nodeT *nodes, int numOfNodes);
-
-void xRotateModel(int direction, nodeT *nodes, int numOfNodes);
-
-int scaleModelWarp(int direction, nodeT *nodes, int numOfNodes);
-
-void scaleModel(int direction, nodeT *nodes, int numOfNodes);
+//! Scale
+int scaleModelWrap(const int direction, nodeT *const nodes, const int numOfNodes);
+void scaleModel(const int direction, nodeT *const nodes, const int numOfNodes);
+// End
 
 #endif // MODEL_DOMAIN_H
 

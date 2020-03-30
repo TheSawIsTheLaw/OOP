@@ -9,6 +9,7 @@
 #define QDEB(s) {};
 #endif
 
+//! Errors
 #define DIRECTORY_ERROR -1
 #define FILE_ERROR -2
 #define MODEL_IS_NOT_INITED_ERROR -3
@@ -19,11 +20,11 @@
 #define WRONG_DIRECTION_ERROR -8
 #define INVALID_NODES_MOVE_POINTER_ERROR -9
 #define WRONG_NUMBER_OF_NODES_ERROR -10
-
+//< End
 
 #define SUCCESS 0
 
-
+//! Task manager commands
 #define GO_LEFT 0
 #define GO_DOWN 1
 #define GO_UP 2
@@ -36,11 +37,15 @@
 #define ROTATE_Z_L 9
 #define SCALE_PLUS 10
 #define SCALE_MINUS 11
+//< End
 
+//! Scene center
 #define X_CENTER_SCENE 490
 #define Y_CENTER_SCENE 200
 #define Z_CENTER_SCENE 100
+//< End
 
+// Another defs
 #define PI_EIGHTEEN 0.174533
 
 
