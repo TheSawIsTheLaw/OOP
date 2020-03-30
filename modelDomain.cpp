@@ -45,9 +45,11 @@ void freeModel(modelT &model) {
 }
 
 int areNodesLigit(const nodeT *const nodes, const int numOfNodes) {
-  if (!nodes) return INVALID_NODES_MOVE_POINTER_ERROR;
+  if (!nodes)
+      return INVALID_NODES_MOVE_POINTER_ERROR;
 
-  if (numOfNodes <= 0) return WRONG_NUMBER_OF_NODES_ERROR;
+  if (numOfNodes <= 0)
+      return WRONG_NUMBER_OF_NODES_ERROR;
 
   return SUCCESS;
 }
@@ -84,7 +86,8 @@ int showModelWrap(const modelT &model) {
 
 int moveModelWrap(const int direction, nodeT *const nodes,
                   const int numOfNodes) {
-  if (direction < GO_LEFT || direction > GO_RIGHT) return WRONG_DIRECTION_ERROR;
+  if (direction < GO_LEFT || direction > GO_RIGHT)
+      return WRONG_DIRECTION_ERROR;
 
   int check;
   check = areNodesLigit(nodes, numOfNodes);
@@ -168,7 +171,8 @@ int readModel(modelT &model, FILE *const modelFile) {
   int check;
 
   check = fscanf(modelFile, "%d %d", &model.numOfNodes, &model.numOfEdges);
-  if (check != 2) return FILE_STRUCTURE_ERROR;
+  if (check != 2)
+      return FILE_STRUCTURE_ERROR;
 
   model.edges = (edgeT*)calloc(model.numOfEdges, sizeof(edgeT));
   if (!model.edges) {
@@ -218,7 +222,8 @@ int setModel(const QString wayToFile, modelT &model) {
   initModel(model);
 
   FILE *modelFile = fopen(qUtf8Printable(wayToFile), "r");
-  if (!modelFile) return FILE_ERROR;
+  if (!modelFile)
+      return FILE_ERROR;
 
   int check = readModelWrap(model, modelFile);
   if (check) {

@@ -17,7 +17,8 @@ MainWindow::~MainWindow() { delete ui; }
 void MainWindow::showAll(modelT &model) {
   int check;
   check = isModelInited(model);
-  if (check) return;
+  if (check)
+      return ;
 
   QPen whitePen(Qt::white);
   nodeT firstNode, secondNode;
@@ -46,8 +47,7 @@ void MainWindow::on_chooseModelButton_clicked() {
   int check = setModel(qFileName, model);
   qDebug("%d", check);
   if (check == FILE_ERROR)
-    QMessageBox::critical(
-        this, "Ошибка!",
+    QMessageBox::critical(this, "Ошибка!",
         "Возможно, что не был выбран файл, либо файл недоступен.");
   else if (check == MEMORY_ALLOCATION_ERROR)
     QMessageBox::critical(this, "Ошибка!",
