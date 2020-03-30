@@ -46,8 +46,8 @@ int readModel(modelT &model, FILE *const modelFile);
 //< End
 
 //! Show model
-int showModelWrap(modelT &model);
-void showModel(modelT &model);
+int showModelWrap(const modelT &model);
+void showModel(const modelT &model);
 //< End
 
 //! Move model

@@ -1,10 +1,12 @@
 #include "userDomain.h"
+#include "modelDomain.h"
 
 int taskManager(int choice, modelT &model) {
   int check;
   if (!choice) {
     check = moveModelWrap(choice, model.nodes, model.numOfNodes);
-    if (check) return check;
+    if (check)
+        return check;
   }
   else if (choice == GO_DOWN) {
     check = moveModelWrap(choice, model.nodes, model.numOfNodes);
