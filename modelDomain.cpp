@@ -74,16 +74,6 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
     return SUCCESS;
 }
 
-int showModelWrap(const modelT &model) {
-    int check;
-    check = isModelInited(model);
-
-    if (check)
-        return check;
-
-    return SUCCESS;
-}
-
 int moveModelWrap(const int direction, nodeT *const nodes,
                   const int numOfNodes) {
     if (direction < GO_LEFT || direction > GO_RIGHT)
@@ -250,7 +240,6 @@ int setModel(const QString wayToFile, modelT & model) {
                           model.edges[i].secondNode);
 #endif
 
-    check = showModelWrap(model);
     if (check) {
         freeModel(model);
 

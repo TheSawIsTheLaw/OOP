@@ -45,11 +45,6 @@ int readModelWrap(modelT &model, FILE *const modelFile);
 int readModel(modelT &model, FILE *const modelFile);
 //< End
 
-//! Show model
-int showModelWrap(const modelT &model);
-void showModel(const modelT &model);
-//< End
-
 //! Move model
 int moveModelWrap(const int direction, nodeT *const nodes,
                   const int numOfNodes);

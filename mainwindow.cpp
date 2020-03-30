@@ -48,9 +48,8 @@ void MainWindow::showAll(modelT &model) {
 void MainWindow::on_chooseModelButton_clicked() {
     QString qFileName = QFileDialog::getOpenFileName(
         this, tr("Open Model"), "../startModels", tr("Model Files (*.txt)"));
-    qDebug("%s", qUtf8Printable(qFileName));
+    QDEB(qUtf8Printable(qFileName));
     int check = setModel(qFileName, model);
-    qDebug("%d", check);
     if (check == FILE_ERROR)
         QMessageBox::critical(this, "Ошибка!",
             "Файл не был выбран, либо файл недоступен.");
@@ -75,9 +74,12 @@ void MainWindow::on_goLeftButton_clicked() {
     int check;
 
     check = taskManager(GO_LEFT, model);
-    qDebug("left");
+    QDEB("left");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -88,9 +90,12 @@ void MainWindow::on_goDownButton_clicked() {
     int check;
 
     check = taskManager(GO_DOWN, model);
-    qDebug("down");
+    QDEB("down");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -101,9 +106,12 @@ void MainWindow::on_goUpButton_clicked() {
     int check;
 
     check = taskManager(GO_UP, model);
-    qDebug("up");
+    QDEB("up");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -114,9 +122,12 @@ void MainWindow::on_goRightButton_clicked() {
     int check;
 
     check = taskManager(GO_RIGHT, model);
-    qDebug("down");
+    QDEB("down");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -127,9 +138,12 @@ void MainWindow::on_rotateZRightButton_clicked() {
     int check;
 
     check = taskManager(ROTATE_Z_R, model);
-    qDebug("zR");
+    QDEB("zR");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -140,9 +154,12 @@ void MainWindow::on_toratateZLeftButton_clicked() {
     int check;
 
     check = taskManager(ROTATE_Z_L, model);
-    qDebug("zL");
+    QDEB("zL");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -154,9 +171,12 @@ void MainWindow::on_rotateYdownButton_clicked() {
     int check;
 
     check = taskManager(ROTATE_Y_R, model);
-    qDebug("yR");
+    QDEB("yR");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -167,9 +187,12 @@ void MainWindow::on_rotateYupButton_clicked() {
     int check;
 
     check = taskManager(ROTATE_Y_L, model);
-    qDebug("yL");
+    QDEB("yL");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -181,9 +204,12 @@ void MainWindow::on_rotateXRightButton_clicked() {
     int check;
 
     check = taskManager(ROTATE_X_R, model);
-    qDebug("xR");
+    QDEB("xR");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -194,9 +220,12 @@ void MainWindow::on_rotateXLeftButton_clicked() {
     int check;
 
     check = taskManager(ROTATE_X_L, model);
-    qDebug("xL");
+    QDEB("xL");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -207,9 +236,12 @@ void MainWindow::on_plusMasstButton_clicked() {
     int check;
 
     check = taskManager(SCALE_PLUS, model);
-    qDebug("sP");
+    QDEB("sP");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 
@@ -220,9 +252,12 @@ void MainWindow::on_minusMasstButton_clicked() {
     int check;
 
     check = taskManager(SCALE_MINUS, model);
-    qDebug("sM");
+    QDEB("sM");
 
-    if (check)
+    if (check == OUT_OF_CHOICE_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");
+    else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
 

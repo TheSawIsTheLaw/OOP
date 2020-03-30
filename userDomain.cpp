@@ -3,6 +3,7 @@
 
 int taskManager(int choice, modelT &model) {
   int check;
+
   if (!choice) {
     check = moveModelWrap(choice, model.nodes, model.numOfNodes);
     if (check)
@@ -63,8 +64,9 @@ int taskManager(int choice, modelT &model) {
     if (check)
         return check;
   }
+  else
+      return OUT_OF_CHOICE_ERROR;
 
-  check = showModelWrap(model);
   if (check)
       return check;
 
