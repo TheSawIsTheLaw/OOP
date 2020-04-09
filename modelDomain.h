@@ -4,7 +4,9 @@
 #include "mainwindow.h"
 #include "edgeLevel.h"
 #include "nodeLevel.h"
-#include <math.h>
+#include "modelRotation.h"
+#include "modelMove.h"
+#include "modelScale.h"
 
 
 //! model
@@ -16,8 +18,6 @@ typedef struct {
     int distanceToUser;
 } modelT;
 //< End
-
-/// ! WRAPS HERE ARE CHECKS FOR UNITIALIZED/WRONG DATA
 
 // Check
 int isModelInited(const modelT &model);

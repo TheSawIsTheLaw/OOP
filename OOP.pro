@@ -19,6 +19,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     modelDomain.cpp \
+    modelMove.cpp \
+    modelRotation.cpp \
+    modelScale.cpp \
     nodeLevel.cpp \
     userDomain.cpp
 
@@ -27,6 +30,9 @@ HEADERS += \
     edgeLevel.h \
     mainwindow.h \
     modelDomain.h \
+    modelMove.h \
+    modelRotation.h \
+    modelScale.h \
     nodeLevel.h \
     userDomain.h
 
