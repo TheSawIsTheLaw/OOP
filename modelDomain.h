@@ -1,12 +1,11 @@
 #ifndef MODEL_DOMAIN_H
 #define MODEL_DOMAIN_H
 
-#include "mainwindow.h"
+#include <QFileDialog>
+
 #include "edgeLevel.h"
+
 #include "nodeLevel.h"
-#include "modelRotation.h"
-#include "modelMove.h"
-#include "modelScale.h"
 
 
 //! model

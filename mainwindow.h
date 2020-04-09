@@ -2,8 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+
 #include <QFileDialog>
+
 #include <QMessageBox>
+
 #include <QGraphicsScene>
 
 #include "modelDomain.h"

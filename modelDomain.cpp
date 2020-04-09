@@ -1,5 +1,3 @@
-#include "mainwindow.h"
-
 #include "modelDomain.h"
 
 #include "defines.h"

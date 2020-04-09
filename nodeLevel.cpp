@@ -1,8 +1,4 @@
-#include "mainwindow.h"
-
 #include "nodeLevel.h"
-
-#include "modelMove.h"
 
 #include "defines.h"
 

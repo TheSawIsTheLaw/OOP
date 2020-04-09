@@ -1,7 +1,7 @@
 #ifndef MODEL_ROTATION_H
 #define MODEL_ROTATION_H
+
 #include "nodeLevel.h"
-#include <math.h>
 
 //! Z rotate
 int zRotateModelWrap(const int direction, nodeT *const nodes,

@@ -1,7 +1,12 @@
-#include "mainwindow.h"
-
 #include "userDomain.h"
-#include "modelDomain.h"
+
+#include "modelMove.h"
+
+#include "modelRotation.h"
+
+#include "modelScale.h"
+
+#include "defines.h"
 
 int taskManager(int choice, Ui::MainWindow *ui, QString fileName) {
     static modelT model = initModel();
