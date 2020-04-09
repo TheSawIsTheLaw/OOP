@@ -38,6 +38,7 @@
 #define ROTATE_Z_L 9
 #define SCALE_PLUS 10
 #define SCALE_MINUS 11
+#define SET_MODEL 12
 //< End
 
 //! Scene center

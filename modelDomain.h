@@ -26,7 +26,7 @@ int isModelInited(const modelT &model);
 int setModel(const QString wayToFile, modelT &model);
 
 // Init model
-void initModel(modelT &model);
+modelT &initModel();
 
 //! Read model
 int readModelWrap(modelT &model, FILE *const modelFile);

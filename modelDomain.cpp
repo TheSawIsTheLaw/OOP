@@ -23,15 +23,23 @@ int isModelReady(const modelT &model) {
 //< End
 
 //! Initialization and free
-void initModel(modelT &model) {
+modelT &initModel() {
     QDEB("initModel")
-    model.numOfEdges = EMPTY;
-    model.edges = nullptr;
+    static modelT model;
 
-    model.numOfNodes = EMPTY;
-    model.nodes = nullptr;
+    if (!model.numOfEdges)
+        model.numOfEdges = EMPTY;
+    if (!model.edges)
+        model.edges = nullptr;
 
-    model.distanceToUser = BASE;
+    if (!model.numOfNodes)
+        model.numOfNodes = EMPTY;
+    if (!model.nodes)
+        model.nodes = nullptr;
+
+    if (!model.distanceToUser)
+        model.distanceToUser = BASE;
+    return model;
 }
 
 void freeModel(modelT &model) {
@@ -124,9 +132,8 @@ int readModel(modelT &model, FILE *const modelFile) {
     return SUCCESS;
 }
 
-int setModel(const QString wayToFile, modelT & model) {
+int setModel(const QString wayToFile, modelT &model) {
     QDEB("setModel")
-    initModel(model);
 
     FILE * modelFile = fopen(qUtf8Printable(wayToFile), "r");
     if (!modelFile)

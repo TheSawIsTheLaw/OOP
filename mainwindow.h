@@ -50,9 +50,7 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow *ui;
-  QVector<QGraphicsLineItem *> line;
-  QGraphicsScene *scene;
-
-  void showAll(modelT &model);
 };
+
+void showAll(modelT &model, Ui::MainWindow* ui);
 #endif  // MAINWINDOW_H

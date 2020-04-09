@@ -7,7 +7,6 @@
 #include "defines.h"
 
 // Task Manager
-int taskManager(int choice, modelT &model);
-
+int taskManager(int choice, Ui::MainWindow *ui, QString fileName = nullptr);
 
 #endif // USER_DOMAIN_H
