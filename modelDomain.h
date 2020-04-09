@@ -6,26 +6,26 @@
 
 //! Node
 typedef struct {
-  double xCoord;
-  double yCoord;
-  double zCoord;
+    double xCoord;
+    double yCoord;
+    double zCoord;
 } nodeT;
 //< End
 
 //! Edge
 typedef struct {
-  int firstNode;
-  int secondNode;
+    int firstNode;
+    int secondNode;
 } edgeT;
 //< End
 
 //! model
 typedef struct {
-  int numOfNodes;
-  nodeT *nodes;
-  int numOfEdges;
-  edgeT *edges;
-  int distanceToUser;
+    int numOfNodes;
+    nodeT *nodes;
+    int numOfEdges;
+    edgeT *edges;
+    int distanceToUser;
 } modelT;
 //< End
 
