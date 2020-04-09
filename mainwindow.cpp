@@ -24,11 +24,11 @@ void MainWindow::showAll(modelT &model) {
     if (check)
         return;
 
-    QPen whitePen(Qt::white);
+    QPen whitePen(Qt::black);
     nodeT firstNode, secondNode;
 
     scene = new QGraphicsScene(this);
-    scene->setSceneRect(0, 0, 980, 400);
+    scene->setSceneRect(X_RECT_START, Y_RECT_START, X_RECT_END, Y_RECT_END);
 
     if (line.length() != 0) {
         line.clear();
@@ -122,7 +122,7 @@ void MainWindow::on_goRightButton_clicked() {
     int check;
 
     check = taskManager(GO_RIGHT, model);
-    QDEB("down");
+    QDEB("right");
 
     if (check == OUT_OF_CHOICE_ERROR)
         QMessageBox::critical(this, "Ошибка!",
@@ -139,7 +139,6 @@ void MainWindow::on_rotateZRightButton_clicked() {
 
     check = taskManager(ROTATE_Z_R, model);
     QDEB("zR");
-
     if (check == OUT_OF_CHOICE_ERROR)
         QMessageBox::critical(this, "Ошибка!",
             "Был передан неверный параметр выбора действия. Обратитесь в поддержку.");

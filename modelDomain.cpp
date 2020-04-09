@@ -6,16 +6,16 @@
 
 //! Checks
 int isModelInited(const modelT &model) {
-    if (!model.edges || !model.nodes || model.numOfEdges <= 0 ||
-        model.numOfNodes <= 0)
+    if (!model.edges || !model.nodes || model.numOfEdges <= EMPTY ||
+        model.numOfNodes <= EMPTY)
         return MODEL_IS_NOT_INITED_ERROR;
 
     return SUCCESS;
 }
 
 int isModelReady(const modelT &model) {
-    if (model.edges || model.nodes || model.numOfEdges != 0 ||
-        model.numOfNodes != 0)
+    if (model.edges || model.nodes || model.numOfEdges != EMPTY ||
+        model.numOfNodes != EMPTY)
         return MODEL_IS_NOT_READY_ERROR;
 
     return SUCCESS;
@@ -25,31 +25,31 @@ int isModelReady(const modelT &model) {
 //! Initialization and free
 void initModel(modelT &model) {
     QDEB("initModel")
-    model.numOfEdges = 0;
+    model.numOfEdges = EMPTY;
     model.edges = nullptr;
 
-    model.numOfNodes = 0;
+    model.numOfNodes = EMPTY;
     model.nodes = nullptr;
 
-    model.distanceToUser = 1;
+    model.distanceToUser = BASE;
 }
 
 void freeModel(modelT &model) {
     QDEB("freeModel")
     if (model.edges) free(model.edges);
-    model.numOfEdges = 0;
+    model.numOfEdges = EMPTY;
 
     if (model.nodes) free(model.nodes);
-    model.numOfNodes = 0;
+    model.numOfNodes = EMPTY;
 
-    model.distanceToUser = 0;
+    model.distanceToUser = EMPTY;
 }
 
 int areNodesLigit(const nodeT *const nodes, const int numOfNodes) {
     if (!nodes)
         return INVALID_NODES_MOVE_POINTER_ERROR;
 
-    if (numOfNodes <= 0)
+    if (numOfNodes <= EMPTY)
         return WRONG_NUMBER_OF_NODES_ERROR;
 
     return SUCCESS;
@@ -59,7 +59,8 @@ int areNodesLigit(const nodeT *const nodes, const int numOfNodes) {
 //! Wraps
 int readModelWrap(modelT &model, FILE *const modelFile) {
     QDEB("readModelWrap")
-    if (!modelFile) return FILE_ERROR;
+    if (!modelFile)
+            return FILE_ERROR;
 
     int check;
     check = isModelReady(model);
@@ -200,10 +201,10 @@ int readModel(modelT &model, FILE *const modelFile) {
 
         if (check != 2) {
             free(model.edges);
-            model.numOfEdges = 0;
+            model.numOfEdges = EMPTY;
 
             free(model.nodes);
-            model.numOfNodes = 0;
+            model.numOfNodes = EMPTY;
 
             return FILE_STRUCTURE_ERROR;
         }
@@ -252,19 +253,19 @@ int setModel(const QString wayToFile, modelT & model) {
 void moveModel(const int direction, nodeT *const nodes,
                const int numOfNodes) {
     int moveDirection;
-    if (!direction || direction == 3) {
-        if (direction)
-            moveDirection = 10;
+    if (direction == GO_LEFT || direction == GO_RIGHT) {
+        if (direction == GO_RIGHT)
+            moveDirection = MOVE_UNIT;
         else
-            moveDirection = -10;
+            moveDirection = -MOVE_UNIT;
         for (int i = 0; i < numOfNodes; i++)
             nodes[i].xCoord += moveDirection;
     }
-    else {
-        if (direction == 2)
-            moveDirection = -10;
+    else if (direction == GO_UP || direction == GO_DOWN) {
+        if (direction == GO_UP)
+            moveDirection = -MOVE_UNIT;
         else
-            moveDirection = 10;
+            moveDirection = MOVE_UNIT;
         for (int i = 0; i < numOfNodes; i++)
             nodes[i].yCoord += moveDirection;
     }
@@ -273,7 +274,8 @@ void moveModel(const int direction, nodeT *const nodes,
 void zRotateModel(const int direction, nodeT *const nodes,
                   const int numOfnodes) {
     double rotateAngle = PI_EIGHTEEN;
-    if (direction == ROTATE_Z_R) rotateAngle *= -1;
+    if (direction == ROTATE_Z_R)
+        rotateAngle *= REVERSED;
 
     double xTemp, yTemp;
     for (int i = 0; i < numOfnodes; i++) {
@@ -292,7 +294,8 @@ void zRotateModel(const int direction, nodeT *const nodes,
 void yRotateModel(const int direction, nodeT *const nodes,
                   const int numOfnodes) {
     double rotateAngle = PI_EIGHTEEN;
-    if (direction == ROTATE_Y_R) rotateAngle *= -1;
+    if (direction == ROTATE_Y_R)
+        rotateAngle *= REVERSED;
 
     double xTemp, zTemp;
     for (int i = 0; i < numOfnodes; i++) {
@@ -329,9 +332,9 @@ void xRotateModel(const int direction, nodeT *const nodes,
 
 void scaleModel(const int direction, nodeT *const nodes,
                 const int numOfnodes) {
-    double scaleCoef = 0.9;
+    double scaleCoef = SCALE_UNIT_MINUS;
     if (direction == SCALE_PLUS)
-        scaleCoef = 1.1;
+        scaleCoef = SCALE_UNIT_PLUS;
 
     qDebug("scale");
 

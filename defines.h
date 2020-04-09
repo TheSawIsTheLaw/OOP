@@ -46,8 +46,21 @@
 #define Z_CENTER_SCENE 100
 //< End
 
+//! Scene rect
+#define X_RECT_START 0
+#define Y_RECT_START 0
+#define X_RECT_END 980
+#define Y_RECT_END 400
+//< End
+
 // Another defs
 #define PI_EIGHTEEN 0.174533
+#define EMPTY 0
+#define BASE 1
+#define REVERSED -1
+#define SCALE_UNIT_MINUS 0.9
+#define SCALE_UNIT_PLUS 1.1
+#define MOVE_UNIT 10
 
 
 #endif
