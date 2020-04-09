@@ -4,6 +4,7 @@
 
 #include "defines.h"
 
+
 //! Wraps
 int zRotateModelWrap(const int direction, nodeT *const nodes,
                      const int numOfNodes) {

@@ -4,6 +4,7 @@
 
 #include "defines.h"
 
+
 //! Wrap
 int scaleModelWrap(const int direction, nodeT *const nodes,
                    const int numOfNodes) {

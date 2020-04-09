@@ -2,6 +2,7 @@
 
 #include "defines.h"
 
+
 //! Check
 int areNodesLigit(const nodeT *const nodes, const int numOfNodes) {
     if (!nodes)

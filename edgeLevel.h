@@ -1,6 +1,7 @@
 #ifndef EDGE_LEVEL_H
 #define EDGE_LEVEL_H
 
+
 //! Edge
 typedef struct {
     int firstNode;

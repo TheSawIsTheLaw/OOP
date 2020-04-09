@@ -3,6 +3,7 @@
 
 #include "nodeLevel.h"
 
+
 //! Scale
 int scaleModelWrap(const int direction, nodeT *const nodes,
                    const int numOfNodes);

@@ -2,6 +2,7 @@
 
 #include "defines.h"
 
+
 //! Checks
 int isModelInited(const modelT &model) {
     if (!model.edges || !model.nodes || model.numOfEdges <= EMPTY ||
@@ -62,8 +63,12 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
     int check;
     check = isModelReady(model);
 
-    if (check)
-        return check;
+    if (check) {
+        model.edges = nullptr;
+        model.nodes = nullptr;
+        model.numOfEdges = 0;
+        model.numOfNodes = 0;
+    }
 
     check = readModel(model, modelFile);
     if (check)

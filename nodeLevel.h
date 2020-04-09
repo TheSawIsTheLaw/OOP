@@ -1,6 +1,7 @@
 #ifndef NODE_LEVEL_H
 #define NODE_LEVEL_H
 
+
 //! Node
 typedef struct {
     double xCoord;

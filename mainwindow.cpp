@@ -8,6 +8,7 @@
 
 #include "defines.h"
 
+
 MainWindow::MainWindow(QWidget * parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 }
@@ -63,8 +64,6 @@ void MainWindow::on_chooseModelButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована. Код программы "
             "был изменён. Не в лучшую сторону.");
-    else if (check == MODEL_IS_NOT_READY_ERROR)
-        QMessageBox::critical(this, "Ошибка!", "Ошибка формата файла.");
 }
 
 void MainWindow::on_goLeftButton_clicked() {

@@ -8,6 +8,8 @@
 
 #include "defines.h"
 
+
+//< Entrance
 int taskManager(int choice, Ui::MainWindow *ui, QString fileName) {
     static modelT model = initModel();
     int check;
@@ -35,3 +37,4 @@ int taskManager(int choice, Ui::MainWindow *ui, QString fileName) {
 
     return SUCCESS;
 }
+//< End

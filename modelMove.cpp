@@ -2,6 +2,7 @@
 
 #include "defines.h"
 
+
 //! Wraps
 int moveModelWrap(const int direction, nodeT *const nodes,
                   const int numOfNodes) {

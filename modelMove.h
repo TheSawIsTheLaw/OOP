@@ -3,6 +3,7 @@
 
 #include "nodeLevel.h"
 
+
 //! Move
 int moveModelWrap(const int direction, nodeT *const nodes,
                   const int numOfNodes);
