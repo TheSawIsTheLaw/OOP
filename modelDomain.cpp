@@ -60,7 +60,7 @@ int areNodesLigit(const nodeT *const nodes, const int numOfNodes) {
 int readModelWrap(modelT &model, FILE *const modelFile) {
     QDEB("readModelWrap")
     if (!modelFile)
-            return FILE_ERROR;
+        return FILE_ERROR;
 
     int check;
     check = isModelReady(model);
