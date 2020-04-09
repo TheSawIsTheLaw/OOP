@@ -19,12 +19,15 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     modelDomain.cpp \
+    nodeLevel.cpp \
     userDomain.cpp
 
 HEADERS += \
     defines.h \
+    edgeLevel.h \
     mainwindow.h \
     modelDomain.h \
+    nodeLevel.h \
     userDomain.h
 
 FORMS += \
