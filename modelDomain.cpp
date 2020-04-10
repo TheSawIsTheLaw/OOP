@@ -55,14 +55,19 @@ void freeModel(modelT &model) {
 
 
 //! Wrap
+//! FIX БЫДЛОКОД!
+//! FIX Реорганизация процесса! Первоначальная работа над копией и только потом, при SUCCESS,
+//! перенос в неё
 int readModelWrap(modelT &model, FILE *const modelFile) {
     QDEB("readModelWrap")
     if (!modelFile)
         return FILE_ERROR;
 
     int check;
+    // Мы не думаем за других! Вообще убрать!
     check = isModelReady(model);
 
+    // Отвратительно!
     if (check) {
         model.edges = nullptr;
         model.nodes = nullptr;
@@ -71,6 +76,7 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
     }
 
     check = readModel(model, modelFile);
+    // Никаких if (check) return check;! Грязь! Веди check до конца!
     if (check)
         return check;
 
@@ -79,17 +85,22 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
 //< End
 
 //! Actions
+//! FIX ЛЮТЫЙ ГОВНОКОД, ТУТ ЗАМЕШАНО ТРИ УРОВНЯ АБСТРАКЦИИ
 int readModel(modelT &model, FILE *const modelFile) {
     QDEB("readModel")
     int check;
 
+    // Тут даже не проверяется, что мы прочли))))))) Ай малаца))))))))
     check = fscanf(modelFile, "%d %d",
                    &model.numOfNodes,
                    &model.numOfEdges);
+
+    // Переменная чек не отвечает за количество прочтённых символов! Ты глупый?
     if (check != 2)
         return FILE_STRUCTURE_ERROR;
 
     model.edges = (edgeT *)calloc(model.numOfEdges, sizeof(edgeT));
+    // Выполнение каких бы то ни было действий перед return - небезопасно! Забудь, чёрт возьми!
     if (!model.edges) {
         freeModel(model);
 
@@ -103,12 +114,14 @@ int readModel(modelT &model, FILE *const modelFile) {
         return MEMORY_ALLOCATION_ERROR;
     }
 
+    // Тут даже не проверяется, что мы прочли))))))) Ай малаца))))))))
     for (int i = 0; i < model.numOfNodes; i++) {
         check = fscanf(modelFile, "%lf %lf %lf",
                        &model.nodes[i].xCoord,
                        &model.nodes[i].yCoord,
                        &model.nodes[i].zCoord);
 
+        // Переменная чек не отвечает за количество прочтённых символов! Ты глупый?
         if (check != 3) {
             freeModel(model);
 
@@ -143,31 +156,8 @@ int setModel(modelT &model, const QString wayToFile) {
         return FILE_ERROR;
 
     int check = readModelWrap(model, modelFile);
-    if (check) {
-        fclose(modelFile);
-
-        return check;
-    }
-
     fclose(modelFile);
 
-#if DEBUG == 1
-    for (int i = 0; i < model.numOfNodes; i++)
-        qDebug("%f %f %f\n", model.nodes[i].xCoord,
-                             model.nodes[i].yCoord,
-                             model.nodes[i].zCoord);
-
-    for (int i = 0; i < model.numOfEdges; i++)
-        qDebug("%d %d\n", model.edges[i].firstNode,
-                          model.edges[i].secondNode);
-#endif
-
-    if (check) {
-        freeModel(model);
-
-        return check;
-    }
-
-    return SUCCESS;
+    return check;
 }
 //< End
