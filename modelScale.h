@@ -5,9 +5,9 @@
 
 
 //! Scale
-int scaleModelWrap(const int direction, nodeT *const nodes,
+int scaleModelWrap(nodeT *const nodes, const int direction,
                    const int numOfNodes);
-void scaleModel(const int direction, nodeT *const nodes,
+void scaleModel(nodeT *const nodes, const int direction,
                 const int numOfNodes);
 //<End
 

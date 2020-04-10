@@ -5,23 +5,23 @@
 
 
 //! Z rotate
-int zRotateModelWrap(const int direction, nodeT *const nodes,
+int zRotateModelWrap(nodeT *const nodes, const int direction,
                      const int numOfNodes);
-void zRotateModel(const int direction, nodeT *const nodes,
+void zRotateModel(nodeT *const nodes, const int direction,
                   const int numOfNodes);
 //< End
 
 //! Y rotate
-int yRotateModelWrap(const int direction, nodeT *nodes,
+int yRotateModelWrap(nodeT *const nodes, const int direction,
                      const int numOfNodes);
-void yRotateModel(const int direction, nodeT *const nodes,
+void yRotateModel(nodeT *const nodes, const int direction,
                   const int numOfNodes);
 //< End
 
 //! X rotate
-int xRotateModelWrap(const int direction, nodeT *const nodes,
+int xRotateModelWrap(nodeT *const nodes, const int direction,
                      const int numOfNodes);
-void xRotateModel(const int direction, nodeT *const nodes,
+void xRotateModel(nodeT *const nodes, const int direction,
                   const int numOfNodes);
 //< End
 

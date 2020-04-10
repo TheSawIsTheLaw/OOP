@@ -6,7 +6,7 @@
 
 
 //! Wraps
-int zRotateModelWrap(const int direction, nodeT *const nodes,
+int zRotateModelWrap(nodeT *const nodes, const int direction,
                      const int numOfNodes) {
     if (direction < ROTATE_Z_R || direction > ROTATE_Z_L)
         return WRONG_DIRECTION_ERROR;
@@ -17,12 +17,12 @@ int zRotateModelWrap(const int direction, nodeT *const nodes,
     if (check)
         return check;
 
-    zRotateModel(direction, nodes, numOfNodes);
+    zRotateModel(nodes, direction, numOfNodes);
 
     return SUCCESS;
 }
 
-int yRotateModelWrap(const int direction, nodeT *const nodes,
+int yRotateModelWrap(nodeT *const nodes, const int direction,
                      const int numOfNodes) {
     if (direction < ROTATE_Y_R || direction > ROTATE_Y_L)
         return WRONG_DIRECTION_ERROR;
@@ -33,12 +33,12 @@ int yRotateModelWrap(const int direction, nodeT *const nodes,
     if (check)
         return check;
 
-    yRotateModel(direction, nodes, numOfNodes);
+    yRotateModel(nodes, direction, numOfNodes);
 
     return SUCCESS;
 }
 
-int xRotateModelWrap(const int direction, nodeT *const nodes,
+int xRotateModelWrap(nodeT *const nodes, const int direction,
                      const int numOfNodes) {
     if (direction < ROTATE_X_R || direction > ROTATE_X_L)
         return WRONG_DIRECTION_ERROR;
@@ -49,14 +49,14 @@ int xRotateModelWrap(const int direction, nodeT *const nodes,
     if (check)
         return check;
 
-    xRotateModel(direction, nodes, numOfNodes);
+    xRotateModel(nodes, direction, numOfNodes);
 
     return SUCCESS;
 }
 //< End
 
 //! Actions
-void zRotateModel(const int direction, nodeT *const nodes,
+void zRotateModel(nodeT *const nodes, const int direction,
                   const int numOfnodes) {
     double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_Z_R)
@@ -76,7 +76,7 @@ void zRotateModel(const int direction, nodeT *const nodes,
     }
 }
 
-void yRotateModel(const int direction, nodeT *const nodes,
+void yRotateModel(nodeT *const nodes, const int direction,
                   const int numOfnodes) {
     double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_Y_R)
@@ -96,7 +96,7 @@ void yRotateModel(const int direction, nodeT *const nodes,
     }
 }
 
-void xRotateModel(const int direction, nodeT *const nodes,
+void xRotateModel(nodeT *const nodes, const int direction,
                   const int numOfnodes) {
     double rotateAngle = PI_EIGHTEEN;
     if (direction == ROTATE_X_R) rotateAngle *= -1;

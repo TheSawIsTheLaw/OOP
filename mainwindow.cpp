@@ -17,7 +17,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void showAll(modelT &model, Ui::MainWindow *ui) {
+void showAll(modelT &model, const Ui::MainWindow *const ui) {
     int check;
     check = isModelInited(model);
     if (check)

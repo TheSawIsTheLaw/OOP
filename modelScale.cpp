@@ -6,7 +6,7 @@
 
 
 //! Wrap
-int scaleModelWrap(const int direction, nodeT *const nodes,
+int scaleModelWrap(nodeT *const nodes, const int direction,
                    const int numOfNodes) {
     if (direction < SCALE_PLUS || direction > SCALE_MINUS)
         return WRONG_DIRECTION_ERROR;
@@ -17,14 +17,14 @@ int scaleModelWrap(const int direction, nodeT *const nodes,
     if (check)
         return check;
 
-    scaleModel(direction, nodes, numOfNodes);
+    scaleModel(nodes, direction, numOfNodes);
 
     return SUCCESS;
 }
 //< End
 
 //! Scale
-void scaleModel(const int direction, nodeT *const nodes,
+void scaleModel(nodeT *const nodes, const int direction,
                 const int numOfnodes) {
     double scaleCoef = SCALE_UNIT_MINUS;
     if (direction == SCALE_PLUS)

@@ -5,6 +5,6 @@
 
 
 // Task Manager
-int taskManager(int choice, Ui::MainWindow *ui, QString fileName = nullptr);
+int taskManager(const int choice, Ui::MainWindow *ui, QString fileName = nullptr);
 
 #endif // USER_DOMAIN_H

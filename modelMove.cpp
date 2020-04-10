@@ -4,7 +4,7 @@
 
 
 //! Wraps
-int moveModelWrap(const int direction, nodeT *const nodes,
+int moveModelWrap(nodeT *const nodes, const int direction,
                   const int numOfNodes) {
     if (direction < GO_LEFT || direction > GO_RIGHT)
         return WRONG_DIRECTION_ERROR;
@@ -15,14 +15,14 @@ int moveModelWrap(const int direction, nodeT *const nodes,
     if (check)
         return check;
 
-    moveModel(direction, nodes, numOfNodes);
+    moveModel(nodes, direction, numOfNodes);
 
     return SUCCESS;
 }
 //< End
 
 //! Model move
-void moveModel(const int direction, nodeT *const nodes,
+void moveModel(nodeT *const nodes, const int direction,
                const int numOfNodes) {
     int moveDirection;
     if (direction == GO_LEFT || direction == GO_RIGHT) {

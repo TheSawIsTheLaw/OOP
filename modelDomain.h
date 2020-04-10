@@ -22,7 +22,7 @@ typedef struct {
 int isModelInited(const modelT &model);
 
 // Set model
-int setModel(const QString wayToFile, modelT &model);
+int setModel(modelT &model, const QString wayToFile);
 
 // Init model
 modelT &initModel();

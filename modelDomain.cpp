@@ -135,7 +135,7 @@ int readModel(modelT &model, FILE *const modelFile) {
     return SUCCESS;
 }
 
-int setModel(const QString wayToFile, modelT &model) {
+int setModel(modelT &model, const QString wayToFile) {
     QDEB("setModel")
 
     FILE * modelFile = fopen(qUtf8Printable(wayToFile), "r");

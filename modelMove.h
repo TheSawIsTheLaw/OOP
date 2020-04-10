@@ -5,9 +5,9 @@
 
 
 //! Move
-int moveModelWrap(const int direction, nodeT *const nodes,
+int moveModelWrap(nodeT *const nodes, const int direction,
                   const int numOfNodes);
-void moveModel(const int direction, nodeT *const nodes,
+void moveModel(nodeT *const nodes, const int direction,
                const int numOfNodes);
 //< End
 
