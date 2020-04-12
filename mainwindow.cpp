@@ -4,7 +4,7 @@
 
 #include "userDomain.h"
 
-#include "modelDomain.h"
+#include "requestActions.h"
 
 #include "defines.h"
 
@@ -17,11 +17,11 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void showAll(modelT &model, const Ui::MainWindow *const ui) {
-    int check;
+int showAll(modelT &model, const Ui::MainWindow *const ui) {
+    int check = 0;
     check = isModelInited(model);
     if (check)
-        return;
+        return check;
 
     QPen whitePen(Qt::black);
     nodeT firstNode, secondNode;
@@ -43,13 +43,25 @@ void showAll(modelT &model, const Ui::MainWindow *const ui) {
     }
 
     ui->graphicsView->setScene(scene);
+    return check;
 }
 
 void MainWindow::on_chooseModelButton_clicked() {
     QString qFileName = QFileDialog::getOpenFileName(
         this, tr("Open Model"), "../OOP/startModels", tr("Model Files (*.txt)"));
     QDEB(qUtf8Printable(qFileName));
-    int check = taskManager(SET_MODEL, ui, qFileName);
+
+    requestT request;
+
+    setLoadRequest(request, qFileName);
+
+    if (!request.fileName) {
+        QMessageBox::critical(this, "Ошибка!",
+            "Ошибка выделения памяти.");
+        return ;
+    }
+
+    int check = taskManager(request);
     if (check == FILE_ERROR)
         QMessageBox::critical(this, "Ошибка!",
             "Файл не был выбран, либо файл недоступен.");
@@ -64,12 +76,25 @@ void MainWindow::on_chooseModelButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована. Код программы "
             "был изменён. Не в лучшую сторону.");
+    if (!check) {
+        request.ui = ui;
+        request.choice = SHOW_MODEL;
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_goLeftButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(GO_LEFT, ui);
+    setMoveChoice(request, GO_X, -MOVE_UNIT);
+
+    int check;
+    check = taskManager(request);
     QDEB("left");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -78,12 +103,24 @@ void MainWindow::on_goLeftButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_goDownButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(GO_DOWN, ui);
+    setMoveChoice(request, GO_Y, MOVE_UNIT);
+
+    int check;
+    check = taskManager(request);
     QDEB("down");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -92,12 +129,24 @@ void MainWindow::on_goDownButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_goUpButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(GO_UP, ui);
+    setMoveChoice(request, GO_Y, -MOVE_UNIT);
+
+    int check;
+    check = taskManager(request);
     QDEB("up");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -106,12 +155,24 @@ void MainWindow::on_goUpButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_goRightButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(GO_RIGHT, ui);
+    setMoveChoice(request, GO_X, MOVE_UNIT);
+
+    int check;
+    check = taskManager(request);
     QDEB("right");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -120,12 +181,24 @@ void MainWindow::on_goRightButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_rotateZRightButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(ROTATE_Z_R, ui);
+    setRotateChoice(request, ROTATE_Z, PI_EIGHTEEN);
+
+    int check;
+    check = taskManager(request);
     QDEB("zR");
     if (check == OUT_OF_CHOICE_ERROR)
         QMessageBox::critical(this, "Ошибка!",
@@ -133,12 +206,24 @@ void MainWindow::on_rotateZRightButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_toratateZLeftButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(ROTATE_Z_L, ui);
+    setRotateChoice(request, ROTATE_Z, -PI_EIGHTEEN);
+
+    int check;
+    check = taskManager(request);
     QDEB("zL");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -147,13 +232,24 @@ void MainWindow::on_toratateZLeftButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_rotateYdownButton_clicked() {
+    requestT request;
+
+    setRotateChoice(request, ROTATE_Y, PI_EIGHTEEN);
 
     int check;
-
-    check = taskManager(ROTATE_Y_R, ui);
+    check = taskManager(request);
     QDEB("yR");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -162,12 +258,24 @@ void MainWindow::on_rotateYdownButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_rotateYupButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(ROTATE_Y_L, ui);
+    setRotateChoice(request, ROTATE_Y, -PI_EIGHTEEN);
+
+    int check;
+    check = taskManager(request);
     QDEB("yL");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -176,13 +284,24 @@ void MainWindow::on_rotateYupButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_rotateXRightButton_clicked() {
+    requestT request;
+
+    setRotateChoice(request, ROTATE_X, PI_EIGHTEEN);
 
     int check;
-
-    check = taskManager(ROTATE_X_R, ui);
+    check = taskManager(request);
     QDEB("xR");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -191,12 +310,24 @@ void MainWindow::on_rotateXRightButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_rotateXLeftButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(ROTATE_X_L, ui);
+    setRotateChoice(request, ROTATE_X, -PI_EIGHTEEN);
+
+    int check;
+    check = taskManager(request);
     QDEB("xL");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -205,12 +336,25 @@ void MainWindow::on_rotateXLeftButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_plusMasstButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(SCALE_PLUS, ui);
+    setScaleChoice(request, SCALE_PLUS, X_CENTER_SCENE,
+                   Y_CENTER_SCENE, Z_CENTER_SCENE);
+
+    int check;
+    check = taskManager(request);
     QDEB("sP");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -219,12 +363,25 @@ void MainWindow::on_plusMasstButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }
 
 void MainWindow::on_minusMasstButton_clicked() {
-    int check;
+    requestT request;
 
-    check = taskManager(SCALE_MINUS, ui);
+    setScaleChoice(request, SCALE_MINUS, X_CENTER_SCENE,
+                   Y_CENTER_SCENE, Z_CENTER_SCENE);
+
+    int check;
+    check = taskManager(request);
     QDEB("sM");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -233,4 +390,13 @@ void MainWindow::on_minusMasstButton_clicked() {
     else if (check)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
+    if (!check) {
+        setShowRequest(request, ui);
+        check = taskManager(request);
+        if (check == MODEL_IS_NOT_INITED_ERROR)
+                QMessageBox::critical(this, "Ошибка!",
+                    "Модель не инициализирована. Код программы "
+                    "был изменён. Не в лучшую сторону.");
+    }
+    freeRequest(request);
 }

@@ -23,6 +23,7 @@ SOURCES += \
     modelRotation.cpp \
     modelScale.cpp \
     nodeLevel.cpp \
+    requestActions.cpp \
     userDomain.cpp
 
 HEADERS += \
@@ -34,6 +35,7 @@ HEADERS += \
     modelRotation.h \
     modelScale.h \
     nodeLevel.h \
+    requestActions.h \
     userDomain.h
 
 FORMS += \

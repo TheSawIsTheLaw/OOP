@@ -4,42 +4,36 @@
 
 
 //! Wraps
-int moveModelWrap(nodeT *const nodes, const int direction,
-                  const int numOfNodes) {
-    if (direction < GO_LEFT || direction > GO_RIGHT)
+int moveModelWrap(modelT &model, moveRequestT moveRequest) {
+    if (moveRequest.direction != GO_X && moveRequest.direction != GO_Y)
         return WRONG_DIRECTION_ERROR;
 
     int check;
-    check = areNodesLigit(nodes, numOfNodes);
+    check = areNodesLigit(model.nodes, model.numOfNodes);
 
-    if (check)
-        return check;
+    if (check == SUCCESS) {
+        if (moveRequest.direction == GO_X)
+            moveModelX(model.nodes, moveRequest.bias,
+                       model.numOfNodes);
+        else
+            moveModelY(model.nodes, moveRequest.bias,
+                       model.numOfNodes);
+    }
 
-    moveModel(nodes, direction, numOfNodes);
-
-    return SUCCESS;
+    return check;
 }
 //< End
 
 //! Model move
-void moveModel(nodeT *const nodes, const int direction,
-               const int numOfNodes) {
-    int moveDirection;
-    if (direction == GO_LEFT || direction == GO_RIGHT) {
-        if (direction == GO_RIGHT)
-            moveDirection = MOVE_UNIT;
-        else
-            moveDirection = -MOVE_UNIT;
-        for (int i = 0; i < numOfNodes; i++)
-            nodes[i].xCoord += moveDirection;
-    }
-    else if (direction == GO_UP || direction == GO_DOWN) {
-        if (direction == GO_UP)
-            moveDirection = -MOVE_UNIT;
-        else
-            moveDirection = MOVE_UNIT;
-        for (int i = 0; i < numOfNodes; i++)
-            nodes[i].yCoord += moveDirection;
-    }
+void moveModelX(nodeT *const nodes, const int bias,
+                const int numOfNodes) {
+    for (int i = 0; i < numOfNodes; i++)
+        nodes[i].xCoord += bias;
+}
+
+void moveModelY(nodeT *const nodes, const int bias,
+                const int numOfNodes) {
+    for (int i = 0; i < numOfNodes; i++)
+        nodes[i].yCoord += bias;
 }
 //< End

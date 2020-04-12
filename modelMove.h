@@ -1,14 +1,18 @@
 #ifndef MODEL_MOVE_H
 #define MODEL_MOVE_H
 
-#include "nodeLevel.h"
+#include "modelDomain.h"
+
+#include "requestActions.h"
 
 
 //! Move
-int moveModelWrap(nodeT *const nodes, const int direction,
-                  const int numOfNodes);
-void moveModel(nodeT *const nodes, const int direction,
-               const int numOfNodes);
+int moveModelWrap(modelT &model, moveRequestT moveRequest);
+
+void moveModelX(nodeT *const nodes, const int bias,
+                const int numOfNodes);
+void moveModelY(nodeT *const nodes, const int bias,
+                const int numOfNodes);
 //< End
 
 #endif // MODELMOVE_H

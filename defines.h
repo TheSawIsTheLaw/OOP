@@ -21,24 +21,26 @@
 #define INVALID_NODES_MOVE_POINTER_ERROR -9
 #define WRONG_NUMBER_OF_NODES_ERROR -10
 #define OUT_OF_CHOICE_ERROR -11
+#define UI_POINTER_ERROR -12
 //< End
 
 #define SUCCESS 0
 
 //! Task manager commands
-#define GO_LEFT 0
-#define GO_DOWN 1
-#define GO_UP 2
-#define GO_RIGHT 3
-#define ROTATE_X_R 4
-#define ROTATE_X_L 5
-#define ROTATE_Y_R 6
-#define ROTATE_Y_L 7
-#define ROTATE_Z_R 8
-#define ROTATE_Z_L 9
+#define SHOW_MODEL 0
+#define MOVEMENT 1
+#define ROTATION 2
+#define SCALE 3
+#define LOAD_MODEL 4
+
+//! In commands
+#define GO_X 0
+#define GO_Y 1
+#define ROTATE_X 4
+#define ROTATE_Y 6
+#define ROTATE_Z 8
 #define SCALE_PLUS 10
 #define SCALE_MINUS 11
-#define SET_MODEL 12
 //< End
 
 //! Scene center

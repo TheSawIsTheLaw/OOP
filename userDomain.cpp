@@ -1,10 +1,10 @@
+#include "modelScale.h"
+
 #include "userDomain.h"
 
 #include "modelMove.h"
 
 #include "modelRotation.h"
-
-#include "modelScale.h"
 
 #include "defines.h"
 
@@ -12,32 +12,23 @@
 //< Entrance
 // fix Передача в функцию структуры запроса, место не экономим
 // fix Отказываемся от QString, от нас требуется пластичность
-int taskManager(const int choice, Ui::MainWindow *ui, QString fileName) {
+int taskManager(requestT request) {
     static modelT model = initModel();
-    int check;
+    int check = 0;
 
-    // fix ROTATE, MOVE, SCALE - наши команды
-    // fix Параметры направлений передаются через параметры
-    // fix Во все функции передаём только model, здесь иной уровень абстракции
-    // fix Зашитые константы угла поворота и так далее мы передаём параметрами <!!!
-    if (choice == GO_LEFT || choice == GO_DOWN || choice == GO_UP || choice == GO_RIGHT)
-        check = moveModelWrap(model.nodes, choice, model.numOfNodes);
-    else if (choice == ROTATE_Z_R || choice == ROTATE_Z_L)
-        check = zRotateModelWrap(model.nodes, choice, model.numOfNodes);
-    else if (choice == ROTATE_Y_R || choice == ROTATE_Y_L)
-        check = yRotateModelWrap(model.nodes, choice, model.numOfNodes);
-    else if (choice == ROTATE_X_R || choice == ROTATE_X_L)
-        check = xRotateModelWrap(model.nodes, choice, model.numOfNodes);
-    else if (choice == SCALE_PLUS || choice == SCALE_MINUS)
-        check = scaleModelWrap(model.nodes, choice, model.numOfNodes);
-    else if (choice == SET_MODEL) {
-        check = setModel(model, fileName); // fix Поменять название функции
-    }
+    if (request.choice == MOVEMENT)
+        check = moveModelWrap(model, request.moveRequest);
+    else if (request.choice == ROTATION)
+        check = rotateModelWrap(model, request.rotateRequest);
+    else if (request.choice == SCALE)
+        check = scaleModelWrap(model, request.scaleRequest);
+    else if (request.choice == LOAD_MODEL)
+        check = loadModel(model, request.fileName); // fix Поменять название функции
+    else if (request.choice == SHOW_MODEL)
+        check = showAll(model, request.ui);
     else
-        return OUT_OF_CHOICE_ERROR;
+        check = OUT_OF_CHOICE_ERROR;
 
-    showAll(model, ui);  // fix Требуется выполнять по команде, так как нам может и не понадобиться
-                         // отрисовывать модель
 
     return check;
 }

@@ -1,11 +1,11 @@
 #ifndef MODEL_DOMAIN_H
 #define MODEL_DOMAIN_H
 
-#include <QFileDialog>
+#include "nodeLevel.h"
 
 #include "edgeLevel.h"
 
-#include "nodeLevel.h"
+#include "stdio.h"
 
 
 //! model
@@ -22,7 +22,7 @@ typedef struct {
 int isModelInited(const modelT &model);
 
 // Set model
-int setModel(modelT &model, const QString wayToFile);
+int loadModel(modelT &model, const char* fileName);
 
 // Init model
 modelT &initModel();

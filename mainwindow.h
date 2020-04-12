@@ -56,5 +56,5 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
 };
 
-void showAll(modelT &model, const Ui::MainWindow *const ui);
+int showAll(modelT &model, const Ui::MainWindow *const ui);
 #endif  // MAINWINDOW_H

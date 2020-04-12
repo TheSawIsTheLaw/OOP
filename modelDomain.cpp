@@ -1,5 +1,7 @@
 #include "modelDomain.h"
 
+#include "stdlib.h"
+
 #include "defines.h"
 
 
@@ -23,7 +25,6 @@ int isModelReady(const modelT &model) {
 
 //! Initialization and free
 modelT &initModel() {
-    QDEB("initModel")
     static modelT model;
 
     if (!model.numOfEdges)
@@ -42,7 +43,6 @@ modelT &initModel() {
 }
 
 void freeModel(modelT &model) {
-    QDEB("freeModel")
     if (model.edges) free(model.edges);
     model.numOfEdges = EMPTY;
 
@@ -59,7 +59,6 @@ void freeModel(modelT &model) {
 //! FIX Реорганизация процесса! Первоначальная работа над копией и только потом, при SUCCESS,
 //! перенос в неё
 int readModelWrap(modelT &model, FILE *const modelFile) {
-    QDEB("readModelWrap")
     if (!modelFile)
         return FILE_ERROR;
 
@@ -87,7 +86,6 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
 //! Actions
 //! FIX ЛЮТЫЙ ГОВНОКОД, ТУТ ЗАМЕШАНО ТРИ УРОВНЯ АБСТРАКЦИИ
 int readModel(modelT &model, FILE *const modelFile) {
-    QDEB("readModel")
     int check;
 
     // Тут даже не проверяется, что мы прочли))))))) Ай малаца))))))))
@@ -148,10 +146,11 @@ int readModel(modelT &model, FILE *const modelFile) {
     return SUCCESS;
 }
 
-int setModel(modelT &model, const QString wayToFile) {
-    QDEB("setModel")
+int loadModel(modelT &model, char *fileName) {
+    if (!fileName)
+        return FILE_ERROR;
 
-    FILE * modelFile = fopen(qUtf8Printable(wayToFile), "r");
+    FILE *modelFile = fopen(fileName, "r");
     if (!modelFile)
         return FILE_ERROR;
 

@@ -1,10 +1,12 @@
 #ifndef USER_DOMAIN_H
 #define USER_DOMAIN_H
 
-#include "mainwindow.h"
+#include "requestActions.h"
 
 
 // Task Manager
-int taskManager(const int choice, Ui::MainWindow *ui, QString fileName = nullptr);
+int taskManager(requestT choice);
+
+// Request Initialization
 
 #endif // USER_DOMAIN_H
