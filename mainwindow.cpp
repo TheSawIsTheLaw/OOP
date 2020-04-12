@@ -2,11 +2,13 @@
 
 #include "ui_mainwindow.h"
 
+#include "defines.h"
+
+#include "nodeLevel.h"
+
 #include "userDomain.h"
 
 #include "requestActions.h"
-
-#include "defines.h"
 
 
 MainWindow::MainWindow(QWidget * parent): QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -85,7 +87,8 @@ void MainWindow::on_chooseModelButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    freeFileNameRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_goLeftButton_clicked() {
@@ -111,7 +114,7 @@ void MainWindow::on_goLeftButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_goDownButton_clicked() {
@@ -137,7 +140,7 @@ void MainWindow::on_goDownButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_goUpButton_clicked() {
@@ -163,7 +166,7 @@ void MainWindow::on_goUpButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_goRightButton_clicked() {
@@ -189,13 +192,13 @@ void MainWindow::on_goRightButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_rotateZRightButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Z, PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_Z, -PI_EIGHTEEN);
 
     int check;
     check = taskManager(request);
@@ -214,13 +217,13 @@ void MainWindow::on_rotateZRightButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_toratateZLeftButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Z, -PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_Z, PI_EIGHTEEN);
 
     int check;
     check = taskManager(request);
@@ -240,7 +243,7 @@ void MainWindow::on_toratateZLeftButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_rotateYdownButton_clicked() {
@@ -266,7 +269,7 @@ void MainWindow::on_rotateYdownButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_rotateYupButton_clicked() {
@@ -292,7 +295,7 @@ void MainWindow::on_rotateYupButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_rotateXRightButton_clicked() {
@@ -318,7 +321,7 @@ void MainWindow::on_rotateXRightButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_rotateXLeftButton_clicked() {
@@ -344,13 +347,13 @@ void MainWindow::on_rotateXLeftButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_plusMasstButton_clicked() {
     requestT request;
 
-    setScaleChoice(request, SCALE_PLUS, X_CENTER_SCENE,
+    setScaleChoice(request, SCALE_UNIT_PLUS, X_CENTER_SCENE,
                    Y_CENTER_SCENE, Z_CENTER_SCENE);
 
     int check;
@@ -371,13 +374,13 @@ void MainWindow::on_plusMasstButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }
 
 void MainWindow::on_minusMasstButton_clicked() {
     requestT request;
 
-    setScaleChoice(request, SCALE_MINUS, X_CENTER_SCENE,
+    setScaleChoice(request, SCALE_UNIT_MINUS, X_CENTER_SCENE,
                    Y_CENTER_SCENE, Z_CENTER_SCENE);
 
     int check;
@@ -398,5 +401,5 @@ void MainWindow::on_minusMasstButton_clicked() {
                     "Модель не инициализирована. Код программы "
                     "был изменён. Не в лучшую сторону.");
     }
-    freeRequest(request);
+    resetRequest(request);
 }

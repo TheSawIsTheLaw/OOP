@@ -1,8 +1,8 @@
 #include "modelDomain.h"
 
-#include "stdlib.h"
-
 #include "defines.h"
+
+#include "stdlib.h"
 
 
 //! Checks
@@ -146,7 +146,7 @@ int readModel(modelT &model, FILE *const modelFile) {
     return SUCCESS;
 }
 
-int loadModel(modelT &model, char *fileName) {
+int loadModel(modelT &model, const char *fileName) {
     if (!fileName)
         return FILE_ERROR;
 

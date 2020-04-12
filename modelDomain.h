@@ -22,7 +22,7 @@ typedef struct {
 int isModelInited(const modelT &model);
 
 // Set model
-int loadModel(modelT &model, const char* fileName);
+int loadModel(modelT &model, const char *fileName);
 
 // Init model
 modelT &initModel();

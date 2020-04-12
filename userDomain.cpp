@@ -1,10 +1,10 @@
-#include "modelScale.h"
-
 #include "userDomain.h"
 
 #include "modelMove.h"
 
 #include "modelRotation.h"
+
+#include "modelScale.h"
 
 #include "defines.h"
 

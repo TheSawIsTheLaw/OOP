@@ -3,8 +3,8 @@
 
 #include "modelDomain.h"
 
+#pragma once
 #include "requestActions.h"
-
 
 //! Scale
 int scaleModelWrap(modelT &model, scaleRequestT scaleRequest);

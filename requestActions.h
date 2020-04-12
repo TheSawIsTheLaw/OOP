@@ -1,8 +1,8 @@
 #ifndef REQUEST_ACTIONS_H
 #define REQUEST_ACTIONS_H
 
+#pragma once
 #include "mainwindow.h"
-
 
 typedef struct {
     int direction;
@@ -15,7 +15,7 @@ typedef struct {
 }rotateRequestT;
 
 typedef struct {
-    int scaleCoef;
+    float scaleCoef;
     int xCenterScene;
     int yCenterScene;
     int zCenterScene;
@@ -30,7 +30,8 @@ typedef struct {
     Ui::MainWindow *ui;
 }requestT;
 
-void freeRequest(requestT &request);
+void resetRequest(requestT &request);
+void freeFileNameRequest(requestT &request);
 
 void setMoveChoice(requestT &request, int direction,
                    int bias);
@@ -44,10 +45,10 @@ void setRotateChoice(requestT &request, int direction,
 void setRotateRequest(rotateRequestT &request, int direction,
                       float angle);
 
-void setScaleChoice(requestT &request, int scaleCoef,
+void setScaleChoice(requestT &request, float scaleCoef,
                     int xCenter, int yCenter, int zCenter);
 
-void setScaleRequest(scaleRequestT &request, int scaleCoef,
+void setScaleRequest(scaleRequestT &request, float scaleCoef,
                      int xCenter, int yCenter, int zCenter);
 
 int setLoadRequest(requestT &request, QString qFileName);

@@ -2,7 +2,6 @@
 
 #include "defines.h"
 
-
 //! Wraps
 int moveModelWrap(modelT &model, moveRequestT moveRequest) {
     if (moveRequest.direction != GO_X && moveRequest.direction != GO_Y)

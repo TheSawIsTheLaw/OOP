@@ -3,20 +3,18 @@
 #include "defines.h"
 
 
-//! Free Request
+//! Reset Request
 //!
 //! Никак не получается просто отработать с проверкой на choice, так как в таком
 //! случае может получиться так, что пользователь после использования структуры
 //! в разных целях освободит только часть занятой памяти.
 //! Все данные зануляются для того, чтобы нельзя было внезапно достать информацию
 //! предыдущего использования.
-void freeRequest(requestT &request) {
+void resetRequest(requestT &request) {
     if (request.ui)
         request.ui = nullptr;
     if (request.choice)
         request.choice = EMPTY;
-    if (request.fileName)
-        free(request.fileName);
     if (request.moveRequest.bias)
         request.moveRequest.bias = 0;
     if (request.moveRequest.direction)
@@ -35,6 +33,11 @@ void freeRequest(requestT &request) {
         request.rotateRequest.direction = 0;
 }
 //< End
+
+void freeFileNameRequest(requestT &request) {
+    if (request.fileName)
+        free(request.fileName);
+}
 
 void setMoveChoice(requestT &request, int direction,
                    int bias) {
@@ -60,14 +63,14 @@ void setRotateRequest(rotateRequestT &request, int direction,
     request.direction = direction;
 }
 
-void setScaleChoice(requestT &request, int scaleCoef,
+void setScaleChoice(requestT &request, float scaleCoef,
                     int xCenter, int yCenter, int zCenter) {
     request.choice = SCALE;
     setScaleRequest(request.scaleRequest, scaleCoef,
                     xCenter, yCenter, zCenter);
 }
 
-void setScaleRequest(scaleRequestT &request, int scaleCoef,
+void setScaleRequest(scaleRequestT &request, float scaleCoef,
                      int xCenter, int yCenter, int zCenter) {
     request.scaleCoef = scaleCoef;
     request.xCenterScene = xCenter;
