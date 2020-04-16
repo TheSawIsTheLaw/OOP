@@ -1,5 +1,7 @@
 #include "nodeLevel.h"
 
+#include "stdlib.h"
+
 #include "defines.h"
 
 
@@ -14,3 +16,28 @@ int areNodesLigit(const nodeT *const nodes, const int numOfNodes) {
     return SUCCESS;
 }
 //< End
+
+// Copy
+int copyNodesToNodes(nodeT *&nodesTo, nodeT *&nodesFrom, int numOfNodes) {
+    if (!nodesFrom)
+        return SUCCESS;
+
+    if (numOfNodes <= 0)
+        return INVALID_NODE_NUM_ERROR;
+
+    if (nodesTo)
+        free(nodesTo);
+
+    nodesTo = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
+    if (!nodesTo)
+            return MEMORY_ALLOCATION_ERROR;
+
+
+    for (int i = 0; i < numOfNodes; i++) {
+        nodesTo[i].xCoord = nodesFrom[i].xCoord;
+        nodesTo[i].yCoord = nodesFrom[i].yCoord;
+        nodesTo[i].zCoord = nodesFrom[i].zCoord;
+    }
+
+    return SUCCESS;
+}

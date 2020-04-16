@@ -20,7 +20,7 @@ MainWindow::~MainWindow() {
 }
 
 int showAll(modelT &model, const Ui::MainWindow *const ui) {
-    int check = 0;
+    int check = SUCCESS;
     check = isModelInited(model);
     if (check)
         return check;

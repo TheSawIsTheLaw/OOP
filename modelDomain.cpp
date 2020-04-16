@@ -4,20 +4,14 @@
 
 #include "stdlib.h"
 
+#include "mainwindow.h"
+
 
 //! Checks
 int isModelInited(const modelT &model) {
     if (!model.edges || !model.nodes || model.numOfEdges <= EMPTY ||
         model.numOfNodes <= EMPTY)
         return MODEL_IS_NOT_INITED_ERROR;
-
-    return SUCCESS;
-}
-
-int isModelReady(const modelT &model) {
-    if (model.edges || model.nodes || model.numOfEdges != EMPTY ||
-        model.numOfNodes != EMPTY)
-        return MODEL_IS_NOT_READY_ERROR;
 
     return SUCCESS;
 }
@@ -51,35 +45,71 @@ void freeModel(modelT &model) {
 
     model.distanceToUser = EMPTY;
 }
+
+modelT &initModelCopy() {
+    static modelT modelCopy;
+
+    if (!modelCopy.numOfEdges)
+        modelCopy.numOfEdges = EMPTY;
+    if (!modelCopy.edges)
+        modelCopy.edges = nullptr;
+
+    if (!modelCopy.numOfNodes)
+        modelCopy.numOfNodes = EMPTY;
+    if (!modelCopy.nodes)
+        modelCopy.nodes = nullptr;
+
+    if (!modelCopy.distanceToUser)
+        modelCopy.distanceToUser = BASE;
+    return modelCopy;
+}
+
+int copyModelToModel(modelT &modelTo, modelT modelFrom) {
+    modelTo.numOfEdges = modelFrom.numOfEdges;
+    modelTo.numOfNodes = modelFrom.numOfNodes;
+    int check = SUCCESS;
+
+    check = copyEdgesToEdges(modelTo.edges, modelFrom.edges, modelFrom.numOfEdges);
+    if (check)
+        return check;
+//    modelTo.edges = (edgeT *)calloc(modelFrom.numOfEdges, sizeof(edgeT));
+
+//    for (int i = 0; i < modelFrom.numOfEdges; i++) {
+//        modelTo.edges[i] = modelFrom.edges[i];
+//    }
+    check = copyNodesToNodes(modelTo.nodes, modelFrom.nodes, modelFrom.numOfNodes);
+    if (check)
+        return check;
+//    modelTo.nodes = (nodeT *)calloc(modelFrom.numOfNodes, sizeof(nodeT));
+
+//    for (int i = 0; i < modelFrom.numOfEdges; i++) {
+//        modelTo.nodes[i] = modelFrom.nodes[i];
+//    }
+
+    modelTo.distanceToUser = modelFrom.distanceToUser;
+    return check;
+}
 //< End
 
 
 //! Wrap
-//! FIX БЫДЛОКОД!
+//! FIXED БЫДЛОКОД!
 //! FIX Реорганизация процесса! Первоначальная работа над копией и только потом, при SUCCESS,
 //! перенос в неё
 int readModelWrap(modelT &model, FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 
-    int check;
-    // Мы не думаем за других! Вообще убрать!
-    check = isModelReady(model);
+    static modelT modelCopy = initModelCopy();
 
-    // Отвратительно!
-    if (check) {
-        model.edges = nullptr;
-        model.nodes = nullptr;
-        model.numOfEdges = 0;
-        model.numOfNodes = 0;
-    }
+    int check = readModel(modelCopy, modelFile);
 
-    check = readModel(model, modelFile);
-    // Никаких if (check) return check;! Грязь! Веди check до конца!
-    if (check)
-        return check;
+    if (!check)
+        check = copyModelToModel(model, modelCopy);
 
-    return SUCCESS;
+    freeModel(modelCopy);
+
+    return check;
 }
 //< End
 

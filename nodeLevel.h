@@ -14,4 +14,7 @@ typedef struct {
 int areNodesLigit(const nodeT *const nodes, const int numOfNodes);
 //< End
 
+// Copy
+int copyNodesToNodes(nodeT *&nodesTo, nodeT *&nodesFrom, int numOfNodes);
+
 #endif // NODE_LEVEL_H

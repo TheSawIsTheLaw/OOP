@@ -9,4 +9,7 @@ typedef struct {
 } edgeT;
 //< End
 
+// Edge copy
+int copyEdgesToEdges(edgeT *&edgesTo, edgeT *&edgesFrom, int numOfEdges);
+
 #endif // EDGE_LEVEL_H
