@@ -6,7 +6,7 @@
 
 
 //! Check
-int areNodesLigit(const nodeT *const nodes, const int numOfNodes) {
+int areNodesLegit(const nodeT *const nodes, const int numOfNodes) {
     if (!nodes)
         return INVALID_NODES_MOVE_POINTER_ERROR;
 

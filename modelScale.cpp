@@ -5,15 +5,13 @@
 
 //! Wrap
 int scaleModelWrap(modelT &model, scaleRequestT scaleRequest) {
-    int check = SUCCESS;
-    check = areNodesLigit(model.nodes, model.numOfEdges);
+    if (areNodesLegit(model.nodes, model.numOfEdges))
+        return INVALID_NODES;
 
-    if (check == SUCCESS)
-        scaleModel(model.nodes, scaleRequest.scaleCoef,
-                   scaleRequest.xCenterScene, scaleRequest.yCenterScene,
-                   scaleRequest.zCenterScene, model.numOfNodes);;
-
-    return check;
+    scaleModel(model.nodes, scaleRequest.scaleCoef,
+               scaleRequest.xCenterScene, scaleRequest.yCenterScene,
+               scaleRequest.zCenterScene, model.numOfNodes);
+    return SUCCESS;
 }
 //< End
 

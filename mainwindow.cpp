@@ -19,12 +19,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-int showAll(modelT &model, const Ui::MainWindow *const ui) {
-    int check = SUCCESS;
-    check = isModelEmpty(model);
-    if (check)
-        return check;
-
+void showAll(modelT &model, const Ui::MainWindow *const ui) {
     QPen whitePen(Qt::black);
     nodeT firstNode, secondNode;
 
@@ -45,7 +40,15 @@ int showAll(modelT &model, const Ui::MainWindow *const ui) {
     }
 
     ui->graphicsView->setScene(scene);
-    return check;
+}
+
+int showAllWrap(modelT &model, const Ui::MainWindow *const ui) {
+    if (isModelEmpty(model))
+        return MODEL_IS_NOT_READY_ERROR;
+
+    showAll(model, ui);
+
+    return SUCCESS;
 }
 
 void MainWindow::on_chooseModelButton_clicked() {
@@ -202,7 +205,7 @@ void MainWindow::on_goRightButton_clicked() {
 void MainWindow::on_rotateZRightButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Z, -PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_Z, -ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -227,7 +230,7 @@ void MainWindow::on_rotateZRightButton_clicked() {
 void MainWindow::on_toratateZLeftButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Z, PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_Z, ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -253,7 +256,7 @@ void MainWindow::on_toratateZLeftButton_clicked() {
 void MainWindow::on_rotateYdownButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Y, PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_Y, ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -279,7 +282,7 @@ void MainWindow::on_rotateYdownButton_clicked() {
 void MainWindow::on_rotateYupButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Y, -PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_Y, -ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -305,7 +308,7 @@ void MainWindow::on_rotateYupButton_clicked() {
 void MainWindow::on_rotateXRightButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_X, PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_X, -ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -331,7 +334,7 @@ void MainWindow::on_rotateXRightButton_clicked() {
 void MainWindow::on_rotateXLeftButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_X, -PI_EIGHTEEN);
+    setRotateChoice(request, ROTATE_X, ROTATION_UNIT);
 
     int check;
     check = taskManager(request);

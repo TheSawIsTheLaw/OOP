@@ -7,19 +7,17 @@ int moveModelWrap(modelT &model, moveRequestT moveRequest) {
     if (moveRequest.direction != GO_X && moveRequest.direction != GO_Y)
         return WRONG_DIRECTION_ERROR;
 
-    int check;
-    check = areNodesLigit(model.nodes, model.numOfNodes);
+    if (areNodesLegit(model.nodes, model.numOfNodes))
+            return INVALID_NODES;
 
-    if (check == SUCCESS) {
-        if (moveRequest.direction == GO_X)
-            moveModelX(model.nodes, moveRequest.bias,
-                       model.numOfNodes);
-        else
-            moveModelY(model.nodes, moveRequest.bias,
-                       model.numOfNodes);
-    }
+    if (moveRequest.direction == GO_X)
+        moveModelX(model.nodes, moveRequest.bias,
+                   model.numOfNodes);
+    else
+        moveModelY(model.nodes, moveRequest.bias,
+                   model.numOfNodes);
 
-    return check;
+    return SUCCESS;
 }
 //< End
 

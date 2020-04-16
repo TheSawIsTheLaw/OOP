@@ -7,8 +7,8 @@
 
 //! Wrap
 int rotateModelWrap(modelT &model, rotateRequestT rotateRequest) {
-    if (!model.nodes)
-        return MODEL_IS_NOT_INITED_ERROR;
+    if (areNodesLegit(model.nodes, model.numOfNodes))
+        return INVALID_NODES;
 
     int check = SUCCESS;
     if (rotateRequest.direction == ROTATE_X)

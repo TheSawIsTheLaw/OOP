@@ -26,6 +26,7 @@
 #define INVALID_EDGE_NUM_ERROR -14
 #define INVALID_NODE_POINTER_ERROR -15
 #define INVALID_NODE_NUM_ERROR -16
+#define INVALID_NODES -17
 //< End
 
 #define SUCCESS 0
@@ -62,7 +63,7 @@
 //< End
 
 // Another defs
-#define PI_EIGHTEEN 0.174533
+#define ROTATION_UNIT 0.174533
 #define EMPTY 0
 #define BASE 1
 #define REVERSED -1

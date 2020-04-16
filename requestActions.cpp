@@ -80,9 +80,8 @@ void setScaleRequest(scaleRequestT &request, float scaleCoef,
 
 int setLoadRequest(requestT &request, QString qFileName) {
     request.fileName = (char *)calloc(qFileName.length(), sizeof(char));
-    if (!request.fileName) {
+    if (!request.fileName)
         return MEMORY_ALLOCATION_ERROR;
-    }
     request.choice = LOAD_MODEL;
     strcpy(request.fileName, qUtf8Printable(qFileName));
     return SUCCESS;

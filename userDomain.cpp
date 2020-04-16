@@ -10,7 +10,7 @@
 
 
 //< Entrance
-// fiedx Передача в функцию структуры запроса, место не экономим
+// fixed Передача в функцию структуры запроса, место не экономим
 // fixed Отказываемся от QString, от нас требуется пластичность
 int taskManager(requestT request) {
     static modelT model = initModel();
@@ -25,7 +25,7 @@ int taskManager(requestT request) {
     else if (request.choice == LOAD_MODEL)
         check = loadModel(model, request.fileName); // fixed Поменять название функции
     else if (request.choice == SHOW_MODEL)
-        check = showAll(model, request.ui);
+        check = showAllWrap(model, request.ui);
     else
         check = OUT_OF_CHOICE_ERROR;
     qDebug("%d", check);
