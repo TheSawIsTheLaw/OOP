@@ -26,4 +26,7 @@ int getNumOfNodesFromFile(int &numOfNodes, FILE *modelFile);
 int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile);
 //< End
 
+// Free
+void freeNodes(nodeT *&nodes);
+
 #endif // NODE_LEVEL_H

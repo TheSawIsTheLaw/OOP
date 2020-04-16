@@ -19,7 +19,7 @@ typedef struct {
 //< End
 
 // Check
-int isModelInited(const modelT &model);
+int isModelEmpty(const modelT &model);
 
 // Set model
 int loadModel(modelT &model, const char *fileName);

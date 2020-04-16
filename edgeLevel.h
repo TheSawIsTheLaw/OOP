@@ -19,4 +19,7 @@ int getNumOfEdgesFromFile(int &numOfEdges, FILE *modelFile);
 int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile);
 //< End
 
+// Free
+void freeEdges(edgeT *&edges);
+
 #endif // EDGE_LEVEL_H

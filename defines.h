@@ -29,6 +29,7 @@
 //< End
 
 #define SUCCESS 0
+#define MODEL_IS_EMPTY 1
 
 //! Task manager commands
 #define SHOW_MODEL 0

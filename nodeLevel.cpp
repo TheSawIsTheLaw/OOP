@@ -61,19 +61,14 @@ int getNumOfNodesFromFile(int &numOfNodes, FILE *modelFile) {
 //< End
 
 //! Scan modelNodes
-int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
+int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
     if (!modelFile)
         return FILE_ERROR;
-
-    if (nodes)
-        free(nodes);
+    if (!nodes)
+        return MEMORY_ALLOCATION_ERROR;
 
     if (numOfNodes <= 0)
         return INVALID_NODE_NUM_ERROR;
-
-    nodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
-    if (!nodes)
-        return MEMORY_ALLOCATION_ERROR;
 
     int read;
 
@@ -88,7 +83,30 @@ int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
         if (nodes[i].xCoord < 0 || nodes[i].yCoord < 0 || nodes[i].zCoord < 0)
             return FILE_FORMAT_ERROR;
     }
-
     return SUCCESS;
 }
+
+int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
+    if (!modelFile)
+        return FILE_ERROR;
+
+    if (nodes)
+        free(nodes);
+
+    if (numOfNodes <= 0)
+        return INVALID_NODE_NUM_ERROR;
+
+    nodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
+
+    int check = fillNodesArrFromFile(nodes, numOfNodes, modelFile);
+
+    return check;
+}
 //< End
+
+//! Free
+void freeNodes(nodeT *&nodes) {
+    if (nodes)
+        free(nodes);
+}
+//<

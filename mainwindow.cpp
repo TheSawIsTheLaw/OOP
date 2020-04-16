@@ -21,7 +21,7 @@ MainWindow::~MainWindow() {
 
 int showAll(modelT &model, const Ui::MainWindow *const ui) {
     int check = SUCCESS;
-    check = isModelInited(model);
+    check = isModelEmpty(model);
     if (check)
         return check;
 

@@ -21,8 +21,7 @@ int copyEdgesToEdges(edgeT *&edgesTo, edgeT *&edgesFrom, int numOfEdges) {
 
 
     for (int i = 0; i < numOfEdges; i++) {
-        edgesTo[i].firstNode = edgesFrom[i].firstNode;
-        edgesTo[i].secondNode = edgesFrom[i].secondNode;
+        edgesTo[i] = edgesFrom[i];
     }
     return SUCCESS;
 }
@@ -46,19 +45,15 @@ int getNumOfEdgesFromFile(int &numOfEdges, FILE *modelFile) {
 //< End
 
 //! Scan modelEdges
-int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
+int fillEdgesArrFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 
-    if (edges)
-        free(edges);
+    if (!edges)
+        return MEMORY_ALLOCATION_ERROR;
 
     if (numOfEdges <= 0)
         return INVALID_EDGE_NUM_ERROR;
-
-    edges = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
-    if (!edges)
-        return MEMORY_ALLOCATION_ERROR;
 
     int read;
 
@@ -73,7 +68,30 @@ int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
             edges[i].secondNode < 0 || edges[i].secondNode > numOfEdges )
             return FILE_FORMAT_ERROR;
     }
-
     return SUCCESS;
+}
+
+int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
+    if (!modelFile)
+        return FILE_ERROR;
+
+    if (edges)
+        free(edges);
+
+    if (numOfEdges <= 0)
+        return INVALID_EDGE_NUM_ERROR;
+
+    edges = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
+
+    int check = fillEdgesArrFromFile(edges, numOfEdges, modelFile);
+
+    return check;
+}
+//< End
+
+//! Free edges
+void freeEdges(edgeT *&edges) {
+    if (edges)
+        free(edges);
 }
 //< End

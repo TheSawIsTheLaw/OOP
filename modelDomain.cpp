@@ -8,10 +8,10 @@
 
 
 //! Checks
-int isModelInited(const modelT &model) {
-    if (!model.edges || !model.nodes || model.numOfEdges <= EMPTY ||
-        model.numOfNodes <= EMPTY)
-        return MODEL_IS_NOT_INITED_ERROR;
+int isModelEmpty(const modelT &model) {
+    if (!model.edges && !model.nodes && model.numOfEdges == EMPTY &&
+        model.numOfNodes == EMPTY && model.distanceToUser == BASE)
+        return MODEL_IS_EMPTY;
 
     return SUCCESS;
 }
@@ -37,15 +37,13 @@ modelT &initModel() {
 }
 
 void freeModel(modelT &model) {
-    if (model.edges)
-        free(model.edges);
+    freeEdges(model.edges);
     model.numOfEdges = EMPTY;
 
-    if (model.nodes)
-        free(model.nodes);
+    freeNodes(model.nodes);
     model.numOfNodes = EMPTY;
 
-    model.distanceToUser = EMPTY;
+    model.distanceToUser = BASE;
 }
 
 modelT &initModelCopy() {
@@ -86,7 +84,7 @@ int copyModelToModel(modelT &modelTo, modelT modelFrom) {
 
 
 //! Wrap
-//! FIXED БЫДЛОКОД!
+//! FIXED БЫДЛОКОД! (но не мне судить)
 //! FIXED Реорганизация процесса! Первоначальная работа над копией и только потом, при SUCCESS,
 //! перенос в неё
 int readModelWrap(modelT &model, FILE *const modelFile) {
@@ -142,11 +140,7 @@ int loadModel(modelT &model, const char *fileName) {
     if (!modelFile)
         return FILE_ERROR;
 
-    int check = isModelInited(model);
-    if (check)
-        freeModel(model);
-
-    check = readModelWrap(model, modelFile);
+    int check = readModelWrap(model, modelFile);
     fclose(modelFile);
 
     return check;
