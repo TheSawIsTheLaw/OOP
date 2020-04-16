@@ -8,7 +8,7 @@
 
 
 //! Move
-int moveModelWrap(modelT &model, moveRequestT moveRequest);
+int moveModelWrap(modelT &model, const moveRequestT moveRequest);
 
 void moveModelX(nodeT *const nodes, const int bias,
                 const int numOfNodes);

@@ -8,7 +8,7 @@
 
 
 // Wrap
-int rotateModelWrap(modelT &model, rotateRequestT rotateRequest);
+int rotateModelWrap(modelT &model, const rotateRequestT rotateRequest);
 
 //! Z rotate
 void zRotateModel(nodeT *const nodes, const float angle,

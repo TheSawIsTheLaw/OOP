@@ -11,12 +11,12 @@ typedef struct {
 //< End
 
 // Edge copy
-int copyEdgesToEdges(edgeT *&edgesTo, edgeT *&edgesFrom, int numOfEdges);
+int copyEdgesToEdges(edgeT *&edgesTo, const edgeT * const &edgesFrom, const int numOfEdges);
 
 //! Scan
-int getNumOfEdgesFromFile(int &numOfEdges, FILE *modelFile);
+int getNumOfEdgesFromFile(int &numOfEdges, FILE * const modelFile);
 
-int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile);
+int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges, FILE * const modelFile);
 //< End
 
 // Free

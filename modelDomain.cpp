@@ -64,7 +64,7 @@ modelT &initModelCopy() {
     return modelCopy;
 }
 
-int copyModelToModel(modelT &modelTo, modelT modelFrom) {
+int copyModelToModel(modelT &modelTo, const modelT modelFrom) {
     modelTo.numOfEdges = modelFrom.numOfEdges;
     modelTo.numOfNodes = modelFrom.numOfNodes;
     int check = SUCCESS;
@@ -130,7 +130,7 @@ int readModel(modelT &model, FILE *const modelFile) {
     return check;
 }
 
-int loadModel(modelT &model, const char *fileName) {
+int loadModel(modelT &model, const char *const fileName) {
     if (!fileName)
         return FILE_ERROR;
 

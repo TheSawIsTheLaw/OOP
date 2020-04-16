@@ -18,7 +18,7 @@ int areNodesLegit(const nodeT *const nodes, const int numOfNodes) {
 //< End
 
 //! Copy
-int copyNodesToNodes(nodeT *&nodesTo, nodeT *&nodesFrom, int numOfNodes) {
+int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom, const int numOfNodes) {
     if (!nodesFrom)
         return SUCCESS;
 
@@ -44,7 +44,7 @@ int copyNodesToNodes(nodeT *&nodesTo, nodeT *&nodesFrom, int numOfNodes) {
 //< End
 
 //! Scan numOfNodes
-int getNumOfNodesFromFile(int &numOfNodes, FILE *modelFile) {
+int getNumOfNodesFromFile(int &numOfNodes, FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 
@@ -61,7 +61,8 @@ int getNumOfNodesFromFile(int &numOfNodes, FILE *modelFile) {
 //< End
 
 //! Scan modelNodes
-int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
+int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
+                         FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
     if (!nodes)
@@ -86,7 +87,8 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
     return SUCCESS;
 }
 
-int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
+int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
+                           FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 

@@ -6,7 +6,7 @@
 
 
 //! Wrap
-int rotateModelWrap(modelT &model, rotateRequestT rotateRequest) {
+int rotateModelWrap(modelT &model, const rotateRequestT rotateRequest) {
     if (areNodesLegit(model.nodes, model.numOfNodes))
         return INVALID_NODES;
 

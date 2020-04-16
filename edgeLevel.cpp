@@ -5,7 +5,8 @@
 #include "defines.h"
 
 //! Copy
-int copyEdgesToEdges(edgeT *&edgesTo, edgeT *&edgesFrom, int numOfEdges) {
+int copyEdgesToEdges(edgeT *&edgesTo, const edgeT *const &edgesFrom,
+                     const int numOfEdges) {
     if (!edgesFrom)
         return SUCCESS;
 
@@ -28,7 +29,7 @@ int copyEdgesToEdges(edgeT *&edgesTo, edgeT *&edgesFrom, int numOfEdges) {
 //< End
 
 //! Scan numOfEdges
-int getNumOfEdgesFromFile(int &numOfEdges, FILE *modelFile) {
+int getNumOfEdgesFromFile(int &numOfEdges, FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 
@@ -45,7 +46,7 @@ int getNumOfEdgesFromFile(int &numOfEdges, FILE *modelFile) {
 //< End
 
 //! Scan modelEdges
-int fillEdgesArrFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
+int fillEdgesArrFromFile(edgeT *const &edges, const int numOfEdges, FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 
@@ -71,7 +72,7 @@ int fillEdgesArrFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
     return SUCCESS;
 }
 
-int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
+int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges, FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 

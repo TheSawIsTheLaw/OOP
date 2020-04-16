@@ -33,25 +33,27 @@ typedef struct {
 void resetRequest(requestT &request);
 void freeFileNameRequest(requestT &request);
 
-void setMoveChoice(requestT &request, int direction,
-                   int bias);
+void setMoveChoice(requestT &request, const int direction,
+                   const int bias);
 
-void setMoveRequest(moveRequestT &request, int direction,
-                    int bias);
+void setMoveRequest(moveRequestT &request, const int direction,
+                    const int bias);
 
-void setRotateChoice(requestT &request, int direction,
-                     float angle);
+void setRotateChoice(requestT &request, const int direction,
+                     const float angle);
 
-void setRotateRequest(rotateRequestT &request, int direction,
-                      float angle);
+void setRotateRequest(rotateRequestT &request, const int direction,
+                      const float angle);
 
-void setScaleChoice(requestT &request, float scaleCoef,
-                    int xCenter, int yCenter, int zCenter);
+void setScaleChoice(requestT &request, const float scaleCoef,
+                    const int xCenter, const int yCenter,
+                    const int zCenter);
 
 void setScaleRequest(scaleRequestT &request, float scaleCoef,
-                     int xCenter, int yCenter, int zCenter);
+                     const int xCenter, const int yCenter,
+                     const int zCenter);
 
-int setLoadRequest(requestT &request, QString qFileName);
+int setLoadRequest(requestT &request, const QString qFileName);
 
 int setShowRequest(requestT &request, Ui::MainWindow *const ui);
 

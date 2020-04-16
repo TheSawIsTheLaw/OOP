@@ -39,46 +39,48 @@ void freeFileNameRequest(requestT &request) {
         free(request.fileName);
 }
 
-void setMoveChoice(requestT &request, int direction,
-                   int bias) {
+void setMoveChoice(requestT &request, const int direction,
+                   const int bias) {
     request.choice = MOVEMENT;
     setMoveRequest(request.moveRequest, direction, bias);
 }
 
-void setMoveRequest(moveRequestT &request, int direction,
-                    int bias) {
+void setMoveRequest(moveRequestT &request, const int direction,
+                    const int bias) {
     request.bias = bias;
     request.direction = direction;
 }
 
-void setRotateChoice(requestT &request, int direction,
-                     float angle) {
+void setRotateChoice(requestT &request, const int direction,
+                     const float angle) {
     request.choice = ROTATION;
     setRotateRequest(request.rotateRequest, direction, angle);
 }
 
-void setRotateRequest(rotateRequestT &request, int direction,
-                      float angle) {
+void setRotateRequest(rotateRequestT &request, const int direction,
+                      const float angle) {
     request.angle = angle;
     request.direction = direction;
 }
 
-void setScaleChoice(requestT &request, float scaleCoef,
-                    int xCenter, int yCenter, int zCenter) {
+void setScaleChoice(requestT &request, const float scaleCoef,
+                    const int xCenter, const int yCenter,
+                    const int zCenter) {
     request.choice = SCALE;
     setScaleRequest(request.scaleRequest, scaleCoef,
                     xCenter, yCenter, zCenter);
 }
 
-void setScaleRequest(scaleRequestT &request, float scaleCoef,
-                     int xCenter, int yCenter, int zCenter) {
+void setScaleRequest(scaleRequestT &request, const float scaleCoef,
+                     const int xCenter, const int yCenter,
+                     const int zCenter) {
     request.scaleCoef = scaleCoef;
     request.xCenterScene = xCenter;
     request.yCenterScene = yCenter;
     request.zCenterScene = zCenter;
 }
 
-int setLoadRequest(requestT &request, QString qFileName) {
+int setLoadRequest(requestT &request, const QString qFileName) {
     request.fileName = (char *)calloc(qFileName.length(), sizeof(char));
     if (!request.fileName)
         return MEMORY_ALLOCATION_ERROR;

@@ -4,7 +4,7 @@
 
 
 //! Wrap
-int scaleModelWrap(modelT &model, scaleRequestT scaleRequest) {
+int scaleModelWrap(modelT &model, const scaleRequestT scaleRequest) {
     if (areNodesLegit(model.nodes, model.numOfEdges))
         return INVALID_NODES;
 

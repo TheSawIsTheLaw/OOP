@@ -19,7 +19,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void showAll(modelT &model, const Ui::MainWindow *const ui) {
+void showAll(const modelT &model, const Ui::MainWindow *const ui) {
     QPen whitePen(Qt::black);
     nodeT firstNode, secondNode;
 
@@ -42,7 +42,7 @@ void showAll(modelT &model, const Ui::MainWindow *const ui) {
     ui->graphicsView->setScene(scene);
 }
 
-int showAllWrap(modelT &model, const Ui::MainWindow *const ui) {
+int showAllWrap(const modelT &model, const Ui::MainWindow *const ui) {
     if (isModelEmpty(model))
         return MODEL_IS_NOT_READY_ERROR;
 
