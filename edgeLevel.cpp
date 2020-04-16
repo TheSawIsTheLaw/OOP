@@ -44,4 +44,36 @@ int getNumOfEdgesFromFile(int &numOfEdges, FILE *modelFile) {
     return SUCCESS;
 }
 //< End
+
+//! Scan modelEdges
+int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile) {
+    if (!modelFile)
+        return FILE_ERROR;
+
+    if (edges)
+        free(edges);
+
+    if (numOfEdges <= 0)
+        return INVALID_EDGE_NUM_ERROR;
+
+    edges = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
+    if (!edges)
+        return MEMORY_ALLOCATION_ERROR;
+
+    int read;
+
+    for (int i = 0; i < numOfEdges; i++) {
+        read = fscanf(modelFile, "%d %d",
+                       &(edges[i].firstNode),
+                       &(edges[i].secondNode));
+
+        if (read != 2)
+            return FILE_STRUCTURE_ERROR;
+        if (edges[i].firstNode < 0 || edges[i].firstNode > numOfEdges ||
+            edges[i].secondNode < 0 || edges[i].secondNode > numOfEdges )
+            return FILE_FORMAT_ERROR;
+    }
+
+    return SUCCESS;
+}
 //< End

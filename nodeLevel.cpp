@@ -59,3 +59,36 @@ int getNumOfNodesFromFile(int &numOfNodes, FILE *modelFile) {
     return SUCCESS;
 }
 //< End
+
+//! Scan modelNodes
+int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile) {
+    if (!modelFile)
+        return FILE_ERROR;
+
+    if (nodes)
+        free(nodes);
+
+    if (numOfNodes <= 0)
+        return INVALID_NODE_NUM_ERROR;
+
+    nodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
+    if (!nodes)
+        return MEMORY_ALLOCATION_ERROR;
+
+    int read;
+
+    for (int i = 0; i < numOfNodes; i++) {
+        read = fscanf(modelFile, "%lf %lf %lf",
+                       &(nodes[i].xCoord),
+                       &(nodes[i].yCoord),
+                       &(nodes[i].zCoord));
+
+        if (read != 3)
+            return FILE_STRUCTURE_ERROR;
+        if (nodes[i].xCoord < 0 || nodes[i].yCoord < 0 || nodes[i].zCoord < 0)
+            return FILE_FORMAT_ERROR;
+    }
+
+    return SUCCESS;
+}
+//< End

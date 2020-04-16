@@ -120,53 +120,16 @@ int readModel(modelT &model, FILE *const modelFile) {
 
     // FIXED Check более не отвечает за количество прочтённых символов
 
-    model.edges = (edgeT *)calloc(model.numOfEdges, sizeof(edgeT));
-    // Выполнение каких бы то ни было действий перед return - небезопасно! Забудь, чёрт возьми!
-    if (!model.edges) {
-        freeModel(model);
+    // Так как мы теперь работаем с копией, освобождение проводится
+    // в конце при любом исходе
 
-        return MEMORY_ALLOCATION_ERROR;
-    }
+    check = scanModelNodesFromFile(model.nodes, model.numOfNodes, modelFile);
+    if (check)
+        return check;
 
-    model.nodes = (nodeT *)calloc(model.numOfNodes, sizeof(nodeT));
-    if (!model.nodes) {
-        freeModel(model);
+    check = scanModelEdgesFromFile(model.edges, model.numOfEdges, modelFile);
 
-        return MEMORY_ALLOCATION_ERROR;
-    }
-
-    // Тут даже не проверяется, что мы прочли))))))) Ай малаца))))))))
-    for (int i = 0; i < model.numOfNodes; i++) {
-        check = fscanf(modelFile, "%lf %lf %lf",
-                       &model.nodes[i].xCoord,
-                       &model.nodes[i].yCoord,
-                       &model.nodes[i].zCoord);
-
-        // Переменная чек не отвечает за количество прочтённых символов! Ты глупый?
-        if (check != 3) {
-            freeModel(model);
-
-            return FILE_STRUCTURE_ERROR;
-        }
-    }
-
-    for (int i = 0; i < model.numOfEdges; i++) {
-        check = fscanf(modelFile, "%d %d",
-                       &model.edges[i].firstNode,
-                       &model.edges[i].secondNode);
-
-        if (check != 2) {
-            free(model.edges);
-            model.numOfEdges = EMPTY;
-
-            free(model.nodes);
-            model.numOfNodes = EMPTY;
-
-            return FILE_STRUCTURE_ERROR;
-        }
-    }
-
-    return SUCCESS;
+    return check;
 }
 
 int loadModel(modelT &model, const char *fileName) {

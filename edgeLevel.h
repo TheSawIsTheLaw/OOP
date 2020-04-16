@@ -13,7 +13,10 @@ typedef struct {
 // Edge copy
 int copyEdgesToEdges(edgeT *&edgesTo, edgeT *&edgesFrom, int numOfEdges);
 
-// Scan
+//! Scan
 int getNumOfEdgesFromFile(int &numOfEdges, FILE *modelFile);
+
+int scanModelEdgesFromFile(edgeT *&edges, int numOfEdges, FILE *modelFile);
+//< End
 
 #endif // EDGE_LEVEL_H

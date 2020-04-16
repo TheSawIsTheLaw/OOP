@@ -72,8 +72,12 @@ void MainWindow::on_chooseModelButton_clicked() {
             "Произошла ошибка при выделении памяти под данные.");
     else if (check == FILE_STRUCTURE_ERROR)
         QMessageBox::critical(this, "Ошибка!",
-            "Переданный файл обладает нарушенной структурой и неМожет "
-            "быть обработан.");
+            "Переданный файл обладает нарушенной структурой и не "
+            "может быть обработан.");
+    else if (check == FILE_FORMAT_ERROR)
+        QMessageBox::critical(this, "Ошибка!",
+            "В переданном файле содержатся некорректные значения, вследствие чего он не "
+            "может быть обработан.");
     else if (check == MODEL_IS_NOT_INITED_ERROR)
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована. Код программы "

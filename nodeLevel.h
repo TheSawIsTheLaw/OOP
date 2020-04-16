@@ -22,6 +22,8 @@ int copyNodesToNodes(nodeT *&nodesTo, nodeT *&nodesFrom, int numOfNodes);
 
 //! Scan
 int getNumOfNodesFromFile(int &numOfNodes, FILE *modelFile);
+
+int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE *modelFile);
 //< End
 
 #endif // NODE_LEVEL_H
