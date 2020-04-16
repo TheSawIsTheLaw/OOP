@@ -72,19 +72,10 @@ int copyModelToModel(modelT &modelTo, modelT modelFrom) {
     check = copyEdgesToEdges(modelTo.edges, modelFrom.edges, modelFrom.numOfEdges);
     if (check)
         return check;
-//    modelTo.edges = (edgeT *)calloc(modelFrom.numOfEdges, sizeof(edgeT));
 
-//    for (int i = 0; i < modelFrom.numOfEdges; i++) {
-//        modelTo.edges[i] = modelFrom.edges[i];
-//    }
     check = copyNodesToNodes(modelTo.nodes, modelFrom.nodes, modelFrom.numOfNodes);
     if (check)
         return check;
-//    modelTo.nodes = (nodeT *)calloc(modelFrom.numOfNodes, sizeof(nodeT));
-
-//    for (int i = 0; i < modelFrom.numOfEdges; i++) {
-//        modelTo.nodes[i] = modelFrom.nodes[i];
-//    }
 
     modelTo.distanceToUser = modelFrom.distanceToUser;
     return check;
@@ -94,7 +85,7 @@ int copyModelToModel(modelT &modelTo, modelT modelFrom) {
 
 //! Wrap
 //! FIXED БЫДЛОКОД!
-//! FIX Реорганизация процесса! Первоначальная работа над копией и только потом, при SUCCESS,
+//! FIXED Реорганизация процесса! Первоначальная работа над копией и только потом, при SUCCESS,
 //! перенос в неё
 int readModelWrap(modelT &model, FILE *const modelFile) {
     if (!modelFile)
@@ -118,14 +109,16 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
 int readModel(modelT &model, FILE *const modelFile) {
     int check;
 
-    // Тут даже не проверяется, что мы прочли))))))) Ай малаца))))))))
-    check = fscanf(modelFile, "%d %d",
-                   &model.numOfNodes,
-                   &model.numOfEdges);
+    // FIXED включены проверки, переход на новый уровень абстракции
+    check = getNumOfNodesFromFile(model.numOfNodes, modelFile);
+    if (check)
+        return check;
 
-    // Переменная чек не отвечает за количество прочтённых символов! Ты глупый?
-    if (check != 2)
-        return FILE_STRUCTURE_ERROR;
+    check = getNumOfEdgesFromFile(model.numOfEdges, modelFile);
+    if (check)
+        return check;
+
+    // FIXED Check более не отвечает за количество прочтённых символов
 
     model.edges = (edgeT *)calloc(model.numOfEdges, sizeof(edgeT));
     // Выполнение каких бы то ни было действий перед return - небезопасно! Забудь, чёрт возьми!

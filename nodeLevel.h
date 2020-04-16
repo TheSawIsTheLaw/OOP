@@ -1,6 +1,8 @@
 #ifndef NODE_LEVEL_H
 #define NODE_LEVEL_H
 
+#include "stdio.h"
+
 
 //! Node
 typedef struct {
@@ -14,7 +16,12 @@ typedef struct {
 int areNodesLigit(const nodeT *const nodes, const int numOfNodes);
 //< End
 
-// Copy
+//! Copy
 int copyNodesToNodes(nodeT *&nodesTo, nodeT *&nodesFrom, int numOfNodes);
+//< End
+
+//! Scan
+int getNumOfNodesFromFile(int &numOfNodes, FILE *modelFile);
+//< End
 
 #endif // NODE_LEVEL_H
