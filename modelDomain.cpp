@@ -37,10 +37,12 @@ modelT &initModel() {
 }
 
 void freeModel(modelT &model) {
-    if (model.edges) free(model.edges);
+    if (model.edges)
+        free(model.edges);
     model.numOfEdges = EMPTY;
 
-    if (model.nodes) free(model.nodes);
+    if (model.nodes)
+        free(model.nodes);
     model.numOfNodes = EMPTY;
 
     model.distanceToUser = EMPTY;
@@ -91,7 +93,7 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 
-    static modelT modelCopy = initModelCopy();
+    modelT modelCopy = initModelCopy();
 
     int check = readModel(modelCopy, modelFile);
 
@@ -140,7 +142,11 @@ int loadModel(modelT &model, const char *fileName) {
     if (!modelFile)
         return FILE_ERROR;
 
-    int check = readModelWrap(model, modelFile);
+    int check = isModelInited(model);
+    if (check)
+        freeModel(model);
+
+    check = readModelWrap(model, modelFile);
     fclose(modelFile);
 
     return check;
