@@ -32,3 +32,9 @@ void movePoint(double &point, const int bias) {
     point += bias;
 }
 //< End
+
+//! Scale
+void scalePoint(double &point, double coordCenter, const float scaleCoef) {
+    point = point * scaleCoef + (1 - scaleCoef) * coordCenter;
+}
+//< End

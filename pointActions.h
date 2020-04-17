@@ -19,4 +19,8 @@ double rotatePointZ(const double zCoord, const double secondCoord,
 void movePoint(double &point, const int bias);
 //< End
 
+//! Scale
+void scalePoint(double &point, double coordCenter, const float scaleCoef);
+//< End
+
 #endif // NODEROTATION_H
