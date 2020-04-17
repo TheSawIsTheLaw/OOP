@@ -3,7 +3,6 @@
 
 #include "modelDomain.h"
 
-#pragma once
 #include "requestActions.h"
 
 

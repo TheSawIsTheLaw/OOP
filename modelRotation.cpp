@@ -1,5 +1,7 @@
 #include "modelRotation.h"
 
+#include "nodeActions.h"
+
 #include "math.h"
 
 #include "defines.h"
@@ -36,13 +38,15 @@ void zRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int xCenter, const int yCenter,
                   const float angle) {
     double xTemp, yTemp;
+    double sinAngle = sin(angle);
+    double cosAngle = cos(angle);
     for (int i = 0; i < numOfNodes; i++) {
-        xTemp = xCenter +
-            (nodes[i].xCoord - xCenter) * cos(angle) +
-            (nodes[i].yCoord - yCenter) * sin(angle);
-        yTemp = yCenter -
-            (nodes[i].xCoord - xCenter) * sin(angle) +
-            (nodes[i].yCoord - yCenter) * cos(angle);
+        xTemp = rotateNodeX(xCenter, yCenter,
+                           nodes[i].xCoord, nodes[i].yCoord,
+                           cosAngle, sinAngle);
+        yTemp = rotateNodeY(yCenter, xCenter,
+                           nodes[i].yCoord, nodes[i].xCoord,
+                           cosAngle, sinAngle);
 
         nodes[i].xCoord = xTemp;
         nodes[i].yCoord = yTemp;
@@ -53,13 +57,15 @@ void yRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int xCenter, const int zCenter,
                   const float angle) {
     double xTemp, zTemp;
+    double sinAngle = sin(angle);
+    double cosAngle = cos(angle);
     for (int i = 0; i < numOfNodes; i++) {
-        xTemp = xCenter +
-            (nodes[i].xCoord - xCenter) * cos(angle) +
-            (nodes[i].zCoord - zCenter) * sin(angle);
-        zTemp = zCenter -
-            (nodes[i].xCoord - xCenter) * sin(angle) +
-            (nodes[i].zCoord - zCenter) * cos(angle);
+        xTemp = rotateNodeX(xCenter, zCenter,
+                           nodes[i].xCoord, nodes[i].zCoord,
+                           cosAngle, sinAngle);
+        zTemp = rotateNodeZ(zCenter, xCenter,
+                           nodes[i].zCoord, nodes[i].xCoord,
+                           cosAngle, sinAngle);
 
         nodes[i].xCoord = xTemp;
         nodes[i].zCoord = zTemp;
@@ -70,13 +76,15 @@ void xRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int yCenter, const int zCenter,
                   const float angle) {
     double yTemp, zTemp;
+    double sinAngle = sin(angle);
+    double cosAngle = cos(angle);
     for (int i = 0; i < numOfNodes; i++) {
-        yTemp = yCenter +
-            (nodes[i].yCoord - yCenter) * cos(angle) +
-            (nodes[i].zCoord - zCenter) * sin(angle);
-        zTemp = zCenter -
-            (nodes[i].yCoord - yCenter) * sin(angle) +
-            (nodes[i].zCoord - zCenter) * cos(angle);
+        yTemp = rotateNodeY(yCenter, zCenter,
+                           nodes[i].yCoord, nodes[i].zCoord,
+                           cosAngle, -sinAngle);
+        zTemp = rotateNodeZ(zCenter, yCenter,
+                           nodes[i].zCoord, nodes[i].yCoord,
+                           cosAngle, sinAngle);
         // Координаты центра принимаем
         // Функция поворота точки
         // Косинусы синусы заранее считаем

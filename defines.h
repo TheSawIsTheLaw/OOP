@@ -57,7 +57,7 @@
 //< End
 
 // Another defs
-#define ROTATION_UNIT 0.174533
+#define ROTATION_UNIT 0.17453292519
 #define EMPTY 0
 #define BASE 1
 #define REVERSED -1
