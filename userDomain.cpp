@@ -12,7 +12,7 @@
 //< Entrance
 // fixed Передача в функцию структуры запроса, место не экономим
 // fixed Отказываемся от QString, от нас требуется пластичность
-int taskManager(requestT request) {
+int taskManager(const requestT request) {
     static modelT model = initModel();
     int check = 0;
 
@@ -28,8 +28,6 @@ int taskManager(requestT request) {
         check = showAllWrap(model, request.ui);
     else
         check = OUT_OF_CHOICE_ERROR;
-    qDebug("%d", check);
-
 
     return check;
 }

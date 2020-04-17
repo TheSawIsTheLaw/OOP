@@ -5,7 +5,7 @@
 #include "requestActions.h"
 
 // Task Manager
-int taskManager(requestT choice);
+int taskManager(const requestT choice);
 
 // Request Initialization
 
