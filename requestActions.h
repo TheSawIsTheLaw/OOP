@@ -11,6 +11,9 @@ typedef struct {
 
 typedef struct {
     int direction;
+    int xCenterScene;
+    int yCenterScene;
+    int zCenterScene;
     float angle;
 }rotateRequestT;
 
@@ -40,10 +43,12 @@ void setMoveRequest(moveRequestT &request, const int direction,
                     const int bias);
 
 void setRotateChoice(requestT &request, const int direction,
-                     const float angle);
+                     const int xCenter, const int yCenter,
+                     const int zCenter, const float angle);
 
 void setRotateRequest(rotateRequestT &request, const int direction,
-                      const float angle);
+                      const int xCenter, const int yCenter,
+                      const int zCenter, const float angle);
 
 void setScaleChoice(requestT &request, const float scaleCoef,
                     const int xCenter, const int yCenter,

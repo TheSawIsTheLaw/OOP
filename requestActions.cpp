@@ -52,14 +52,20 @@ void setMoveRequest(moveRequestT &request, const int direction,
 }
 
 void setRotateChoice(requestT &request, const int direction,
-                     const float angle) {
+                     const int xCenter, const int yCenter,
+                     const int zCenter, const float angle) {
     request.choice = ROTATION;
-    setRotateRequest(request.rotateRequest, direction, angle);
+    setRotateRequest(request.rotateRequest, direction,
+                     xCenter, yCenter, zCenter, angle);
 }
 
 void setRotateRequest(rotateRequestT &request, const int direction,
-                      const float angle) {
+                      const int xCenter, const int yCenter,
+                      const int zCenter, const float angle) {
     request.angle = angle;
+    request.xCenterScene = xCenter;
+    request.yCenterScene = yCenter;
+    request.zCenterScene = zCenter;
     request.direction = direction;
 }
 

@@ -210,7 +210,9 @@ void MainWindow::on_goRightButton_clicked() {
 void MainWindow::on_rotateZRightButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Z, -ROTATION_UNIT);
+    setRotateChoice(request, ROTATE_Z,
+                    X_CENTER_SCENE, Y_CENTER_SCENE,
+                    Z_CENTER_SCENE, -ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -235,7 +237,9 @@ void MainWindow::on_rotateZRightButton_clicked() {
 void MainWindow::on_toratateZLeftButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Z, ROTATION_UNIT);
+    setRotateChoice(request, ROTATE_Z, X_CENTER_SCENE,
+                    Y_CENTER_SCENE, Z_CENTER_SCENE,
+                    ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -261,7 +265,9 @@ void MainWindow::on_toratateZLeftButton_clicked() {
 void MainWindow::on_rotateYdownButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Y, ROTATION_UNIT);
+    setRotateChoice(request, ROTATE_Y,
+                    X_CENTER_SCENE, Y_CENTER_SCENE,
+                    Z_CENTER_SCENE, ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -287,7 +293,9 @@ void MainWindow::on_rotateYdownButton_clicked() {
 void MainWindow::on_rotateYupButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_Y, -ROTATION_UNIT);
+    setRotateChoice(request, ROTATE_Y,
+                    X_CENTER_SCENE, Y_CENTER_SCENE,
+                    Z_CENTER_SCENE, -ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -313,7 +321,9 @@ void MainWindow::on_rotateYupButton_clicked() {
 void MainWindow::on_rotateXRightButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_X, -ROTATION_UNIT);
+    setRotateChoice(request, ROTATE_X,
+                    X_CENTER_SCENE, Y_CENTER_SCENE,
+                    Z_CENTER_SCENE, -ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
@@ -339,7 +349,9 @@ void MainWindow::on_rotateXRightButton_clicked() {
 void MainWindow::on_rotateXLeftButton_clicked() {
     requestT request;
 
-    setRotateChoice(request, ROTATE_X, ROTATION_UNIT);
+    setRotateChoice(request, ROTATE_X,
+                    X_CENTER_SCENE, Y_CENTER_SCENE,
+                    Z_CENTER_SCENE, ROTATION_UNIT);
 
     int check;
     check = taskManager(request);
