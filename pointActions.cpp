@@ -48,4 +48,13 @@ int scanPointFromFile(double &point, FILE *const file) {
     read = fscanf(file, "%lf", &point);
     return read;
 }
+
+int scanPointSerNumFromFile(int &serNum, FILE *const file) {
+    int read = 0;
+    if (!file)
+        return read;
+
+    read = fscanf(file, "%d", &serNum);
+    return read;
+}
 //< End

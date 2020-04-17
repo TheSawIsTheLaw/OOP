@@ -1,5 +1,7 @@
 #include "edgeLevel.h"
 
+#include "edgeActions.h"
+
 #include "stdlib.h"
 
 #include "defines.h"
@@ -56,20 +58,17 @@ int fillEdgesArrFromFile(edgeT *const &edges, const int numOfEdges, FILE *const 
     if (numOfEdges < 0)
         return INVALID_EDGE_NUM_ERROR;
 
-    int read;
+    int read = 0, check = SUCCESS;
 
     for (int i = 0; i < numOfEdges; i++) {
-        read = fscanf(modelFile, "%d %d",
-                       &(edges[i].firstNode),
-                       &(edges[i].secondNode));
+        read = scanEdgeFromFile(edges[i], modelFile);
 
-        if (read != 2)
-            return FILE_STRUCTURE_ERROR;
-        if (edges[i].firstNode < 0 || edges[i].firstNode > numOfEdges ||
-            edges[i].secondNode < 0 || edges[i].secondNode > numOfEdges )
-            return FILE_FORMAT_ERROR;
+        if (read != 2) {
+            check = FILE_STRUCTURE_ERROR;
+            break ;
+        }
     }
-    return SUCCESS;
+    return check;
 }
 
 int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges, FILE *const modelFile) {
@@ -85,6 +84,9 @@ int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges, FILE *const mode
     edges = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
 
     int check = fillEdgesArrFromFile(edges, numOfEdges, modelFile);
+
+    if (check)
+        free(edges);
 
     return check;
 }

@@ -27,5 +27,7 @@ void scalePoint(double &point, double coordCenter, const float scaleCoef);
 
 //! Scan
 int scanPointFromFile(double &point, FILE *const file);
+
+int scanPointSerNumFromFile(int &serNum, FILE *const file);
 //< End
 #endif // NODEROTATION_H
