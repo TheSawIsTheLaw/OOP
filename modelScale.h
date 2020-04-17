@@ -8,9 +8,9 @@
 
 //! Scale
 int scaleModelWrap(modelT &model, const scaleRequestT scaleRequest);
-void scaleModel(nodeT *const nodes, const float scaleCoef,
+void scaleModel(nodeT *const nodes, const int numOfnodes, const float scaleCoef,
                 const int xCenterScene, const int yCenterScene,
-                const int zCenterScene, const int numOfnodes);
+                const int zCenterScene);
 //<End
 
 #endif // MODELSCALE_H

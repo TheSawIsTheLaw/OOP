@@ -17,6 +17,6 @@ double rotatePointZ(const double zCoord, const double secondCoord,
 
 //! Move
 void movePoint(double &point, const int bias);
-//<
+//< End
 
 #endif // NODEROTATION_H

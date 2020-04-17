@@ -62,3 +62,16 @@ void moveNodeY(nodeT &node, const int bias) {
     movePoint(node.yCoord, bias);
 }
 //< End
+
+//! Scale
+void scaleNode(nodeT &node, const int xCenterScene,
+               const int yCenterScene, const int zCenterScene,
+               const float scaleCoef) {
+    node.xCoord =
+        node.xCoord * scaleCoef + (1 - scaleCoef) * xCenterScene;
+    node.yCoord =
+        node.yCoord * scaleCoef + (1 - scaleCoef) * yCenterScene;
+    node.zCoord =
+        node.zCoord * scaleCoef + (1 - scaleCoef) * zCenterScene;
+}
+//<End

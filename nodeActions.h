@@ -3,6 +3,7 @@
 
 #include "nodeLevel.h"
 
+//! Rotation
 void rotateNodeX(nodeT &node,
                  const int yCenter, const int zCenter,
                  const double sinAngle, const double cosAngle);
@@ -14,9 +15,18 @@ void rotateNodeY(nodeT &node,
 void rotateNodeZ(nodeT &node,
                  const int xCenter, const int yCenter,
                  const double sinAngle, const double cosAngle);
+//< End
 
+//! Move
 void moveNodeX(nodeT &node, const int bias);
 
 void moveNodeY(nodeT &node, const int bias);
+//< End
 
-#endif // NODEACTIONS_H
+//! Scale
+void scaleNode(nodeT &node, const int xCenterScene,
+               const int yCenterScene, const int zCenterScene,
+               const float scaleCoef);
+//< End
+
+#endif // NODE_ACTIONS_H
