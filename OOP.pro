@@ -25,6 +25,7 @@ SOURCES += \
     modelScale.cpp \
     nodeActions.cpp \
     nodeLevel.cpp \
+    pointActions.cpp \
     requestActions.cpp \
     userDomain.cpp
 
@@ -38,6 +39,7 @@ HEADERS += \
     modelScale.h \
     nodeActions.h \
     nodeLevel.h \
+    pointActions.h \
     requestActions.h \
     userDomain.h
 

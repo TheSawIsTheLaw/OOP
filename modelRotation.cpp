@@ -37,60 +37,41 @@ int rotateModelWrap(modelT &model, const rotateRequestT rotateRequest) {
 void zRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int xCenter, const int yCenter,
                   const float angle) {
-    double xTemp, yTemp;
+
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
     for (int i = 0; i < numOfNodes; i++) {
-        xTemp = rotateNodeX(xCenter, yCenter,
-                           nodes[i].xCoord, nodes[i].yCoord,
-                           cosAngle, sinAngle);
-        yTemp = rotateNodeY(yCenter, xCenter,
-                           nodes[i].yCoord, nodes[i].xCoord,
-                           cosAngle, sinAngle);
-
-        nodes[i].xCoord = xTemp;
-        nodes[i].yCoord = yTemp;
+       rotateNodeZ(nodes[i].xCoord, nodes[i].yCoord,
+                    xCenter, yCenter,
+                    sinAngle, cosAngle);
     }
 }
 
 void yRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int xCenter, const int zCenter,
                   const float angle) {
-    double xTemp, zTemp;
+
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
     for (int i = 0; i < numOfNodes; i++) {
-        xTemp = rotateNodeX(xCenter, zCenter,
-                           nodes[i].xCoord, nodes[i].zCoord,
-                           cosAngle, sinAngle);
-        zTemp = rotateNodeZ(zCenter, xCenter,
-                           nodes[i].zCoord, nodes[i].xCoord,
-                           cosAngle, sinAngle);
-
-        nodes[i].xCoord = xTemp;
-        nodes[i].zCoord = zTemp;
+        rotateNodeY(nodes[i].xCoord, nodes[i].zCoord,
+                    xCenter, zCenter,
+                    sinAngle, cosAngle);
     }
 }
 
 void xRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int yCenter, const int zCenter,
                   const float angle) {
-    double yTemp, zTemp;
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
     for (int i = 0; i < numOfNodes; i++) {
-        yTemp = rotateNodeY(yCenter, zCenter,
-                           nodes[i].yCoord, nodes[i].zCoord,
-                           cosAngle, -sinAngle);
-        zTemp = rotateNodeZ(zCenter, yCenter,
-                           nodes[i].zCoord, nodes[i].yCoord,
-                           cosAngle, sinAngle);
+        rotateNodeX(nodes[i].yCoord, nodes[i].zCoord,
+                    yCenter, zCenter,
+                    sinAngle, cosAngle);
         // Координаты центра принимаем
         // Функция поворота точки
         // Косинусы синусы заранее считаем
-
-        nodes[i].yCoord = yTemp;
-        nodes[i].zCoord = zTemp;
     }
 }
 //< End

@@ -1,18 +1,18 @@
 #ifndef NODE_ACTIONS_H
 #define NODE_ACTIONS_H
 
-//! Node rotation
-double rotateNodeX(const double xCenter, const double secondCenter,
-                 const double xCoord, const double secondCoord,
-                 const double cosAngle, const double sinAngle);
+#include "nodeLevel.h"
 
-double rotateNodeY(const double yCenter, const double secondCenter,
-                 const double yCoord, const double secondCoord,
-                 const double cosAngle, const double sinAngle);
+void rotateNodeX(double &yCoord, double &zCoord,
+                 const int yCenter, const int zCenter,
+                 const double sinAngle, const double cosAngle);
 
-double rotateNodeZ(const double zCenter, const double secondCenter,
-                 const double zCoord, const double secondCoord,
-                 const double cosAngle, const double sinAngle);
-//< End
+void rotateNodeY(double &xCoord, double &zCoord,
+                 const int xCenter, const int zCenter,
+                 const double sinAngle, const double cosAngle);
 
-#endif // NODEROTATION_H
+void rotateNodeZ(double &xCoord, double &yCoord,
+                 const int xCenter, const int yCenter,
+                 const double sinAngle, const double cosAngle);
+
+#endif // NODEACTIONS_H
