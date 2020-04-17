@@ -44,7 +44,7 @@ void showAll(const modelT &model, const Ui::MainWindow *const ui) {
 
 int showAllWrap(const modelT &model, const Ui::MainWindow *const ui) {
     if (isModelEmpty(model))
-        return MODEL_IS_NOT_READY_ERROR;
+        return MODEL_IS_EMPTY;
 
     showAll(model, ui);
 

@@ -37,8 +37,8 @@ int getNumOfEdgesFromFile(int &numOfEdges, FILE *const modelFile) {
     int read = fscanf(modelFile, "%d", &gotNum);
     if (read != 1)
         return FILE_STRUCTURE_ERROR;
-    if (gotNum <= 0)
-        return INVALID_NODE_NUM_ERROR;
+    if (gotNum < 0)
+        return INVALID_EDGE_NUM_ERROR;
 
     numOfEdges = gotNum;
     return SUCCESS;
@@ -53,7 +53,7 @@ int fillEdgesArrFromFile(edgeT *const &edges, const int numOfEdges, FILE *const 
     if (!edges)
         return MEMORY_ALLOCATION_ERROR;
 
-    if (numOfEdges <= 0)
+    if (numOfEdges < 0)
         return INVALID_EDGE_NUM_ERROR;
 
     int read;
@@ -79,7 +79,7 @@ int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges, FILE *const mode
     if (edges)
         free(edges);
 
-    if (numOfEdges <= 0)
+    if (numOfEdges < 0)
         return INVALID_EDGE_NUM_ERROR;
 
     edges = (edgeT *)calloc(numOfEdges, sizeof(edgeT));

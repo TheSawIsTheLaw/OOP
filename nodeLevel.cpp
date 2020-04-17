@@ -8,10 +8,10 @@
 //! Check
 int areNodesLegit(const nodeT *const nodes, const int numOfNodes) {
     if (!nodes)
-        return INVALID_NODES_MOVE_POINTER_ERROR;
+        return INVALID_NODES;
 
-    if (numOfNodes <= EMPTY)
-        return WRONG_NUMBER_OF_NODES_ERROR;
+    if (numOfNodes < EMPTY)
+        return INVALID_NODE_NUM_ERROR;
 
     return SUCCESS;
 }
@@ -22,7 +22,7 @@ int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom, const int numOfNo
     if (!nodesFrom)
         return SUCCESS;
 
-    if (numOfNodes <= 0)
+    if (numOfNodes < 0)
         return INVALID_NODE_NUM_ERROR;
 
     if (nodesTo)
@@ -52,7 +52,7 @@ int getNumOfNodesFromFile(int &numOfNodes, FILE *const modelFile) {
     int read = fscanf(modelFile, "%d", &gotNum);
     if (read != 1)
         return FILE_STRUCTURE_ERROR;
-    if (gotNum <= 0)
+    if (gotNum < 0)
         return INVALID_NODE_NUM_ERROR;
 
     numOfNodes = gotNum;
@@ -68,7 +68,7 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
     if (!nodes)
         return MEMORY_ALLOCATION_ERROR;
 
-    if (numOfNodes <= 0)
+    if (numOfNodes < 0)
         return INVALID_NODE_NUM_ERROR;
 
     int read;
@@ -95,7 +95,7 @@ int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
     if (nodes)
         free(nodes);
 
-    if (numOfNodes <= 0)
+    if (numOfNodes < 0)
         return INVALID_NODE_NUM_ERROR;
 
     nodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));

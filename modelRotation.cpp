@@ -18,7 +18,7 @@ int rotateModelWrap(modelT &model, const rotateRequestT rotateRequest) {
     else if (rotateRequest.direction == ROTATE_Z)
         zRotateModel(model.nodes, rotateRequest.angle, model.numOfNodes);
     else
-        check = WRONG_DIRECTION_ERROR;
+        check = INVALID_DIRECTION_ERROR;
 
     return check;
 }
