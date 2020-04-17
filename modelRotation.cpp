@@ -68,6 +68,9 @@ void xRotateModel(nodeT *const nodes, const float angle,
         zTemp = Z_CENTER_SCENE -
             (nodes[i].yCoord - Y_CENTER_SCENE) * sin(angle) +
             (nodes[i].zCoord - Z_CENTER_SCENE) * cos(angle);
+        // Координаты центра принимаем
+        // Функция поворота точки
+        // Косинусы синусы заранее считаем
 
         nodes[i].yCoord = yTemp;
         nodes[i].zCoord = zTemp;

@@ -111,7 +111,7 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
 // в конце при любом исходе
 // FIXED включены проверки, переход на новый уровень абстракции
 int readModel(modelT &model, FILE *const modelFile) {
-    int check;
+    int check = SUCCESS;
 
     check = getNumOfNodesFromFile(model.numOfNodes, modelFile);
     if (check)

@@ -14,7 +14,7 @@
 // fixed Отказываемся от QString, от нас требуется пластичность
 int taskManager(const requestT request) {
     static modelT model = initModel();
-    int check = 0;
+    int check = SUCCESS;
 
     if (request.choice == MOVEMENT)
         check = moveModelWrap(model, request.moveRequest);

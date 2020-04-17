@@ -23,6 +23,8 @@ void showAll(const modelT &model, const Ui::MainWindow *const ui) {
     QPen whitePen(Qt::black);
     nodeT firstNode, secondNode;
 
+    // ВСЁ-ВСЁ В ОТДЕЛЬНЫЕ ФУНКЦИИ!
+
     QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
     scene->setSceneRect(X_RECT_START, Y_RECT_START, X_RECT_END, Y_RECT_END);
 
@@ -30,6 +32,8 @@ void showAll(const modelT &model, const Ui::MainWindow *const ui) {
     if (line.length() != 0) {
         line.clear();
     }
+
+    // Отдельная функция рисования!
 
     for (int i = 0; i < model.numOfEdges; i++) {
         firstNode = model.nodes[model.edges[i].firstNode];
@@ -42,6 +46,7 @@ void showAll(const modelT &model, const Ui::MainWindow *const ui) {
     ui->graphicsView->setScene(scene);
 }
 
+// Высокий уровень, зависеть от QT не должен!
 int showAllWrap(const modelT &model, const Ui::MainWindow *const ui) {
     if (isModelEmpty(model))
         return MODEL_IS_EMPTY;

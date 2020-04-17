@@ -16,21 +16,21 @@ void resetRequest(requestT &request) {
     if (request.choice)
         request.choice = EMPTY;
     if (request.moveRequest.bias)
-        request.moveRequest.bias = 0;
+        request.moveRequest.bias = EMPTY;
     if (request.moveRequest.direction)
-        request.moveRequest.direction = 0;
+        request.moveRequest.direction = EMPTY;
     if (request.scaleRequest.scaleCoef)
-        request.scaleRequest.scaleCoef = 0;
+        request.scaleRequest.scaleCoef = EMPTY;
     if (request.scaleRequest.xCenterScene)
-        request.scaleRequest.xCenterScene = 0;
+        request.scaleRequest.xCenterScene = EMPTY;
     if (request.scaleRequest.yCenterScene)
-        request.scaleRequest.yCenterScene = 0;
+        request.scaleRequest.yCenterScene = EMPTY;
     if (request.scaleRequest.zCenterScene)
-        request.scaleRequest.zCenterScene = 0;
+        request.scaleRequest.zCenterScene = EMPTY;
     if (request.rotateRequest.angle)
-        request.rotateRequest.angle = 0;
+        request.rotateRequest.angle = EMPTY;
     if (request.rotateRequest.direction)
-        request.rotateRequest.direction = 0;
+        request.rotateRequest.direction = EMPTY;
 }
 //< End
 

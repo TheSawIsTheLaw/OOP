@@ -77,12 +77,10 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
         read = fscanf(modelFile, "%lf %lf %lf",
                        &(nodes[i].xCoord),
                        &(nodes[i].yCoord),
-                       &(nodes[i].zCoord));
+                       &(nodes[i].zCoord)); // Вынести в обёртку
 
         if (read != 3)
-            return FILE_STRUCTURE_ERROR;
-        if (nodes[i].xCoord < 0 || nodes[i].yCoord < 0 || nodes[i].zCoord < 0)
-            return FILE_FORMAT_ERROR;
+            return FILE_STRUCTURE_ERROR; // Грязь
     }
     return SUCCESS;
 }
@@ -101,6 +99,7 @@ int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
     nodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
 
     int check = fillNodesArrFromFile(nodes, numOfNodes, modelFile);
+    // НЕ ОТРАБОТАЛА - ОСВОБОДИЛИ
 
     return check;
 }
