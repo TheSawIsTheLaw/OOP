@@ -15,6 +15,8 @@ void rotateNodeZ(nodeT &node,
                  const int xCenter, const int yCenter,
                  const double sinAngle, const double cosAngle);
 
-void moveNodeX();
+void moveNodeX(nodeT &node, const int bias);
+
+void moveNodeY(nodeT &node, const int bias);
 
 #endif // NODEACTIONS_H

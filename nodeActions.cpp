@@ -2,6 +2,8 @@
 
 #include "pointActions.h"
 
+
+//! Rotation
 void rotateNodeX(nodeT &node,
                  const int yCenter, const int zCenter,
                  const double sinAngle, const double cosAngle) {
@@ -49,3 +51,14 @@ void rotateNodeZ(nodeT &node,
     node.xCoord = xTemp;
     node.yCoord = yTemp;
 }
+//< End
+
+//! Move
+void moveNodeX(nodeT &node, const int bias) {
+    movePoint(node.xCoord, bias);
+}
+
+void moveNodeY(nodeT &node, const int bias) {
+    movePoint(node.yCoord, bias);
+}
+//< End

@@ -1,5 +1,7 @@
 #include "pointActions.h"
 
+
+//! Rotation
 double rotatePointX(const double xCoord, const double secondCoord,
                     const double xCenter, const double secondCenter,
                     const double cosAngle, const double sinAngle) {
@@ -23,3 +25,10 @@ double rotatePointZ(const double zCoord, const double secondCoord,
             (zCoord - zCenter) * cosAngle -
             (secondCoord - secondCenter) * sinAngle;
 }
+//< End
+
+//! Move
+void movePoint(double &point, const int bias) {
+    point += bias;
+}
+//< End

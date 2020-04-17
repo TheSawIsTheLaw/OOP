@@ -1,5 +1,7 @@
 #include "modelMove.h"
 
+#include "nodeActions.h"
+
 #include "defines.h"
 
 //! Wraps
@@ -11,26 +13,26 @@ int moveModelWrap(modelT &model, const moveRequestT moveRequest) {
             return INVALID_NODES;
 
     if (moveRequest.direction == GO_X)
-        moveModelX(model.nodes, moveRequest.bias,
-                   model.numOfNodes);
+        moveModelX(model.nodes, model.numOfNodes,
+                   moveRequest.bias);
     else
-        moveModelY(model.nodes, moveRequest.bias,
-                   model.numOfNodes);
+        moveModelY(model.nodes, model.numOfNodes,
+                   moveRequest.bias);
 
     return SUCCESS;
 }
 //< End
 
 //! Model move
-void moveModelX(nodeT *const nodes, const int bias,
-                const int numOfNodes) {
+void moveModelX(nodeT *const nodes, const int numOfNodes,
+                const int bias) {
     for (int i = 0; i < numOfNodes; i++)
-        nodes[i].xCoord += bias;
+        moveNodeX(nodes[i], bias);
 }
 
-void moveModelY(nodeT *const nodes, const int bias,
-                const int numOfNodes) {
+void moveModelY(nodeT *const nodes, const int numOfNodes,
+                const int bias) {
     for (int i = 0; i < numOfNodes; i++)
-        nodes[i].yCoord += bias;
+        moveNodeY(nodes[i], bias);
 }
 //< End

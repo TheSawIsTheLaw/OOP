@@ -9,10 +9,10 @@
 //! Move
 int moveModelWrap(modelT &model, const moveRequestT moveRequest);
 
-void moveModelX(nodeT *const nodes, const int bias,
-                const int numOfNodes);
-void moveModelY(nodeT *const nodes, const int bias,
-                const int numOfNodes);
+void moveModelX(nodeT *const nodes, const int numOfNodes,
+                const int bias);
+void moveModelY(nodeT *const nodes, const int numOfNodes,
+                const int bias);
 //< End
 
 #endif // MODELMOVE_H
