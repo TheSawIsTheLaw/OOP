@@ -42,13 +42,26 @@ void setMoveChoice(requestT &request, const int direction,
 void setMoveRequest(moveRequestT &request, const int direction,
                     const int bias);
 
-void setRotateChoice(requestT &request, const int direction,
-                     const int xCenter, const int yCenter,
-                     const int zCenter, const float angle);
+void setRotateChoiceZ(requestT &request, const int xCenter,
+                      const int yCenter, const float angle);
 
-void setRotateRequest(rotateRequestT &request, const int direction,
-                      const int xCenter, const int yCenter,
+void setRotateChoiceY(requestT &request, const int xCenter,
                       const int zCenter, const float angle);
+
+void setRotateChoiceX(requestT &request, const int yCenter,
+                      const int zCenter, const float angle);
+
+void setRotateRequestZ(rotateRequestT &request, const int direction,
+                       const int xCenter, const int yCenter,
+                       const float angle);
+
+void setRotateRequestY(rotateRequestT &request, const int direction,
+                       const int xCenter, const int zCenter,
+                       const float angle);
+
+void setRotateRequestX(rotateRequestT &request, const int direction,
+                       const int yCenter, const int zCenter,
+                       const float angle);
 
 void setScaleChoice(requestT &request, const float scaleCoef,
                     const int xCenter, const int yCenter,

@@ -51,19 +51,49 @@ void setMoveRequest(moveRequestT &request, const int direction,
     request.direction = direction;
 }
 
-void setRotateChoice(requestT &request, const int direction,
-                     const int xCenter, const int yCenter,
-                     const int zCenter, const float angle) {
+void setRotateChoiceZ(requestT &request, const int xCenter,
+                      const int yCenter, const float angle) {
     request.choice = ROTATION;
-    setRotateRequest(request.rotateRequest, direction,
-                     xCenter, yCenter, zCenter, angle);
+    setRotateRequestZ(request.rotateRequest, ROTATE_Z,
+                      xCenter, yCenter, angle);
 }
 
-void setRotateRequest(rotateRequestT &request, const int direction,
-                      const int xCenter, const int yCenter,
+void setRotateChoiceY(requestT &request, const int xCenter,
                       const int zCenter, const float angle) {
+    request.choice = ROTATION;
+    setRotateRequestY(request.rotateRequest, ROTATE_Y,
+                     xCenter, zCenter, angle);
+}
+
+void setRotateChoiceX(requestT &request, const int yCenter,
+                      const int zCenter, const float angle) {
+    request.choice = ROTATION;
+    setRotateRequestX(request.rotateRequest, ROTATE_X,
+                     yCenter, zCenter, angle);
+}
+
+void setRotateRequestZ(rotateRequestT &request, const int direction,
+                       const int xCenter, const int yCenter,
+                       const float angle) {
     request.angle = angle;
     request.xCenterScene = xCenter;
+    request.yCenterScene = yCenter;
+    request.direction = direction;
+}
+
+void setRotateRequestY(rotateRequestT &request, const int direction,
+                       const int xCenter, const int zCenter,
+                       const float angle) {
+    request.angle = angle;
+    request.xCenterScene = xCenter;
+    request.zCenterScene = zCenter;
+    request.direction = direction;
+}
+
+void setRotateRequestX(rotateRequestT &request, const int direction,
+                       const int yCenter, const int zCenter,
+                       const float angle) {
+    request.angle = angle;
     request.yCenterScene = yCenter;
     request.zCenterScene = zCenter;
     request.direction = direction;
