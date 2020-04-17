@@ -38,3 +38,14 @@ void scalePoint(double &point, double coordCenter, const float scaleCoef) {
     point = point * scaleCoef + (1 - scaleCoef) * coordCenter;
 }
 //< End
+
+//! Scan
+int scanPointFromFile(double &point, FILE *const file) {
+    int read = 0;
+    if (!file)
+        return read;
+
+    read = fscanf(file, "%lf", &point);
+    return read;
+}
+//< End

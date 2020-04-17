@@ -71,4 +71,18 @@ void scaleNode(nodeT &node, const int xCenterScene,
     scalePoint(node.yCoord, yCenterScene, scaleCoef);
     scalePoint(node.zCoord, zCenterScene, scaleCoef);
 }
-//<End
+//< End
+
+//! Scan
+int scanNodeFromFile(nodeT &node, FILE *const modelFile) {
+    int read = 0;
+    if (!modelFile)
+        return read;
+
+    read += scanPointFromFile(node.xCoord, modelFile);
+    read += scanPointFromFile(node.yCoord, modelFile);
+    read += scanPointFromFile(node.zCoord, modelFile);
+
+    return read;
+}
+//< End

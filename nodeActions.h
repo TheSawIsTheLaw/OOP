@@ -29,4 +29,8 @@ void scaleNode(nodeT &node, const int xCenterScene,
                const float scaleCoef);
 //< End
 
+//! Scan
+int scanNodeFromFile(nodeT &node, FILE *const modelFile);
+//< End
+
 #endif // NODE_ACTIONS_H

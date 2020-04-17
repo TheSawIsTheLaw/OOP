@@ -1,5 +1,7 @@
 #include "nodeLevel.h"
 
+#include "nodeActions.h"
+
 #include "stdlib.h"
 
 #include "defines.h"
@@ -71,18 +73,17 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
     if (numOfNodes < 0)
         return INVALID_NODE_NUM_ERROR;
 
-    int read;
+    int read = 0, check = SUCCESS;
 
     for (int i = 0; i < numOfNodes; i++) {
-        read = fscanf(modelFile, "%lf %lf %lf",
-                       &(nodes[i].xCoord),
-                       &(nodes[i].yCoord),
-                       &(nodes[i].zCoord)); // Вынести в обёртку
+        read = scanNodeFromFile(nodes[i], modelFile);// FIXED вынесено на новый уровень
 
-        if (read != 3)
-            return FILE_STRUCTURE_ERROR; // Грязь
+        if (read != 3) {
+            check = FILE_STRUCTURE_ERROR;
+            break ;
+        } // FIXED Грязь
     }
-    return SUCCESS;
+    return check;
 }
 
 int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
@@ -100,6 +101,9 @@ int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
 
     int check = fillNodesArrFromFile(nodes, numOfNodes, modelFile);
     // НЕ ОТРАБОТАЛА - ОСВОБОДИЛИ
+
+    if (check)
+        free(nodes);
 
     return check;
 }

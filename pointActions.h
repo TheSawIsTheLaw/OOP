@@ -1,6 +1,8 @@
 #ifndef POINT_ACTIONS_H
 #define POINT_ACTIONS_H
 
+#include "stdio.h"
+
 //! Rotation
 double rotatePointX(const double xCoord, const double secondCoord,
                     const double xCenter, const double secondCenter,
@@ -23,4 +25,7 @@ void movePoint(double &point, const int bias);
 void scalePoint(double &point, double coordCenter, const float scaleCoef);
 //< End
 
+//! Scan
+int scanPointFromFile(double &point, FILE *const file);
+//< End
 #endif // NODEROTATION_H
