@@ -3,16 +3,18 @@
 
 #include "nodeLevel.h"
 
-void rotateNodeX(double &yCoord, double &zCoord,
+void rotateNodeX(nodeT &node,
                  const int yCenter, const int zCenter,
                  const double sinAngle, const double cosAngle);
 
-void rotateNodeY(double &xCoord, double &zCoord,
+void rotateNodeY(nodeT &node,
                  const int xCenter, const int zCenter,
                  const double sinAngle, const double cosAngle);
 
-void rotateNodeZ(double &xCoord, double &yCoord,
+void rotateNodeZ(nodeT &node,
                  const int xCenter, const int yCenter,
                  const double sinAngle, const double cosAngle);
+
+void moveNodeX();
 
 #endif // NODEACTIONS_H

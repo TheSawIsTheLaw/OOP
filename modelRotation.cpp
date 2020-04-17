@@ -37,11 +37,11 @@ int rotateModelWrap(modelT &model, const rotateRequestT rotateRequest) {
 void zRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int xCenter, const int yCenter,
                   const float angle) {
-
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
+
     for (int i = 0; i < numOfNodes; i++) {
-       rotateNodeZ(nodes[i].xCoord, nodes[i].yCoord,
+       rotateNodeZ(nodes[i],
                     xCenter, yCenter,
                     sinAngle, cosAngle);
     }
@@ -50,11 +50,11 @@ void zRotateModel(nodeT *const nodes, const int numOfNodes,
 void yRotateModel(nodeT *const nodes, const int numOfNodes,
                   const int xCenter, const int zCenter,
                   const float angle) {
-
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
+
     for (int i = 0; i < numOfNodes; i++) {
-        rotateNodeY(nodes[i].xCoord, nodes[i].zCoord,
+        rotateNodeY(nodes[i],
                     xCenter, zCenter,
                     sinAngle, cosAngle);
     }
@@ -65,13 +65,14 @@ void xRotateModel(nodeT *const nodes, const int numOfNodes,
                   const float angle) {
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
+
     for (int i = 0; i < numOfNodes; i++) {
-        rotateNodeX(nodes[i].yCoord, nodes[i].zCoord,
+        rotateNodeX(nodes[i],
                     yCenter, zCenter,
                     sinAngle, cosAngle);
-        // Координаты центра принимаем
-        // Функция поворота точки
-        // Косинусы синусы заранее считаем
+        // FIXED Координаты центра принимаем
+        // FIXED С переходом на верный уровень абстракции. Функция поворота точки
+        // FIXED Косинусы синусы заранее считаем
     }
 }
 //< End
