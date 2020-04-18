@@ -82,7 +82,9 @@ void MainWindow::on_chooseModelButton_clicked() {
             "был изменён. Не в лучшую сторону.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -109,7 +111,9 @@ void MainWindow::on_goLeftButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -135,7 +139,9 @@ void MainWindow::on_goDownButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -161,7 +167,9 @@ void MainWindow::on_goUpButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -187,7 +195,9 @@ void MainWindow::on_goRightButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -213,7 +223,9 @@ void MainWindow::on_rotateZRightButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -240,7 +252,9 @@ void MainWindow::on_toratateZLeftButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -267,7 +281,9 @@ void MainWindow::on_rotateYdownButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -294,7 +310,9 @@ void MainWindow::on_rotateYupButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -321,7 +339,9 @@ void MainWindow::on_rotateXRightButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -348,7 +368,9 @@ void MainWindow::on_rotateXLeftButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -375,7 +397,9 @@ void MainWindow::on_plusMasstButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -402,7 +426,9 @@ void MainWindow::on_minusMasstButton_clicked() {
             "Модель не инициализирована.");
     if (!check) {
         resetRequest(request);
-        setDrawRequest(request, ui);
+        setDrawRequest(request, X_RECT_START,
+                       Y_RECT_START, X_RECT_END,
+                       Y_RECT_END, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",

@@ -81,6 +81,6 @@ void setScaleRequest(scaleRequestT &request, float scaleCoef,
 
 int setLoadRequest(requestT &request, const char * const fileName);
 
-int setDrawRequest(requestT &request, Ui::MainWindow *const ui);
+int setDrawRequest(requestT &request, int xRectStart, int yRectStart, int xRectEnd, int yRectEnd, Ui::MainWindow *const ui);
 
 #endif // REQUESTACTIONS_H

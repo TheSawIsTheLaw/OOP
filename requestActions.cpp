@@ -146,15 +146,17 @@ int setLoadRequest(requestT &request, const char *const fileName) {
 //< End
 
 //! Show set
-int setDrawRequest(requestT &request, Ui::MainWindow *const ui) {
+int setDrawRequest(requestT &request, int xRectStart,
+                   int yRectStart, int xRectEnd,
+                   int yRectEnd, Ui::MainWindow *const ui) {
     if (!ui)
         return UI_POINTER_ERROR;
     request.choice = SHOW_MODEL;
     request.drawRequest.ui = ui;
-    request.drawRequest.xRectStart = X_RECT_START;
-    request.drawRequest.yRectStart = Y_RECT_START;
-    request.drawRequest.xRectEnd = X_RECT_END;
-    request.drawRequest.yRectEnd = Y_RECT_END;
+    request.drawRequest.xRectStart = xRectStart;
+    request.drawRequest.yRectStart = yRectStart;
+    request.drawRequest.xRectEnd = xRectEnd;
+    request.drawRequest.yRectEnd = yRectEnd;
 
     return SUCCESS;
 }
