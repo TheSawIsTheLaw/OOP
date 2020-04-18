@@ -34,11 +34,14 @@ void resetRequest(requestT &request) {
 }
 //< End
 
+//! Free
 void freeFileNameRequest(requestT &request) {
     if (request.fileName)
         free(request.fileName);
 }
+//< End
 
+//! Move set
 void setMoveChoice(requestT &request, const int direction,
                    const int bias) {
     request.choice = MOVEMENT;
@@ -50,7 +53,9 @@ void setMoveRequest(moveRequestT &request, const int direction,
     request.bias = bias;
     request.direction = direction;
 }
+//< End
 
+// Rotation set
 void setRotateChoiceZ(requestT &request, const int xCenter,
                       const int yCenter, const float angle) {
     request.choice = ROTATION;
@@ -98,7 +103,9 @@ void setRotateRequestX(rotateRequestT &request, const int direction,
     request.zCenterScene = zCenter;
     request.direction = direction;
 }
+//< End
 
+//! Scale set
 void setScaleChoice(requestT &request, const float scaleCoef,
                     const int xCenter, const int yCenter,
                     const int zCenter) {
@@ -115,7 +122,9 @@ void setScaleRequest(scaleRequestT &request, const float scaleCoef,
     request.yCenterScene = yCenter;
     request.zCenterScene = zCenter;
 }
+//< End
 
+//! Load set
 int setLoadRequest(requestT &request, const QString qFileName) {
     request.fileName = (char *)calloc(qFileName.length(), sizeof(char));
     if (!request.fileName)
@@ -124,7 +133,9 @@ int setLoadRequest(requestT &request, const QString qFileName) {
     strcpy(request.fileName, qUtf8Printable(qFileName));
     return SUCCESS;
 }
+//< End
 
+//! Show set
 int setShowRequest(requestT &request, Ui::MainWindow *const ui) {
     if (!ui)
         return UI_POINTER_ERROR;
@@ -132,3 +143,4 @@ int setShowRequest(requestT &request, Ui::MainWindow *const ui) {
     request.ui = ui;
     return SUCCESS;
 }
+//< End

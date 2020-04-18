@@ -34,4 +34,4 @@ int scanPointSerNumFromFile(int &serNum, FILE *const file);
 //! Copy
 void copyPointToPoint(double &pointTo, double &pointFrom);
 //< End
-#endif // NODEROTATION_H
+#endif // NODE_ROTATION_H
