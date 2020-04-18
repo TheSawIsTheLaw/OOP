@@ -22,7 +22,7 @@ MainWindow::~MainWindow() {
 // Добавить отдельное поле под реквест с ui
 // В случае необходимости реквест программист поменяет
 // Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
-void drawModel(const modelT &model, const Ui::MainWindow *const ui) {
+void drawModelQt(const modelT model, const Ui::MainWindow *const ui) {
     QPen whitePen(Qt::black);
     nodeT firstNode = { 0, 0, 0 }, secondNode = { 0, 0, 0 };
 
@@ -46,16 +46,6 @@ void drawModel(const modelT &model, const Ui::MainWindow *const ui) {
     }
 
     ui->graphicsView->setScene(scene);
-}
-
-// Высокий уровень, зависеть от QT не должен!
-int drawModelWrap(const modelT &model, const Ui::MainWindow *const ui) {
-    if (isModelEmpty(model))
-        return MODEL_IS_EMPTY;
-
-    drawModel(model, ui);
-
-    return SUCCESS;
 }
 
 void MainWindow::on_chooseModelButton_clicked() {

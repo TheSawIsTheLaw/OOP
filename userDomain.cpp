@@ -6,6 +6,8 @@
 
 #include "modelScale.h"
 
+#include "drawLevel.h"
+
 #include "defines.h"
 
 
@@ -25,7 +27,7 @@ int taskManager(const requestT request) {
     else if (request.choice == LOAD_MODEL)
         check = loadModel(model, request.fileName); // fixed Поменять название функции
     else if (request.choice == SHOW_MODEL)
-        check = drawModelWrap(model, request.ui);
+        check = drawModelWrap(model, request);
     else
         check = OUT_OF_CHOICE_ERROR;
 
