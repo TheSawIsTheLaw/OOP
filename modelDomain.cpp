@@ -46,7 +46,7 @@ void freeModel(modelT &model) {
     model.distanceToUser = BASE;
 }
 
-modelT &initModelCopy() {
+modelT &initModelCopy(void) {
     static modelT modelCopy;
 
     if (!modelCopy.numOfEdges)
