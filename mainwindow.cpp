@@ -19,6 +19,9 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+// Добавить отдельное поле под реквест с ui
+// В случае необходимости реквест программист поменяет
+// Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
 void drawModel(const modelT &model, const Ui::MainWindow *const ui) {
     QPen whitePen(Qt::black);
     nodeT firstNode = { 0, 0, 0 }, secondNode = { 0, 0, 0 };
