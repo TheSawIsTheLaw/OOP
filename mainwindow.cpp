@@ -19,7 +19,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void showAll(const modelT &model, const Ui::MainWindow *const ui) {
+void drawModel(const modelT &model, const Ui::MainWindow *const ui) {
     QPen whitePen(Qt::black);
     nodeT firstNode, secondNode;
 
@@ -47,11 +47,11 @@ void showAll(const modelT &model, const Ui::MainWindow *const ui) {
 }
 
 // Высокий уровень, зависеть от QT не должен!
-int showAllWrap(const modelT &model, const Ui::MainWindow *const ui) {
+int drawModelWrap(const modelT &model, const Ui::MainWindow *const ui) {
     if (isModelEmpty(model))
         return MODEL_IS_EMPTY;
 
-    showAll(model, ui);
+    drawModel(model, ui);
 
     return SUCCESS;
 }

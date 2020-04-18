@@ -56,5 +56,5 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
 };
 
-int showAllWrap(const modelT &model, const Ui::MainWindow *const ui);
+int drawModelWrap(const modelT &model, const Ui::MainWindow *const ui);
 #endif  // MAINWINDOW_H
