@@ -60,7 +60,7 @@ int scanPointSerNumFromFile(int &serNum, FILE *const file) {
 //< End
 
 //! Copy
-void copyPointToPoint(double &pointTo, double &pointFrom) {
+void copyPointToPoint(double &pointTo, const double pointFrom) {
     pointTo = pointFrom;
 }
 //< End
