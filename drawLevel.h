@@ -7,4 +7,6 @@
 
 int drawModelWrap(modelT model, requestT request);
 
+QPen initBlackPen(void);
+
 #endif // DRAW_LEVEL_H

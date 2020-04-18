@@ -10,6 +10,8 @@
 
 #include "requestActions.h"
 
+#include "drawLevel.h"
+
 
 MainWindow::MainWindow(QWidget * parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -23,7 +25,7 @@ MainWindow::~MainWindow() {
 // В случае необходимости реквест программист поменяет
 // Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
 void drawModelQt(const modelT model, const Ui::MainWindow *const ui) {
-    QPen whitePen(Qt::black);
+    QPen blackPen = initBlackPen();
     nodeT firstNode = { 0, 0, 0 }, secondNode = { 0, 0, 0 };
 
     // ВСЁ-ВСЁ В ОТДЕЛЬНЫЕ ФУНКЦИИ!
@@ -42,7 +44,7 @@ void drawModelQt(const modelT model, const Ui::MainWindow *const ui) {
         secondNode = model.nodes[model.edges[i].secondNode];
 
         line.append(scene->addLine(firstNode.xCoord, firstNode.yCoord,
-            secondNode.xCoord, secondNode.yCoord, whitePen));
+            secondNode.xCoord, secondNode.yCoord, blackPen));
     }
 
     ui->graphicsView->setScene(scene);

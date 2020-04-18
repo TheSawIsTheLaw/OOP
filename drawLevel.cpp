@@ -1,8 +1,11 @@
 #include "drawLevel.h"
 
-#include "mainwindow.h"
-
 #include "defines.h"
+
+QPen initBlackPen(void) {
+    static QPen blackPen(Qt::black);
+    return blackPen;
+}
 
 int drawModelQtWrap(modelT model, const Ui::MainWindow *const ui) {
     if (isModelEmpty(model))
