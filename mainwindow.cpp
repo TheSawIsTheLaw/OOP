@@ -199,7 +199,7 @@ void MainWindow::on_rotateZRightButton_clicked() {
     requestT request;
 
     setRotateChoiceZ(request, X_CENTER_SCENE,
-                     Y_CENTER_SCENE, -ROTATION_UNIT);
+                     Y_CENTER_SCENE, ROTATION_UNIT);
 
     int check = taskManager(request);
     QDEB("zR");
@@ -224,7 +224,7 @@ void MainWindow::on_toratateZLeftButton_clicked() {
     requestT request;
 
     setRotateChoiceZ(request, X_CENTER_SCENE,
-                     Y_CENTER_SCENE, ROTATION_UNIT);
+                     Y_CENTER_SCENE, -ROTATION_UNIT);
 
     int check = taskManager(request);
     QDEB("zL");
@@ -250,7 +250,7 @@ void MainWindow::on_rotateYdownButton_clicked() {
     requestT request;
 
     setRotateChoiceY(request, X_CENTER_SCENE,
-                     Z_CENTER_SCENE, ROTATION_UNIT);
+                     Z_CENTER_SCENE, -ROTATION_UNIT);
 
     int check = taskManager(request);
     QDEB("yR");
@@ -276,7 +276,7 @@ void MainWindow::on_rotateYupButton_clicked() {
     requestT request;
 
     setRotateChoiceY(request, X_CENTER_SCENE,
-                     Z_CENTER_SCENE, -ROTATION_UNIT);
+                     Z_CENTER_SCENE, ROTATION_UNIT);
 
     int check = taskManager(request);
     QDEB("yL");
