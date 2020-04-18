@@ -42,8 +42,8 @@ void drawModelQt(const modelT model, const int xRectStart,
     ui->graphicsView->setScene(scene);
 }
 
-QString getFileWay(QWidget *parent, QString startLocation,
-                   QString fileFormat) {
+QString getFileWay(QWidget *const parent, const QString startLocation,
+                   const QString fileFormat) {
     return QFileDialog::getOpenFileName(
                 parent, "Open Model", startLocation, fileFormat);
 }

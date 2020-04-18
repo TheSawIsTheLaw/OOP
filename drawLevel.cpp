@@ -23,9 +23,9 @@ QVector<QGraphicsLineItem *> initLine(void) {
 
 
 void appendNodeToLine(QVector<QGraphicsLineItem *> line,
-                      QGraphicsScene *scene,
-                      QPen pen, nodeT firstNode,
-                      nodeT secondNode) {
+                      QGraphicsScene *const scene,
+                      const QPen pen, const nodeT firstNode,
+                      const nodeT secondNode) {
     line.append(scene->addLine(firstNode.xCoord, firstNode.yCoord,
         secondNode.xCoord, secondNode.yCoord, pen));
 }
@@ -39,7 +39,7 @@ void appendEdgeToLine(QVector<QGraphicsLineItem *> line,
     appendNodeToLine(line, scene, pen, firstNode, secondNode);
 }
 
-int drawModelQtWrap(modelT model, drawRequestT drawRequest) {
+int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
     if (isModelEmpty(model))
         return MODEL_IS_EMPTY;
 
@@ -53,7 +53,7 @@ int drawModelQtWrap(modelT model, drawRequestT drawRequest) {
     return SUCCESS;
 }
 
-int drawModelWrap(modelT model, requestT request) {
+int drawModelWrap(const modelT model, const requestT request) {
     if (isModelEmpty(model))
         return MODEL_IS_EMPTY;
 
