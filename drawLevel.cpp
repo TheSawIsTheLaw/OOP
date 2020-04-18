@@ -39,14 +39,16 @@ void appendEdgeToLine(QVector<QGraphicsLineItem *> line,
     appendNodeToLine(line, scene, pen, firstNode, secondNode);
 }
 
-int drawModelQtWrap(modelT model, const Ui::MainWindow *const ui) {
+int drawModelQtWrap(modelT model, drawRequestT drawRequest) {
     if (isModelEmpty(model))
         return MODEL_IS_EMPTY;
 
-    if (!ui)
+    if (!drawRequest.ui)
         return UI_POINTER_ERROR;
 
-    drawModelQt(model, ui);
+    drawModelQt(model, drawRequest.xRectStart,
+                drawRequest.yRectStart, drawRequest.xRectEnd,
+                drawRequest.yRectEnd, drawRequest.ui);
 
     return SUCCESS;
 }
@@ -55,7 +57,7 @@ int drawModelWrap(modelT model, requestT request) {
     if (isModelEmpty(model))
         return MODEL_IS_EMPTY;
 
-    int check = drawModelQtWrap(model, request.ui);
+    int check = drawModelQtWrap(model, request.drawRequest);
 
     return check;
 }

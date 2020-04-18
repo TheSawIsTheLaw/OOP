@@ -24,11 +24,13 @@ MainWindow::~MainWindow() {
 // Добавить отдельное поле под реквест с ui
 // В случае необходимости реквест программист поменяет
 // Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
-void drawModelQt(const modelT model, const Ui::MainWindow *const ui) {
+void drawModelQt(const modelT model, const int xRectStart,
+                 const int yRectStart, const int xRectEnd,
+                 const int yRectEnd, const Ui::MainWindow *const ui) {
     QPen blackPen = initBlackPen();
 
-    QGraphicsScene *scene = initScene(X_RECT_START, Y_RECT_START,
-                                      X_RECT_END, Y_RECT_END); // Параметры сцены в реквест
+    QGraphicsScene *scene = initScene(xRectStart, yRectStart,
+                                      xRectEnd, yRectEnd); // Параметры сцены в реквест
 
     QVector<QGraphicsLineItem *> line = initLine();
 
@@ -75,8 +77,8 @@ void MainWindow::on_chooseModelButton_clicked() {
             "Модель не инициализирована. Код программы "
             "был изменён. Не в лучшую сторону.");
     if (!check) {
-        request.ui = ui;
-        request.choice = SHOW_MODEL;
+        resetRequest(request);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -102,7 +104,7 @@ void MainWindow::on_goLeftButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -127,7 +129,7 @@ void MainWindow::on_goDownButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -152,7 +154,7 @@ void MainWindow::on_goUpButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -177,7 +179,7 @@ void MainWindow::on_goRightButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -202,7 +204,7 @@ void MainWindow::on_rotateZRightButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -228,7 +230,7 @@ void MainWindow::on_toratateZLeftButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -254,7 +256,7 @@ void MainWindow::on_rotateYdownButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -280,7 +282,7 @@ void MainWindow::on_rotateYupButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -306,7 +308,7 @@ void MainWindow::on_rotateXRightButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -332,7 +334,7 @@ void MainWindow::on_rotateXLeftButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -358,7 +360,7 @@ void MainWindow::on_plusMasstButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",
@@ -384,7 +386,7 @@ void MainWindow::on_minusMasstButton_clicked() {
         QMessageBox::critical(this, "Ошибка!",
             "Модель не инициализирована.");
     if (!check) {
-        setShowRequest(request, ui);
+        setDrawRequest(request, ui);
         check = taskManager(request);
         if (check == MODEL_IS_NOT_INITED_ERROR)
                 QMessageBox::critical(this, "Ошибка!",

@@ -56,6 +56,7 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
 };
 
-void drawModelQt(const modelT model, const Ui::MainWindow *const ui);
+void drawModelQt(const modelT model, const int xRectStart, const int yRectStart,
+                 const int xRectEnd, const int yRectEnd, const Ui::MainWindow *const ui);
 
 #endif  // MAINWINDOW_H

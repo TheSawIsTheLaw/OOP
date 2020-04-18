@@ -25,12 +25,20 @@ typedef struct {
 }scaleRequestT;
 
 typedef struct {
+    int xRectStart;
+    int yRectStart;
+    int xRectEnd;
+    int yRectEnd;
+    Ui::MainWindow *ui;
+}drawRequestT;
+
+typedef struct {
     int choice;
     moveRequestT moveRequest;
     rotateRequestT rotateRequest;
     scaleRequestT scaleRequest;
     char *fileName;
-    Ui::MainWindow *ui;
+    drawRequestT drawRequest;
 }requestT;
 
 void resetRequest(requestT &request);
@@ -73,6 +81,6 @@ void setScaleRequest(scaleRequestT &request, float scaleCoef,
 
 int setLoadRequest(requestT &request, const QString qFileName);
 
-int setShowRequest(requestT &request, Ui::MainWindow *const ui);
+int setDrawRequest(requestT &request, Ui::MainWindow *const ui);
 
 #endif // REQUESTACTIONS_H

@@ -11,8 +11,6 @@
 //! Все данные зануляются для того, чтобы нельзя было внезапно достать информацию
 //! предыдущего использования.
 void resetRequest(requestT &request) {
-    if (request.ui)
-        request.ui = nullptr;
     if (request.choice)
         request.choice = EMPTY;
     if (request.moveRequest.bias)
@@ -31,6 +29,16 @@ void resetRequest(requestT &request) {
         request.rotateRequest.angle = EMPTY;
     if (request.rotateRequest.direction)
         request.rotateRequest.direction = EMPTY;
+    if (request.drawRequest.ui)
+        request.drawRequest.ui = nullptr;
+    if (request.drawRequest.xRectEnd)
+        request.drawRequest.xRectEnd = EMPTY;
+    if (request.drawRequest.yRectEnd)
+        request.drawRequest.yRectEnd = EMPTY;
+    if (request.drawRequest.xRectStart)
+        request.drawRequest.xRectStart = EMPTY;
+    if (request.drawRequest.yRectStart)
+        request.drawRequest.yRectStart = EMPTY;
 }
 //< End
 
@@ -136,11 +144,16 @@ int setLoadRequest(requestT &request, const QString qFileName) {
 //< End
 
 //! Show set
-int setShowRequest(requestT &request, Ui::MainWindow *const ui) {
+int setDrawRequest(requestT &request, Ui::MainWindow *const ui) {
     if (!ui)
         return UI_POINTER_ERROR;
     request.choice = SHOW_MODEL;
-    request.ui = ui;
+    request.drawRequest.ui = ui;
+    request.drawRequest.xRectStart = X_RECT_START;
+    request.drawRequest.yRectStart = Y_RECT_START;
+    request.drawRequest.xRectEnd = X_RECT_END;
+    request.drawRequest.yRectEnd = Y_RECT_END;
+
     return SUCCESS;
 }
 //< End
