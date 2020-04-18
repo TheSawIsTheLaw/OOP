@@ -39,6 +39,9 @@
     <property name="shortcut">
      <string>Up</string>
     </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
     <property name="autoRepeatInterval">
      <number>0</number>
     </property>
@@ -67,6 +70,9 @@
     <property name="autoExclusive">
      <bool>false</bool>
     </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
     <property name="autoRepeatInterval">
      <number>0</number>
     </property>
@@ -89,6 +95,9 @@
     <property name="shortcut">
      <string>Right</string>
     </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
     <property name="autoRepeatInterval">
      <number>0</number>
     </property>
@@ -110,6 +119,9 @@
     </property>
     <property name="shortcut">
      <string>Down</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
     </property>
     <property name="autoRepeatInterval">
      <number>0</number>
@@ -149,6 +161,9 @@
     <property name="shortcut">
      <string>7</string>
     </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
    </widget>
    <widget class="QPushButton" name="toratateZLeftButton">
     <property name="geometry">
@@ -164,6 +179,9 @@
     </property>
     <property name="shortcut">
      <string>9</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="rotateYdownButton">
@@ -181,6 +199,9 @@
     <property name="shortcut">
      <string>4</string>
     </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
    </widget>
    <widget class="QPushButton" name="rotateYupButton">
     <property name="geometry">
@@ -196,6 +217,9 @@
     </property>
     <property name="shortcut">
      <string>6</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="rotateXRightButton">
@@ -213,6 +237,9 @@
     <property name="shortcut">
      <string>5</string>
     </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
    </widget>
    <widget class="QPushButton" name="rotateXLeftButton">
     <property name="geometry">
@@ -228,6 +255,9 @@
     </property>
     <property name="shortcut">
      <string>8</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="plusMasstButton">
@@ -245,6 +275,9 @@
     <property name="shortcut">
      <string>1</string>
     </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
    </widget>
    <widget class="QPushButton" name="minusMasstButton">
     <property name="geometry">
@@ -260,6 +293,9 @@
     </property>
     <property name="shortcut">
      <string>3</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
     </property>
    </widget>
   </widget>
