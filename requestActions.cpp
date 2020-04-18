@@ -151,7 +151,7 @@ int setDrawRequest(requestT &request, const int xRectStart,
                    const int yRectEnd, Ui::MainWindow *const ui) {
     if (!ui)
         return UI_POINTER_ERROR;
-    request.choice = SHOW_MODEL;
+    request.choice = DRAW_MODEL;
     request.drawRequest.ui = ui;
     request.drawRequest.xRectStart = xRectStart;
     request.drawRequest.yRectStart = yRectStart;

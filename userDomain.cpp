@@ -26,7 +26,7 @@ int taskManager(const requestT request) {
         check = scaleModelWrap(model, request.scaleRequest);
     else if (request.choice == LOAD_MODEL)
         check = loadModel(model, request.fileName); // fixed Поменять название функции
-    else if (request.choice == SHOW_MODEL)
+    else if (request.choice == DRAW_MODEL)
         check = drawModelWrap(model, request);
     else
         check = OUT_OF_CHOICE_ERROR;
