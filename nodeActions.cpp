@@ -86,3 +86,11 @@ int scanNodeFromFile(nodeT &node, FILE *const modelFile) {
     return read;
 }
 //< End
+
+//! Copy
+void copyNode(nodeT &nodeTo, nodeT &nodeFrom) {
+    nodeTo.xCoord = nodeFrom.xCoord;
+    nodeTo.yCoord = nodeFrom.yCoord;
+    nodeTo.zCoord = nodeFrom.zCoord;
+}
+//<

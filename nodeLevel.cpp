@@ -39,9 +39,7 @@ int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom, const int numOfNo
     nodesTemp = nullptr;
 
     for (int i = 0; i < numOfNodes; i++) {
-        nodesTo[i].xCoord = nodesFrom[i].xCoord;
-        nodesTo[i].yCoord = nodesFrom[i].yCoord;
-        nodesTo[i].zCoord = nodesFrom[i].zCoord;
+        copyNode(nodesTo[i], nodesFrom[i]);
     }
 
     return SUCCESS;

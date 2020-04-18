@@ -33,4 +33,8 @@ void scaleNode(nodeT &node, const int xCenterScene,
 int scanNodeFromFile(nodeT &node, FILE *const modelFile);
 //< End
 
+//! Copy
+void copyNode(nodeT &nodeTo, nodeT &nodeFrom);
+//< End
+
 #endif // NODE_ACTIONS_H
