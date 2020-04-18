@@ -146,9 +146,10 @@ int setLoadRequest(requestT &request, const char *const fileName) {
 //< End
 
 //! Show set
-int setDrawRequest(requestT &request, const int xRectStart,
-                   const int yRectStart, const int xRectEnd,
-                   const int yRectEnd, Ui::MainWindow *const ui) {
+int setDrawRequest(requestT &request,
+                   const int xRectStart, const int yRectStart,
+                   const int xRectEnd, const int yRectEnd,
+                   Ui::MainWindow *const ui) {
     if (!ui)
         return UI_POINTER_ERROR;
     request.choice = DRAW_MODEL;

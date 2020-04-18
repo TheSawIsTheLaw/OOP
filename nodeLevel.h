@@ -17,13 +17,15 @@ int areNodesLegit(const nodeT *const nodes, const int numOfNodes);
 //< End
 
 //! Copy
-int copyNodesToNodes(nodeT *&nodesTo, nodeT * const &nodesFrom, const int numOfNodes);
+int copyNodesToNodes(nodeT *&nodesTo, nodeT * const &nodesFrom,
+                     const int numOfNodes);
 //< End
 
 //! Scan
 int getNumOfNodesFromFile(int &numOfNodes, FILE * const modelFile);
 
-int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes, FILE * const modelFile);
+int scanModelNodesFromFile(nodeT *&nodes, int numOfNodes,
+                           FILE * const modelFile);
 //< End
 
 // Free

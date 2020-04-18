@@ -50,7 +50,8 @@ int getNumOfEdgesFromFile(int &numOfEdges, FILE *const modelFile) {
 //< End
 
 //! Scan modelEdges
-int fillEdgesArrFromFile(edgeT *const &edges, const int numOfEdges, FILE *const modelFile) {
+int fillEdgesArrFromFile(edgeT *const &edges, const int numOfEdges,
+                         FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 
@@ -73,7 +74,8 @@ int fillEdgesArrFromFile(edgeT *const &edges, const int numOfEdges, FILE *const 
     return check;
 }
 
-int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges, FILE *const modelFile) {
+int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges,
+                           FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
 

@@ -20,7 +20,8 @@ int areNodesLegit(const nodeT *const nodes, const int numOfNodes) {
 //< End
 
 //! Copy
-int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom, const int numOfNodes) {
+int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom,
+                     const int numOfNodes) {
     if (!nodesFrom)
         return SUCCESS;
 

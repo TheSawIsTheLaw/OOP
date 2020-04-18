@@ -14,9 +14,8 @@ QGraphicsScene *initScene(const int xRectStart, const int yRectStart,
 
 QVector<QGraphicsLineItem *> initLine(void);
 
-void appendEdgeToLine(QVector<QGraphicsLineItem *> line,
-                   QGraphicsScene *scene,
-                   QPen pen, nodeT *nodes,
-                   edgeT edge);
+void appendEdgeToLine(const QVector<QGraphicsLineItem *> line,
+                      QGraphicsScene *const scene, const QPen pen,
+                      nodeT *const nodes, const edgeT edge);
 
 #endif // DRAW_LEVEL_H

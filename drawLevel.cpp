@@ -31,9 +31,8 @@ void appendNodeToLine(QVector<QGraphicsLineItem *> line,
 }
 
 void appendEdgeToLine(const QVector<QGraphicsLineItem *> line,
-                   QGraphicsScene *const scene,
-                   const QPen pen, nodeT *const nodes,
-                   const edgeT edge) {
+                      QGraphicsScene *const scene, const QPen pen,
+                      nodeT *const nodes, const edgeT edge) {
     nodeT firstNode = nodes[edge.firstNode];
     nodeT secondNode = nodes[edge.secondNode];
     appendNodeToLine(line, scene, pen, firstNode, secondNode);
