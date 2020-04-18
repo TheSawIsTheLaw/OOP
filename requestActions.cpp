@@ -133,12 +133,14 @@ void setScaleRequest(scaleRequestT &request, const float scaleCoef,
 //< End
 
 //! Load set
-int setLoadRequest(requestT &request, const QString qFileName) {
-    request.fileName = (char *)calloc(qFileName.length(), sizeof(char));
+int setLoadRequest(requestT &request, const char *const fileName) {
+    if (!fileName)
+        return INVALID_FILE_NAME;
+    request.fileName = (char *)calloc(strlen(fileName), sizeof(char));
     if (!request.fileName)
         return MEMORY_ALLOCATION_ERROR;
     request.choice = LOAD_MODEL;
-    strcpy(request.fileName, qUtf8Printable(qFileName));
+    strcpy(request.fileName, fileName);
     return SUCCESS;
 }
 //< End

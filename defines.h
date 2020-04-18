@@ -21,6 +21,7 @@
 #define INVALID_EDGE_NUM_ERROR -9
 #define INVALID_NODE_NUM_ERROR -10
 #define INVALID_NODES -11
+#define INVALID_FILE_NAME -12
 //< End
 
 #define SUCCESS 0

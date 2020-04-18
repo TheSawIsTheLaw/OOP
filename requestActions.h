@@ -79,7 +79,7 @@ void setScaleRequest(scaleRequestT &request, float scaleCoef,
                      const int xCenter, const int yCenter,
                      const int zCenter);
 
-int setLoadRequest(requestT &request, const QString qFileName);
+int setLoadRequest(requestT &request, const char * const fileName);
 
 int setDrawRequest(requestT &request, Ui::MainWindow *const ui);
 

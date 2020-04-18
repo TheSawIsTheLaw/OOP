@@ -42,14 +42,18 @@ void drawModelQt(const modelT model, const int xRectStart,
     ui->graphicsView->setScene(scene);
 }
 
+QString getFileWay(QWidget *parent, QString startLocation,
+                   QString fileFormat) {
+    return QFileDialog::getOpenFileName(
+                parent, "Open Model", startLocation, fileFormat);
+}
+
 void MainWindow::on_chooseModelButton_clicked() {
-    QString qFileName = QFileDialog::getOpenFileName(
-        this, tr("Open Model"), "../OOP/startModels", tr("Model Files (*.txt)"));
-    QDEB(qUtf8Printable(qFileName));
+    QString qFileName = getFileWay(this, "../OOP/startModels", "*.txt");
 
     requestT request;
 
-    setLoadRequest(request, qFileName);
+    setLoadRequest(request, qUtf8Printable(qFileName));
 
     if (!request.fileName) {
         QMessageBox::critical(this, "Ошибка!",
