@@ -13,4 +13,4 @@ void scaleModel(nodeT *const nodes, const int numOfnodes, const float scaleCoef,
                 const int zCenterScene);
 //<End
 
-#endif // MODELSCALE_H
+#endif // MODEL_SCALE_H
