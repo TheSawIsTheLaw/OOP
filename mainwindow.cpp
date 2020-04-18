@@ -26,26 +26,16 @@ MainWindow::~MainWindow() {
 // Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
 void drawModelQt(const modelT model, const Ui::MainWindow *const ui) {
     QPen blackPen = initBlackPen();
-    nodeT firstNode = { 0, 0, 0 }, secondNode = { 0, 0, 0 };
 
-    // ВСЁ-ВСЁ В ОТДЕЛЬНЫЕ ФУНКЦИИ!
+    QGraphicsScene *scene = initScene(X_RECT_START, Y_RECT_START,
+                                      X_RECT_END, Y_RECT_END); // Параметры сцены в реквест
 
-    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
-    scene->setSceneRect(X_RECT_START, Y_RECT_START, X_RECT_END, Y_RECT_END);
-
-    QVector<QGraphicsLineItem *> line;
-    if (line.length() != 0)
-        line.clear();
+    QVector<QGraphicsLineItem *> line = initLine();
 
     // Отдельная функция рисования!
 
-    for (int i = 0; i < model.numOfEdges; i++) {
-        firstNode = model.nodes[model.edges[i].firstNode];
-        secondNode = model.nodes[model.edges[i].secondNode];
-
-        line.append(scene->addLine(firstNode.xCoord, firstNode.yCoord,
-            secondNode.xCoord, secondNode.yCoord, blackPen));
-    }
+    for (int i = 0; i < model.numOfEdges; i++)
+        appendEdgeToLine(line, scene, blackPen, model.nodes, model.edges[i]);
 
     ui->graphicsView->setScene(scene);
 }
