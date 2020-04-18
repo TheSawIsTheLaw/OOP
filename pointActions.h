@@ -22,7 +22,7 @@ void movePoint(double &point, const int bias);
 //< End
 
 //! Scale
-void scalePoint(double &point, double coordCenter, const float scaleCoef);
+void scalePoint(double &point, const double coordCenter, const float scaleCoef);
 //< End
 
 //! Scan
