@@ -89,8 +89,8 @@ int scanNodeFromFile(nodeT &node, FILE *const modelFile) {
 
 //! Copy
 void copyNode(nodeT &nodeTo, nodeT &nodeFrom) {
-    nodeTo.xCoord = nodeFrom.xCoord;
-    nodeTo.yCoord = nodeFrom.yCoord;
-    nodeTo.zCoord = nodeFrom.zCoord;
+    copyPointToPoint(nodeTo.xCoord, nodeFrom.xCoord);
+    copyPointToPoint(nodeTo.yCoord, nodeFrom.yCoord);
+    copyPointToPoint(nodeTo.zCoord, nodeFrom.zCoord);
 }
 //<
