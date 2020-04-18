@@ -21,7 +21,7 @@ MainWindow::~MainWindow() {
 
 void drawModel(const modelT &model, const Ui::MainWindow *const ui) {
     QPen whitePen(Qt::black);
-    nodeT firstNode, secondNode;
+    nodeT firstNode = { 0, 0, 0 }, secondNode = { 0, 0, 0 };
 
     // ВСЁ-ВСЁ В ОТДЕЛЬНЫЕ ФУНКЦИИ!
 
@@ -29,9 +29,8 @@ void drawModel(const modelT &model, const Ui::MainWindow *const ui) {
     scene->setSceneRect(X_RECT_START, Y_RECT_START, X_RECT_END, Y_RECT_END);
 
     QVector<QGraphicsLineItem *> line;
-    if (line.length() != 0) {
+    if (line.length() != 0)
         line.clear();
-    }
 
     // Отдельная функция рисования!
 
@@ -108,8 +107,7 @@ void MainWindow::on_goLeftButton_clicked() {
 
     setMoveChoice(request, GO_X, -MOVE_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("left");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -134,8 +132,7 @@ void MainWindow::on_goDownButton_clicked() {
 
     setMoveChoice(request, GO_Y, MOVE_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("down");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -160,8 +157,7 @@ void MainWindow::on_goUpButton_clicked() {
 
     setMoveChoice(request, GO_Y, -MOVE_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("up");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -186,8 +182,7 @@ void MainWindow::on_goRightButton_clicked() {
 
     setMoveChoice(request, GO_X, MOVE_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int  check = taskManager(request);
     QDEB("right");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -213,8 +208,7 @@ void MainWindow::on_rotateZRightButton_clicked() {
     setRotateChoiceZ(request, X_CENTER_SCENE,
                      Y_CENTER_SCENE, -ROTATION_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("zR");
     if (check == OUT_OF_CHOICE_ERROR)
         QMessageBox::critical(this, "Ошибка!",
@@ -239,8 +233,7 @@ void MainWindow::on_toratateZLeftButton_clicked() {
     setRotateChoiceZ(request, X_CENTER_SCENE,
                      Y_CENTER_SCENE, ROTATION_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("zL");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -266,8 +259,7 @@ void MainWindow::on_rotateYdownButton_clicked() {
     setRotateChoiceY(request, X_CENTER_SCENE,
                      Z_CENTER_SCENE, ROTATION_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("yR");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -293,8 +285,7 @@ void MainWindow::on_rotateYupButton_clicked() {
     setRotateChoiceY(request, X_CENTER_SCENE,
                      Z_CENTER_SCENE, -ROTATION_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("yL");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -320,8 +311,7 @@ void MainWindow::on_rotateXRightButton_clicked() {
     setRotateChoiceX(request, Y_CENTER_SCENE,
                      Z_CENTER_SCENE, -ROTATION_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("xR");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -347,8 +337,7 @@ void MainWindow::on_rotateXLeftButton_clicked() {
     setRotateChoiceX(request, Y_CENTER_SCENE,
                      Z_CENTER_SCENE, ROTATION_UNIT);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("xL");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -374,8 +363,7 @@ void MainWindow::on_plusMasstButton_clicked() {
     setScaleChoice(request, SCALE_UNIT_PLUS, X_CENTER_SCENE,
                    Y_CENTER_SCENE, Z_CENTER_SCENE);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("sP");
 
     if (check == OUT_OF_CHOICE_ERROR)
@@ -401,8 +389,7 @@ void MainWindow::on_minusMasstButton_clicked() {
     setScaleChoice(request, SCALE_UNIT_MINUS, X_CENTER_SCENE,
                    Y_CENTER_SCENE, Z_CENTER_SCENE);
 
-    int check;
-    check = taskManager(request);
+    int check = taskManager(request);
     QDEB("sM");
 
     if (check == OUT_OF_CHOICE_ERROR)
