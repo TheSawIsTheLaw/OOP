@@ -15,13 +15,15 @@ int copyEdgesToEdges(edgeT *&edgesTo, const edgeT *const &edgesFrom,
     if (numOfEdges < 0)
         return INVALID_EDGE_NUM_ERROR;
 
-    if (edgesTo)
-        free(edgesTo);
 
-    edgesTo = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
-    if (!edgesTo)
+    edgeT *edgesTemp = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
+    if (!edgesTemp)
             return MEMORY_ALLOCATION_ERROR;
 
+    if (edgesTo)
+        free(edgesTo);
+    edgesTo = edgesTemp;
+    edgesTemp = nullptr;
 
     for (int i = 0; i < numOfEdges; i++) {
         edgesTo[i] = edgesFrom[i];

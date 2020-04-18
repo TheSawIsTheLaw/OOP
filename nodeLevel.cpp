@@ -27,13 +27,16 @@ int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom, const int numOfNo
     if (numOfNodes < 0)
         return INVALID_NODE_NUM_ERROR;
 
+
+    nodeT *nodesTemp = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
+    if (!nodesTemp)
+            return MEMORY_ALLOCATION_ERROR;
+
     if (nodesTo)
         free(nodesTo);
 
-    nodesTo = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
-    if (!nodesTo)
-            return MEMORY_ALLOCATION_ERROR;
-
+    nodesTo = nodesTemp;
+    nodesTemp = nullptr;
 
     for (int i = 0; i < numOfNodes; i++) {
         nodesTo[i].xCoord = nodesFrom[i].xCoord;
