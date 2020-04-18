@@ -7,6 +7,4 @@
 // Task Manager
 int taskManager(const requestT choice);
 
-// Request Initialization
-
 #endif // USER_DOMAIN_H
