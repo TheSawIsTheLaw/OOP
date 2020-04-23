@@ -22,6 +22,7 @@
 #define MODEL_IS_NOT_INITED_ERROR -10
 #define OUT_OF_CHOICE_ERROR -11
 #define UI_POINTER_ERROR -12
+#define SCENE_ERROR -13
 //< End
 
 #define SUCCESS 0
