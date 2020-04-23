@@ -74,7 +74,8 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
     if (numOfNodes < 0)
         return INVALID_NODE_NUM_ERROR;
 
-    int read = 0, check = SUCCESS;
+    int check = SUCCESS;
+    int read = 0;
 
     for (int i = 0; i < numOfNodes; i++) {
         read = scanNodeFromFile(nodes[i], modelFile);// FIXED вынесено на новый уровень
@@ -105,6 +106,7 @@ int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
         if (nodes)
             free(nodes);
         nodes = tempNodes;
+        tempNodes = nullptr;
     }
     else
         free(tempNodes);
