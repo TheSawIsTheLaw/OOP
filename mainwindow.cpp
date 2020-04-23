@@ -8,8 +8,6 @@
 
 #include "userDomain.h"
 
-#include "requestActions.h"
-
 #include "drawLevel.h"
 
 
@@ -21,23 +19,23 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+void viewScene(Ui::MainWindow *const ui, QGraphicsScene *const scene) {
+    ui->graphicsView->setScene(scene);
+}
+
 // Добавить отдельное поле под реквест с ui
 // В случае необходимости реквест программист поменяет
 // Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
-void drawModelQt(const modelT model, const int xRectStart,
-                 const int yRectStart, const int xRectEnd,
-                 const int yRectEnd, const Ui::MainWindow *const ui) {
-    QPen blackPen = initBlackPen();
-    QGraphicsScene *scene = initScene(xRectStart, yRectStart,
-                                      xRectEnd, yRectEnd); // FIXED Параметры сцены в реквест
-    QVector<QGraphicsLineItem *> line = initLine();
-
+void drawModelQt(const modelT model, const drawRequestT drawRequest) {
     // FIXED: Отдельная функция рисования!
 
     for (int i = 0; i < model.numOfEdges; i++)
-        appendEdgeToLine(line, scene, blackPen, model.nodes, model.edges[i]);
+        appendEdgeToScene(drawRequest.scene, drawRequest.line,
+                          drawRequest.blackPen, model.nodes,
+                          model.edges[i]);
 
-    ui->graphicsView->setScene(scene);
+    viewScene(drawRequest.ui, drawRequest.scene);
+
 }
 
 QString getFileWay(QWidget *const parent, const QString startLocation,

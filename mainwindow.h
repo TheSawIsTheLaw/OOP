@@ -56,9 +56,17 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
 };
 
-void drawModelQt(const modelT model,
-                 const int xRectStart, const int yRectStart,
-                 const int xRectEnd, const int yRectEnd,
-                 const Ui::MainWindow *const ui);
+typedef struct {
+    int xRectStart;
+    int yRectStart;
+    int xRectEnd;
+    int yRectEnd;
+    QPen blackPen;
+    QGraphicsScene *scene;
+    QVector<QGraphicsLineItem *> line;
+    Ui::MainWindow *ui;
+}drawRequestT;
+
+void drawModelQt(const modelT model, const drawRequestT drawRequest);
 
 #endif  // MAINWINDOW_H

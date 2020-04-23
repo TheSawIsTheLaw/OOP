@@ -21,20 +21,14 @@ QVector<QGraphicsLineItem *> initLine(void) {
     return line;
 }
 
-void appendNodeToLine(QVector<QGraphicsLineItem *> line,
-                      QGraphicsScene *const scene,
-                      const QPen pen, const nodeT firstNode,
-                      const nodeT secondNode) {
-    line.append(scene->addLine(firstNode.xCoord, firstNode.yCoord,
-        secondNode.xCoord, secondNode.yCoord, pen));
-}
-
-void appendEdgeToLine(const QVector<QGraphicsLineItem *> line,
-                      QGraphicsScene *const scene, const QPen pen,
-                      nodeT *const nodes, const edgeT edge) {
+void appendEdgeToScene(QGraphicsScene *const scene,
+                       QVector<QGraphicsLineItem *> line,
+                       const QPen pen,
+                       nodeT *const nodes, const edgeT edge) {
     nodeT firstNode = nodes[edge.firstNode];
     nodeT secondNode = nodes[edge.secondNode];
-    appendNodeToLine(line, scene, pen, firstNode, secondNode);
+    line.append(scene->addLine(firstNode.xCoord, firstNode.yCoord,
+        secondNode.xCoord, secondNode.yCoord, pen));
 }
 
 int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
@@ -44,9 +38,10 @@ int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
     if (!drawRequest.ui)
         return UI_POINTER_ERROR;
 
-    drawModelQt(model, drawRequest.xRectStart,
-                drawRequest.yRectStart, drawRequest.xRectEnd,
-                drawRequest.yRectEnd, drawRequest.ui);
+    if (!drawRequest.scene)
+        return SCENE_ERROR;
+
+    drawModelQt(model, drawRequest);
 
     return SUCCESS;
 }
