@@ -88,6 +88,7 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
     return check;
 }
 
+// Теперь функция не портит переданные в неё данные при неудаче
 int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
                            FILE *const modelFile) {
     if (!modelFile)

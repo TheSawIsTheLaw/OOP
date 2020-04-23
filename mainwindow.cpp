@@ -27,14 +27,16 @@ MainWindow::~MainWindow() {
 void drawModelQt(const modelT model, const int xRectStart,
                  const int yRectStart, const int xRectEnd,
                  const int yRectEnd, const Ui::MainWindow *const ui) {
-    QPen blackPen = initBlackPen();
+    QPen blackPen;
+    QGraphicsScene *scene = nullptr; // FIXED Параметры сцены в реквест
+    QVector<QGraphicsLineItem *> line;
 
-    QGraphicsScene *scene = initScene(xRectStart, yRectStart,
-                                      xRectEnd, yRectEnd); // Параметры сцены в реквест
+    initInstrumentsAndSceneQt(blackPen, scene,
+                              line, xRectStart,
+                              yRectStart, xRectEnd,
+                              yRectEnd);
 
-    QVector<QGraphicsLineItem *> line = initLine();
-
-    // Отдельная функция рисования!
+    // FIXED: Отдельная функция рисования!
 
     for (int i = 0; i < model.numOfEdges; i++)
         appendEdgeToLine(line, scene, blackPen, model.nodes, model.edges[i]);
