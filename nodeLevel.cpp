@@ -39,9 +39,8 @@ int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom,
     nodesTo = nodesTemp;
     nodesTemp = nullptr;
 
-    for (int i = 0; i < numOfNodes; i++) {
+    for (int i = 0; i < numOfNodes; i++)
         copyNode(nodesTo[i], nodesFrom[i]);
-    }
 
     return SUCCESS;
 }
