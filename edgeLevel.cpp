@@ -79,18 +79,21 @@ int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges,
     if (!modelFile)
         return FILE_ERROR;
 
-    if (edges)
-        free(edges);
-
     if (numOfEdges < 0)
         return INVALID_EDGE_NUM_ERROR;
 
-    edges = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
+    edgeT *tempEdges = (edgeT *)calloc(numOfEdges, sizeof(edgeT));
+    if (!tempEdges)
+        return MEMORY_ALLOCATION_ERROR;
 
     int check = fillEdgesArrFromFile(edges, numOfEdges, modelFile);
 
-    if (check)
-        free(edges);
+    if (!check) {
+        if (edges)
+            free(edges);
+        edges = tempEdges;
+        tempEdges = nullptr;
+    }
 
     return check;
 }
