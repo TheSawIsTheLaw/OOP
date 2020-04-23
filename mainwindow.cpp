@@ -26,7 +26,7 @@ void viewScene(Ui::MainWindow *const ui, QGraphicsScene *const scene) {
 // Добавить отдельное поле под реквест с ui
 // В случае необходимости реквест программист поменяет
 // Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
-void drawModelQt(const modelT model, const drawRequestT drawRequest) {
+void drawModel(const modelT model, const drawRequestT drawRequest) {
     // FIXED: Отдельная функция рисования!
 
     for (int i = 0; i < model.numOfEdges; i++)

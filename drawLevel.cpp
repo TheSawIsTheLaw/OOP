@@ -41,7 +41,7 @@ int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
     if (!drawRequest.scene)
         return SCENE_ERROR;
 
-    drawModelQt(model, drawRequest);
+    drawModel(model, drawRequest);
 
     return SUCCESS;
 }

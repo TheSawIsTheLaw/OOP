@@ -67,6 +67,6 @@ typedef struct {
     Ui::MainWindow *ui;
 }drawRequestT;
 
-void drawModelQt(const modelT model, const drawRequestT drawRequest);
+void drawModel(const modelT model, const drawRequestT drawRequest);
 
 #endif  // MAINWINDOW_H
