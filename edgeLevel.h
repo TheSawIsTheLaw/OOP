@@ -10,9 +10,10 @@ typedef struct {
 } edgeT;
 //< End
 
-// Edge copy
+//! Edge copy
 int copyEdgesToEdges(edgeT *&edgesTo, const edgeT * const &edgesFrom,
                      const int numOfEdges);
+//< End
 
 //! Scan
 int getNumOfEdgesFromFile(int &numOfEdges, FILE * const modelFile);
@@ -21,7 +22,8 @@ int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges,
                            FILE * const modelFile);
 //< End
 
-// Free
+//! Free
 void freeEdges(edgeT *&edges);
+//< End
 
 #endif // EDGE_LEVEL_H

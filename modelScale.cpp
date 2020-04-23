@@ -21,8 +21,6 @@ int scaleModelWrap(modelT &model, const scaleRequestT scaleRequest) {
 void scaleModel(nodeT *const nodes, const int numOfnodes,
                 const float scaleCoef, const int xCenterScene,
                 const int yCenterScene, const int zCenterScene) {
-    qDebug("scale");
-
     for (int i = 0; i < numOfnodes; i++) {
         scaleNode(nodes[i], xCenterScene,
                   yCenterScene, zCenterScene,

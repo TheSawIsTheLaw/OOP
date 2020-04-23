@@ -4,7 +4,8 @@
 #pragma once
 #include "requestActions.h"
 
-// Task Manager
+//! Task Manager
 int taskManager(const requestT choice);
+//< End
 
 #endif // USER_DOMAIN_H

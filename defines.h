@@ -34,8 +34,9 @@
 #define MOVEMENT 2
 #define ROTATION 3
 #define SCALE 4
+//< End
 
-//! In commands
+//! In manager commands
 #define GO_X 0
 #define GO_Y 1
 #define ROTATE_X 2
@@ -58,13 +59,13 @@
 #define Y_RECT_END 400
 //< End
 
-// Another defs
+//! Another defs
 #define ROTATION_UNIT 0.17453292519
 #define EMPTY 0
 #define BASE 1
 #define SCALE_UNIT_MINUS 0.9
 #define SCALE_UNIT_PLUS 1.1
 #define MOVE_UNIT 10
-
+//< End
 
 #endif

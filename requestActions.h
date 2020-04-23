@@ -7,7 +7,7 @@
 typedef struct {
     int direction;
     int bias;
-}moveRequestT;
+}moveRequestT; // move
 
 typedef struct {
     int direction;
@@ -15,14 +15,14 @@ typedef struct {
     int yCenterScene;
     int zCenterScene;
     float angle;
-}rotateRequestT;
+}rotateRequestT; // rotate
 
 typedef struct {
     float scaleCoef;
     int xCenterScene;
     int yCenterScene;
     int zCenterScene;
-}scaleRequestT;
+}scaleRequestT; // scale
 
 typedef struct {
     int choice;
@@ -31,18 +31,23 @@ typedef struct {
     scaleRequestT scaleRequest;
     drawRequestT drawRequest;
     char *fileName;
-}requestT;
+}requestT; // request
 
+//! Request actions
 void resetRequest(requestT &request);
 
 void freeFileNameRequest(requestT &request);
+//< End
 
+//! Move request
 void setMoveChoice(requestT &request, const int direction,
                    const int bias);
 
 void setMoveRequest(moveRequestT &request, const int direction,
                     const int bias);
+//< End
 
+//! Rotate requests
 void setRotateChoiceZ(requestT &request, const int xCenter,
                       const int yCenter, const float angle);
 
@@ -63,7 +68,9 @@ void setRotateRequestY(rotateRequestT &request, const int direction,
 void setRotateRequestX(rotateRequestT &request, const int direction,
                        const int yCenter, const int zCenter,
                        const float angle);
+//< End
 
+//! Scale requests
 void setScaleChoice(requestT &request, const float scaleCoef,
                     const int xCenter, const int yCenter,
                     const int zCenter);
@@ -71,12 +78,17 @@ void setScaleChoice(requestT &request, const float scaleCoef,
 void setScaleRequest(scaleRequestT &request, float scaleCoef,
                      const int xCenter, const int yCenter,
                      const int zCenter);
+//< End
 
+//! Load request
 int setLoadRequest(requestT &request, const char * const fileName);
+//< End
 
+//! Draw request
 int setDrawRequest(requestT &request,
                    const int xRectStart, const int yRectStart,
                    const int xRectEnd, const int yRectEnd,
                    Ui::MainWindow *const ui);
+//< End
 
 #endif // REQUESTACTIONS_H

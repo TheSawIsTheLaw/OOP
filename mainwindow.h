@@ -26,6 +26,7 @@ class MainWindow : public QMainWindow {
   ~MainWindow();
 
  private slots:
+
     void on_chooseModelButton_clicked();
 
     void on_goLeftButton_clicked();
@@ -65,8 +66,10 @@ typedef struct {
     QGraphicsScene *scene;
     QVector<QGraphicsLineItem *> line;
     Ui::MainWindow *ui;
-}drawRequestT;
+}drawRequestT; // Draw request
 
+//! Draw function
 void drawModel(const modelT model, const drawRequestT drawRequest);
+//< End
 
 #endif  // MAINWINDOW_H

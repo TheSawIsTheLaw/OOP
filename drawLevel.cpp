@@ -2,6 +2,7 @@
 
 #include "defines.h"
 
+//! Instrumnts inits
 QPen initBlackPen(void) {
     static QPen blackPen(Qt::black);
     return blackPen;
@@ -20,7 +21,9 @@ QVector<QGraphicsLineItem *> initLine(void) {
         line.clear();
     return line;
 }
+//< End
 
+//! Scene
 void appendEdgeToScene(QGraphicsScene *const scene,
                        QVector<QGraphicsLineItem *> line,
                        const QPen pen,
@@ -31,6 +34,7 @@ void appendEdgeToScene(QGraphicsScene *const scene,
         secondNode.xCoord, secondNode.yCoord, pen));
 }
 
+//! QT drawer wrap
 int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
     int check = SUCCESS;
 
@@ -45,11 +49,10 @@ int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
 
     return check;
 }
+//< End
 
+//! Wrap
 int drawModelWrap(const modelT model, const requestT request) {
-    if (isModelEmpty(model))
-        return MODEL_IS_EMPTY;
-
     int check = drawModelQtWrap(model, request.drawRequest);
 
     if (!check)
@@ -57,4 +60,4 @@ int drawModelWrap(const modelT model, const requestT request) {
 
     return check;
 }
-
+//< End
