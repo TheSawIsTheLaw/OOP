@@ -94,6 +94,8 @@ int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges,
         edges = tempEdges;
         tempEdges = nullptr;
     }
+    else
+        free(tempEdges);
 
     return check;
 }
