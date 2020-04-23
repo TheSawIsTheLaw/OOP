@@ -27,14 +27,10 @@ MainWindow::~MainWindow() {
 void drawModelQt(const modelT model, const int xRectStart,
                  const int yRectStart, const int xRectEnd,
                  const int yRectEnd, const Ui::MainWindow *const ui) {
-    QPen blackPen;
-    QGraphicsScene *scene = nullptr; // FIXED Параметры сцены в реквест
-    QVector<QGraphicsLineItem *> line;
-
-    initInstrumentsAndSceneQt(blackPen, scene,
-                              line, xRectStart,
-                              yRectStart, xRectEnd,
-                              yRectEnd);
+    QPen blackPen = initBlackPen();
+    QGraphicsScene *scene = initScene(xRectStart, yRectStart,
+                                      xRectEnd, yRectEnd); // FIXED Параметры сцены в реквест
+    QVector<QGraphicsLineItem *> line = initLine();
 
     // FIXED: Отдельная функция рисования!
 

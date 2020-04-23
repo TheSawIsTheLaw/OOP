@@ -21,19 +21,6 @@ QVector<QGraphicsLineItem *> initLine(void) {
     return line;
 }
 
-void initInstrumentsAndSceneQt(QPen &blackPen, QGraphicsScene *&scene,
-                              QVector<QGraphicsLineItem *> line, const int xRectStart,
-                              const int yRectStart, const int xRectEnd,
-                              const int yRectEnd) {
-    blackPen = initBlackPen();
-
-    scene = initScene(xRectStart, yRectStart,
-                                      xRectEnd, yRectEnd); // FIXED Параметры сцены в реквест
-
-    line = initLine();
-}
-
-
 void appendNodeToLine(QVector<QGraphicsLineItem *> line,
                       QGraphicsScene *const scene,
                       const QPen pen, const nodeT firstNode,
