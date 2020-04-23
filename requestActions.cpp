@@ -1,5 +1,7 @@
 #include "requestActions.h"
 
+#include "drawLevel.h"
+
 #include "defines.h"
 
 
@@ -158,6 +160,10 @@ int setDrawRequest(requestT &request,
     request.drawRequest.yRectStart = yRectStart;
     request.drawRequest.xRectEnd = xRectEnd;
     request.drawRequest.yRectEnd = yRectEnd;
+    request.drawRequest.blackPen = initBlackPen();
+    request.drawRequest.scene = initScene(xRectStart, yRectStart,
+                                          xRectEnd, yRectEnd);
+    request.drawRequest.line = initLine();
 
     return SUCCESS;
 }

@@ -25,14 +25,6 @@ typedef struct {
 }scaleRequestT;
 
 typedef struct {
-    int xRectStart;
-    int yRectStart;
-    int xRectEnd;
-    int yRectEnd;
-    Ui::MainWindow *ui;
-}drawRequestT;
-
-typedef struct {
     int choice;
     moveRequestT moveRequest;
     rotateRequestT rotateRequest;
