@@ -24,10 +24,10 @@ int taskManager(const requestT request) {
         check = rotateModelWrap(model, request.rotateRequest);
     else if (request.choice == SCALE)
         check = scaleModelWrap(model, request.scaleRequest);
-    else if (request.choice == LOAD_MODEL)
-        check = loadModel(model, request.fileName); // fixed Поменять название функции
     else if (request.choice == MOVEMENT)
         check = moveModelWrap(model, request.moveRequest);
+    else if (request.choice == LOAD_MODEL)
+        check = loadModel(model, request.fileName); // fixed Поменять название функции
     else
         check = OUT_OF_CHOICE_ERROR;
 
