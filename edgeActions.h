@@ -7,4 +7,8 @@
 int scanEdgeFromFile(edgeT &edge, FILE *const modelFile);
 //< End
 
+//! Copy
+void copyEdge(edgeT &edgeTo, edgeT edgeFrom);
+//< End
+
 #endif // EDGE_ACTIONS_H

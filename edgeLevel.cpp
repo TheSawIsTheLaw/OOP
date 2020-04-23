@@ -25,9 +25,9 @@ int copyEdgesToEdges(edgeT *&edgesTo, const edgeT *const &edgesFrom,
     edgesTo = edgesTemp;
     edgesTemp = nullptr;
 
-    for (int i = 0; i < numOfEdges; i++) {
-        edgesTo[i] = edgesFrom[i];
-    }
+    for (int i = 0; i < numOfEdges; i++)
+        copyEdge(edgesTo[i], edgesFrom[i]);
+
     return SUCCESS;
 }
 //< End

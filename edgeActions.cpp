@@ -15,3 +15,9 @@ int scanEdgeFromFile(edgeT &edge, FILE *const modelFile) {
     return read;
 }
 //< End
+
+//! Copy
+void copyEdge(edgeT &edgeTo, edgeT edgeFrom){
+    edgeTo = edgeFrom;
+}
+//< End
