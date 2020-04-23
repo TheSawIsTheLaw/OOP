@@ -92,19 +92,22 @@ int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
     if (!modelFile)
         return FILE_ERROR;
 
-    if (nodes)
-        free(nodes);
-
     if (numOfNodes < 0)
         return INVALID_NODE_NUM_ERROR;
 
-    nodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
+    nodeT *tempNodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
+    if (!nodes)
+        return MEMORY_ALLOCATION_ERROR;
 
-    int check = fillNodesArrFromFile(nodes, numOfNodes, modelFile);
-    // НЕ ОТРАБОТАЛА - ОСВОБОДИЛИ
+    int check = fillNodesArrFromFile(tempNodes, numOfNodes, modelFile);
 
-    if (check)
-        free(nodes);
+    if (!check) {
+        if (nodes)
+            free(nodes);
+        nodes = tempNodes;
+    }
+    else
+        free(tempNodes);
 
     return check;
 }
