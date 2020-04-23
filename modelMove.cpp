@@ -6,20 +6,20 @@
 
 //! Wraps
 int moveModelWrap(modelT &model, const moveRequestT moveRequest) {
-    if (moveRequest.direction != GO_X && moveRequest.direction != GO_Y)
-        return INVALID_DIRECTION_ERROR;
-
     if (areNodesLegit(model.nodes, model.numOfNodes))
             return INVALID_NODES;
 
+    int check = SUCCESS;
     if (moveRequest.direction == GO_X)
         moveModelX(model.nodes, model.numOfNodes,
                    moveRequest.bias);
-    else
+    else if (moveRequest.direction == GO_Y)
         moveModelY(model.nodes, model.numOfNodes,
                    moveRequest.bias);
+    else
+        check = INVALID_DIRECTION_ERROR;
 
-    return SUCCESS;
+    return check;
 }
 //< End
 
