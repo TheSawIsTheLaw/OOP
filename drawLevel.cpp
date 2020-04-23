@@ -32,18 +32,18 @@ void appendEdgeToScene(QGraphicsScene *const scene,
 }
 
 int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
+    int check = SUCCESS;
+
     if (isModelEmpty(model))
-        return MODEL_IS_EMPTY;
+        check = MODEL_IS_EMPTY;
 
     if (!drawRequest.ui)
-        return UI_POINTER_ERROR;
+        check = UI_POINTER_ERROR;
 
     if (!drawRequest.scene)
-        return SCENE_ERROR;
+        check = SCENE_ERROR;
 
-    drawModel(model, drawRequest);
-
-    return SUCCESS;
+    return check;
 }
 
 int drawModelWrap(const modelT model, const requestT request) {
@@ -51,6 +51,9 @@ int drawModelWrap(const modelT model, const requestT request) {
         return MODEL_IS_EMPTY;
 
     int check = drawModelQtWrap(model, request.drawRequest);
+
+    if (!check)
+        drawModel(model, request.drawRequest);
 
     return check;
 }
