@@ -96,7 +96,7 @@ int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
         return INVALID_NODE_NUM_ERROR;
 
     nodeT *tempNodes = (nodeT *)calloc(numOfNodes, sizeof(nodeT));
-    if (!nodes)
+    if (!tempNodes)
         return MEMORY_ALLOCATION_ERROR;
 
     int check = fillNodesArrFromFile(tempNodes, numOfNodes, modelFile);

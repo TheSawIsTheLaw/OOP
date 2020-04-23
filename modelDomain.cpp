@@ -69,10 +69,12 @@ int copyModelToModel(modelT &modelTo, const modelT modelFrom) {
     modelTo.numOfNodes = modelFrom.numOfNodes;
     int check = SUCCESS;
 
+    // Исправлено
     check = copyEdgesToEdges(modelTo.edges, modelFrom.edges, modelFrom.numOfEdges);
     if (check)
         return check;
 
+    // Исправлено
     check = copyNodesToNodes(modelTo.nodes, modelFrom.nodes, modelFrom.numOfNodes);
     if (check)
         return check;
@@ -84,9 +86,6 @@ int copyModelToModel(modelT &modelTo, const modelT modelFrom) {
 
 
 //! Wrap
-//! FIXED БЫДЛОКОД! (но не мне судить)
-//! FIXED Реорганизация процесса! Первоначальная работа над копией и только потом, при SUCCESS,
-//! перенос в неё
 int readModelWrap(modelT &model, FILE *const modelFile) {
     if (!modelFile)
         return FILE_ERROR;
