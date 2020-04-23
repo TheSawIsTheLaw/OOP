@@ -40,11 +40,10 @@ void zRotateModel(nodeT *const nodes, const int numOfNodes,
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
 
-    for (int i = 0; i < numOfNodes; i++) {
+    for (int i = 0; i < numOfNodes; i++)
        rotateNodeZ(nodes[i],
                     xCenter, yCenter,
                     sinAngle, cosAngle);
-    }
 }
 
 void yRotateModel(nodeT *const nodes, const int numOfNodes,
@@ -53,11 +52,10 @@ void yRotateModel(nodeT *const nodes, const int numOfNodes,
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
 
-    for (int i = 0; i < numOfNodes; i++) {
+    for (int i = 0; i < numOfNodes; i++)
         rotateNodeY(nodes[i],
                     xCenter, zCenter,
                     sinAngle, cosAngle);
-    }
 }
 
 void xRotateModel(nodeT *const nodes, const int numOfNodes,
@@ -66,13 +64,12 @@ void xRotateModel(nodeT *const nodes, const int numOfNodes,
     double sinAngle = sin(angle);
     double cosAngle = cos(angle);
 
-    for (int i = 0; i < numOfNodes; i++) {
+    for (int i = 0; i < numOfNodes; i++)
         rotateNodeX(nodes[i],
                     yCenter, zCenter,
                     sinAngle, cosAngle);
         // FIXED Координаты центра принимаем
         // FIXED С переходом на верный уровень абстракции. Функция поворота точки
         // FIXED Косинусы синусы заранее считаем
-    }
 }
 //< End
