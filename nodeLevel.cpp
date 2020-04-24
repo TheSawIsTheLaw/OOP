@@ -44,6 +44,11 @@ int copyNodesToNodes(nodeT *&nodesTo, nodeT *const &nodesFrom,
 
     return SUCCESS;
 }
+
+void copyNodesToNodes(nodeT *&nodesTo, nodeT *const nodesFrom) {
+    if (nodesFrom && !nodesTo)
+        nodesTo = nodesFrom;
+}
 //< End
 
 //! Scan numOfNodes
@@ -75,16 +80,14 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
         return INVALID_NODE_NUM_ERROR;
 
     int check = SUCCESS;
-    int read = 0;
+    int read = 3;
 
-    for (int i = 0; i < numOfNodes; i++) {
+    for (int i = 0; i < numOfNodes && read == 3; i++)  // Добавить ошибку в условие
         read = scanNodeFromFile(nodes[i], modelFile);// FIXED вынесено на новый уровень
 
-        if (read != 3) {
-            check = FILE_STRUCTURE_ERROR;
-            break ;
-        } // FIXED Грязь
-    }
+    if (read != 3)
+        check = FILE_STRUCTURE_ERROR;
+
     return check;
 }
 
@@ -103,14 +106,13 @@ int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
 
     int check = fillNodesArrFromFile(tempNodes, numOfNodes, modelFile);
 
-    if (!check) {
+    if (check)
+        free(tempNodes);
+    else {
         if (nodes)
             free(nodes);
-        nodes = tempNodes;
-        tempNodes = nullptr;
+        copyNodesToNodes(nodes, tempNodes);
     }
-    else
-        free(tempNodes);
 
     return check;
 }

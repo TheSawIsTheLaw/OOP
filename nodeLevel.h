@@ -19,6 +19,8 @@ int areNodesLegit(const nodeT *const nodes, const int numOfNodes);
 //! Copy
 int copyNodesToNodes(nodeT *&nodesTo, nodeT * const &nodesFrom,
                      const int numOfNodes);
+
+void copyNodesToNodes(nodeT *&nodesTo, nodeT *const nodesFrom);
 //< End
 
 //! Scan
