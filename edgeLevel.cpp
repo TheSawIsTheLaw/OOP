@@ -30,6 +30,11 @@ int copyEdgesToEdges(edgeT *&edgesTo, const edgeT *const &edgesFrom,
 
     return SUCCESS;
 }
+
+void copyEdgesToEdges(edgeT *&edgesTo, edgeT *const edgesFrom) {
+    if (edgesFrom && !edgesTo)
+        edgesTo = edgesFrom;
+}
 //< End
 
 //! Scan numOfEdges
@@ -92,8 +97,7 @@ int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges,
     if (!check) {
         if (edges)
             free(edges);
-        edges = tempEdges;
-        tempEdges = nullptr;
+        copyEdgesToEdges(edges, tempEdges);
     }
     else
         free(tempEdges);

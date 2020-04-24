@@ -26,4 +26,6 @@ int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges,
 void freeEdges(edgeT *&edges);
 //< End
 
+void copyEdgesToEdges(edgeT *&edgesTo, edgeT * const edgesFrom);
+
 #endif // EDGE_LEVEL_H
