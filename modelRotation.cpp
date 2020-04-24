@@ -16,7 +16,7 @@ int rotateModelWrap(modelT &model, const rotateRequestT rotateRequest) {
     if (rotateRequest.direction == ROTATE_X)
         xRotateModel(model.nodes, model.numOfNodes,
                      rotateRequest.yCenterScene, rotateRequest.zCenterScene,
-                     rotateRequest.angle);
+                     rotateRequest.angle); // Лучше передавать структуру
     else if (rotateRequest.direction == ROTATE_Y)
         yRotateModel(model.nodes, model.numOfNodes,
                      rotateRequest.xCenterScene, rotateRequest.zCenterScene,
