@@ -27,7 +27,7 @@ void viewScene(Ui::MainWindow *const ui, QGraphicsScene *const scene) {
 // В случае необходимости реквест программист поменяет
 // Функция рисования отдельная позволит, извенив реквест, рисовать где и как угодно
 void drawModel(const modelT model, const drawRequestT drawRequest) {
-    // FIXED: Отдельная функция рисования!
+    // FIXED: Отдельная функция рисования
 
     for (int i = 0; i < model.numOfEdges; i++)
         appendEdgeToScene(drawRequest.scene, drawRequest.line,

@@ -4,6 +4,10 @@
 
 #include "stdlib.h"
 
+#include "edgeLevel.h"
+
+#include "nodeLevel.h"
+
 #include "mainwindow.h"
 
 
@@ -65,21 +69,34 @@ modelT &initModelCopy(void) {
 }
 
 int copyModelToModel(modelT &modelTo, const modelT modelFrom) {
-    modelTo.numOfEdges = modelFrom.numOfEdges;
-    modelTo.numOfNodes = modelFrom.numOfNodes;
     int check = SUCCESS;
 
     // Исправлено
-    check = copyEdgesToEdges(modelTo.edges, modelFrom.edges, modelFrom.numOfEdges);
+    edgeT *tempEdges = nullptr;
+    check = copyEdgesToEdges(tempEdges, modelFrom.edges, modelFrom.numOfEdges);
     if (check)
         return check;
 
     // Исправлено
-    check = copyNodesToNodes(modelTo.nodes, modelFrom.nodes, modelFrom.numOfNodes);
-    if (check)
-        return check;
+    nodeT *tempNodes = nullptr;
+    check = copyNodesToNodes(tempNodes, modelFrom.nodes, modelFrom.numOfNodes);
 
-    modelTo.distanceToUser = modelFrom.distanceToUser;
+    if (!check) {
+        modelTo.distanceToUser = modelFrom.distanceToUser;
+        modelTo.numOfEdges = modelFrom.numOfEdges;
+        modelTo.numOfNodes = modelFrom.numOfNodes;
+
+        if (modelTo.edges)
+            free(modelTo.edges);
+        modelTo.edges = tempEdges;
+        tempEdges = nullptr;
+
+        if (modelTo.nodes)
+            free(modelTo.nodes);
+        modelTo.nodes = tempNodes;
+        tempNodes = nullptr;
+    }
+
     return check;
 }
 //< End
