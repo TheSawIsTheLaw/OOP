@@ -79,7 +79,6 @@ int fillEdgesArrFromFile(edgeT *const &edges, const int numOfEdges,
     return check;
 }
 
-// Теперь функция не портит переданные в неё данные при неудаче
 int scanModelEdgesFromFile(edgeT *&edges, const int numOfEdges,
                            FILE *const modelFile) {
     if (!modelFile)

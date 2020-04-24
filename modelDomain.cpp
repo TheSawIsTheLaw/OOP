@@ -71,13 +71,11 @@ modelT &initModelCopy(void) {
 int copyModelToModel(modelT &modelTo, const modelT modelFrom) {
     int check = SUCCESS;
 
-    // Исправлено
     edgeT *tempEdges = nullptr;
     check = copyEdgesToEdges(tempEdges, modelFrom.edges, modelFrom.numOfEdges);
     if (check)
         return check;
 
-    // Исправлено
     nodeT *tempNodes = nullptr;
     check = copyNodesToNodes(tempNodes, modelFrom.nodes, modelFrom.numOfNodes);
 
@@ -121,11 +119,6 @@ int readModelWrap(modelT &model, FILE *const modelFile) {
 //< End
 
 //! Actions
-// FIXED ЛЮТЫЙ ГОВНОКОД, ТУТ ЗАМЕШАНО ТРИ УРОВНЯ АБСТРАКЦИИ
-// FIXED Check более не отвечает за количество прочтённых символов
-// Так как мы теперь работаем с копией, освобождение проводится
-// в конце при любом исходе
-// FIXED включены проверки, переход на новый уровень абстракции
 int readModel(modelT &model, FILE *const modelFile) {
     int check = SUCCESS;
 

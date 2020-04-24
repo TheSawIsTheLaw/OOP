@@ -82,8 +82,8 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
     int check = SUCCESS;
     int read = 3;
 
-    for (int i = 0; i < numOfNodes && read == 3; i++)  // Добавить ошибку в условие
-        read = scanNodeFromFile(nodes[i], modelFile);// FIXED вынесено на новый уровень
+    for (int i = 0; i < numOfNodes && read == 3; i++)
+        read = scanNodeFromFile(nodes[i], modelFile);
 
     if (read != 3)
         check = FILE_STRUCTURE_ERROR;
@@ -91,7 +91,6 @@ int fillNodesArrFromFile(nodeT *&nodes, int numOfNodes,
     return check;
 }
 
-// Теперь функция не портит переданные в неё данные при неудаче
 int scanModelNodesFromFile(nodeT *&nodes, const int numOfNodes,
                            FILE *const modelFile) {
     if (!modelFile)

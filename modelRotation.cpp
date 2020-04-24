@@ -68,8 +68,5 @@ void xRotateModel(nodeT *const nodes, const int numOfNodes,
         rotateNodeX(nodes[i],
                     yCenter, zCenter,
                     sinAngle, cosAngle);
-        // FIXED Координаты центра принимаем
-        // FIXED С переходом на верный уровень абстракции. Функция поворота точки
-        // FIXED Косинусы синусы заранее считаем
 }
 //< End
