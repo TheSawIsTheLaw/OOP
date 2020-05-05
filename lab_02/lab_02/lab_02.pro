@@ -6,8 +6,10 @@ CONFIG -= qt
 SOURCES += \
         iterator.cpp \
         iteratorbase.cpp \
-        main.cpp
+        main.cpp \
+        vectorbase.cpp
 
 HEADERS += \
     iterator.h \
-    iteratorbase.h
+    iteratorbase.h \
+    vectorbase.h
