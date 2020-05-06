@@ -22,6 +22,26 @@ public:
     Vector(Vector<Type> &&vector);
     ~Vector();
 
+
+    bool isZeroV() const;
+    bool isUnitV() const;
+
+    int size() const;
+    Type length() const;
+
+    Type &getItemByIndex(int index);
+    const Type &getItemByIndex(int index) const;
+
+    bool &setItemByIndex(int index, const Type &vector);
+
+    double vectorsAngle(const Vector<Type> &vector) const;
+
+    bool areCollinear(const Vector<Type> &vector) const;
+    bool areOrthgonal(const Vector<Type> &vector) const;
+
+    Vector<Type> getUnitV() const;
+
+
     Vector<Type> &operator=(const Vector<Type> &vector);
     Vector<Type> &operator=(std::initializer_list<Type> arguments);
     Vector<Type> &operator=(Vector<Type> &&vector);
