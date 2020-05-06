@@ -7,9 +7,11 @@ SOURCES += \
         iterator.cpp \
         iteratorbase.cpp \
         main.cpp \
+        vector.cpp \
         vectorbase.cpp
 
 HEADERS += \
     iterator.h \
     iteratorbase.h \
+    vector.h \
     vectorbase.h
