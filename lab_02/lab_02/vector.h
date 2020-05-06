@@ -2,6 +2,7 @@
 #define VECTOR_H
 
 #include <iostream>
+#include <memory>
 
 #include "vectorbase.h"
 
@@ -67,8 +68,16 @@ public:
     Type &operator[](int index);
     const Type &operator[](int index) const;
 
+private:
+    std::shared_ptr<Type> values;
 
+protected:
+    Type summaryValue();
+    void vecSum(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
+    void vecDif(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
+    void vecMul(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
 
+    void newMemory(int itemsAmount);
 };
 
 #endif // VECTOR_H
