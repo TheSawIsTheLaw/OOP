@@ -35,7 +35,7 @@ public:
     bool operator==(const Iterator<Type> &boolean) const;
     bool operator!=(const Iterator<Type> &boolean) const;
 
-    bool retCheck(int line) const;
+    bool errCheck(int line) const;
 
 private:
     std::weak_ptr<Type> wPointer;
@@ -51,6 +51,9 @@ Type *Iterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
+bool Iterator<Type>::errCheck(int line) const {
+
+}
 
 
 
