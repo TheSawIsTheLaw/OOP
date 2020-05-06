@@ -5,7 +5,9 @@
 #include <memory>
 
 #include "vectorbase.h"
+#include "iterator.h"
 
+// class
 template<typename Type>
 class Vector: public VectorBase{
 public:
@@ -79,5 +81,21 @@ protected:
 
     void newMemory(int itemsAmount);
 };
+
+// cio wk
+template<typename Type>
+std::ostream &operator<<(std::ostream &os, const Vector<Type> &vector) {
+    Iterator<Type> iterator(vector);
+    if (!iterator) {
+        os<< "Empty mVector";
+        return os;
+    }
+
+    os<< *iterator;
+    for (iterator++; iterator; iterator++)
+            os<< ", "<< *iterator;
+
+    return os;
+}
 
 #endif // VECTOR_H
