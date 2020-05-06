@@ -44,11 +44,13 @@ protected:
     Type *getCurrentPointer() const;
 };
 
-template<class Type>
+template<typename Type>
 Type *Iterator<Type>::getCurrentPointer() const {
     std::shared_ptr<Type> copied = wPointer.lock();
     return copied.get() + currentIndex;
 }
+
+template<typename Type>
 
 
 

@@ -1,7 +1,7 @@
 #ifndef ITERATORBASE_H
 #define ITERATORBASE_H
 
-template<class Type>
+template<typename Type>
 class Vector;
 
 class IteratorBase
