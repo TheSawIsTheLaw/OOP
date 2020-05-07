@@ -17,7 +17,7 @@ public:
 
     Vector(int len);
     Vector(int len, Type *vector);
-    Vector(int len, Type vector, ...);
+    Vector(int len, Type element);
 
     Vector(std::initializer_list<Type> elements);
 
@@ -79,7 +79,7 @@ protected:
     void vecDif(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
     void vecMul(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
 
-    void newMemory(int itemsAmount);
+    void allocNewVectorMem(int itemsAmount);
 };
 
 // cio wk

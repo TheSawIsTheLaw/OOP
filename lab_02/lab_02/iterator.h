@@ -2,7 +2,7 @@
 #define ITERATOR_H
 
 #include "IteratorBase.h"
-#include "exceptions.h"
+#include "Exceptions.h"
 
 #include <memory>
 #include <time.h>
