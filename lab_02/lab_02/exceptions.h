@@ -46,7 +46,7 @@ class ZeroDivisionException: public ExceptionBase {
 public:
     ZeroDivisionException(std::string fileName, std::string className,
                       int currentLine, const char *errorTime,
-                      std::string information = "Invalid indexing"):
+                      std::string information = "Zero division error"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
     };
 };

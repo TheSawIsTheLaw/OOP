@@ -4,7 +4,6 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        iterator.cpp \
         iteratorbase.cpp \
         main.cpp \
         vector.hpp \
