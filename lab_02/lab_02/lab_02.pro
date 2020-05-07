@@ -11,6 +11,8 @@ SOURCES += \
         vectorbase.cpp
 
 HEADERS += \
+    exceptionBase.h \
+    exeptions.h \
     iterator.h \
     iteratorbase.h \
     vector.h \
