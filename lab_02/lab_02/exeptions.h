@@ -3,9 +3,9 @@
 
 #include "exceptionBase.h"
 
-class memoryException: public ExceptionBase{
+class MemoryException: public ExceptionBase {
 public:
-    memoryException(std::string fileName, std::string className,
+    MemoryException(std::string fileName, std::string className,
                 int currentLine, const char *errorTime,
                 std::string information = "Memory Error"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
@@ -15,11 +15,20 @@ public:
     }
 };
 
-class deletedObjectException: public ExceptionBase {
+class DeletedObjectException: public ExceptionBase {
 public:
-    deletedObjectException(std::string fileName, std::string className,
+    DeletedObjectException(std::string fileName, std::string className,
                int currentLine, const char *errorTime,
-               std::string information = "Object doesn't exsist") :
+               std::string information = "Object doesn't exsist"):
+        ExceptionBase(fileName, className, currentLine, errorTime, information) {
+    };
+};
+
+class EmptyVectorError: public ExceptionBase {
+public:
+    EmptyVectorError(std::string fileName, std::string className,
+                     int currentLine, const char *errorTime,
+                     std::string information = "Work with empty vector"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
     };
 };
