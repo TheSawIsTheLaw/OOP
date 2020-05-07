@@ -16,7 +16,8 @@ public:
 
     Type &operator *();
     const Type &operator *() const;
-    Type *operator->() const;
+    Type *operator->();
+    const Type *operator->() const;
     operator bool() const;
 
     Iterator<Type> &operator=(const Iterator<Type> &iter);
@@ -24,12 +25,12 @@ public:
     Iterator<Type> &operator-=(int number);
     Iterator<Type> operator-(int number) const;
     Iterator<Type> &operator--();
-    Iterator<Type> operator--(int);
+    Iterator<Type> operator--(int number);
 
     Iterator<Type> &operator+=(int number);
     Iterator<Type> operator+(int number) const;
     Iterator<Type> &operator++();
-    Iterator<Type> operator++(int);
+    Iterator<Type> operator++(int number);
 
     bool operator<=(const Iterator<Type> &boolean) const;
     bool operator<(const Iterator<Type> &boolean) const;
@@ -83,6 +84,44 @@ const Type &Iterator<Type>::operator*() const {
     return *getCurrentPointer();
 }
 
+template<typename Type>
+Type *Iterator<Type>::operator->() {
+    exceptionCheck(__LINE__);
+
+    return getCurrentPointer();
+}
+
+template<typename Type>
+const Type *Iterator<Type>::operator->() const {
+    exceptionCheck(__LINE__);
+
+    return getCurrentPointer();
+}
+
+template<typename Type>
+Iterator<Type> &Iterator<Type>::operator=(const Iterator<Type>& iterator) {
+    exceptionCheck(__LINE__);
+
+    wPointer = iterator.wPointer;
+    return *this;
+}
+
+template<typename Type>
+Iterator<Type> &Iterator<Type>::operator+=(int number) {
+    exceptionCheck(__LINE__);
+    wPointer += number;
+
+    return *this;
+}
+
+template<typename Type>
+Iterator<Type> Iterator<Type>::operator+(int number) const {
+    exceptionCheck(__LINE__);
+    Iterator<Type> iterator(*this);
+    iterator += number;
+
+    return iterator;
+}
 
 
 template<typename Type>
