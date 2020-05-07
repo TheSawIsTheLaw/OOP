@@ -3,9 +3,9 @@
 
 #include "exceptionBase.h"
 
-class MemoryException: public ExceptionBase {
+class MemoryError: public ExceptionBase {
 public:
-    MemoryException(std::string fileName, std::string className,
+    MemoryError(std::string fileName, std::string className,
                 int currentLine, const char *errorTime,
                 std::string information = "Memory Error"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
@@ -15,9 +15,9 @@ public:
     }
 };
 
-class DeletedObjectException: public ExceptionBase {
+class DeletedObjectError: public ExceptionBase {
 public:
-    DeletedObjectException(std::string fileName, std::string className,
+    DeletedObjectError(std::string fileName, std::string className,
                int currentLine, const char *errorTime,
                std::string information = "Object doesn't exsist"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
@@ -33,11 +33,20 @@ public:
     };
 };
 
-class InvalidIndexException: public ExceptionBase {
+class InvalidIndexError: public ExceptionBase {
 public:
-    InvalidIndexException(std::string fileName, std::string className,
+    InvalidIndexError(std::string fileName, std::string className,
                           int currentLine, const char *errorTime,
                           std::string information = "Invalid indexing"):
+        ExceptionBase(fileName, className, currentLine, errorTime, information) {
+    };
+};
+
+class ZeroDivisionError: public ExceptionBase {
+public:
+    ZeroDivisionError(std::string fileName, std::string className,
+                      int currentLine, const char *errorTime,
+                      std::string information = "Invalid indexing"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
     };
 };
