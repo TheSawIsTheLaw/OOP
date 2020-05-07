@@ -45,6 +45,24 @@ Vector<Type>::Vector(int len, Type element) {
 }
 
 template<typename Type>
+Vector<Type>::Vector(int len, Type *arrayFrom) {
+    time_t currentTime = time(NULL);
+    if (len < 0)
+        throw EmptyVectorException(__FILE__, typeod(*this).name(), __LINE__,
+                                   ctime(&currentTime));
+    if (!arrayFrom)
+        throw InvalidCopyArrayPointer(__FILE__, typeid(*this).name(), __LINE__, ctime(&currentTime));
+
+    allocNewVectorMem(len);
+    if (!values)
+        throw MemoryException(__FILE__, typeid(*this).name(), __LINE__, ctime(&currentTime));
+
+    Iterator<Type> iterator(*this);
+    for (int i = 0; iterator; iterator++, i++)
+        *iterator = arrayFrom[i];
+}
+
+template<typename Type>
 void Vector<Type>::allocNewVectorMem(int amount) {
     values.reset();
     // Добавить bad alloc

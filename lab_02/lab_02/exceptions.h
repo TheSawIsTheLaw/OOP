@@ -51,4 +51,13 @@ public:
     };
 };
 
+class InvalidCopyArrayPointer: public ExceptionBase {
+public:
+    InvalidCopyArrayPointer(std::string fileName, std::string className,
+                      int currentLine, const char *errorTime,
+                      std::string information = "Zero division error"):
+        ExceptionBase(fileName, className, currentLine, errorTime, information) {
+    };
+};
+
 #endif // EXCEPTIONS_H
