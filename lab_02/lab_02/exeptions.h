@@ -15,4 +15,13 @@ public:
     }
 };
 
+class deletedObjectException: public ExceptionBase {
+public:
+    deletedObjectException(std::string fileName, std::string className,
+               int currentLine, const char *errorTime,
+               std::string information = "Object doesn't exsist") :
+        ExceptionBase(fileName, className, currentLine, errorTime, information) {
+    };
+};
+
 #endif // EXEPTIONS_H
