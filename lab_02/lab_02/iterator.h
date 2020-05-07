@@ -54,6 +54,20 @@ Type *Iterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
+Iterator<Type>::Iterator(const Vector<Type> &vector) {
+    currentIndex = 0;
+    vectorLen = vector.length;
+    wPointer = vector.values;
+}
+
+template<typename Type>
+Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
+    wPointer = iterator.wPointer;
+    currentIndex = iterator.currentIndex;
+    vectorLen = iterator.vectorLen;
+}
+
+template<typename Type>
 bool Iterator<Type>::exceptionCheck(int lineError) const {
     if (!wPointer.expired())
         return true;
@@ -61,8 +75,7 @@ bool Iterator<Type>::exceptionCheck(int lineError) const {
     time_t currentTime = time(NULL);
     throw DeletedObjectException(__FILE__, typeid(*this).name(),
                                  lineError, ctime(&currentTime));
+    return false;
 }
-
-
 
 #endif // ITERATOR_H
