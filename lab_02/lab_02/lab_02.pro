@@ -4,15 +4,16 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        iteratorbase.cpp \
-        main.cpp \
-        vector.hpp \
-        vectorbase.cpp
+        IteratorBase.cpp \
+        Vector.hpp \
+        VectorBase.cpp \
+        main.cpp
 
 HEADERS += \
-    exceptionBase.h \
-    exceptions.h \
-    iterator.h \
-    iteratorbase.h \
-    vector.h \
-    vectorbase.h
+    ConstantIterator.h \
+    ExceptionBase.h \
+    Exceptions.h \
+    Iterator.h \
+    Iteratorbase.h \
+    Vector.h \
+    VectorBase.h
