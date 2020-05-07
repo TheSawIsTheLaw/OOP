@@ -13,6 +13,38 @@ Vector<Type>::Vector() {
 }
 
 template<typename Type>
+Vector<Type>::Vector(int len) {
+    time_t currentTime = time(NULL);
+    if (len < 0)
+        throw EmptyVectorException(__FILE__, typeod(*this).name(), __LINE__,
+                                   ctime(&currentTime));
+
+    allocNewVectorMem(len);
+    if (!values)
+        throw MemoryException(__FILE__, typeid(*this).name(), __LINE__, ctime(&currentTime));
+
+    Iterator<Type> iterator(*this);
+    for (; iterator; iterator++)
+        *iterator = 0;
+}
+
+template<typename Type>
+Vector<Type>::Vector(int len, Type element) {
+    time_t currentTime = time(NULL);
+    if (len < 0)
+        throw EmptyVectorException(__FILE__, typeod(*this).name(), __LINE__,
+                                   ctime(&currentTime));
+
+    allocNewVectorMem(len);
+    if (!values)
+        throw MemoryException(__FILE__, typeid(*this).name(), __LINE__, ctime(&currentTime));
+
+    Iterator<Type> iterator(*this);
+    for (; iterator; iterator++)
+        *iterator = element;
+}
+
+template<typename Type>
 void Vector<Type>::allocNewVectorMem(int amount) {
     values.reset();
     // Добавить bad alloc

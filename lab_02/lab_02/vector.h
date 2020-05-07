@@ -11,7 +11,7 @@
 template<typename Type>
 class Vector: public VectorBase{
 public:
-    //class Iterator
+    friend class Iterator<Type>;
 
     Vector();
 
