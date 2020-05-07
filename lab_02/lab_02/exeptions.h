@@ -3,9 +3,9 @@
 
 #include "exceptionBase.h"
 
-class MemoryError: public ExceptionBase {
+class MemoryException: public ExceptionBase {
 public:
-    MemoryError(std::string fileName, std::string className,
+    MemoryException(std::string fileName, std::string className,
                 int currentLine, const char *errorTime,
                 std::string information = "Memory Error"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
@@ -15,36 +15,36 @@ public:
     }
 };
 
-class DeletedObjectError: public ExceptionBase {
+class DeletedObjectException: public ExceptionBase {
 public:
-    DeletedObjectError(std::string fileName, std::string className,
+    DeletedObjectException(std::string fileName, std::string className,
                int currentLine, const char *errorTime,
                std::string information = "Object doesn't exsist"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
     };
 };
 
-class EmptyVectorError: public ExceptionBase {
+class EmptyVectorException: public ExceptionBase {
 public:
-    EmptyVectorError(std::string fileName, std::string className,
+    EmptyVectorException(std::string fileName, std::string className,
                      int currentLine, const char *errorTime,
                      std::string information = "Work with empty vector"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
     };
 };
 
-class InvalidIndexError: public ExceptionBase {
+class InvalidIndexException: public ExceptionBase {
 public:
-    InvalidIndexError(std::string fileName, std::string className,
+    InvalidIndexException(std::string fileName, std::string className,
                           int currentLine, const char *errorTime,
                           std::string information = "Invalid indexing"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
     };
 };
 
-class ZeroDivisionError: public ExceptionBase {
+class ZeroDivisionException: public ExceptionBase {
 public:
-    ZeroDivisionError(std::string fileName, std::string className,
+    ZeroDivisionException(std::string fileName, std::string className,
                       int currentLine, const char *errorTime,
                       std::string information = "Invalid indexing"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
