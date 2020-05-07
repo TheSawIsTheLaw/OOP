@@ -59,7 +59,8 @@ bool Iterator<Type>::exceptionCheck(int lineError) const {
         return true;
 
     time_t currentTime = time(NULL);
-    throw
+    throw DeletedObjectException(__FILE__, typeid(*this).name(),
+                                 lineError, ctime(&currentTime));
 }
 
 
