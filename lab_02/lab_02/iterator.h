@@ -109,7 +109,7 @@ Iterator<Type> &Iterator<Type>::operator=(const Iterator<Type>& iterator) {
 template<typename Type>
 Iterator<Type> &Iterator<Type>::operator+=(int number) {
     exceptionCheck(__LINE__);
-    wPointer += number;
+    currentIndex += number;
 
     return *this;
 }
@@ -123,6 +123,61 @@ Iterator<Type> Iterator<Type>::operator+(int number) const {
     return iterator;
 }
 
+template <typename Type>
+Iterator<Type> &Iterator<Type>::operator-=(int number) {
+    exceptionCheck(__LINE__);
+    currentIndex -= number;
+
+    return *this;
+}
+
+template <typename Type>
+Iterator<Type> Iterator<Type>::operator-(int number) const {
+    exceptionCheck(__LINE__);
+    Iterator<Type> iterator(*this);
+    iterator -= number;
+
+    return iterator;
+}
+
+template<typename Type>
+Iterator<Type> Iterator<Type>::operator++(int) {
+    exceptionCheck(__LINE__);
+    ++(*this);
+
+    return *this;
+}
+
+template<typename Type>
+Iterator<Type> &Iterator<Type>::operator++() {
+    exceptionCheck(__LINE__);
+    ++currentIndex;
+
+    return *this;
+}
+
+template<typename Type>
+Iterator<Type> Iterator<Type>::operator--(int) {
+    exceptionCheck(__LINE__);
+    --(*this);
+
+    return *this;
+}
+
+template<typename Type>
+Iterator<Type> &Iterator<Type>::operator--() {
+    exceptionCheck(__LINE__);
+    --currentIndex;
+
+    return *this;
+}
+
+template<typename Type>
+bool Iterator<Type>::operator<(const Iterator<Type> &compareTo) const {
+    exceptionCheck();
+
+    return wPointer <= compareTo.wPointer;
+}
 
 template<typename Type>
 bool Iterator<Type>::exceptionCheck(int lineError) const {
