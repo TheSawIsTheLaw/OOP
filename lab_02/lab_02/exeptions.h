@@ -33,4 +33,13 @@ public:
     };
 };
 
+class InvalidIndexException: public ExceptionBase {
+public:
+    InvalidIndexException(std::string fileName, std::string className,
+                          int currentLine, const char *errorTime,
+                          std::string information = "Invalid indexing"):
+        ExceptionBase(fileName, className, currentLine, errorTime, information) {
+    };
+};
+
 #endif // EXEPTIONS_H
