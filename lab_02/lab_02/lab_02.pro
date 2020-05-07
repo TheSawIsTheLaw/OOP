@@ -14,6 +14,6 @@ HEADERS += \
     ExceptionBase.h \
     Exceptions.h \
     Iterator.h \
-    Iteratorbase.h \
+    IteratorBase.h \
     Vector.h \
     VectorBase.h

@@ -1,7 +1,7 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
 
-#include "iteratorbase.h"
+#include "IteratorBase.h"
 #include "exceptions.h"
 
 #include <memory>

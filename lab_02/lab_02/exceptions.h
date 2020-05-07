@@ -1,7 +1,7 @@
 #ifndef EXCEPTIONS_H
 #define EXCEPTIONS_H
 
-#include "exceptionBase.h"
+#include "ExceptionBase.h"
 
 class MemoryException: public ExceptionBase {
 public:

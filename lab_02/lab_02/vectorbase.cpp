@@ -1,4 +1,4 @@
-#include "vectorbase.h"
+#include "VectorBase.h"
 
 VectorBase::VectorBase() {
     vectorLen = 0;
