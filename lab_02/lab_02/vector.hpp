@@ -1,6 +1,6 @@
 #include "vector.h"
 
-vector::vector()
+Vector::Vector()
 {
 
 }

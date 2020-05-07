@@ -1,5 +1,5 @@
-#ifndef EXEPTIONS_H
-#define EXEPTIONS_H
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
 
 #include "exceptionBase.h"
 
@@ -51,4 +51,4 @@ public:
     };
 };
 
-#endif // EXEPTIONS_H
+#endif // EXCEPTIONS_H

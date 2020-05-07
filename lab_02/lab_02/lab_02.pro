@@ -7,12 +7,12 @@ SOURCES += \
         iterator.cpp \
         iteratorbase.cpp \
         main.cpp \
-        vector.cpp \
+        vector.hpp \
         vectorbase.cpp
 
 HEADERS += \
     exceptionBase.h \
-    exeptions.h \
+    exceptions.h \
     iterator.h \
     iteratorbase.h \
     vector.h \

@@ -2,7 +2,10 @@
 #define ITERATOR_H
 
 #include "iteratorbase.h"
+#include "exceptions.h"
+
 #include <memory>
+#include <time.h>
 
 template<typename Type>
 class Iterator: public IteratorBase
@@ -35,7 +38,7 @@ public:
     bool operator==(const Iterator<Type> &boolean) const;
     bool operator!=(const Iterator<Type> &boolean) const;
 
-    bool errCheck(int line) const;
+    bool exceptionCheck(int line) const;
 
 private:
     std::weak_ptr<Type> wPointer;
@@ -51,8 +54,12 @@ Type *Iterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
-bool Iterator<Type>::errCheck(int line) const {
+bool Iterator<Type>::exceptionCheck(int lineError) const {
+    if (!wPointer.expired())
+        return true;
 
+    time_t currentTime = time(NULL);
+    throw
 }
 
 
