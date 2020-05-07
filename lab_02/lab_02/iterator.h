@@ -68,6 +68,24 @@ Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
 }
 
 template<typename Type>
+Type &Iterator<Type>::operator*() {
+    exceptionCheck(__LINE__);
+
+    std::shared_ptr<Type> copiedPointer = wPointer.lock();
+    return *getCurrentPointer();
+}
+
+template<typename Type>
+const Type &Iterator<Type>::operator*() const {
+    exceptionCheck(__LINE__);
+
+    std::shared_ptr<Type> copiedPointer = wPointer.lock();
+    return *getCurrentPointer();
+}
+
+
+
+template<typename Type>
 bool Iterator<Type>::exceptionCheck(int lineError) const {
     if (!wPointer.expired())
         return true;
