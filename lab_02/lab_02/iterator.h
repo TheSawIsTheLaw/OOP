@@ -176,8 +176,54 @@ template<typename Type>
 bool Iterator<Type>::operator<(const Iterator<Type> &compareTo) const {
     exceptionCheck();
 
+    return wPointer < compareTo.wPointer;
+}
+
+template<typename Type>
+bool Iterator<Type>::operator<=(const Iterator<Type> &compareTo) const {
+    exceptionCheck();
+
     return wPointer <= compareTo.wPointer;
 }
+
+template<typename Type>
+bool Iterator<Type>::operator>(const Iterator<Type> &compareTo) const {
+    exceptionCheck();
+
+    return wPointer > compareTo.wPointer;
+}
+
+template<typename Type>
+bool Iterator<Type>::operator>=(const Iterator<Type> &compareTo) const {
+    exceptionCheck();
+
+    return wPointer >= compareTo.wPointer;
+}
+
+template<typename Type>
+bool Iterator<Type>::operator==(const Iterator<Type> &compareTo) const {
+    exceptionCheck();
+
+    return wPointer == compareTo.wPointer;
+}
+
+template<typename Type>
+bool Iterator<Type>::operator!=(const Iterator<Type> &compareTo) const {
+    exceptionCheck();
+
+    return wPointer != compareTo.wPointer;
+}
+
+template<typename Type>
+Iterator<Type>::operator bool() const {
+    exceptionCheck();
+
+    if (currentIndex >= vectorLen || vectorLen == 0 || currentIndex < 0)
+        return false;
+    else
+        return true;
+}
+
 
 template<typename Type>
 bool Iterator<Type>::exceptionCheck(int lineError) const {
