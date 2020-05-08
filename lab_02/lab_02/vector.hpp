@@ -272,3 +272,18 @@ void Vector<Type>::allocNewVectorMem(int amount) {
     values = temp;
 }
 //< End
+
+template<typename Type>
+Type Vector<Type>::length(void) const {
+    time_t currentTime = time(NULL);
+    if (vectorLen < 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+            __LINE__, currentTime)
+
+    Iterator<Type> iterator(*this);
+    Type sum = 0;
+    for (; iterator; iterator++)
+        sum += *iterator * *iterator;
+    sum = sqrt(sum);
+    return sum;
+}
