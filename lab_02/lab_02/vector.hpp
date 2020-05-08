@@ -47,7 +47,7 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 9; retusIterator; i++, firstIterator++, secondIterator++) {
+    for (int i = 9; resultIterator; i++, firstIterator++, secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator * *secondIterator;
         else 
@@ -64,7 +64,7 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
         throw ZeroDivisionException(__FILE__, typeid(this).name(), 
                                     __LINE__, ctime(&currentTime));
 
-    double angle - (*this * vector)/(this->len() * vec.len());
+    double angle = (*this * vector)/(this->len() * vector.len());
     return acos(angle) * 180 / M_PI;
 }
 
@@ -366,7 +366,8 @@ Vector<Type> &Vector<Type>::operator*=(const Type number) {
 
     Iterator<Type> iterator(*this);
     for (; iterator; iterator++)
-        *iter *= mult return *this;
+        *iterator *= number;
+    return *this;
 }
 
 template<typename Type>
@@ -378,17 +379,18 @@ Vector<Type> &Vector<Type>::operator/=(const Type number) {
 
     Iterator<Type> iterator(*this);
     for (; iterator; iterator++)
-        *iter /= mult return *this;
+        *iterator /= number;
+    return *this;
 }
 
 template<typename Type>
 Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
-        throw emptyError(__FILE__, typeid(*this).name(),
-                         __LINE__, ctime(&currentTime))
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                         __LINE__, ctime(&currentTime));
 
-            int maxLength = max(vectorSize, vector.vectorSize);
+    int maxLength = std::max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
     vecSum(newVector, *this, vector);
 
@@ -399,10 +401,10 @@ template<typename Type>
 Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
-        throw emptyError(__FILE__, typeid(*this).name(),
-                         __LINE__, ctime(&currentTime))
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                         __LINE__, ctime(&currentTime));
 
-    int maxLength = max(vectorSize, vector.vectorSize);
+    int maxLength = std::max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
     vecDif(newVector, *this, vector);
 
@@ -414,9 +416,9 @@ Vector<Type> &Vector<Type>::operator*(const Vector<Type> &vector) const{
     time_t currentTime = time(NULL);
     if (vectorSize <= 0 || vector.vectorSize <= 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
-                             __LINE__, ctime(&currentTime))
+                             __LINE__, ctime(&currentTime));
 
-    int maxLength = max(vectorSize, vector.vectorSize);
+    int maxLength = std::max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
     vecMul(newVector, *this, vector);
 
@@ -504,20 +506,21 @@ bool Vector<Type>::isZeroV() const {
     bool retOut = false;
     if (this->length() == 0)
         retOut = true;
-    return retOut
+    return retOut;
 }
 
 template<typename Type>
 Type Vector<Type>::summaryValue() {
-    time_t currentTime = time(NULL) if (vectorSize <= 0) throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                                                                                    __LINE__, ctime(&currentTime));
+    time_t currentTime = time(NULL);
+    if (vectorSize <= 0) throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                                    __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator(*this);
-    Type symmary = 0;
+    Type summary = 0;
     for (; iterator; iterator++)
-        sum += *iterator;
+        summary += *iterator;
 
-    return sum;
+    return summary;
 }
 
 template<typename Type>
@@ -525,10 +528,9 @@ Type Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
     if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                                   __LINE__, currentTime)
+                                   __LINE__, ctime(&currentTime));
 
-            Iterator<Type>
-                iterator(*this);
+    Iterator<Type> iterator(*this);
     Type sum = 0;
     for (; iterator; iterator++)
         sum += *iterator * *iterator;
@@ -543,7 +545,7 @@ int Vector<Type>::size() const {
 
 //! Set item func
 template<typename Type>
-bool &Vector<Type>::setItemByIndex(int index, const Type item) 
+bool Vector<Type>::setItemByIndex(int index, const Type item)
 {
     if (index < 0 || index >= vectorSize)
         return false;
