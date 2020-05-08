@@ -124,6 +124,8 @@ Vector<Type>::Vector(int len) {
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
 
+    vectorSize = len;
+
     Iterator<Type> iterator(*this);
     for (; iterator; iterator++)
         *iterator = 0;
