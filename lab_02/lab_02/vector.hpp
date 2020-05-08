@@ -143,6 +143,8 @@ Vector<Type>::Vector(int len, Type element) {
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
 
+    vectorSize = len;
+
     Iterator<Type> iterator(*this);
     for (; iterator; iterator++)
         *iterator = element;
