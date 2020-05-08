@@ -347,6 +347,29 @@ void Vector<Type>::allocNewVectorMem(int amount) {
 //< End
 
 template<typename Type>
+bool Vector<Type>::isUnitV() const {
+    bool retOut = false;
+    if (abs(this->length() - 1) < std::numeric_limits<float>::epsilon)
+        retOut = true;
+    return retOut;
+}
+
+template<typename Type>
+Type Vector<Type>::summaryValue() {
+    time_t currentTime = time(NULL)
+    if (vectorLen <= 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+    
+    Iterator<Type> iterator(*this);
+    Type symmary = 0;
+    for (; iterator; iterator++)
+        sum += *iterator;
+
+    return sum;
+}
+
+template<typename Type>
 Type Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
     if (vectorLen < 0)
