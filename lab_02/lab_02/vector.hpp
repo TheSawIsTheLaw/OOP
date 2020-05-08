@@ -83,6 +83,18 @@ bool Vector<Type>::areOrthgonal(const Vector<Type> &vector) const {
     else
         return false;
 }
+
+template<typename Type>
+Vector<Type> Vector<Type>::getUnitV() const {
+    Vector<Type> unitVector(*this);
+    Type len = this->length;
+
+    Iterator<Type> iterator(unitVector);
+    for (; iterator; iterator++)
+        *iterator /= len;
+
+    return unitVector;
+}
 //< End
 
 //! Distr
