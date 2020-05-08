@@ -8,8 +8,8 @@ VectorBase::~VectorBase() {
     vectorSize = 0;
 }
 
-VectorBase::VectorBase(const VectorBase &fromBase) {
-    vectorSize = fromBase.vectorSize;
+VectorBase::VectorBase(const VectorBase &vector) {
+    vectorSize = vector.vectorSize;
 }
 
 bool VectorBase::isEmpty() const {

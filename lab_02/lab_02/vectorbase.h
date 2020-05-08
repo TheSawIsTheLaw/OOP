@@ -7,7 +7,7 @@
 class VectorBase {
 public:
     VectorBase();
-    VectorBase(const VectorBase &);
+    VectorBase(const VectorBase &vector);
     ~VectorBase();
 
     bool isEmpty() const;

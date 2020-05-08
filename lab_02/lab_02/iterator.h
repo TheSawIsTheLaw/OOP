@@ -11,8 +11,8 @@ template<typename Type>
 class Iterator: public IteratorBase
 {
 public:
-    Iterator(const Iterator<Type> &iter);
-    Iterator(const Vector<Type> &vect);
+    Iterator(const Iterator<Type> &iterator);
+    Iterator(const Vector<Type> &vector);
 
     Type &operator *();
     const Type &operator *() const;
@@ -20,7 +20,7 @@ public:
     const Type *operator->() const;
     operator bool() const;
 
-    Iterator<Type> &operator=(const Iterator<Type> &iter);
+    Iterator<Type> &operator=(const Iterator<Type> &iterator);
 
     Iterator<Type> &operator-=(int number);
     Iterator<Type> operator-(int number) const;

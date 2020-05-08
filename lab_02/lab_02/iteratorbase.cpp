@@ -6,9 +6,9 @@ IteratorBase::IteratorBase()
     vectorLen = 0;
 }
 
-IteratorBase::IteratorBase(const IteratorBase &iterFrom) {
-    currentIndex = iterFrom.currentIndex;
-    vectorLen = iterFrom.vectorLen;
+IteratorBase::IteratorBase(const IteratorBase &iterator) {
+    currentIndex = iterator.currentIndex;
+    vectorLen = iterator.vectorLen;
 }
 
 IteratorBase::~IteratorBase() {

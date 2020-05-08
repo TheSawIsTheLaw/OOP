@@ -8,7 +8,7 @@ class IteratorBase
 {
 public:
     IteratorBase();
-    IteratorBase(const IteratorBase &);
+    IteratorBase(const IteratorBase &iterator);
     ~IteratorBase();
 
 protected:
