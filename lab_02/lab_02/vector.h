@@ -49,14 +49,21 @@ public:
     Vector<Type> &operator=(std::initializer_list<Type> arguments);
     Vector<Type> &operator=(Vector<Type> &&vector);
 
-    Vector<Type> &operator+=(const Type &number);
-    Vector<Type> &operator-=(const Type &number);
-    Vector<Type> &operator*=(const Type &number);
-    Vector<Type> &operator/=(const Type &number);
+    // Vector<Type> &operator+=(const Type number);
+    Vector<Type> &operator+=(const Vector<Type> &vector);
+    // Vector<Type> &operator-=(const Type number);
+    Vector<Type> &operator-=(const Vector<Type> &vector);
+    // Vector<Type> &operator*=(const Type number);
+    Vector<Type> &operator*=(const Vector<Type> &vector);
+    // Vector<Type> &operator/=(const Type number);
+    Vector<Type> &operator/=(const Vector<Type> &vector);
     Vector<Type> &operator&=(const Vector<Type> &vector);
 
-    Vector<Type> &operator+(const Type &number);
-    Vector<Type> &operator-(const Type &number);
+    Vector<Type> &operator+(const Type number);
+    Vector<Type> &operator+(const Vector<Type> &vector);
+
+    Vector<Type> &operator-(const Type number);
+    Vector<Type> &operator-(const Vector<Type> &vector);
 
     Vector<Type> &operator*(const Vector<Type>) const;
 
@@ -64,13 +71,7 @@ public:
 
     Vector<Type> &operator-();
 
-    bool operator==(const Vector<float> &vector) const;
-    bool operator==(const Vector<double> &vector) const;
-    bool operator==(const Vector<long double> &vector) const;
     bool operator==(const Vector<Type> &vector) const;
-    bool operator!=(const Vector<float> &vector) const;
-    bool operator!=(const Vector<double> &vector) const;
-    bool operator!=(const Vector<long double> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;
 
     Type &operator[](int index);

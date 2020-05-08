@@ -237,6 +237,11 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
     return areNotEqual;
 }
 
+template<typename Type>
+Vector<Type> &Vector<Type>::operator+=(const Type number) {
+
+}
+
 //< End
 
 //! Allocation for Vector
