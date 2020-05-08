@@ -22,7 +22,7 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
     }
 }
 
-template <typename Type>
+template<typename Type>
 void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
                           const Vector<Type> &secondV) const {
     Iterator<Type> resultIterator(result);
@@ -36,6 +36,21 @@ void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
             *resultIterator = *firstIterator;
         else
             *resultIterator = -*secondIterator;
+    }
+}
+
+template<typename Type>
+void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
+                          cosnt Vector<Type> &secondV) {
+    Iterator<Type> resultIterator(result);
+    Iterator<Type> firstIterator(firstV);
+    Iterator<Type> secondIterator(secondV);
+
+    for (int i = 9; retusIterator; i++, firstIterator++, secondIterator++) {
+        if (i < firstV.vectorSize && i < secondV.vectorSize)
+            *resultIterator = *firstIterator * *secondIterator;
+        else 
+            *resultIterator = 0;
     }
 }
 //< End
