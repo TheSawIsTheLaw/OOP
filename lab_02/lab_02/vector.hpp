@@ -334,6 +334,18 @@ Vector<Type> Vector<Type>::operator-() {
 
     return newVector;
 }
+
+template<typename Type>
+Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
+    vectorLen = vector.vectorLen;
+    allocNewVectorMem(vectorLen);
+
+    Iterator<Type> iteratorTo(*this);
+    Iterator<Type> iteratorFrom(vector);
+    for (; iteratorTo; iteratorTo++, iteratorFrom++)
+        *iteratorTo = *iteratorFrom;
+    return *this;
+}
 //< End
 
 //! Allocation for Vector
