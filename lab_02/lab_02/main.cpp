@@ -9,4 +9,5 @@ int main(void)
 
     std::cout<< "initializerListInit: "<< initializerListExample<< std::endl;
     std::cout<< "lenInit: "<< lenExample<< std::endl;
+    std::cout<< "LenFillInit with 6.66 filler: "<< lenFillExample<< std::endl;
 }
