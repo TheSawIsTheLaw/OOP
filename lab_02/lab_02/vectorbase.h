@@ -14,7 +14,7 @@ public:
     int size() const;
 
 protected:
-    int vectorLen = 0;
+    int vectorSize = 0;
 };
 
 #endif // VECTORBASE_H

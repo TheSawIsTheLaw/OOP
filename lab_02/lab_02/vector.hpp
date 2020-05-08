@@ -15,8 +15,8 @@ Vector<Type>::~Vector<Type>() {
 //! Constructors
 template<typename Type>
 Vector<Type>::Vector() {
-    vectorLen = 0;
-    allocNewVectorMem(vectorLen);
+    vectorSize = 0;
+    allocNewVectorMem(vectorSize);
 }
 
 template<typename Type>
@@ -75,8 +75,8 @@ Vector<Type>::Vector(int len, Type *arrayFrom) {
 
 template<typename Type>
 Vector<Type>::Vector(std::initializer_list<Type> arguments) {
-    vectorLen = int(arguments.size());
-    allocNewVectorMem(vectorLen);
+    vectorSize = int(arguments.size());
+    allocNewVectorMem(vectorSize);
 
     Iterator<Type> iterator(*this);
     for (auto &currentItem: arguments) {
@@ -90,7 +90,7 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
 template<typename Type>
 Type &Vector<Type>::getItemByIndex(int index) {
     time_t currentTime = time(NULL);
-    if (index < 0 || index >= vectorLen)
+    if (index < 0 || index >= vectorSize)
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
@@ -105,7 +105,7 @@ Type &Vector<Type>::getItemByIndex(int index) {
 template<typename Type>
 const Type &Vector<Type>::getItemByIndex(int index) const {
     time_t currentTime = time(NULL);
-    if (index < 0 || index >= vectorLen)
+    if (index < 0 || index >= vectorSize)
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
@@ -120,7 +120,7 @@ const Type &Vector<Type>::getItemByIndex(int index) const {
 template<typename Type>
 bool Vector<Type>::operator==(const Vector<Type> &vector) const {
     bool areEqual = false;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areEqual;
 
     areEqual = true;
@@ -135,7 +135,7 @@ bool Vector<Type>::operator==(const Vector<Type> &vector) const {
 template<>
 bool Vector<float>::operator==(const Vector<float> &vector) const {
     bool areEqual = false;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areEqual;
 
     areEqual = true;
@@ -150,7 +150,7 @@ bool Vector<float>::operator==(const Vector<float> &vector) const {
 template<>
 bool Vector<double>::operator==(const Vector<double> &vector) const {
     bool areEqual = false;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areEqual;
 
     areEqual = true;
@@ -165,7 +165,7 @@ bool Vector<double>::operator==(const Vector<double> &vector) const {
 template<>
 bool Vector<long double>::operator==(const Vector<long double> &vector) const {
     bool areEqual = false;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areEqual;
 
     areEqual = true;
@@ -180,7 +180,7 @@ bool Vector<long double>::operator==(const Vector<long double> &vector) const {
 template<typename Type>
 bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
     bool areNotEqual = true;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areNotEqual;
 
     areNotEqual = false;
@@ -195,7 +195,7 @@ bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
 template<>
 bool Vector<float>::operator!=(const Vector<float> &vector) const {
     bool areNotEqual = true;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areNotEqual;
 
     areNotEqual = false;
@@ -210,7 +210,7 @@ bool Vector<float>::operator!=(const Vector<float> &vector) const {
 template<>
 bool Vector<double>::operator!=(const Vector<double> &vector) const {
     bool areNotEqual = true;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areNotEqual;
 
     areNotEqual = false;
@@ -225,7 +225,7 @@ bool Vector<double>::operator!=(const Vector<double> &vector) const {
 template<>
 bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
     bool areNotEqual = true;
-    if (vectorLen != vector.length())
+    if (vectorSize != vector.length())
         return areNotEqual;
 
     areNotEqual = false;
@@ -240,7 +240,7 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorLen < 0 || vector.vectorLen < 0)
+    if (vectorSize < 0 || vector.vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -252,7 +252,7 @@ Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorLen < 0 || vector.vectorLen < 0)
+    if (vectorSize < 0 || vector.vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -264,7 +264,7 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator*=(const Type number) {
     time_t currentTime = time(NULL);
-    if (vectorLen < 0)
+    if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -277,7 +277,7 @@ Vector<Type> &Vector<Type>::operator*=(const Type number) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator/=(const Type number) {
     time_t currentTime = time(NULL);
-    if (vectorLen < 0)
+    if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -290,11 +290,11 @@ Vector<Type> &Vector<Type>::operator/=(const Type number) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorLen < 0 || vector.vectorLen < 0)
+    if (vectorSize < 0 || vector.vectorSize < 0)
         throw emptyError(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime))
 
-    int maxLength = max(vectorLen, vector.vectorLen);
+    int maxLength = max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
     vecSum(newVector, *this, vector);
 
@@ -304,11 +304,11 @@ Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorLen < 0 || vector.vectorLen < 0)
+    if (vectorSize < 0 || vector.vectorSize < 0)
         throw emptyError(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime))
 
-    int maxLength = max(vectorLen, vector.vectorLen);
+    int maxLength = max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
     vecDif(newVector, *this, vector);
 
@@ -337,8 +337,8 @@ Vector<Type> Vector<Type>::operator-() {
 
 template<typename Type>
 Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
-    vectorLen = vector.vectorLen;
-    allocNewVectorMem(vectorLen);
+    vectorSize = vector.vectorSize;
+    allocNewVectorMem(vectorSize);
 
     Iterator<Type> iteratorTo(*this);
     Iterator<Type> iteratorFrom(vector);
@@ -349,8 +349,8 @@ Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
 
 template<typename Type>
 Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
-    vectorLen = int(arguments.size());
-    allocNewVectorMem(vectorLen);
+    vectorSize = int(arguments.size());
+    allocNewVectorMem(vectorSize);
 
     Iterator<Type> iterator(*this);
     for (auto &currentItem: arguments) {
@@ -362,8 +362,8 @@ Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
 
 template<typename Type>
 Vector<Type> &Vector<Type>::operator=(Vector<Type> &&vector) {
-    vectorLen = vector.vectorLen;
-    allocNewVectorMem(vectorLen);
+    vectorSize = vector.vectorSize;
+    allocNewVectorMem(vectorSize);
     values = vector.values;
     vector.values.reset();
 
@@ -400,7 +400,7 @@ bool Vector<Type>::isZeroV() const {
 template<typename Type>
 Type Vector<Type>::summaryValue() {
     time_t currentTime = time(NULL)
-    if (vectorLen <= 0)
+    if (vectorSize <= 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
     
@@ -415,7 +415,7 @@ Type Vector<Type>::summaryValue() {
 template<typename Type>
 Type Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
-    if (vectorLen < 0)
+    if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
             __LINE__, currentTime)
 
@@ -427,10 +427,15 @@ Type Vector<Type>::length(void) const {
     return sum;
 }
 
-//! Get and set
+template<typename Type>
+int Vector<Type>::size() const {
+    return vectorSize;
+}
+
+//! Set item func
 template<typename Type>
 bool &Vector<Type>::setItemByIndex(int index, const Type item) {
-    if (index < 0 || index >= vectorLen)
+    if (index < 0 || index >= vectorSize)
         return false;
 
     getItemByIndex(index) = item;
