@@ -359,6 +359,16 @@ Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
     }
     return *this;
 }
+
+template<typename Type>
+Vector<Type> &Vector<Type>::operator=(Vector<Type> &&vector) {
+    vectorLen = vector.vectorLen;
+    allocNewVectorMem(vectorLen);
+    values = vector.values;
+    vector.values.reset();
+
+    return *this;
+}
 //< End
 
 //! Allocation for Vector
