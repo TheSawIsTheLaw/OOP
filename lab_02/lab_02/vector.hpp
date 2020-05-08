@@ -47,7 +47,7 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 9; resultIterator; i++, firstIterator++, secondIterator++) {
+    for (int i = 0; resultIterator; i++, firstIterator++, secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator * *secondIterator;
         else 
@@ -64,7 +64,7 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
         throw ZeroDivisionException(__FILE__, typeid(this).name(), 
                                     __LINE__, ctime(&currentTime));
 
-    double angle = (*this * vector)/(this->len() * vector.len());
+    double angle = (*this * vector) * (1 / (this->length() * vector.length()));
     return acos(angle) * 180 / M_PI;
 }
 
@@ -416,7 +416,7 @@ Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator*(const Vector<Type> &vector) const{
+Vector<Type> &Vector<Type>::operator*(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (vectorSize <= 0 || vector.vectorSize <= 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),

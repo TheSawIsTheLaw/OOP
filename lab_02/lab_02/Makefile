@@ -223,6 +223,7 @@ Makefile: lab_02.pro C:/msys64/mingw64/share/qt5/mkspecs/win32-g++/qmake.conf C:
 		C:/msys64/mingw64/share/qt5/mkspecs/features/qt_config.prf \
 		C:/msys64/mingw64/share/qt5/mkspecs/win32-g++/qmake.conf \
 		C:/msys64/mingw64/share/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/msys64/mingw64/share/qt5/mkspecs/features/exclusive_builds.prf \
 		C:/msys64/mingw64/share/qt5/mkspecs/features/toolchain.prf \
 		C:/msys64/mingw64/share/qt5/mkspecs/features/default_pre.prf \
@@ -402,6 +403,7 @@ C:/msys64/mingw64/share/qt5/mkspecs/features/qt_functions.prf:
 C:/msys64/mingw64/share/qt5/mkspecs/features/qt_config.prf:
 C:/msys64/mingw64/share/qt5/mkspecs/win32-g++/qmake.conf:
 C:/msys64/mingw64/share/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/msys64/mingw64/share/qt5/mkspecs/features/exclusive_builds.prf:
 C:/msys64/mingw64/share/qt5/mkspecs/features/toolchain.prf:
 C:/msys64/mingw64/share/qt5/mkspecs/features/default_pre.prf:

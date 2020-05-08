@@ -1,14 +1,16 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
 
-#include "iteratorbase.h"
-#include "exceptions.h"
+#include "Exceptions.h"
 
 #include <memory>
 #include <time.h>
 
 template<typename Type>
-class Iterator: public IteratorBase
+class Vector;
+
+template<typename Type>
+class Iterator: public std::iterator<std::input_iterator_tag, int>
 {
 public:
     Iterator(const Iterator<Type> &iterator);
@@ -46,6 +48,8 @@ private:
 
 protected:
     Type *getCurrentPointer() const;
+    int currentIndex = 0;
+    int vectorLen = 0;
 };
 
 template<typename Type>
@@ -55,7 +59,7 @@ Type *Iterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
-Iterator<Type>::Iterator(const Iterator<Type> &iterator) : IteratorBase(iterator) {
+Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
     wPointer = iterator.wPointer;
     currentIndex = iterator.currentIndex;
     vectorLen = iterator.vectorLen;

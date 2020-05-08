@@ -4,8 +4,8 @@
 #include <iostream>
 #include <memory>
 
-#include "vectorbase.h"
 #include "iterator.h"
+#include "vectorbase.h"
 
 // class
 template<typename Type>
