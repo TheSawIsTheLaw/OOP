@@ -68,7 +68,7 @@ public:
 
     Vector<Type> operator&(const Vector<Type> &vector) const;
 
-    Vector<Type> &operator-();
+    Vector<Type> operator-();
 
     bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;

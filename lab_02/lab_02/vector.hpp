@@ -325,6 +325,15 @@ const Type &Vector<Type>::operator[](int index) const {
     return getItemByIndex(index);
 }
 
+template <typename Type>
+Vector<Type> Vector<Type>::operator-() {
+    Vector<Type> newVector(*this);
+    Iterator<Type> iterator(newVector);
+    for (; iterator; iterator++)
+        *iterator = -*iterator;
+
+    return newVector;
+}
 //< End
 
 //! Allocation for Vector
