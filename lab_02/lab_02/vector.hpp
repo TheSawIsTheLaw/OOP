@@ -123,6 +123,7 @@ bool Vector<Type>::operator==(const Vector<Type> &vector) const {
     if (vectorLen != vector.length())
         return areEqual;
 
+    areEqual = true;
     Iterator<Type> firstIterator(*this);
     for (Iterator<Type> secondIterator(vector); firstIterator && areEqual;
          secondIterator++)
@@ -137,6 +138,7 @@ bool Vector<float>::operator==(const Vector<float> &vector) const {
     if (vectorLen != vector.length())
         return areEqual;
 
+    areEqual = true;
     Iterator<float> firstIterator(*this);
     for (Iterator<float> secondIterator(vector); firstIterator && areEqual;
          secondIterator++)
@@ -151,6 +153,7 @@ bool Vector<double>::operator==(const Vector<double> &vector) const {
     if (vectorLen != vector.length())
         return areEqual;
 
+    areEqual = true;
     Iterator<double> firstIterator(*this);
     for (Iterator<double> secondIterator(vector); firstIterator && areEqual;
          secondIterator++)
@@ -165,6 +168,7 @@ bool Vector<long double>::operator==(const Vector<long double> &vector) const {
     if (vectorLen != vector.length())
         return areEqual;
 
+    areEqual = true;
     Iterator<long double> firstIterator(*this);
     for (Iterator<long double> secondIterator(vector); firstIterator && areEqual;
          secondIterator++)
@@ -175,58 +179,62 @@ bool Vector<long double>::operator==(const Vector<long double> &vector) const {
 
 template<typename Type>
 bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
-    bool areEqual = false;
+    bool areNotEqual = true;
     if (vectorLen != vector.length())
-        return areEqual;
+        return areNotEqual;
 
+    areNotEqual = false;
     Iterator<Type> firstIterator(*this);
-    for (Iterator<Type> secondIterator(vector); firstIterator && areEqual;
+    for (Iterator<Type> secondIterator(vector); firstIterator && !areNotEqual;
          secondIterator++)
         if (*firstIterator != *secondIterator)
-            areEqual = false;
-    return areEqual;
+            areNotEqual = true;
+    return areNotEqual;
 }
 
 template<>
 bool Vector<float>::operator!=(const Vector<float> &vector) const {
-    bool areEqual = false;
+    bool areNotEqual = true;
     if (vectorLen != vector.length())
-        return areEqual;
+        return areNotEqual;
 
+    areNotEqual = false;
     Iterator<float> firstIterator(*this);
-    for (Iterator<float> secondIterator(vector); firstIterator && areEqual;
+    for (Iterator<float> secondIterator(vector); firstIterator && !areNotEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<float>::epsilon())
-            areEqual = false;
-    return areEqual;
+            areNotEqual = true;
+    return areNotEqual;
 }
 
 template<>
 bool Vector<double>::operator!=(const Vector<double> &vector) const {
-    bool areEqual = false;
+    bool areNotEqual = true;
     if (vectorLen != vector.length())
-        return areEqual;
+        return areNotEqual;
 
+    areNotEqual = false;
     Iterator<double> firstIterator(*this);
-    for (Iterator<double> secondIterator(vector); firstIterator && areEqual;
+    for (Iterator<double> secondIterator(vector); firstIterator && !areNotEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<double>::epsilon())
-            areEqual = false;
-    return areEqual;
+            areNotEqual = true;
+    return areNotEqual;
 }
 
 template<>
 bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
-    bool areEqual = false;
+    bool areNotEqual = true;
     if (vectorLen != vector.length())
-        return areEqual;
+        return areNotEqual;
 
+    areNotEqual = false;
     Iterator<long double> firstIterator(*this);
-    for (Iterator<long double> secondIterator(vector); firstIterator && areEqual;
+    for (Iterator<long double> secondIterator(vector); firstIterator && !areNotEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<long double>::epsilon())
-            areEqual = false;
-    return areEqual;
+            areNotEqual = true;
+    return areNotEqual;
 }
 
 //< End

@@ -64,14 +64,14 @@ public:
 
     Vector<Type> &operator-();
 
-    bool operator==(const Vector<Type> &vector) const;
     bool operator==(const Vector<float> &vector) const;
     bool operator==(const Vector<double> &vector) const;
     bool operator==(const Vector<long double> &vector) const;
-    bool operator!=(const Vector<Type> &vector) const;
+    bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<float> &vector) const;
     bool operator!=(const Vector<double> &vector) const;
     bool operator!=(const Vector<long double> &vector) const;
+    bool operator!=(const Vector<Type> &vector) const;
 
     Type &operator[](int index);
     const Type &operator[](int index) const;
