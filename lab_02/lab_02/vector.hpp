@@ -249,6 +249,18 @@ Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
     return *this;
 }
 
+template<typename Type>
+Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
+    time_t currentTime = time(NULL);
+    if (vectorLen < 0 || vector.vectorLen < 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    vecDif(*this, *this, vector);
+
+    return *this;
+}
+
 //< End
 
 //! Allocation for Vector
