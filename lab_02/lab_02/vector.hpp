@@ -4,17 +4,6 @@
 #include <stdlib.h>
 #include <cmath>
 
-//! Helper
-template<typename Type>
-Type maxInTwo(const Type firstValue, const Type secondValue) {
-    if (firstValue > secondValue)
-        return firstValue;
-    else 
-        return secondValue;
-
-}
-//< End
-
 //! Distr
 template<typename Type>
 Vector<Type>::~Vector<Type>() {
@@ -279,11 +268,12 @@ Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
         throw emptyError(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime))
 
-    
+    int maxLength = max(vectorLen, vector.vectorLen);
+    Vector<Type> newVector(maxLength);
+    vecSum(newVector, *this, vector);
+
+    return newVector;
 }
-
-
-
 //< End
 
 //! Allocation for Vector
