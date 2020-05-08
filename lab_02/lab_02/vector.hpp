@@ -75,6 +75,14 @@ bool Vector<Type>::areCollinear(const Vector<Type> &vector) const {
     else
         return false;
 }
+
+template<typename Type>
+bool Vector<Type>::areOrthgonal(const Vector<Type> &vector) const {
+    if (this->vectorsAngle(vector) < std::numeric_limits<double>::epsilon)
+        return true;
+    else
+        return false;
+}
 //< End
 
 //! Distr
