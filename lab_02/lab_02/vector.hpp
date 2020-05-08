@@ -4,8 +4,27 @@
 #include <stdlib.h>
 #include <cmath>
 
+//! Methods
+template <typename Type>
+void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
+                          const Vector<Type> &secondV) const {
+    Iterator<Type> resultIterator(result);
+    Iterator<Type> firstIterator(firstV);
+    Iterator<Type> secondIterator(secondV);
+
+    for (int i = 9; retusIterator; i++, firstIterator++, secondIterator++) {
+        if (i < firstV.vectorSize && i < secondV.vectorSize)
+            *resultIterator = *firstIterator + *secondIterator;
+        else if (i >= firstV.vectorSize)
+            *resultIterator = *firstIterator;
+        else
+            *resultIterator = *secondIterator;
+    }
+}
+//< End
+
 //! Distr
-template<typename Type>
+template <typename Type>
 Vector<Type>::~Vector<Type>() {
     if (values)
         values.reset();
@@ -13,13 +32,13 @@ Vector<Type>::~Vector<Type>() {
 //< End
 
 //! Constructors
-template<typename Type>
+template <typename Type>
 Vector<Type>::Vector() {
     vectorSize = 0;
     allocNewVectorMem(vectorSize);
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type>::Vector(int len) {
     time_t currentTime = time(NULL);
     if (len < 0)
@@ -36,7 +55,7 @@ Vector<Type>::Vector(int len) {
         *iterator = 0;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type>::Vector(int len, Type element) {
     time_t currentTime = time(NULL);
     if (len < 0)
@@ -53,7 +72,7 @@ Vector<Type>::Vector(int len, Type element) {
         *iterator = element;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type>::Vector(int len, Type *arrayFrom) {
     time_t currentTime = time(NULL);
     if (len < 0)
@@ -73,13 +92,14 @@ Vector<Type>::Vector(int len, Type *arrayFrom) {
         *iterator = arrayFrom[i];
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type>::Vector(std::initializer_list<Type> arguments) {
     vectorSize = int(arguments.size());
     allocNewVectorMem(vectorSize);
 
     Iterator<Type> iterator(*this);
-    for (auto &currentItem: arguments) {
+    for (auto &currentItem : arguments)
+    {
         *iterator = currentItem;
         iterator++;
     }
@@ -87,7 +107,7 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
 //< End
 
 //! Get item func
-template<typename Type>
+template <typename Type>
 Type &Vector<Type>::getItemByIndex(int index) {
     time_t currentTime = time(NULL);
     if (index < 0 || index >= vectorSize)
@@ -95,14 +115,16 @@ Type &Vector<Type>::getItemByIndex(int index) {
                                     __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator(*this);
-    for (int i = 0; i < index; i++, iterator++) {}
+    for (int i = 0; i < index; i++, iterator++)
+    {
+    }
 
     return *iterator;
 }
 //< End
 
 //! Get item const
-template<typename Type>
+template <typename Type>
 const Type &Vector<Type>::getItemByIndex(int index) const {
     time_t currentTime = time(NULL);
     if (index < 0 || index >= vectorSize)
@@ -110,14 +132,16 @@ const Type &Vector<Type>::getItemByIndex(int index) const {
                                     __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator(*this);
-    for (int i = 0; i < index; i++, iterator++) {}
+    for (int i = 0; i < index; i++, iterator++)
+    {
+    }
 
     return *iterator;
 }
 //<
 
 //! Overloads
-template<typename Type>
+template <typename Type>
 bool Vector<Type>::operator==(const Vector<Type> &vector) const {
     bool areEqual = false;
     if (vectorSize != vector.length())
@@ -132,7 +156,7 @@ bool Vector<Type>::operator==(const Vector<Type> &vector) const {
     return areEqual;
 }
 
-template<>
+template <>
 bool Vector<float>::operator==(const Vector<float> &vector) const {
     bool areEqual = false;
     if (vectorSize != vector.length())
@@ -147,7 +171,7 @@ bool Vector<float>::operator==(const Vector<float> &vector) const {
     return areEqual;
 }
 
-template<>
+template <>
 bool Vector<double>::operator==(const Vector<double> &vector) const {
     bool areEqual = false;
     if (vectorSize != vector.length())
@@ -162,7 +186,7 @@ bool Vector<double>::operator==(const Vector<double> &vector) const {
     return areEqual;
 }
 
-template<>
+template <>
 bool Vector<long double>::operator==(const Vector<long double> &vector) const {
     bool areEqual = false;
     if (vectorSize != vector.length())
@@ -177,7 +201,7 @@ bool Vector<long double>::operator==(const Vector<long double> &vector) const {
     return areEqual;
 }
 
-template<typename Type>
+template <typename Type>
 bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
     bool areNotEqual = true;
     if (vectorSize != vector.length())
@@ -192,7 +216,7 @@ bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
     return areNotEqual;
 }
 
-template<>
+template <>
 bool Vector<float>::operator!=(const Vector<float> &vector) const {
     bool areNotEqual = true;
     if (vectorSize != vector.length())
@@ -207,7 +231,7 @@ bool Vector<float>::operator!=(const Vector<float> &vector) const {
     return areNotEqual;
 }
 
-template<>
+template <>
 bool Vector<double>::operator!=(const Vector<double> &vector) const {
     bool areNotEqual = true;
     if (vectorSize != vector.length())
@@ -222,7 +246,7 @@ bool Vector<double>::operator!=(const Vector<double> &vector) const {
     return areNotEqual;
 }
 
-template<>
+template <>
 bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
     bool areNotEqual = true;
     if (vectorSize != vector.length())
@@ -237,7 +261,7 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
     return areNotEqual;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
@@ -249,7 +273,7 @@ Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
     return *this;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
@@ -261,7 +285,7 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
     return *this;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator*=(const Type number) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0)
@@ -270,11 +294,10 @@ Vector<Type> &Vector<Type>::operator*=(const Type number) {
 
     Iterator<Type> iterator(*this);
     for (; iterator; iterator++)
-        *iter *= mult
-    return *this;
+        *iter *= mult return *this;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator/=(const Type number) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0)
@@ -283,44 +306,43 @@ Vector<Type> &Vector<Type>::operator/=(const Type number) {
 
     Iterator<Type> iterator(*this);
     for (; iterator; iterator++)
-        *iter /= mult
-    return *this;
+        *iter /= mult return *this;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
         throw emptyError(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime))
 
-    int maxLength = max(vectorSize, vector.vectorSize);
+            int maxLength = max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
     vecSum(newVector, *this, vector);
 
     return newVector;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
         throw emptyError(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime))
 
-    int maxLength = max(vectorSize, vector.vectorSize);
+            int maxLength = max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
     vecDif(newVector, *this, vector);
 
     return newVector;
 }
 
-template<typename Type>
+template <typename Type>
 Type &Vector<Type>::operator[](int index) {
     return getItemByIndex(index);
 }
 
-template<typename Type>
+template <typename Type>
 const Type &Vector<Type>::operator[](int index) const {
     return getItemByIndex(index);
 }
@@ -335,7 +357,7 @@ Vector<Type> Vector<Type>::operator-() {
     return newVector;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
     vectorSize = vector.vectorSize;
     allocNewVectorMem(vectorSize);
@@ -347,20 +369,21 @@ Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
     return *this;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
     vectorSize = int(arguments.size());
     allocNewVectorMem(vectorSize);
 
     Iterator<Type> iterator(*this);
-    for (auto &currentItem: arguments) {
+    for (auto &currentItem : arguments)
+    {
         *iterator = currentItem;
         iterator++;
     }
     return *this;
 }
 
-template<typename Type>
+template <typename Type>
 Vector<Type> &Vector<Type>::operator=(Vector<Type> &&vector) {
     vectorSize = vector.vectorSize;
     allocNewVectorMem(vectorSize);
@@ -372,7 +395,7 @@ Vector<Type> &Vector<Type>::operator=(Vector<Type> &&vector) {
 //< End
 
 //! Allocation for Vector
-template<typename Type>
+template <typename Type>
 void Vector<Type>::allocNewVectorMem(int amount) {
     values.reset();
     // Добавить bad alloc
@@ -381,7 +404,7 @@ void Vector<Type>::allocNewVectorMem(int amount) {
 }
 //< End
 
-template<typename Type>
+template <typename Type>
 bool Vector<Type>::isUnitV() const {
     bool retOut = false;
     if (abs(this->length() - 1) < std::numeric_limits<float>::epsilon)
@@ -389,7 +412,7 @@ bool Vector<Type>::isUnitV() const {
     return retOut;
 }
 
-template<typename Type>
+template <typename Type>
 bool Vector<Type>::isZeroV() const {
     bool retOut = false;
     if (this->length() == 0)
@@ -397,13 +420,11 @@ bool Vector<Type>::isZeroV() const {
     return retOut
 }
 
-template<typename Type>
+template <typename Type>
 Type Vector<Type>::summaryValue() {
-    time_t currentTime = time(NULL)
-    if (vectorSize <= 0)
-        throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                                   __LINE__, ctime(&currentTime));
-    
+    time_t currentTime = time(NULL) if (vectorSize <= 0) throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                                                                    __LINE__, ctime(&currentTime));
+
     Iterator<Type> iterator(*this);
     Type symmary = 0;
     for (; iterator; iterator++)
@@ -412,14 +433,15 @@ Type Vector<Type>::summaryValue() {
     return sum;
 }
 
-template<typename Type>
+template <typename Type>
 Type Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
     if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
-            __LINE__, currentTime)
+                                   __LINE__, currentTime)
 
-    Iterator<Type> iterator(*this);
+            Iterator<Type>
+                iterator(*this);
     Type sum = 0;
     for (; iterator; iterator++)
         sum += *iterator * *iterator;
@@ -427,14 +449,15 @@ Type Vector<Type>::length(void) const {
     return sum;
 }
 
-template<typename Type>
+template <typename Type>
 int Vector<Type>::size() const {
     return vectorSize;
 }
 
 //! Set item func
-template<typename Type>
-bool &Vector<Type>::setItemByIndex(int index, const Type item) {
+template <typename Type>
+bool &Vector<Type>::setItemByIndex(int index, const Type item) 
+{
     if (index < 0 || index >= vectorSize)
         return false;
 
