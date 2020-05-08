@@ -238,8 +238,15 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator+=(const Type number) {
+Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
+    time_t currentTime = time(NULL);
+    if (vectorLen < 0 || vector.vectorLen < 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
 
+    vecSum(*this, *this, vector);
+
+    return *this;
 }
 
 //< End
