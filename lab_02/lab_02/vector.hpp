@@ -262,6 +262,19 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
 }
 
 template<typename Type>
+Vector<Type> &Vector<Type>::operator*=(const Type number) {
+    time_t currentTime = time(NULL);
+    if (vectorLen < 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    Iterator<Type> iterator(*this);
+    for (; iterator; iterator++)
+        *iter *= mult
+    return *this;
+}
+
+template<typename Type>
 Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorLen < 0 || vector.vectorLen < 0)
@@ -288,6 +301,8 @@ Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
 
     return newVector;
 }
+
+
 //< End
 
 //! Allocation for Vector
