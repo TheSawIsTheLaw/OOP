@@ -5,11 +5,11 @@ CONFIG -= qt
 
 SOURCES += \
         IteratorBase.cpp \
-        Vector.hpp \
         VectorBase.cpp \
         main.cpp
 
 HEADERS += \
+    Vector.hpp \
     ConstantIterator.h \
     ExceptionBase.h \
     Exceptions.h \
