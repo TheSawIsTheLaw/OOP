@@ -16,4 +16,5 @@ HEADERS += \
     Iterator.h \
     IteratorBase.h \
     Vector.h \
-    VectorBase.h
+    VectorBase.h \
+    defines.h

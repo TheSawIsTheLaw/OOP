@@ -1,5 +1,9 @@
 #include "vector.h"
 
+#include <limits>
+#include <stdlib.h>
+#include <cmath>
+
 //! Distr
 template<typename Type>
 Vector<Type>::~Vector<Type>() {
@@ -113,6 +117,46 @@ const Type &Vector<Type>::getItemByIndex(int index) const {
 //<
 
 //! Overloads
+template<typename Type>
+bool Vector<Type>::operator==(const Vector<Type> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<Type> firstIterator(*this);
+    for (Iterator<Type> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (*firstIterator != *secondIterator)
+            areEqual = false;
+    return areEqual;
+}
+
+bool Vector<float>::operator==(const Vector<float> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<Type> firstIterator(*this);
+    for (Iterator<Type> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (fabs(*firstIterator - *secondIterator) < std::numeric_limits<float>::epsilon())
+            areEqual = false;
+    return areEqual;
+}
+
+bool Vector<double>::operator==(const Vector<double> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<Type> firstIterator(*this);
+    for (Iterator<Type> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (fabs(*firstIterator - *secondIterator) < std::numeric_limits<double>::epsilon())
+            areEqual = false;
+    return areEqual;
+}
+
 
 //< End
 
