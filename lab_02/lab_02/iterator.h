@@ -55,7 +55,7 @@ Type *Iterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
-Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
+Iterator<Type>::Iterator(const Iterator<Type> &iterator) : IteratorBase(iterator) {
     wPointer = iterator.wPointer;
     currentIndex = iterator.currentIndex;
     vectorLen = iterator.vectorLen;

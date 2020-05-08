@@ -4,8 +4,7 @@
 template<typename Type>
 class Vector;
 
-class IteratorBase
-{
+class IteratorBase {
 public:
     IteratorBase();
     IteratorBase(const IteratorBase &iterator);
