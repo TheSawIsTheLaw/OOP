@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 
-#include "VectorBase.h"
+#include "vectorbase.h"
 #include "iterator.h"
 
 // class

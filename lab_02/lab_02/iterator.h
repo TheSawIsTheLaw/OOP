@@ -1,8 +1,8 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
 
-#include "IteratorBase.h"
-#include "Exceptions.h"
+#include "iteratorbase.h"
+#include "exceptions.h"
 
 #include <memory>
 #include <time.h>

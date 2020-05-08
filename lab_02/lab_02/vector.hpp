@@ -13,7 +13,7 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 9; retusIterator; i++, firstIterator++, secondIterator++) {
+    for (int i = 0; resultIterator; i++, firstIterator++, secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator + *secondIterator;
         else if (i >= firstV.vectorSize)
@@ -30,7 +30,7 @@ void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 9; retusIterator; i++, firstIterator++, secondIterator++) {
+    for (int i = 0; resultIterator; i++, firstIterator++, secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator - *secondIterator;
         else if (i >= firstV.vectorSize)
