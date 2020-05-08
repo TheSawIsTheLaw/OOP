@@ -274,6 +274,20 @@ Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
 
     return newVector;
 }
+
+template<typename Type>
+Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
+    time_t currentTime = time(NULL);
+    if (vectorLen < 0 || vector.vectorLen < 0)
+        throw emptyError(__FILE__, typeid(*this).name(),
+                         __LINE__, ctime(&currentTime))
+
+    int maxLength = max(vectorLen, vector.vectorLen);
+    Vector<Type> newVector(maxLength);
+    vecDif(newVector, *this, vector);
+
+    return newVector;
+}
 //< End
 
 //! Allocation for Vector
