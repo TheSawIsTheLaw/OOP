@@ -82,6 +82,7 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
 }
 //< End
 
+//! Get item func
 template<typename Type>
 Type &Vector<Type>::getItemByIndex(int index) {
     time_t currentTime = time(NULL);
@@ -94,7 +95,28 @@ Type &Vector<Type>::getItemByIndex(int index) {
 
     return *iterator;
 }
+//< End
 
+//! Get item const
+template<typename Type>
+const Type &Vector<Type>::getItemByIndex(int index) const {
+    time_t currentTime = time(NULL);
+    if (index < 0 || index >= vectorLen)
+        throw InvalidIndexException(__FILE__, typeid(*this).name(),
+                                    __LINE__, ctime(&currentTime));
+
+    Iterator<Type> iterator(*this);
+    for (int i = 0; i < index; i++, iterator++) {}
+
+    return *iterator;
+}
+//<
+
+//! Overloads
+
+//< End
+
+//! Allocation for Vector
 template<typename Type>
 void Vector<Type>::allocNewVectorMem(int amount) {
     values.reset();
@@ -102,3 +124,4 @@ void Vector<Type>::allocNewVectorMem(int amount) {
     std::shared_ptr<Type> temp(new Type[amount], std::default_delete<Type[]>());
     values = temp;
 }
+//< End
