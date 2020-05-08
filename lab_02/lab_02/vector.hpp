@@ -320,6 +320,11 @@ Type &Vector<Type>::operator[](int index) {
     return getItemByIndex(index);
 }
 
+template<typename Type>
+const Type &Vector<Type>::operator[](int index) const {
+    return getItemByIndex(index);
+}
+
 //< End
 
 //! Allocation for Vector
