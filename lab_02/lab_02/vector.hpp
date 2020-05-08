@@ -355,6 +355,14 @@ bool Vector<Type>::isUnitV() const {
 }
 
 template<typename Type>
+bool Vector<Type>::isZeroV() const {
+    bool retOut = false;
+    if (this->length() == 0)
+        retOut = true;
+    return retOut
+}
+
+template<typename Type>
 Type Vector<Type>::summaryValue() {
     time_t currentTime = time(NULL)
     if (vectorLen <= 0)
