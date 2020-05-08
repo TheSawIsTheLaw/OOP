@@ -426,3 +426,14 @@ Type Vector<Type>::length(void) const {
     sum = sqrt(sum);
     return sum;
 }
+
+//! Get and set
+template<typename Type>
+bool &Vector<Type>::setItemByIndex(int index, const Type item) {
+    if (index < 0 || index >= vectorLen)
+        return false;
+
+    getItemByIndex(index) = item;
+    return true;
+}
+//< End

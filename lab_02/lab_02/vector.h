@@ -35,7 +35,7 @@ public:
     Type &getItemByIndex(int index);
     const Type &getItemByIndex(int index) const;
 
-    bool &setItemByIndex(int index, const Type &vector);
+    bool &setItemByIndex(int index, const Type item);
 
     double vectorsAngle(const Vector<Type> &vector) const;
 
