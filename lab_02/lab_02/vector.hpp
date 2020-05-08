@@ -116,7 +116,7 @@ template<typename Type>
 Vector<Type>::Vector(int len) {
     time_t currentTime = time(NULL);
     if (len < 0)
-        throw EmptyVectorException(__FILE__, typeod(*this).name(),
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
     allocNewVectorMem(len);
@@ -133,7 +133,7 @@ template<typename Type>
 Vector<Type>::Vector(int len, Type element) {
     time_t currentTime = time(NULL);
     if (len < 0)
-        throw EmptyVectorException(__FILE__, typeod(*this).name(),
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
     allocNewVectorMem(len);

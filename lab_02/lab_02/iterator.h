@@ -39,7 +39,7 @@ public:
     bool operator==(const Iterator<Type> &boolean) const;
     bool operator!=(const Iterator<Type> &boolean) const;
 
-    bool exceptionCheck(int line) const;
+    bool exceptionCheck(int lineError) const;
 
 private:
     std::weak_ptr<Type> wPointer;
@@ -55,17 +55,17 @@ Type *Iterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
-Iterator<Type>::Iterator(const Vector<Type> &vector) {
-    currentIndex = 0;
-    vectorLen = vector.length;
-    wPointer = vector.values;
-}
-
-template<typename Type>
 Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
     wPointer = iterator.wPointer;
     currentIndex = iterator.currentIndex;
     vectorLen = iterator.vectorLen;
+}
+
+template<typename Type>
+Iterator<Type>::Iterator(const Vector<Type> &vector) {
+    currentIndex = 0;
+    vectorLen = vector.size();
+    wPointer = vector.values;
 }
 
 template<typename Type>
@@ -216,7 +216,7 @@ bool Iterator<Type>::operator!=(const Iterator<Type> &compareTo) const {
 
 template<typename Type>
 Iterator<Type>::operator bool() const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
     if (currentIndex >= vectorLen || vectorLen == 0 || currentIndex < 0)
         return false;
@@ -235,5 +235,6 @@ bool Iterator<Type>::exceptionCheck(int lineError) const {
                                  lineError, ctime(&currentTime));
     return false;
 }
+
 
 #endif // ITERATOR_H

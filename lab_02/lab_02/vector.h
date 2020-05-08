@@ -44,7 +44,6 @@ public:
 
     Vector<Type> getUnitV() const;
 
-
     Vector<Type> &operator=(const Vector<Type> &vector);
     Vector<Type> &operator=(std::initializer_list<Type> arguments);
     Vector<Type> &operator=(Vector<Type> &&vector);
