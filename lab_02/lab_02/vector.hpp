@@ -315,6 +315,10 @@ Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
     return newVector;
 }
 
+template<typename Type>
+Type &Vector<Type>::operator[](int index) {
+    return getItemByIndex(index);
+}
 
 //< End
 
