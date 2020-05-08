@@ -346,6 +346,19 @@ Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
         *iteratorTo = *iteratorFrom;
     return *this;
 }
+
+template<typename Type>
+Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
+    vectorLen = int(arguments.size());
+    allocNewVectorMem(vectorLen);
+
+    Iterator<Type> iterator(*this);
+    for (auto &currentItem: arguments) {
+        *iterator = currentItem;
+        iterator++;
+    }
+    return *this;
+}
 //< End
 
 //! Allocation for Vector
