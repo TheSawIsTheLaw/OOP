@@ -131,20 +131,50 @@ bool Vector<Type>::operator==(const Vector<Type> &vector) const {
     return areEqual;
 }
 
+template<>
 bool Vector<float>::operator==(const Vector<float> &vector) const {
     bool areEqual = false;
     if (vectorLen != vector.length())
         return areEqual;
 
-    Iterator<Type> firstIterator(*this);
-    for (Iterator<Type> secondIterator(vector); firstIterator && areEqual;
+    Iterator<float> firstIterator(*this);
+    for (Iterator<float> secondIterator(vector); firstIterator && areEqual;
          secondIterator++)
-        if (fabs(*firstIterator - *secondIterator) < std::numeric_limits<float>::epsilon())
+        if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<float>::epsilon())
             areEqual = false;
     return areEqual;
 }
 
+template<>
 bool Vector<double>::operator==(const Vector<double> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<double> firstIterator(*this);
+    for (Iterator<double> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<double>::epsilon())
+            areEqual = false;
+    return areEqual;
+}
+
+template<>
+bool Vector<long double>::operator==(const Vector<long double> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<long double> firstIterator(*this);
+    for (Iterator<long double> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<long double>::epsilon())
+            areEqual = false;
+    return areEqual;
+}
+
+template<typename Type>
+bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
     bool areEqual = false;
     if (vectorLen != vector.length())
         return areEqual;
@@ -152,11 +182,52 @@ bool Vector<double>::operator==(const Vector<double> &vector) const {
     Iterator<Type> firstIterator(*this);
     for (Iterator<Type> secondIterator(vector); firstIterator && areEqual;
          secondIterator++)
-        if (fabs(*firstIterator - *secondIterator) < std::numeric_limits<double>::epsilon())
+        if (*firstIterator != *secondIterator)
             areEqual = false;
     return areEqual;
 }
 
+template<>
+bool Vector<float>::operator!=(const Vector<float> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<float> firstIterator(*this);
+    for (Iterator<float> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<float>::epsilon())
+            areEqual = false;
+    return areEqual;
+}
+
+template<>
+bool Vector<double>::operator!=(const Vector<double> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<double> firstIterator(*this);
+    for (Iterator<double> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<double>::epsilon())
+            areEqual = false;
+    return areEqual;
+}
+
+template<>
+bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
+    bool areEqual = false;
+    if (vectorLen != vector.length())
+        return areEqual;
+
+    Iterator<long double> firstIterator(*this);
+    for (Iterator<long double> secondIterator(vector); firstIterator && areEqual;
+         secondIterator++)
+        if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<long double>::epsilon())
+            areEqual = false;
+    return areEqual;
+}
 
 //< End
 
