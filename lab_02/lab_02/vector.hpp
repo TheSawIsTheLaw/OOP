@@ -47,8 +47,7 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 0; resultIterator; i++, resultIterator++,
-                                         firstIterator++,
+    for (int i = 0; resultIterator; i++, resultIterator++, firstIterator++,
                                          secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator * *secondIterator;
