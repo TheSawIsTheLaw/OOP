@@ -1,6 +1,8 @@
 #include <iostream>
 #include "vector.hpp"
 
+#include "defines.h"
+
 int main(void)
 {
     Vector<double> initializerListExample = {1, 2, 3};
@@ -21,4 +23,5 @@ int main(void)
     std::cout<< "Vectors +: "<< operVecF + operVecS<< std::endl;
     std::cout<< "Vectors -: "<< operVecF - operVecS<< std::endl;
 
+    return SUCCESS;
 }
