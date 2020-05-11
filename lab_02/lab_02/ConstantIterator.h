@@ -1,73 +1,77 @@
-#ifndef CONSTANTITERATOR_H
-#define CONSTANTITERATOR_H
+#ifndef CONST_ITERATOR_H
+#define CONST_ITERATOR_H
 
-#include "vector.h"
-#include "iterator.h"
+#include "exceptions.h"
 
 #include <memory>
 #include <time.h>
 
 template<typename Type>
-class ConstantIterator: public IteratorBase
+class Vector;
+
+template<typename Type>
+class ConstIterator: public std::iterator<std::input_iterator_tag, int>
 {
 public:
-    ConstantIterator(const ConstantIterator<Type> &iter);
-    ConstantIterator(const Vector<Type> &vect);
+    ConstIterator(const ConstIterator<Type> &iterator);
+    ConstIterator(const Vector<Type> &vector);
 
     const Type &operator *() const;
     const Type *operator->() const;
     operator bool() const;
 
-    ConstantIterator<Type> &operator=(const ConstantIterator<Type> &iter);
+    ConstIterator<Type> &operator=(const ConstIterator<Type> &iterator);
 
-    ConstantIterator<Type> &operator-=(int number);
-    ConstantIterator<Type> operator-(int number) const;
-    ConstantIterator<Type> &operator--();
-    ConstantIterator<Type> operator--(int number);
+    ConstIterator<Type> &operator-=(int number);
+    ConstIterator<Type> operator-(int number) const;
+    ConstIterator<Type> &operator--();
+    ConstIterator<Type> operator--(int number);
 
-    ConstantIterator<Type> &operator+=(int number);
-    ConstantIterator<Type> operator+(int number) const;
-    ConstantIterator<Type> &operator++();
-    ConstantIterator<Type> operator++(int number);
+    ConstIterator<Type> &operator+=(int number);
+    ConstIterator<Type> operator+(int number) const;
+    ConstIterator<Type> &operator++();
+    ConstIterator<Type> operator++(int number);
 
-    bool operator<=(const ConstantIterator<Type> &boolean) const;
-    bool operator<(const ConstantIterator<Type> &boolean) const;
-    bool operator>=(const ConstantIterator<Type> &boolean) const;
-    bool operator>(const ConstantIterator<Type> &boolean) const;
-    bool operator==(const ConstantIterator<Type> &boolean) const;
-    bool operator!=(const ConstantIterator<Type> &boolean) const;
+    bool operator<=(const ConstIterator<Type> &boolean) const;
+    bool operator<(const ConstIterator<Type> &boolean) const;
+    bool operator>=(const ConstIterator<Type> &boolean) const;
+    bool operator>(const ConstIterator<Type> &boolean) const;
+    bool operator==(const ConstIterator<Type> &boolean) const;
+    bool operator!=(const ConstIterator<Type> &boolean) const;
 
-    bool exceptionCheck(int line) const;
+    bool exceptionCheck(int lineError) const;
 
 private:
     std::weak_ptr<Type> wPointer;
 
 protected:
     Type *getCurrentPointer() const;
+    int currentIndex = 0;
+    int vectorLen = 0;
 };
 
 template<typename Type>
-Type *ConstantIterator<Type>::getCurrentPointer() const {
+Type *ConstIterator<Type>::getCurrentPointer() const {
     std::shared_ptr<Type> copied = wPointer.lock();
     return copied.get() + currentIndex;
 }
 
 template<typename Type>
-ConstantIterator<Type>::ConstantIterator(const Vector<Type> &vector) {
-    currentIndex = 0;
-    vectorLen = vector.length;
-    wPointer = vector.values;
-}
-
-template<typename Type>
-ConstantIterator<Type>::ConstantIterator(const ConstantIterator<Type> &iterator) {
+ConstIterator<Type>::ConstIterator(const ConstIterator<Type> &iterator) {
     wPointer = iterator.wPointer;
     currentIndex = iterator.currentIndex;
     vectorLen = iterator.vectorLen;
 }
 
 template<typename Type>
-const Type &ConstantIterator<Type>::operator*() const {
+ConstIterator<Type>::ConstIterator(const Vector<Type> &vector) {
+    currentIndex = 0;
+    vectorLen = vector.size();
+    wPointer = vector.values;
+}
+
+template<typename Type>
+const Type &ConstIterator<Type>::operator*() const {
     exceptionCheck(__LINE__);
 
     std::shared_ptr<Type> copiedPointer = wPointer.lock();
@@ -75,14 +79,14 @@ const Type &ConstantIterator<Type>::operator*() const {
 }
 
 template<typename Type>
-const Type *ConstantIterator<Type>::operator->() const {
+const Type *ConstIterator<Type>::operator->() const {
     exceptionCheck(__LINE__);
 
     return getCurrentPointer();
 }
 
 template<typename Type>
-ConstantIterator<Type> &ConstantIterator<Type>::operator=(const ConstantIterator<Type>& iterator) {
+ConstIterator<Type> &ConstIterator<Type>::operator=(const ConstIterator<Type>& iterator) {
     exceptionCheck(__LINE__);
 
     wPointer = iterator.wPointer;
@@ -90,7 +94,7 @@ ConstantIterator<Type> &ConstantIterator<Type>::operator=(const ConstantIterator
 }
 
 template<typename Type>
-ConstantIterator<Type> &ConstantIterator<Type>::operator+=(int number) {
+ConstIterator<Type> &ConstIterator<Type>::operator+=(int number) {
     exceptionCheck(__LINE__);
     currentIndex += number;
 
@@ -98,16 +102,16 @@ ConstantIterator<Type> &ConstantIterator<Type>::operator+=(int number) {
 }
 
 template<typename Type>
-ConstantIterator<Type> ConstantIterator<Type>::operator+(int number) const {
+ConstIterator<Type> ConstIterator<Type>::operator+(int number) const {
     exceptionCheck(__LINE__);
-    ConstantIterator<Type> iterator(*this);
+    ConstIterator<Type> iterator(*this);
     iterator += number;
 
     return iterator;
 }
 
 template <typename Type>
-ConstantIterator<Type> &ConstantIterator<Type>::operator-=(int number) {
+ConstIterator<Type> &ConstIterator<Type>::operator-=(int number) {
     exceptionCheck(__LINE__);
     currentIndex -= number;
 
@@ -115,16 +119,16 @@ ConstantIterator<Type> &ConstantIterator<Type>::operator-=(int number) {
 }
 
 template <typename Type>
-ConstantIterator<Type> ConstantIterator<Type>::operator-(int number) const {
+ConstIterator<Type> ConstIterator<Type>::operator-(int number) const {
     exceptionCheck(__LINE__);
-    ConstantIterator<Type> iterator(*this);
+    ConstIterator<Type> iterator(*this);
     iterator -= number;
 
     return iterator;
 }
 
 template<typename Type>
-ConstantIterator<Type> ConstantIterator<Type>::operator++(int) {
+ConstIterator<Type> ConstIterator<Type>::operator++(int) {
     exceptionCheck(__LINE__);
     ++(*this);
 
@@ -132,7 +136,7 @@ ConstantIterator<Type> ConstantIterator<Type>::operator++(int) {
 }
 
 template<typename Type>
-ConstantIterator<Type> &ConstantIterator<Type>::operator++() {
+ConstIterator<Type> &ConstIterator<Type>::operator++() {
     exceptionCheck(__LINE__);
     ++currentIndex;
 
@@ -140,7 +144,7 @@ ConstantIterator<Type> &ConstantIterator<Type>::operator++() {
 }
 
 template<typename Type>
-ConstantIterator<Type> ConstantIterator<Type>::operator--(int) {
+ConstIterator<Type> ConstIterator<Type>::operator--(int) {
     exceptionCheck(__LINE__);
     --(*this);
 
@@ -148,7 +152,7 @@ ConstantIterator<Type> ConstantIterator<Type>::operator--(int) {
 }
 
 template<typename Type>
-ConstantIterator<Type> &ConstantIterator<Type>::operator--() {
+ConstIterator<Type> &ConstIterator<Type>::operator--() {
     exceptionCheck(__LINE__);
     --currentIndex;
 
@@ -156,50 +160,50 @@ ConstantIterator<Type> &ConstantIterator<Type>::operator--() {
 }
 
 template<typename Type>
-bool ConstantIterator<Type>::operator<(const ConstantIterator<Type> &compareTo) const {
+bool ConstIterator<Type>::operator<(const ConstIterator<Type> &compareTo) const {
     exceptionCheck();
 
     return wPointer < compareTo.wPointer;
 }
 
 template<typename Type>
-bool ConstantIterator<Type>::operator<=(const ConstantIterator<Type> &compareTo) const {
+bool ConstIterator<Type>::operator<=(const ConstIterator<Type> &compareTo) const {
     exceptionCheck();
 
     return wPointer <= compareTo.wPointer;
 }
 
 template<typename Type>
-bool ConstantIterator<Type>::operator>(const ConstantIterator<Type> &compareTo) const {
+bool ConstIterator<Type>::operator>(const ConstIterator<Type> &compareTo) const {
     exceptionCheck();
 
     return wPointer > compareTo.wPointer;
 }
 
 template<typename Type>
-bool ConstantIterator<Type>::operator>=(const ConstantIterator<Type> &compareTo) const {
+bool ConstIterator<Type>::operator>=(const ConstIterator<Type> &compareTo) const {
     exceptionCheck();
 
     return wPointer >= compareTo.wPointer;
 }
 
 template<typename Type>
-bool ConstantIterator<Type>::operator==(const ConstantIterator<Type> &compareTo) const {
+bool ConstIterator<Type>::operator==(const ConstIterator<Type> &compareTo) const {
     exceptionCheck();
 
     return wPointer == compareTo.wPointer;
 }
 
 template<typename Type>
-bool ConstantIterator<Type>::operator!=(const ConstantIterator<Type> &compareTo) const {
+bool ConstIterator<Type>::operator!=(const ConstIterator<Type> &compareTo) const {
     exceptionCheck();
 
     return wPointer != compareTo.wPointer;
 }
 
 template<typename Type>
-ConstantIterator<Type>::operator bool() const {
-    exceptionCheck();
+ConstIterator<Type>::operator bool() const {
+    exceptionCheck(__LINE__);
 
     if (currentIndex >= vectorLen || vectorLen == 0 || currentIndex < 0)
         return false;
@@ -209,7 +213,7 @@ ConstantIterator<Type>::operator bool() const {
 
 
 template<typename Type>
-bool ConstantIterator<Type>::exceptionCheck(int lineError) const {
+bool ConstIterator<Type>::exceptionCheck(int lineError) const {
     if (!wPointer.expired())
         return true;
 
@@ -219,4 +223,5 @@ bool ConstantIterator<Type>::exceptionCheck(int lineError) const {
     return false;
 }
 
-#endif // CONSTANTITERATOR_H
+
+#endif // CONST_ITERATOR_H

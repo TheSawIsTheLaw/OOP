@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "iterator.h"
+#include "ConstantIterator.h"
 #include "vectorbase.h"
 
 // class
@@ -12,6 +13,7 @@ template<typename Type>
 class Vector: public VectorBase{
 public:
     friend class Iterator<Type>;
+    friend class ConstIterator<Type>;
 
     Vector();
 
