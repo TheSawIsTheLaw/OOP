@@ -73,18 +73,16 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
 
 template<typename Type>
 bool Vector<Type>::areCollinear(const Vector<Type> &vector) const {
-    if (this->vectorsAngle(vector) < std::numeric_limits<double>::epsilon)
+    if (this->vectorsAngle(vector) < __DBL_EPSILON__)
         return true;
-    else
-        return false;
+    return false;
 }
 
 template<typename Type>
 bool Vector<Type>::areOrthgonal(const Vector<Type> &vector) const {
-    if (this->vectorsAngle(vector) < std::numeric_limits<double>::epsilon)
+    if (this->vectorsAngle(vector) - 90 < __DBL_EPSILON__)
         return true;
-    else
-        return false;
+    return false;
 }
 
 template<typename Type>

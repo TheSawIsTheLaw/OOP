@@ -10,18 +10,24 @@ int main(void)
     Vector<double> lenFillExample(3, 6.66);
     Vector<long double> emptyVector(0);
 
-    Vector<int> operVecF = {1, 2, 3};
-    Vector<int> operVecS = {3, 2, 4};
 
     std::cout<< "initializerListInit: "<< initializerListExample<< std::endl;
     std::cout<< "lenInit: "<< lenExample<< std::endl;
     std::cout<< "LenFillInit with 6.66 filler: "<< lenFillExample<< std::endl;
     std::cout<< "Empty vector: "<< emptyVector<< std::endl;
 
+    Vector<int> operVecF = {1, 2, 3};
+    Vector<int> operVecS = {3, 2, 4};
+
     std::cout<< "LenFill and InitList angle: "<< lenFillExample.vectorsAngle(initializerListExample)<< std::endl;
     std::cout<< "Vectors *: "<< operVecF * operVecS<< std::endl;
     std::cout<< "Vectors +: "<< operVecF + operVecS<< std::endl;
     std::cout<< "Vectors -: "<< operVecF - operVecS<< std::endl;
+
+    Vector<float> orthVecF = {1, 0, 0};
+    Vector<float> orthVecS = {0, 1, 0};
+
+    std::cout<< "Should be orth: "<< orthVecF.areOrthgonal(orthVecS)<< std::endl;
 
     return SUCCESS;
 }
