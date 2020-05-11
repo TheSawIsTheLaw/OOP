@@ -11,6 +11,10 @@ public:
         return vectorSize;
     };
 
+    virtual operator bool() const noexcept {
+        return bool(vectorSize);
+    }
+
     virtual ~VectorBase() = 0;
 
 protected:
