@@ -13,7 +13,8 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 0; resultIterator; i++, firstIterator++, secondIterator++) {
+    for (int i = 0; resultIterator; i++, resultIterator++, firstIterator++,
+                                         secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator + *secondIterator;
         else if (i >= firstV.vectorSize)
@@ -389,7 +390,7 @@ Vector<Type> &Vector<Type>::operator/=(const Type number) {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
+Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
@@ -403,7 +404,7 @@ Vector<Type> &Vector<Type>::operator+(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
+Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),

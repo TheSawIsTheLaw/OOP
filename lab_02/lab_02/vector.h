@@ -58,10 +58,10 @@ public:
     Vector<Type> &operator/=(const Type number);
 
     //Vector<Type> &operator+(const Type number);
-    Vector<Type> &operator+(const Vector<Type> &vector);
+    Vector<Type> operator+(const Vector<Type> &vector);
 
     //Vector<Type> &operator-(const Type number);
-    Vector<Type> &operator-(const Vector<Type> &vector);
+    Vector<Type> operator-(const Vector<Type> &vector);
 
     Type operator*(const Vector<Type> &vector) const;
 
