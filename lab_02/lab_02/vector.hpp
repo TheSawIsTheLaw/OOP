@@ -47,7 +47,9 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 0; resultIterator; i++, firstIterator++, secondIterator++) {
+    for (int i = 0; resultIterator; i++, resultIterator++,
+                                         firstIterator++,
+                                         secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator * *secondIterator;
         else 
@@ -416,7 +418,7 @@ Vector<Type> &Vector<Type>::operator-(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator*(const Vector<Type> &vector) const {
+Type Vector<Type>::operator*(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (vectorSize <= 0 || vector.vectorSize <= 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
@@ -426,7 +428,7 @@ Vector<Type> &Vector<Type>::operator*(const Vector<Type> &vector) const {
     Vector<Type> newVector(maxLength);
     vecMul(newVector, *this, vector);
 
-    return newVector;
+    return newVector.summaryValue();
 }
 //< End
 
