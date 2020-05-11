@@ -5,6 +5,14 @@
 #include <cmath>
 #include <math.h>
 
+//! Distr
+template<typename Type>
+Vector<Type>::~Vector() {
+    if (values)
+        values.reset();
+}
+//< End
+
 //! Methods
 template <typename Type>
 void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
@@ -13,7 +21,7 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 0; resultIterator; i++, resultIterator++, firstIterator++,
+    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
                                          secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator + *secondIterator;
@@ -31,7 +39,7 @@ void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 0; resultIterator; i++, resultIterator++, firstIterator++,
+    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
                                          secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator - *secondIterator;
@@ -49,7 +57,7 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
     Iterator<Type> firstIterator(firstV);
     Iterator<Type> secondIterator(secondV);
 
-    for (int i = 0; resultIterator; i++, resultIterator++, firstIterator++,
+    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
                                          secondIterator++) {
         if (i < firstV.vectorSize && i < secondV.vectorSize)
             *resultIterator = *firstIterator * *secondIterator;
@@ -73,6 +81,7 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
 
 template<typename Type>
 bool Vector<Type>::areCollinear(const Vector<Type> &vector) const {
+    std::cout<< this->vectorsAngle(vector)<< std::endl;
     if (this->vectorsAngle(vector) < __DBL_EPSILON__)
         return true;
     return false;
@@ -95,14 +104,6 @@ Vector<Type> Vector<Type>::getUnitV() const {
         *iterator /= len;
 
     return unitVector;
-}
-//< End
-
-//! Distr
-template<typename Type>
-Vector<Type>::~Vector<Type>() {
-    if (values)
-        values.reset();
 }
 //< End
 
@@ -541,11 +542,6 @@ Type Vector<Type>::length(void) const {
         sum += *iterator * *iterator;
     sum = sqrt(sum);
     return sum;
-}
-
-template<typename Type>
-int Vector<Type>::size() const {
-    return vectorSize;
 }
 
 //! Set item func

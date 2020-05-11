@@ -28,6 +28,13 @@ int main(void)
     Vector<float> orthVecS = {0, 1, 0};
 
     std::cout<< "Should be orth: "<< orthVecF.areOrthgonal(orthVecS)<< std::endl;
+    std::cout<< "Shouldn't be orth: "<<orthVecF.areCollinear(lenExample)<< std::endl;
+
+    Vector<int> colVecF = {1, 1, 0};
+    Vector<int> colVecS = {1, 1, 0};
+
+    std::cout<< "Should be coll: "<< colVecF.areCollinear(colVecS)<< std::endl;
+    std::cout<< "Shouldn't be coll: "<< colVecF.areCollinear(operVecF)<< std::endl;
 
     return SUCCESS;
 }

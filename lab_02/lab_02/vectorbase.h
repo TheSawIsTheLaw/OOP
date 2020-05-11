@@ -1,20 +1,22 @@
 #ifndef VECTORBASE_H
 #define VECTORBASE_H
 
-//template<typename Type>
-//class Iterator;
+#include <cstddef>
 
 class VectorBase {
 public:
-    VectorBase();
-    VectorBase(const VectorBase &vector);
-    ~VectorBase();
+    VectorBase(size_t vectorSize = 0): vectorSize(vectorSize) { }
 
-    bool isEmpty() const;
-    int size() const;
+    virtual size_t size() const noexcept {
+        return vectorSize;
+    };
+
+    virtual ~VectorBase() = 0;
 
 protected:
-    int vectorSize = 0;
+    size_t vectorSize = 0;
 };
+
+VectorBase::~VectorBase() {}
 
 #endif // VECTORBASE_H

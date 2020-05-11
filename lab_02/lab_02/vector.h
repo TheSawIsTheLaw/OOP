@@ -23,14 +23,14 @@ public:
 
     explicit Vector(const Vector<Type> &vector);
     Vector(Vector<Type> &&vector);
+
     ~Vector();
 
 
     bool isZeroV() const;
     bool isUnitV() const;
 
-    int size() const;
-    Type length() const;
+    Type length() const; // Исправь на "доубл"
 
     Type &getItemByIndex(int index);
     const Type &getItemByIndex(int index) const;
