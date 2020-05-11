@@ -71,8 +71,8 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
 template<typename Type>
 double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
-    if (!this->length() || !vector.vectorSize)
-        throw ZeroDivisionException(__FILE__, typeid(this).name(), 
+    if (!this->length() || !vector.length())
+        throw ZeroDivisionException(__FILE__, typeid(this).name(),
                                     __LINE__, ctime(&currentTime));
 
     double angle = (*this * vector) * (1 / (this->length() * vector.length()));
@@ -81,7 +81,6 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
 
 template<typename Type>
 bool Vector<Type>::areCollinear(const Vector<Type> &vector) const {
-    std::cout<< this->vectorsAngle(vector)<< std::endl;
     if (this->vectorsAngle(vector) < __DBL_EPSILON__)
         return true;
     return false;
