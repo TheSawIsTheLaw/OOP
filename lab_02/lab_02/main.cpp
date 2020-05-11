@@ -19,5 +19,6 @@ int main(void)
     std::cout<< "LenFill and InitList angle: "<< lenFillExample.vectorsAngle(initializerListExample)<< std::endl;
     std::cout<< "Vectors *: "<< operVecF * operVecS<< std::endl;
     std::cout<< "Vectors +: "<< operVecF + operVecS<< std::endl;
+    std::cout<< "Vectors -: "<< operVecF - operVecS<< std::endl;
 
 }
