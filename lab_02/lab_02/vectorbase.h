@@ -21,6 +21,6 @@ protected:
     size_t vectorSize = 0;
 };
 
-VectorBase::~VectorBase() {}
+VectorBase::~VectorBase() { }
 
 #endif // VECTORBASE_H

@@ -13,6 +13,9 @@ public:
     virtual const char *what() const noexcept override{
         return errorInformation.c_str();
     }
+
+    virtual ~ExceptionBase() { }
+
 protected:
     std::string errorInformation;
 };
