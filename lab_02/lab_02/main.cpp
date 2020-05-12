@@ -36,5 +36,7 @@ int main(void)
     std::cout<< "Should be coll: "<< colVecF.areCollinear(colVecS)<< std::endl;
     std::cout<< "Shouldn't be coll: "<< colVecF.areCollinear(operVecF)<< std::endl;
 
+
+
     return SUCCESS;
 }

@@ -188,7 +188,7 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
 
 //! Get item func
 template<typename Type>
-Type &Vector<Type>::getItemByIndex(int index) {
+Type &Vector<Type>::at(int index) {
     time_t currentTime = time(NULL);
     if (index < 0 || index >= vectorSize)
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
@@ -203,7 +203,7 @@ Type &Vector<Type>::getItemByIndex(int index) {
 
 //! Get item const
 template<typename Type>
-const Type &Vector<Type>::getItemByIndex(int index) const {
+const Type &Vector<Type>::at(int index) const {
     time_t currentTime = time(NULL);
     if (index < 0 || index >= vectorSize)
         throw InvalidIndexException(__FILE__, typeid(*this).name(),

@@ -34,10 +34,12 @@ public:
 
     double length() const;
 
-    Type &getItemByIndex(int index);
-    const Type &getItemByIndex(int index) const;
+    Type &at(int index);
+    const Type &at(int index) const; // Добавить исключение на выход за перделы, переименуй в at
 
     bool setItemByIndex(int index, const Type item);
+    void pushBack(const Type &value); // REALIZE UWU
+    void popBack(); // REALIZE UWU
 
     double vectorsAngle(const Vector<Type> &vector) const;
 
