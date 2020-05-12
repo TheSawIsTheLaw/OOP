@@ -24,7 +24,7 @@ ExceptionBase::ExceptionBase(std::string fileName, std::string className,
                              int currentLine, const char *errorTime,
                              std::string information = "Error") {
     errorInformation = "\nFile: " + fileName + "\nClass: " + className +
-            "\nAt line: " + std::to_string(currentLine) + "\nTime" + errorTime +
+            "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime +
             "Information about error: " + information;
 }
 
