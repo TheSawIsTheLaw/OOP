@@ -1,10 +1,13 @@
 #ifndef CONST_ITERATOR_H
 #define CONST_ITERATOR_H
 
+
 #include "exceptions.h"
 
 #include <memory>
 #include <time.h>
+#include <vector>
+
 
 template<typename Type>
 class Vector;

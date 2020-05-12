@@ -404,7 +404,7 @@ Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
+Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (vectorSize < 0 || vector.vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
@@ -418,7 +418,7 @@ Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Type Vector<Type>::operator*(const Vector<Type> &vector) const {
+double Vector<Type>::operator*(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (vectorSize <= 0 || vector.vectorSize <= 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
@@ -535,7 +535,7 @@ Type Vector<Type>::summaryValue() {
 }
 
 template<typename Type>
-Type Vector<Type>::length(void) const {
+double Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
     if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),

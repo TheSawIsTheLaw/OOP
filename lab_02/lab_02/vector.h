@@ -24,7 +24,7 @@ public:
     Vector(std::initializer_list<Type> elements);
 
     explicit Vector(const Vector<Type> &vector);
-    Vector(Vector<Type> &&vector);
+    Vector(Vector<Type> &&vector); // ADD REALIZATION UWU
 
     ~Vector();
 
@@ -32,7 +32,7 @@ public:
     bool isZeroV() const;
     bool isUnitV() const;
 
-    Type length() const; // Исправь на "доубл"
+    double length() const;
 
     Type &getItemByIndex(int index);
     const Type &getItemByIndex(int index) const;
@@ -50,24 +50,22 @@ public:
     Vector<Type> &operator=(std::initializer_list<Type> arguments);
     Vector<Type> &operator=(Vector<Type> &&vector);
 
-    // Vector<Type> &operator+=(const Type number);
     Vector<Type> &operator+=(const Vector<Type> &vector);
-    // Vector<Type> &operator-=(const Type number);
     Vector<Type> &operator-=(const Vector<Type> &vector);
-    // Vector<Type> &operator*=(const Vector<Type> &vector);
     Vector<Type> &operator*=(const Type number);
-    // Vector<Type> &operator/=(const Vector<Type> &vector); 
     Vector<Type> &operator/=(const Type number);
 
-    //Vector<Type> &operator+(const Type number);
     Vector<Type> operator+(const Vector<Type> &vector);
+//    Vector<Type> sumVec(const Vector<Type> &vector);
+//    Vector<Type> sumEl(const Type element);
 
-    //Vector<Type> &operator-(const Type number);
-    Vector<Type> operator-(const Vector<Type> &vector);
+    Vector<Type> operator-(const Vector<Type> &vector) const; // noexcept mb?
+//    Vector<Type> differenceVec(const Vector<Type> &vector);
+//    Vector<Type> differenceEl(const Type element);
 
-    Type operator*(const Vector<Type> &vector) const;
-
-    Vector<Type> operator&(const Vector<Type> &vector) const;
+    double operator*(const Vector<Type> &vector) const;
+//    double compositionVec(const Vector<Type> &vector);
+//    Vector<Type> compositionEl(const Type element);
 
     Vector<Type> operator-();
 
