@@ -74,6 +74,10 @@ public:
 //    double compositionVec(const Vector<Type> &vector);
 //    Vector<Type> compositionEl(const Type element);
 
+    double operator/(const Vector<Type> &vector) const;
+//    double divisionVec(const Vector<Type> &vector);
+//    Vector<Type> divisionEl(const Type element);
+
     Vector<Type> operator-();
 
     bool operator==(const Vector<Type> &vector) const;
@@ -90,6 +94,7 @@ protected:
     void vecSum(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
     void vecDif(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
     void vecMul(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
+    void vecDiv(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
 
     void allocNewVectorMem(int itemsAmount);
 };
