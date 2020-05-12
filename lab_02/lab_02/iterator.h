@@ -41,13 +41,12 @@ public:
     bool operator==(const Iterator<Type> &boolean) const;
     bool operator!=(const Iterator<Type> &boolean) const;
 
-    bool exceptionCheck(int lineError) const;
-
 private:
     std::weak_ptr<Type> wPointer;
 
 protected:
     Type *getCurrentPointer() const;
+    bool exceptionCheck(int lineError) const;
     int currentIndex = 0;
     int vectorLen = 0;
 };
