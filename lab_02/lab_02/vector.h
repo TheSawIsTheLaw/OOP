@@ -15,6 +15,7 @@ public:
     friend class Iterator<Type>;
     friend class ConstIterator<Type>;
 
+    //! Constructors
     Vector();
 
     Vector(int len);
@@ -25,36 +26,46 @@ public:
 
     explicit Vector(const Vector<Type> &vector);
     Vector(Vector<Type> &&vector); // ADD REALIZATION UWU
+    //< End
 
+    // Destructor
     ~Vector();
 
 
+    //! Vector bool funcs
     bool isZeroV() const;
     bool isUnitV() const;
+    //< End
 
+    //! One vector methods
     double length() const;
-
-    Type &at(int index);
-    const Type &at(int index) const; // Добавить исключение на выход за перделы, переименуй в at
-
-    bool setItemByIndex(int index, const Type item);
     void pushBack(const Type &value); // REALIZE UWU
     void popBack(); // REALIZE UWU
 
-    double vectorsAngle(const Vector<Type> &vector) const;
-
-    bool areCollinear(const Vector<Type> &vector) const;
-    bool areOrthgonal(const Vector<Type> &vector) const;
+    bool setItemByIndex(int index, const Type item);
+    Type &at(int index);
+    const Type &at(int index) const; // Добавить исключение на выход за перделы, переименуй в at
 
     Vector<Type> getUnitV() const;
+    //< End
 
+
+    //! Two vectors methods
+    double vectorsAngle(const Vector<Type> &vector) const;
+    bool areCollinear(const Vector<Type> &vector) const;
+    bool areOrthgonal(const Vector<Type> &vector) const;
+    //< End
+
+    //! Iterator
     ConstIterator<Type> begin() const;
     ConstIterator<Type> end() const;
     Iterator<Type> begin();
     Iterator<Type> end();
     ConstIterator<Type> cBegin() const; // Берём у неконстантного константный
     ConstIterator<Type> cEnd() const; // Берём у неконстантного константный
+    //< End
 
+    //! Operators overloads
     Vector<Type> &operator=(const Vector<Type> &vector);
     Vector<Type> &operator=(std::initializer_list<Type> arguments);
     Vector<Type> &operator=(Vector<Type> &&vector);
@@ -87,6 +98,7 @@ public:
 
     Type &operator[](int index);
     const Type &operator[](int index) const;
+    //< End
 
 private:
     std::shared_ptr<Type> values;
