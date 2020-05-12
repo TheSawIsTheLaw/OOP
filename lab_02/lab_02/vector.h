@@ -46,6 +46,13 @@ public:
 
     Vector<Type> getUnitV() const;
 
+    ConstIterator<Type> begin() const;
+    ConstIterator<Type> end() const;
+    Iterator<Type> begin();
+    Iterator<Type> end();
+    ConstIterator<Type> cBegin() const; // Берём у неконстантного константный
+    ConstIterator<Type> cEnd() const; // Берём у неконстантного константный
+
     Vector<Type> &operator=(const Vector<Type> &vector);
     Vector<Type> &operator=(std::initializer_list<Type> arguments);
     Vector<Type> &operator=(Vector<Type> &&vector);
