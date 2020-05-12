@@ -210,9 +210,7 @@ const Type &Vector<Type>::at(int index) const {
                                     __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator(*this);
-    for (int i = 0; i < index; i++, iterator++)
-    {
-    }
+    for (int i = 0; i < index; i++, iterator++) { }
 
     return *iterator;
 }
