@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <cmath>
 #include <math.h>
+#include <exception>
 
 //! Distr
 template<typename Type>
@@ -491,8 +492,13 @@ Vector<Type> &Vector<Type>::operator=(Vector<Type> &&vector) {
 //! Allocation for Vector
 template<typename Type>
 void Vector<Type>::allocNewVectorMem(int amount) {
-    values.reset();
-    // Добавить bad alloc
+    time_t currentTime = time(NULL);
+    try {
+        values.reset();
+    } catch (std::bad_alloc &exception) {
+        throw MemoryException(__FILE__, typeid(*this).name(),
+                              __LINE__, ctime(&currentTime));
+    }
     std::shared_ptr<Type> temp(new Type[amount], std::default_delete<Type[]>());
     values = temp;
 }
