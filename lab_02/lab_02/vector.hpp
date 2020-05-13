@@ -247,7 +247,7 @@ Type &Vector<Type>::at(int index) {
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    ConstIterator<Type> iterator = this->begin();
+    Iterator<Type> iterator = this->begin();
     for (int i = 0; i < index; i++, iterator++) { }
 
     return *iterator;
@@ -262,7 +262,7 @@ const Type &Vector<Type>::at(int index) const {
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator(*this);
+    ConstIterator<Type> iterator(*this);
     for (int i = 0; i < index; i++, iterator++) { }
 
     return *iterator;
