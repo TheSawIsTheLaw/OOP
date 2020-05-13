@@ -25,13 +25,13 @@ public:
 
     ConstIterator<Type> &operator=(const ConstIterator<Type> &iterator);
 
-    ConstIterator<Type> &operator-=(int number);
-    ConstIterator<Type> operator-(int number) const;
+    ConstIterator<Type> &operator-=(size_t number);
+    ConstIterator<Type> operator-(size_t number) const;
     ConstIterator<Type> &operator--();
     ConstIterator<Type> operator--(int number);
 
-    ConstIterator<Type> &operator+=(int number);
-    ConstIterator<Type> operator+(int number) const;
+    ConstIterator<Type> &operator+=(size_t number);
+    ConstIterator<Type> operator+(size_t number) const;
     ConstIterator<Type> &operator++();
     ConstIterator<Type> operator++(int number);
 
@@ -97,7 +97,7 @@ ConstIterator<Type> &ConstIterator<Type>::operator=(const ConstIterator<Type>& i
 }
 
 template<typename Type>
-ConstIterator<Type> &ConstIterator<Type>::operator+=(int number) {
+ConstIterator<Type> &ConstIterator<Type>::operator+=(size_t number) {
     exceptionCheck(__LINE__);
     currentIndex += number;
 
@@ -105,7 +105,7 @@ ConstIterator<Type> &ConstIterator<Type>::operator+=(int number) {
 }
 
 template<typename Type>
-ConstIterator<Type> ConstIterator<Type>::operator+(int number) const {
+ConstIterator<Type> ConstIterator<Type>::operator+(size_t number) const {
     exceptionCheck(__LINE__);
     ConstIterator<Type> iterator(*this);
     iterator += number;
@@ -114,7 +114,7 @@ ConstIterator<Type> ConstIterator<Type>::operator+(int number) const {
 }
 
 template <typename Type>
-ConstIterator<Type> &ConstIterator<Type>::operator-=(int number) {
+ConstIterator<Type> &ConstIterator<Type>::operator-=(size_t number) {
     exceptionCheck(__LINE__);
     currentIndex -= number;
 
@@ -122,7 +122,7 @@ ConstIterator<Type> &ConstIterator<Type>::operator-=(int number) {
 }
 
 template <typename Type>
-ConstIterator<Type> ConstIterator<Type>::operator-(int number) const {
+ConstIterator<Type> ConstIterator<Type>::operator-(size_t number) const {
     exceptionCheck(__LINE__);
     ConstIterator<Type> iterator(*this);
     iterator -= number;
