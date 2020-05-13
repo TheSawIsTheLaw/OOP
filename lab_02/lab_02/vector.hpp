@@ -277,7 +277,7 @@ bool Vector<Type>::operator==(const Vector<Type> &vector) const {
         return areEqual;
 
     areEqual = true;
-    Iterator<Type> firstIterator = this->begin();
+    ConstIterator<Type> firstIterator = this->begin();
     for (ConstIterator<Type> secondIterator = vector.begin(); firstIterator && areEqual;
          secondIterator++)
         if (*firstIterator != *secondIterator)
@@ -292,8 +292,8 @@ bool Vector<float>::operator==(const Vector<float> &vector) const {
         return areEqual;
 
     areEqual = true;
-    Iterator<float> firstIterator(*this);
-    for (Iterator<float> secondIterator(vector); firstIterator && areEqual;
+    ConstIterator<float> firstIterator = this->begin();
+    for (ConstIterator<float> secondIterator = vector.begin(); firstIterator && areEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<float>::epsilon())
             areEqual = false;
@@ -307,8 +307,8 @@ bool Vector<double>::operator==(const Vector<double> &vector) const {
         return areEqual;
 
     areEqual = true;
-    Iterator<double> firstIterator(*this);
-    for (Iterator<double> secondIterator(vector); firstIterator && areEqual;
+    ConstIterator<double> firstIterator = this->begin();
+    for (ConstIterator<double> secondIterator = vector.begin(); firstIterator && areEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<double>::epsilon())
             areEqual = false;
@@ -322,8 +322,8 @@ bool Vector<long double>::operator==(const Vector<long double> &vector) const {
         return areEqual;
 
     areEqual = true;
-    Iterator<long double> firstIterator(*this);
-    for (Iterator<long double> secondIterator(vector); firstIterator && areEqual;
+    ConstIterator<long double> firstIterator = this->begin();
+    for (ConstIterator<long double> secondIterator = vector.begin(); firstIterator && areEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<long double>::epsilon())
             areEqual = false;
