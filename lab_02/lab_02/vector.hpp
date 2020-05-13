@@ -189,7 +189,7 @@ Vector<Type>::Vector(int len, Type element) {
 
     vectorSize = len;
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
         *iterator = element;
 }
@@ -209,7 +209,7 @@ Vector<Type>::Vector(int len, Type *arrayFrom) {
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     for (int i = 0; iterator; iterator++, i++)
         *iterator = arrayFrom[i];
 }
@@ -219,7 +219,7 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
     vectorSize = int(arguments.size());
     allocNewVectorMem(vectorSize);
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     for (auto &currentItem : arguments)
     {
         *iterator = currentItem;
@@ -247,7 +247,7 @@ Type &Vector<Type>::at(int index) {
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator(*this);
+    ConstIterator<Type> iterator = this->begin();
     for (int i = 0; i < index; i++, iterator++) { }
 
     return *iterator;
