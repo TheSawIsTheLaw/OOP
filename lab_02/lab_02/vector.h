@@ -40,7 +40,7 @@ public:
     //! One vector methods
     double length() const;
     void pushBack(const Type value); // REALIZE UWU
-    void popBack(); // REALIZE UWU
+    Type popBack(); // REALIZE UWU
 
     bool setItemByIndex(int index, const Type item);
     Type &at(int index);

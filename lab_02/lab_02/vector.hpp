@@ -630,6 +630,21 @@ void Vector<Type>::pushBack(const Type value) {
         *iterTo = *iterFrom;
     *iterTo = value;
 }
+
+template<typename Type>
+Type Vector<Type>::popBack() {
+    //!!! Добавить проверку на размер вектора
+    Vector<Type> tempVector(*this);
+    values.reset();
+
+    allocNewVectorMem(vectorSize - 1);
+    vectorSize--;
+    ConstIterator<Type> iterFrom = tempVector.cBegin();
+    Iterator<Type> iterTo = this->begin();
+    for (; iterTo; iterTo++, iterFrom++) // Кажется, тут лучше всё периписать на поверку currentIndex'a
+        *iterTo = *iterFrom;
+    return *iterFrom;
+}
 //! End
 
 //! Set item func

@@ -47,5 +47,9 @@ int main(void)
     orthVecF.pushBack(666);
     std::cout<< "After: "<< orthVecF<< std::endl;
 
+    std::cout<< "PopBack: "<< orthVecF<< std::endl;
+    int gotEl = orthVecF.popBack();
+    std::cout<< "Popped: "<< orthVecF<< "\t"<< "Element: "<< gotEl<< std::endl;
+
     return SUCCESS;
 }
