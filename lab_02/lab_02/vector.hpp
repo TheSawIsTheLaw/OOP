@@ -21,6 +21,11 @@ Iterator<Type> Vector<Type>::begin() {
     return iterator;
 }
 
+template<typename Type>
+Iterator<Type> Vector<Type>::end() {
+    Iterator<Type> iterator(*this);
+    return iterator + this->vectorSize;
+}
 //< End
 
 //! Methods

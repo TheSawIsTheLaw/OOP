@@ -15,6 +15,7 @@ class Iterator: public std::iterator<std::input_iterator_tag, int>
 public:
     Iterator(const Iterator<Type> &iterator);
     Iterator(const Vector<Type> &vector);
+    // Добавить передачу &&
 
     Type &operator *();
     const Type &operator *() const;
