@@ -37,7 +37,11 @@ int main(void)
     std::cout<< "Should be coll: "<< colVecF.areCollinear(colVecS)<< std::endl;
     std::cout<< "Shouldn't be coll: "<< colVecF.areCollinear(operVecF)<< std::endl;
 
-
+    try {
+        orthVecF.areCollinear(lenExample);
+    } catch (ZeroDivisionException &er) {
+        std::cout<< "Error catch:"<< er.what()<< std::endl;
+    }
 
     return SUCCESS;
 }
