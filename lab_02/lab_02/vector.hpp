@@ -79,7 +79,7 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
 
     double angle = (*this * vector) * (1 / (this->length() * vector.length()));
     if (angle > 1)
-        angle -= 1;
+        angle--;
     return acos(angle) * 180 / M_PI;
 }
 
