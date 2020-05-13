@@ -25,7 +25,7 @@ public:
     Vector(std::initializer_list<Type> elements);
 
     explicit Vector(const Vector<Type> &vector);
-    Vector(Vector<Type> &&vector); // ADD REALIZATION UWU
+    Vector(Vector<Type> &&vector);
     //< End
 
     // Destructor
