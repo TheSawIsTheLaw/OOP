@@ -337,8 +337,8 @@ bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
         return areNotEqual;
 
     areNotEqual = false;
-    Iterator<Type> firstIterator(*this);
-    for (Iterator<Type> secondIterator(vector); firstIterator && !areNotEqual;
+    ConstIterator<Type> firstIterator = this->begin();
+    for (ConstIterator<Type> secondIterator = vector.begin(); firstIterator && !areNotEqual;
          secondIterator++)
         if (*firstIterator != *secondIterator)
             areNotEqual = true;
