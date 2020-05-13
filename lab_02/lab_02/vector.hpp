@@ -104,6 +104,22 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
             *resultIterator = 0;
     }
 }
+
+template<typename Type>
+void Vector<Type>::vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
+                          const Vector<Type> &secondV) const{
+    Iterator<Type> resultIterator = result.begin();
+    ConstIterator<Type> firstIterator = firstV.begin();
+    ConstIterator<Type> secondIterator = secondV.begin();
+
+    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
+                                         secondIterator++) {
+        if (i < firstV.vectorSize && i < secondV.vectorSize)
+            *resultIterator = *firstIterator / *secondIterator;
+        else
+            *resultIterator = 0;
+    }
+}
 //< End
 
 //! Additive
@@ -234,8 +250,8 @@ Vector<Type>:: Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
 }
 
 template<typename Type>
-Vector<Type>:: Vector(const Vector<Type> &vector) {
-    Vector<Type> outVector = vector;
+Vector<Type>:: Vector(const Vector<Type> &vector): VectorBase(vector.vectorSize) {
+    *this = vector;
 }
 //< End
 
@@ -555,6 +571,7 @@ void Vector<Type>::allocNewVectorMem(int amount) {
 }
 //< End
 
+// Smth
 template<typename Type>
 bool Vector<Type>::isUnitV() const {
     bool retOut = false;
@@ -599,6 +616,21 @@ double Vector<Type>::length(void) const {
     sum = sqrt(sum);
     return sum;
 }
+
+template<typename Type>
+void Vector<Type>::pushBack(const Type value) {
+    Vector<Type> tempVector(*this);
+    values.reset();
+
+    allocNewVectorMem(vectorSize + 1);
+    vectorSize++;
+    ConstIterator<Type> iterFrom = tempVector.cBegin();
+    Iterator<Type> iterTo = this->begin();
+    for (; iterFrom; iterTo++, iterFrom++)
+        *iterTo = *iterFrom;
+    *iterTo = value;
+}
+//! End
 
 //! Set item func
 template<typename Type>

@@ -43,5 +43,9 @@ int main(void)
         std::cout<< "Error catch:"<< er.what()<< std::endl;
     }
 
+    std::cout<< "Pushback: "<< orthVecF<< std::endl;
+    orthVecF.pushBack(666);
+    std::cout<< "After: "<< orthVecF<< std::endl;
+
     return SUCCESS;
 }

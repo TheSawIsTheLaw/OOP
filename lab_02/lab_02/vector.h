@@ -39,7 +39,7 @@ public:
 
     //! One vector methods
     double length() const;
-    void pushBack(const Type &value); // REALIZE UWU
+    void pushBack(const Type value); // REALIZE UWU
     void popBack(); // REALIZE UWU
 
     bool setItemByIndex(int index, const Type item);
@@ -48,6 +48,7 @@ public:
 
     Vector<Type> getUnitV() const;
     //< End
+
 
     //! Two vectors methods
     double vectorsAngle(const Vector<Type> &vector) const;
@@ -95,7 +96,7 @@ public:
     Vector<Type> divisionEl(const Type element); // R
 
     Vector<Type> operator-();
-    void negative(Vector<Type> &result); // R
+    void negative(Vector<Type> &result);
 
     bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;
