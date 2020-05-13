@@ -49,7 +49,6 @@ public:
     Vector<Type> getUnitV() const;
     //< End
 
-
     //! Two vectors methods
     double vectorsAngle(const Vector<Type> &vector) const;
     bool areCollinear(const Vector<Type> &vector) const;
@@ -76,22 +75,27 @@ public:
     Vector<Type> &operator/=(const Type number);
 
     Vector<Type> operator+(const Vector<Type> &vector);
-//    Vector<Type> sumVec(const Vector<Type> &vector);
-//    Vector<Type> sumEl(const Type element);
+    void vecSum(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
+    Vector<Type> sumEl(const Type element); // R
 
     Vector<Type> operator-(const Vector<Type> &vector) const; // noexcept mb?
-//    Vector<Type> differenceVec(const Vector<Type> &vector);
-//    Vector<Type> differenceEl(const Type element);
+    void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
+    Vector<Type> differenceEl(const Type element); // R
 
     double operator*(const Vector<Type> &vector) const;
-//    double compositionVec(const Vector<Type> &vector);
-//    Vector<Type> compositionEl(const Type element);
+    void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
+    Vector<Type> compositionEl(const Type element); // R
 
     double operator/(const Vector<Type> &vector) const;
-//    double divisionVec(const Vector<Type> &vector);
-//    Vector<Type> divisionEl(const Type element);
+    void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
+    Vector<Type> divisionEl(const Type element); // R
 
     Vector<Type> operator-();
+    void negative(Vector<Type> &result); // R
 
     bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;
@@ -105,14 +109,6 @@ private:
 
 protected:
     Type summaryValue();
-    void vecSum(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
-    void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
-    void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
-    void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
 
     void allocNewVectorMem(int itemsAmount);
 };
@@ -120,7 +116,7 @@ protected:
 // cio wk
 template<typename Type>
 std::ostream &operator<<(std::ostream &os, const Vector<Type> &vector) {
-    Iterator<Type> iterator(vector);
+    ConstIterator<Type> iterator = vector.begin();
     if (!iterator) {
         os<< "Empty mVector";
         return os;
