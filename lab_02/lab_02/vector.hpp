@@ -74,9 +74,9 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
 template<typename Type>
 void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
                           const Vector<Type> &secondV) const {
-    Iterator<Type> resultIterator(result);
-    Iterator<Type> firstIterator(firstV);
-    Iterator<Type> secondIterator(secondV);
+    Iterator<Type> resultIterator = result.begin();
+    ConstIterator<Type> firstIterator = firstV.begin();
+    ConstIterator<Type> secondIterator = secondV.begin();
 
     for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
                                          secondIterator++) {
