@@ -61,8 +61,8 @@ public:
     ConstIterator<Type> end() const;
     Iterator<Type> begin();
     Iterator<Type> end();
-    ConstIterator<Type> cBegin() const; // Берём у неконстантного константный
-    ConstIterator<Type> cEnd() const; // Берём у неконстантного константный
+    ConstIterator<Type> cBegin() const;
+    ConstIterator<Type> cEnd() const;
     //< End
 
     //! Operators overloads
@@ -105,10 +105,14 @@ private:
 
 protected:
     Type summaryValue();
-    void vecSum(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
-    void vecDif(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
-    void vecMul(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
-    void vecDiv(Vector<Type> &result, const Vector<Type> &firstV, const Vector<Type> &secondV) const;
+    void vecSum(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
+    void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
+    void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
+    void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
+                const Vector<Type> &secondV) const;
 
     void allocNewVectorMem(int itemsAmount);
 };
