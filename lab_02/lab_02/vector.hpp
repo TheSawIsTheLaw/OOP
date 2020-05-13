@@ -14,6 +14,15 @@ Vector<Type>::~Vector() {
 }
 //< End
 
+//! Iterator
+template<typename Type>
+Iterator<Type> Vector<Type>::begin() {
+    Iterator<Type> iterator(*this);
+    return iterator;
+}
+
+//< End
+
 //! Methods
 template <typename Type>
 void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
