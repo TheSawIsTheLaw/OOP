@@ -73,7 +73,7 @@ template<typename Type>
 double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (!this->length() || !vector.length())
-        throw ZeroDivisionException(__FILE__, typeid(this).name(),
+        throw ZeroDivisionException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
     double angle = (*this * vector) * (1 / (this->length() * vector.length()));
