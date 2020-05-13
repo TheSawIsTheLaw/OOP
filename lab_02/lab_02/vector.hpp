@@ -44,6 +44,12 @@ ConstIterator<Type> Vector<Type>::cBegin() const {
     ConstIterator<Type> cIterator(*this);
     return cIterator;
 }
+
+template<typename Type>
+ConstIterator<Type> Vector<Type>::cEnd() const {
+    ConstIterator<Type> cIterator(*this);
+    return cIterator + this->vectorSize;
+}
 //< End
 
 //! Methods
