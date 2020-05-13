@@ -184,6 +184,17 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
         iterator++;
     }
 }
+
+template<typename Type>
+Vector<Type>:: Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
+    values = vector.values;
+    vector.values = nullptr;
+}
+
+template<typename Type>
+Vector<Type>:: Vector(const Vector<Type> &vector) {
+    Vector<Type> outVector = vector;
+}
 //< End
 
 //! Get item func
@@ -432,12 +443,12 @@ double Vector<Type>::operator*(const Vector<Type> &vector) const {
 
 template<typename Type>
 Type &Vector<Type>::operator[](int index) {
-    return getItemByIndex(index);
+    return at(index);
 }
 
 template<typename Type>
 const Type &Vector<Type>::operator[](int index) const {
-    return getItemByIndex(index);
+    return at(index);
 }
 
 template<typename Type>
@@ -554,7 +565,7 @@ bool Vector<Type>::setItemByIndex(int index, const Type item)
     if (index < 0 || index >= vectorSize)
         return false;
 
-    getItemByIndex(index) = item;
+    at(index) = item;
     return true;
 }
 //< End
