@@ -16,7 +16,7 @@ int main(void)
     std::cout<< "LenFillInit with 6.66 filler: "<< lenFillExample<< std::endl;
     std::cout<< "Empty vector: "<< emptyVector<< std::endl;
 
-    Vector<int> operVecF = {1, 2, 3};
+    Vector<int> operVecF = {1, 2, 1};
     Vector<int> operVecS = {3, 2, 4};
 
     std::cout<< "LenFill and InitList angle: "<< lenFillExample.vectorsAngle(initializerListExample)<< std::endl;
@@ -26,9 +26,10 @@ int main(void)
 
     Vector<float> orthVecF = {1, 0, 0};
     Vector<float> orthVecS = {0, 1, 0};
+    Vector<float> nonOrthVec = {1, 2, 3};
 
     std::cout<< "Should be orth: "<< orthVecF.areOrthgonal(orthVecS)<< std::endl;
-    std::cout<< "Shouldn't be orth: "<<orthVecF.areCollinear(lenExample)<< std::endl;
+    std::cout<< "Shouldn't be orth: "<<orthVecF.areCollinear(nonOrthVec)<< std::endl;
 
     Vector<int> colVecF = {1, 1, 0};
     Vector<int> colVecS = {1, 1, 0};
