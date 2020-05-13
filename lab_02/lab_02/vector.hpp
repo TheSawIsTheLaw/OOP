@@ -141,7 +141,7 @@ Vector<Type> Vector<Type>::getUnitV() const {
     Vector<Type> unitVector(*this);
     Type len = this->length;
 
-    Iterator<Type> iterator(unitVector);
+    Iterator<Type> iterator = unitVector.begin();
     for (; iterator; iterator++)
         *iterator /= len;
 
@@ -170,7 +170,7 @@ Vector<Type>::Vector(int len) {
 
     vectorSize = len;
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
         *iterator = 0;
 }
@@ -262,7 +262,7 @@ const Type &Vector<Type>::at(int index) const {
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    ConstIterator<Type> iterator(*this);
+    ConstIterator<Type> iterator = this->begin();
     for (int i = 0; i < index; i++, iterator++) { }
 
     return *iterator;
@@ -352,8 +352,8 @@ bool Vector<float>::operator!=(const Vector<float> &vector) const {
         return areNotEqual;
 
     areNotEqual = false;
-    Iterator<float> firstIterator(*this);
-    for (Iterator<float> secondIterator(vector); firstIterator && !areNotEqual;
+    ConstIterator<float> firstIterator = this->begin();
+    for (ConstIterator<float> secondIterator = vector.begin(); firstIterator && !areNotEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<float>::epsilon())
             areNotEqual = true;
@@ -367,8 +367,8 @@ bool Vector<double>::operator!=(const Vector<double> &vector) const {
         return areNotEqual;
 
     areNotEqual = false;
-    Iterator<double> firstIterator(*this);
-    for (Iterator<double> secondIterator(vector); firstIterator && !areNotEqual;
+    ConstIterator<double> firstIterator = this->begin();
+    for (ConstIterator<double> secondIterator = vector.begin(); firstIterator && !areNotEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<double>::epsilon())
             areNotEqual = true;
@@ -382,8 +382,8 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
         return areNotEqual;
 
     areNotEqual = false;
-    Iterator<long double> firstIterator(*this);
-    for (Iterator<long double> secondIterator(vector); firstIterator && !areNotEqual;
+    ConstIterator<long double> firstIterator = this->begin();
+    for (ConstIterator<long double> secondIterator = vector.begin(); firstIterator && !areNotEqual;
          secondIterator++)
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<long double>::epsilon())
             areNotEqual = true;
@@ -421,7 +421,7 @@ Vector<Type> &Vector<Type>::operator*=(const Type number) {
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
         *iterator *= number;
     return *this;
@@ -434,7 +434,7 @@ Vector<Type> &Vector<Type>::operator/=(const Type number) {
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
         *iterator /= number;
     return *this;
@@ -496,7 +496,7 @@ const Type &Vector<Type>::operator[](int index) const {
 template<typename Type>
 Vector<Type> Vector<Type>::operator-() {
     Vector<Type> newVector(*this);
-    Iterator<Type> iterator(newVector);
+    Iterator<Type> iterator = newVector.begin();
     for (; iterator; iterator++)
         *iterator = -*iterator;
 
@@ -520,7 +520,7 @@ Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
     vectorSize = int(arguments.size());
     allocNewVectorMem(vectorSize);
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     for (auto &currentItem : arguments)
     {
         *iterator = currentItem;
@@ -577,7 +577,7 @@ Type Vector<Type>::summaryValue() {
     if (vectorSize <= 0) throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                                     __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator(*this);
+    Iterator<Type> iterator = this->begin();
     Type summary = 0;
     for (; iterator; iterator++)
         summary += *iterator;
@@ -592,7 +592,7 @@ double Vector<Type>::length(void) const {
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator(*this);
+    ConstIterator<Type> iterator = this->begin();
     Type sum = 0;
     for (; iterator; iterator++)
         sum += *iterator * *iterator;
