@@ -91,5 +91,9 @@ int main(void)
     for (const auto &elem:orthVecF)
         std::cout<< elem<< " ";
 
+    std::cout<< "NonNeg: "<< nonOrthVec<< std::endl;
+    nonOrthVec.negative();
+    std::cout<< "Neg: "<< nonOrthVec<< std::endl;
+
     return SUCCESS;
 }
