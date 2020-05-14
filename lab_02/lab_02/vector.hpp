@@ -233,7 +233,7 @@ Vector<Type>::Vector() {
 template<typename Type>
 Vector<Type>::Vector(size_t size) {
     time_t currentTime = time(NULL);
-    if (size < 0)
+    if (size == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -672,7 +672,7 @@ bool Vector<Type>::isZeroV() const {
 template<typename Type>
 Type Vector<Type>::summaryValue() {
     time_t currentTime = time(NULL);
-    if (vectorSize <= 0) throw EmptyVectorException(__FILE__, typeid(*this).name(),
+    if (vectorSize = 0) throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                                     __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator = this->begin();
@@ -686,7 +686,7 @@ Type Vector<Type>::summaryValue() {
 template<typename Type>
 double Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
-    if (vectorSize < 0)
+    if (vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 

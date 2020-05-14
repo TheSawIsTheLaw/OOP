@@ -18,7 +18,7 @@ public:
     //! Constructors
     Vector();
 
-    Vector(size_t size);
+    explicit Vector(size_t size);
     Vector(size_t size, Type *arrayFrom);
     Vector(size_t size, Type element);
 
@@ -29,7 +29,7 @@ public:
     //< End
 
     // Destructor
-    ~Vector();
+    virtual ~Vector();
 
 
     //! Vector bool funcs
