@@ -636,11 +636,11 @@ void Vector<Type>::allocNewVectorMem(size_t amount) {
 }
 //< End
 
-// Smth
+//! Smth
 template<typename Type>
 bool Vector<Type>::isUnitV() const {
     bool retOut = false;
-    if (abs(this->length() - 1) < std::numeric_limits<float>::epsilon)
+    if (fabs(this->length() - 1) < __FLT_EPSILON__)
         retOut = true;
     return retOut;
 }
@@ -648,7 +648,7 @@ bool Vector<Type>::isUnitV() const {
 template<typename Type>
 bool Vector<Type>::isZeroV() const {
     bool retOut = false;
-    if (this->length() == 0)
+    if (this->length() < __FLT_EPSILON__)
         retOut = true;
     return retOut;
 }
