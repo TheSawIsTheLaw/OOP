@@ -479,6 +479,24 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
 }
 
 template<typename Type>
+Vector<Type> &Vector<Type>::operator-=(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    *this = this->difEl(element);
+
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::difEq(const Vector<Type> &vector) {
+    *this -= vector;
+    return *this;
+}
+
+template<typename Type>
 Vector<Type> &Vector<Type>::operator*=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0)
@@ -491,6 +509,24 @@ Vector<Type> &Vector<Type>::operator*=(const Vector<Type> &vector) {
 }
 
 template<typename Type>
+Vector<Type> &Vector<Type>::operator*=(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    *this = this->mulEl(element);
+
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::mulEq(const Vector<Type> &vector) {
+    *this *= vector;
+    return *this;
+}
+
+template<typename Type>
 Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0)
@@ -499,6 +535,24 @@ Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
     this->checkSizes(vector, __LINE__);
 
     vecDiv(*this, *this, vector);
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> &Vector<Type>::operator/=(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    *this = this->divEl(element);
+
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::divEq(const Vector<Type> &vector) {
+    *this /= vector;
     return *this;
 }
 

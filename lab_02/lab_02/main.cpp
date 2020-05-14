@@ -98,14 +98,14 @@ int main(void)
     nonOrthVec += 1;
     std::cout<< "+= 1 "<< nonOrthVec<< std::endl;
 
-//    nonOrthVec -= 1;
-//    std::cout<< "-= 1 "<< nonOrthVec<< std::endl;
+    nonOrthVec -= 1;
+    std::cout<< "-= 1 "<< nonOrthVec<< std::endl;
 
-//    nonOrthVec *= 2;
-//    std::cout<< "*= 2 "<< nonOrthVec<< std::endl;
+    nonOrthVec *= 2;
+    std::cout<< "*= 2 "<< nonOrthVec<< std::endl;
 
-//    nonOrthVec /= 2;
-//    std::cout<< "/= 2 "<< nonOrthVec<< std::endl;
+    nonOrthVec /= 2;
+    std::cout<< "/= 2 "<< nonOrthVec<< std::endl;
 
     return SUCCESS;
 }
