@@ -466,6 +466,12 @@ Vector<Type> Vector<Type>::sumEq(const Vector<Type> &vector) {
 }
 
 template<typename Type>
+Vector<Type> Vector<Type>::sumEq(const Type &element) {
+    *this += element;
+    return *this;
+}
+
+template<typename Type>
 Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0 || vector.vectorSize == 0)
@@ -493,6 +499,12 @@ Vector<Type> &Vector<Type>::operator-=(const Type &element) {
 template<typename Type>
 Vector<Type> Vector<Type>::difEq(const Vector<Type> &vector) {
     *this -= vector;
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::difEq(const Type &element) {
+    *this -= element;
     return *this;
 }
 
@@ -527,6 +539,12 @@ Vector<Type> Vector<Type>::mulEq(const Vector<Type> &vector) {
 }
 
 template<typename Type>
+Vector<Type> Vector<Type>::mulEq(const Type &element) {
+    *this *= element;
+    return *this;
+}
+
+template<typename Type>
 Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0)
@@ -553,6 +571,12 @@ Vector<Type> &Vector<Type>::operator/=(const Type &element) {
 template<typename Type>
 Vector<Type> Vector<Type>::divEq(const Vector<Type> &vector) {
     *this /= vector;
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::divEq(const Type &element) {
+    *this /= element;
     return *this;
 }
 
