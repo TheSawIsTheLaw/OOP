@@ -87,5 +87,13 @@ int main(void)
     for (auto elem:orthVecF)
         std::cout<< elem<< " ";
 
+    std::cout<< "\nFor each &: ";
+    for (auto &elem:orthVecF)
+        std::cout<< elem<< " ";
+
+    std::cout<< "\nFor each const &: ";
+    for (const auto &elem:orthVecF)
+        std::cout<< elem<< " ";
+
     return SUCCESS;
 }
