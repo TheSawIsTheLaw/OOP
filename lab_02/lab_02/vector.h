@@ -39,8 +39,8 @@ public:
 
     //! One vector methods
     double length() const;
-    void pushBack(const Type value); // REALIZE UWU
-    Type popBack(); // REALIZE UWU
+    void pushBack(const Type value);
+    Type popBack();
 
     bool setItemByIndex(int index, const Type item);
     Type &at(int index);
@@ -78,22 +78,22 @@ public:
     Vector<Type> operator+(const Vector<Type> &vector);
     void vecSum(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> sumEl(const Type element) const; // R
+    Vector<Type> sumEl(const Type element) const;
 
     Vector<Type> operator-(const Vector<Type> &vector) const; // noexcept mb?
     void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> difEl(const Type element) const; // R
+    Vector<Type> difEl(const Type element) const;
 
     double operator*(const Vector<Type> &vector) const;
     void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> mulEl(const Type element) const; // R
+    Vector<Type> mulEl(const Type element) const;
 
     double operator/(const Vector<Type> &vector) const;
     void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> divEl(const Type element) const; // R
+    Vector<Type> divEl(const Type element) const;
 
     Vector<Type> operator-();
     void negative(Vector<Type> &result);
