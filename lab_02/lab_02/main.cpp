@@ -107,5 +107,19 @@ int main(void)
     nonOrthVec /= 2;
     std::cout<< "/= 2 "<< nonOrthVec<< std::endl;
 
+    std::cout<< "The same with phrases... "<< std::endl;
+
+    nonOrthVec.sumEq(1);
+    std::cout<< "+= 1 "<< nonOrthVec<< std::endl;
+
+    nonOrthVec.difEq(1);
+    std::cout<< "-= 1 "<< nonOrthVec<< std::endl;
+
+    nonOrthVec.mulEq(2);
+    std::cout<< "*= 2 "<< nonOrthVec<< std::endl;
+
+    nonOrthVec.divEq(2);
+    std::cout<< "/= 2 "<< nonOrthVec<< std::endl;
+
     return SUCCESS;
 }

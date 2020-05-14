@@ -71,23 +71,23 @@ public:
 
     Vector<Type> &operator+=(const Vector<Type> &vector);
     Vector<Type> &operator+=(const Type &element);
-    Vector<Type> sumEq(const Vector<Type> &vector);
-    Vector<Type> sumEq(const Type &element);
+    void sumEq(const Vector<Type> &vector);
+    void sumEq(const Type &element);
 
     Vector<Type> &operator-=(const Vector<Type> &vector);
     Vector<Type> &operator-=(const Type &element);
-    Vector<Type> difEq(const Vector<Type> &vector);
-    Vector<Type> difEq(const Type &element);
+    void difEq(const Vector<Type> &vector);
+    void difEq(const Type &element);
 
     Vector<Type> &operator*=(const Vector<Type> &vector);
     Vector<Type> &operator*=(const Type &element);
-    Vector<Type> mulEq(const Vector<Type> &vector);
-    Vector<Type> mulEq(const Type &element);
+    void mulEq(const Vector<Type> &vector);
+    void mulEq(const Type &element);
 
     Vector<Type> &operator/=(const Vector<Type> &vector);
     Vector<Type> &operator/=(const Type &element); // R
-    Vector<Type> divEq(const Vector<Type> &vector); // R
-    Vector<Type> divEq(const Type &element); // R
+    void divEq(const Vector<Type> &vector); // R
+    void divEq(const Type &element); // R
 
     Vector<Type> operator+(const Vector<Type> &vector); // R
     Vector<Type> operator+(const Type &element); // R
