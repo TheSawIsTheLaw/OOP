@@ -18,9 +18,9 @@ public:
     //! Constructors
     Vector();
 
-    Vector(int len);
-    Vector(int len, Type *vector);
-    Vector(int len, Type element);
+    Vector(size_t len);
+    Vector(size_t len, Type *vector);
+    Vector(size_t len, Type element);
 
     Vector(std::initializer_list<Type> elements);
 
@@ -42,9 +42,9 @@ public:
     void pushBack(const Type value);
     Type popBack();
 
-    bool setItemByIndex(int index, const Type item);
-    Type &at(int index);
-    const Type &at(int index) const; // Добавить исключение на выход за перделы, переименуй в at
+    bool setItemByIndex(size_t index, const Type item);
+    Type &at(size_t index);
+    const Type &at(size_t index) const; // Добавить исключение на выход за перделы, переименуй в at
 
     Vector<Type> getUnitV() const;
     //< End
@@ -101,8 +101,8 @@ public:
     bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;
 
-    Type &operator[](int index);
-    const Type &operator[](int index) const;
+    Type &operator[](size_t index);
+    const Type &operator[](size_t index) const;
     //< End
 
 private:
@@ -111,7 +111,7 @@ private:
 protected:
     Type summaryValue();
 
-    void allocNewVectorMem(int itemsAmount);
+    void allocNewVectorMem(size_t itemsAmount);
 };
 
 // cio wk
