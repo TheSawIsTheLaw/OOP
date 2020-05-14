@@ -713,6 +713,10 @@ void Vector<Type>::pushBack(const Type value) {
 
 template<typename Type>
 Type Vector<Type>::popBack() {
+    time_t currentTime = time(NULL);
+    if (!this->vectorSize)
+        EmptyVectorException(__FILE__, typeid(*this).name(),
+                             __LINE__, ctime(&currentTime));
     //!!! Добавить проверку на размер вектора
     Vector<Type> tempVector(*this);
     values.reset();
@@ -721,7 +725,7 @@ Type Vector<Type>::popBack() {
     vectorSize--;
     ConstIterator<Type> iterFrom = tempVector.cBegin();
     Iterator<Type> iterTo = this->begin();
-    for (; iterTo; iterTo++, iterFrom++) // Кажется, тут лучше всё периписать на поверку currentIndex'a
+    for (; iterTo; iterTo++, iterFrom++)
         *iterTo = *iterFrom;
     return *iterFrom;
 }
