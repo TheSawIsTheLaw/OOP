@@ -51,5 +51,7 @@ int main(void)
     int gotEl = orthVecF.popBack();
     std::cout<< "Popped: "<< orthVecF<< "\t"<< "Element: "<< gotEl<< std::endl;
 
+    std::cout<< "Vector "<< colVecS<< " length is: "<< colVecS.length()<<std::endl;
+
     return SUCCESS;
 }

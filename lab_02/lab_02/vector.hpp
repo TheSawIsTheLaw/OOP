@@ -680,8 +680,7 @@ double Vector<Type>::length(void) const {
     Type sum = 0;
     for (; iterator; iterator++)
         sum += *iterator * *iterator;
-    sum = sqrt(sum);
-    return sum;
+    return sqrt(sum);
 }
 
 template<typename Type>

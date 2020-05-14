@@ -123,9 +123,11 @@ std::ostream &operator<<(std::ostream &os, const Vector<Type> &vector) {
         return os;
     }
 
+    os<< "{";
     os<< *iterator;
     for (iterator++; iterator; iterator++)
             os<< ", "<< *iterator;
+    os<< "}";
 
     return os;
 }
