@@ -70,8 +70,8 @@ public:
     Vector<Type> &operator=(Vector<Type> &&vector);
 
     Vector<Type> &operator+=(const Vector<Type> &vector);
-    Vector<Type> &operator+=(const Type &element); // R
-    Vector<Type> sumEq(const Vector<Type> &vector); // R
+    Vector<Type> &operator+=(const Type &element);
+    Vector<Type> sumEq(const Vector<Type> &vector);
     Vector<Type> sumEq(const Type &element); // R
 
     Vector<Type> &operator-=(const Vector<Type> &vector);
@@ -94,7 +94,7 @@ public:
     Vector<Type> sumVec(const Vector<Type> &vector); // R
     Vector<Type> sumEl(const Type &element) const; // R
 
-    Vector<Type> operator-(const Vector<Type> &vector); // EXCEPT на несоразмерные вектора
+    Vector<Type> operator-(const Vector<Type> &vector);
     Vector<Type> operator-(const Type &element); // R
     Vector<Type> difVec(const Vector<Type> &vector); // R
     Vector<Type> difEl(const Type &element) const; // R

@@ -448,6 +448,24 @@ Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
 }
 
 template<typename Type>
+Vector<Type> &Vector<Type>::operator+=(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    *this = this->sumEl(element);
+
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::sumEq(const Vector<Type> &vector) {
+    *this += vector;
+    return *this;
+}
+
+template<typename Type>
 Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0 || vector.vectorSize == 0)
