@@ -126,8 +126,7 @@ private:
 protected:
     Type summaryValue();
     Vector<Type> vecSum(const Vector<Type> &vector) const;
-    void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
+    Vector<Type> vecDif(const Vector<Type> &vector) const;
     void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
     void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,

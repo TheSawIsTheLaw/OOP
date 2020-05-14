@@ -78,21 +78,14 @@ Vector<Type> Vector<Type>:: sumEl(const Type &element) const {
 }
 
 template<typename Type>
-void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
-                          const Vector<Type> &secondV) const {
+Vector<Type> Vector<Type>::vecDif(const Vector<Type> &vector) const {
+    Vector<Type> result(*this);
     Iterator<Type> resultIterator = result.begin();
-    ConstIterator<Type> firstIterator = firstV.begin();
-    ConstIterator<Type> secondIterator = secondV.begin();
+    ConstIterator<Type> iterFrom = vector.begin();
 
-    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
-                                         secondIterator++) {
-        if (i < firstV.vectorSize && i < secondV.vectorSize)
-            *resultIterator = *firstIterator - *secondIterator;
-        else if (i >= firstV.vectorSize)
-            *resultIterator = *firstIterator;
-        else
-            *resultIterator = -*secondIterator;
-    }
+    for (size_t i = 0; resultIterator; i++, resultIterator++, iterFrom++)
+        *resultIterator = *resultIterator - *iterFrom;
+    return result;
 }
 
 template<typename Type>
@@ -470,7 +463,7 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    vecDif(*this, *this, vector);
+    *this = this->vecDif(vector);
 
     return *this;
 }
@@ -514,11 +507,7 @@ Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime));
 
-    size_t maxLength = std::max(vectorSize, vector.vectorSize);
-    Vector<Type> newVector(maxLength);
-    vecDif(newVector, *this, vector);
-
-    return newVector;
+    return this->vecDif(vector);
 }
 
 template<typename Type>
