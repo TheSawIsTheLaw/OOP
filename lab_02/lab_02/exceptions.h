@@ -42,6 +42,15 @@ public:
     };
 };
 
+class OutOfRangeException: public ExceptionBase {
+public:
+    OutOfRangeException(std::string fileName, std::string className,
+                          int currentLine, const char *errorTime,
+                          std::string information = "Invalid indexing"):
+        ExceptionBase(fileName, className, currentLine, errorTime, information) {
+    };
+};
+
 class ZeroDivisionException: public ExceptionBase {
 public:
     ZeroDivisionException(std::string fileName, std::string className,
