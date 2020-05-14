@@ -75,6 +75,8 @@ int main(void)
     lenExample.setItemByIndex(2, 3);
     std::cout<< " "<< lenExample<< std::endl;
 
+    std::cout<< "\nIncrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.sumEl(2)<<std::endl;
+
 
     return SUCCESS;
 }
