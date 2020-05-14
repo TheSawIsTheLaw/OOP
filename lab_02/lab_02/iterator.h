@@ -261,7 +261,7 @@ const Type &Iterator<Type>::operator[](size_t index) const {
 
 template<typename Type>
 void Iterator<Type>::indexCheck(int currentLine) const {
-    if (this->currentIndex + this->currentIndex >= this->vectorSize) {
+    if (this->currentIndex >= this->vectorSize) {
         time_t currentTime = time(NULL);
         throw OutOfRangeException(__FILE__, typeid(*this).name(),
                                   currentLine, ctime(&currentTime));
