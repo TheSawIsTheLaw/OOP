@@ -53,7 +53,7 @@ ConstIterator<Type> Vector<Type>::cEnd() const {
 //< End
 
 //! Methods
-template <typename Type>
+template<typename Type>
 void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
                           const Vector<Type> &secondV) const {
     Iterator<Type> resultIterator = result.begin();
@@ -69,6 +69,19 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
         else
             *resultIterator = *secondIterator;
     }
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>:: sumEl(const Type element) const {
+    Vector<Type> result(*this);
+
+    ConstIterator<Type> iterFrom = this->begin();
+    Iterator<Type> iterTo = result.begin();
+
+    for (; iterFrom; iterFrom++, iterTo++)
+        *iterTo = *iterFrom + element;
+
+    return result;
 }
 
 template<typename Type>
