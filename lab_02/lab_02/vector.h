@@ -93,7 +93,7 @@ public:
     double operator/(const Vector<Type> &vector) const;
     void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> divEl(const Type element) const;
+    Vector<float> divEl(const Type element) const;
 
     Vector<Type> operator-();
     void negative(Vector<Type> &result);

@@ -19,8 +19,11 @@ int main(void)
     Vector<int> operVecF = {1, 2, 1};
     Vector<int> operVecS = {3, 2, 4};
 
-    std::cout<< "LenFill and InitList angle: "<< lenFillExample.vectorsAngle(initializerListExample)<< std::endl;
+    std::cout<< "\nLenFill and InitList angle: "<< lenFillExample.vectorsAngle(initializerListExample)<< std::endl;
+
+    std::cout<< "\nFor vectors: "<< operVecF<< " and "<< operVecS<< std::endl;
     std::cout<< "Vectors *: "<< operVecF * operVecS<< std::endl;
+    std::cout<< "Vectors /: "<< operVecF / operVecS<< std::endl;
     std::cout<< "Vectors +: "<< operVecF + operVecS<< std::endl;
     std::cout<< "Vectors -: "<< operVecF - operVecS<< std::endl;
 
@@ -28,13 +31,13 @@ int main(void)
     Vector<float> orthVecS = {0, 1, 0};
     Vector<float> nonOrthVec = {1, 2, 3};
 
-    std::cout<< "Should be orth: "<< orthVecF.areOrthgonal(orthVecS)<< std::endl;
+    std::cout<< "\nShould be orth: "<< orthVecF.areOrthgonal(orthVecS)<< std::endl;
     std::cout<< "Shouldn't be orth: "<<orthVecF.areCollinear(nonOrthVec)<< std::endl;
 
     Vector<int> colVecF = {1, 1, 0};
     Vector<int> colVecS = {1, 1, 0};
 
-    std::cout<< "Should be coll: "<< colVecF.areCollinear(colVecS)<< std::endl;
+    std::cout<< "\nShould be coll: "<< colVecF.areCollinear(colVecS)<< std::endl;
     std::cout<< "Shouldn't be coll: "<< colVecF.areCollinear(operVecF)<< std::endl;
 
     try {
@@ -43,7 +46,7 @@ int main(void)
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 
-    std::cout<< "Pushback: "<< orthVecF<< std::endl;
+    std::cout<< "\nPushback: "<< orthVecF<< std::endl;
     orthVecF.pushBack(666);
     std::cout<< "After: "<< orthVecF<< std::endl;
 
@@ -51,13 +54,13 @@ int main(void)
     int gotEl = orthVecF.popBack();
     std::cout<< "Popped: "<< orthVecF<< "\t"<< "Element: "<< gotEl<< std::endl;
 
-    std::cout<< "Vector "<< colVecS<< " length is: "<< colVecS.length()<<std::endl;
+    std::cout<< "\nVector "<< colVecS<< " length is: "<< colVecS.length()<<std::endl;
 
     std::cout<< "\nAt 1 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(1)<<std::endl;
-    std::cout<< "\nAt 2 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(2)<<std::endl;
+    std::cout<< "At 2 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(2)<<std::endl;
 
     try {
-        std::cout<< "\nAt 5 el of vector "<< nonOrthVec<< " we have\n"<< nonOrthVec.at(5)<<std::endl;
+        std::cout<< "At 5 el of vector "<< nonOrthVec<< " we have\n"<< nonOrthVec.at(5)<<std::endl;
     } catch (InvalidIndexException &err) {
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
@@ -66,17 +69,19 @@ int main(void)
     std::cout<< "\nUnit vector for "<< nonOrthVec<< " is vector "<< unitVector<< std::endl;
 
     std::cout<< "\nIs vector "<< unitVector<< " unit? Answer: "<< unitVector.isUnitV()<< std::endl;
-    std::cout<< "\nIs vector "<< nonOrthVec<< " unit? Answer: "<< nonOrthVec.isUnitV()<< std::endl;
+    std::cout<< "Is vector "<< nonOrthVec<< " unit? Answer: "<< nonOrthVec.isUnitV()<< std::endl;
 
     std::cout<< "\nIs vector "<< nonOrthVec<< " zero? Answer: "<< nonOrthVec.isZeroV()<< std::endl;
-    std::cout<< "\nIs vector "<< lenExample<< " zero? Answer: "<< lenExample.isZeroV()<< std::endl;
+    std::cout<< "Is vector "<< lenExample<< " zero? Answer: "<< lenExample.isZeroV()<< std::endl;
 
     std::cout<< "\nSet in vector "<< lenExample<< " by index 2 new element '3' :";
     lenExample.setItemByIndex(2, 3);
     std::cout<< " "<< lenExample<< std::endl;
 
     std::cout<< "\nIncrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.sumEl(2)<<std::endl;
-
+    std::cout<< "Decrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.difEl(2)<<std::endl;
+    std::cout<< "Div to all coords 4 of "<< lenExample<< " is: "<< lenExample.divEl(4)<<std::endl;
+    std::cout<< "Mul to all coords 4 of "<< lenExample<< " is: "<< lenExample.mulEl(4)<<std::endl;
 
     return SUCCESS;
 }

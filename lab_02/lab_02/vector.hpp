@@ -161,7 +161,7 @@ void Vector<Type>::vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>:: divEl(const Type element) const {
+Vector<float> Vector<Type>::divEl(const Type element) const {
     time_t currentTime = time(NULL);
     if (!element)
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
