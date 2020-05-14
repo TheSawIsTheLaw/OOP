@@ -212,7 +212,7 @@ bool Vector<Type>::areOrthgonal(const Vector<Type> &vector) const {
 template<typename Type>
 Vector<Type> Vector<Type>::getUnitV() const {
     Vector<Type> unitVector(*this);
-    Type len = this->length;
+    Type len = this->length();
 
     Iterator<Type> iterator = unitVector.begin();
     for (; iterator; iterator++)
