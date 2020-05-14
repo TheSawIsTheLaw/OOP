@@ -74,10 +74,10 @@ int main(void)
     std::cout<< "\nIs vector "<< nonOrthVec<< " zero? Answer: "<< nonOrthVec.isZeroV()<< std::endl;
     std::cout<< "Is vector "<< lenExample<< " zero? Answer: "<< lenExample.isZeroV()<< std::endl;
 
-    std::cout<< "\nIncrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.sumEl(2)<<std::endl;
-    std::cout<< "Decrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.difEl(2)<<std::endl;
-    std::cout<< "Div to all coords 4 of "<< lenExample<< " is: "<< lenExample.divEl(4)<<std::endl;
-    std::cout<< "Mul to all coords 4 of "<< lenExample<< " is: "<< lenExample.mulEl(4)<<std::endl;
+    std::cout<< "\nIncrement to all coords 2 of "<< nonOrthVec<< " is: "<< nonOrthVec.sumEl(2)<<std::endl;
+    std::cout<< "Decrement to all coords 2 of "<< nonOrthVec<< " is: "<< nonOrthVec.difEl(2)<<std::endl;
+    std::cout<< "Div to all coords 4 of "<< nonOrthVec<< " is: "<< nonOrthVec.divEl(4)<<std::endl;
+    std::cout<< "Mul to all coords 4 of "<< nonOrthVec<< " is: "<< nonOrthVec.mulEl(4)<<std::endl;
 
     std::cout<< "\nFor each: ";
     for (auto elem:orthVecF)
