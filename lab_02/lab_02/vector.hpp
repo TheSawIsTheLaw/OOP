@@ -72,7 +72,7 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>:: sumEl(const Type element) const {
+Vector<Type> Vector<Type>:: sumEl(Type element) const {
     Vector<Type> result(*this);
 
     ConstIterator<Type> iterFrom = this->begin();
@@ -103,7 +103,7 @@ void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>:: difEl(const Type element) const {
+Vector<Type> Vector<Type>::difEl(Type element) const {
     Vector<Type> result(*this);
 
     ConstIterator<Type> iterFrom = this->begin();
@@ -132,7 +132,7 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>:: mulEl(const Type element) const {
+Vector<Type> Vector<Type>:: mulEl(Type element) const {
     Vector<Type> result(*this);
 
     ConstIterator<Type> iterFrom = this->begin();
@@ -161,7 +161,7 @@ void Vector<Type>::vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<float> Vector<Type>::divEl(const Type element) const {
+Vector<float> Vector<Type>::divEl(Type element) const {
     time_t currentTime = time(NULL);
     if (!element)
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
@@ -312,8 +312,8 @@ template<typename Type>
 Type &Vector<Type>::at(size_t index) {
     time_t currentTime = time(NULL);
     if (index >= vectorSize)
-        throw InvalidIndexException(__FILE__, typeid(*this).name(),
-                                    __LINE__, ctime(&currentTime));
+        throw OutOfRangeException(__FILE__, typeid(*this).name(),
+                                  __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator = this->begin();
     for (size_t i = 0; i < index; i++, iterator++) { }
@@ -327,8 +327,8 @@ template<typename Type>
 const Type &Vector<Type>::at(size_t index) const {
     time_t currentTime = time(NULL);
     if (index >= vectorSize)
-        throw InvalidIndexException(__FILE__, typeid(*this).name(),
-                                    __LINE__, ctime(&currentTime));
+        throw OutOfRangeException(__FILE__, typeid(*this).name(),
+                                  __LINE__, ctime(&currentTime));
 
     ConstIterator<Type> iterator = this->begin();
     for (size_t i = 0; i < index; i++, iterator++) { }

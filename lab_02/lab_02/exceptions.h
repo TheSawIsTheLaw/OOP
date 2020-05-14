@@ -33,20 +33,11 @@ public:
     };
 };
 
-class InvalidIndexException: public ExceptionBase {
-public:
-    InvalidIndexException(std::string fileName, std::string className,
-                          int currentLine, const char *errorTime,
-                          std::string information = "Invalid indexing"):
-        ExceptionBase(fileName, className, currentLine, errorTime, information) {
-    };
-};
-
 class OutOfRangeException: public ExceptionBase {
 public:
     OutOfRangeException(std::string fileName, std::string className,
                           int currentLine, const char *errorTime,
-                          std::string information = "Invalid indexing"):
+                          std::string information = "Index is out of range"):
         ExceptionBase(fileName, className, currentLine, errorTime, information) {
     };
 };

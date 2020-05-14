@@ -34,12 +34,12 @@ public:
     Iterator<Type> &operator++();
     Iterator<Type> operator++(int);
 
-    bool operator<=(const Iterator<Type> &boolean) const;
-    bool operator<(const Iterator<Type> &boolean) const;
-    bool operator>=(const Iterator<Type> &boolean) const;
-    bool operator>(const Iterator<Type> &boolean) const;
-    bool operator==(const Iterator<Type> &boolean) const;
-    bool operator!=(const Iterator<Type> &boolean) const;
+    bool operator<=(const Iterator<Type> &compareTo) const;
+    bool operator<(const Iterator<Type> &compareTo) const;
+    bool operator>=(const Iterator<Type> &compareTo) const;
+    bool operator>(const Iterator<Type> &compareTo) const;
+    bool operator==(const Iterator<Type> &compareTo) const;
+    bool operator!=(const Iterator<Type> &compareTo) const;
 
     Type &operator[](const size_t index);
     const Type &operator[](const size_t index) const;
@@ -49,7 +49,7 @@ private:
 
 protected:
     Type *getCurrentPointer() const;
-    bool exceptionCheck(size_t lineError) const;
+    void exceptionCheck(size_t lineError) const;
     size_t currentIndex = 0;
     size_t vectorSize = 0;
 };
@@ -62,23 +62,23 @@ Type *Iterator<Type>::getCurrentPointer() const {
 
 template<typename Type>
 Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
-    wPointer = iterator.wPointer;
-    currentIndex = iterator.currentIndex;
-    vectorSize = iterator.vectorSize;
+    this->wPointer = iterator.wPointer;
+    this->currentIndex = iterator.currentIndex;
+    this->vectorSize = iterator.vectorSize;
 }
 
 template<typename Type>
 Iterator<Type>::Iterator(const Vector<Type> &vector) {
-    currentIndex = 0;
-    vectorSize = vector.size();
-    wPointer = vector.values;
+    this->currentIndex = 0;
+    this->vectorSize = vector.size();
+    this->wPointer = vector.values;
 }
 
 template<typename Type>
 Type &Iterator<Type>::operator*() {
     exceptionCheck(__LINE__);
+    // checkIndex!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ВО ВСЕХ ЗВЁЗДОЧКАХ И СТРЕЛОЧКАХ
 
-    std::shared_ptr<Type> copiedPointer = wPointer.lock();
     return *getCurrentPointer();
 }
 
@@ -86,7 +86,6 @@ template<typename Type>
 const Type &Iterator<Type>::operator*() const {
     exceptionCheck(__LINE__);
 
-    std::shared_ptr<Type> copiedPointer = wPointer.lock();
     return *getCurrentPointer();
 }
 
@@ -106,8 +105,6 @@ const Type *Iterator<Type>::operator->() const {
 
 template<typename Type>
 Iterator<Type> &Iterator<Type>::operator=(const Iterator<Type>& iterator) {
-    exceptionCheck(__LINE__);
-
     wPointer = iterator.wPointer;
     return *this;
 }
@@ -259,14 +256,12 @@ const Type &Iterator<Type>::operator[](size_t index) const {
 
 
 template<typename Type>
-bool Iterator<Type>::exceptionCheck(size_t lineError) const {
-    if (!wPointer.expired())
-        return true;
-
-    time_t currentTime = time(NULL);
-    throw DeletedObjectException(__FILE__, typeid(*this).name(),
-                                 lineError, ctime(&currentTime));
-    return false;
+void Iterator<Type>::exceptionCheck(size_t lineError) const {
+    if (wPointer.expired()) {
+        time_t currentTime = time(NULL);
+        throw DeletedObjectException(__FILE__, typeid(*this).name(),
+                                     lineError, ctime(&currentTime));
+    }
 }
 
 

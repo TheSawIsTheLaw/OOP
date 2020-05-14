@@ -42,7 +42,7 @@ int main(void)
 
     try {
         orthVecF.areCollinear(lenExample);
-    } catch (ZeroDivisionException &err) {
+    } catch (ExceptionBase &err) {
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 
@@ -61,7 +61,7 @@ int main(void)
 
     try {
         std::cout<< "At 5 el of vector "<< nonOrthVec<< " we have\n"<< nonOrthVec.at(5)<<std::endl;
-    } catch (InvalidIndexException &err) {
+    } catch (ExceptionBase &err) {
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 

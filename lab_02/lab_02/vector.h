@@ -70,24 +70,32 @@ public:
     Vector<Type> &operator=(Vector<Type> &&vector);
 
     Vector<Type> &operator+=(const Vector<Type> &vector);
+    // ADD operator+=(const Type element)
+    // ADD METHOD name ala addeq()
     Vector<Type> &operator-=(const Vector<Type> &vector);
+    // ADD METHOD
     Vector<Type> &operator*=(const Vector<Type> &vector);
+    // ADD METHOD
     Vector<Type> &operator/=(const Vector<Type> &vector);
 
     Vector<Type> operator+(const Vector<Type> &vector);
-    Vector<Type> sumEl(const Type element) const;
+    // ADD operator+(cosnt Type &elem, const vector<Type> &vect) { vect + elem;};
+    // realise in other file WITHOUT :: потому что функция
+    // ADD operator+(const Type element)
+    Vector<Type> sumEl(Type element) const;
 
-    Vector<Type> operator-(const Vector<Type> &vector) const; // noexcept mb?
-    Vector<Type> difEl(const Type element) const;
+    // CheckSizes!!!
+    Vector<Type> operator-(const Vector<Type> &vector) const; // EXCEPT на несоразмерные вектора
+    Vector<Type> difEl(Type element) const;
 
     double operator*(const Vector<Type> &vector) const;
-    Vector<Type> mulEl(const Type element) const;
+    Vector<Type> mulEl(Type element) const;
 
     double operator/(const Vector<Type> &vector) const;
-    Vector<float> divEl(const Type element) const;
+    Vector<float> divEl(Type element) const;
 
     Vector<Type> operator-();
-    void negative(Vector<Type> &result);
+    void negative(); // REALIZE!!!
 
     bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;
