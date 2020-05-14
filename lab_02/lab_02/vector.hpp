@@ -77,21 +77,13 @@ Vector<Type> Vector<Type>:: sumEl(const Type &element) const {
 }
 
 template<typename Type>
-void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
-                          const Vector<Type> &secondV) const {
-    Iterator<Type> resultIterator = result.begin();
-    ConstIterator<Type> firstIterator = firstV.begin();
-    ConstIterator<Type> secondIterator = secondV.begin();
+Vector<Type> &Vector<Type>::vecDif(const Vector<Type> &vector) const {
+    checkSizes(*this, vector, __LINE__);
+    Iterator<Type> resultIterator = this->begin();
+    ConstIterator<Type> fromIter = vector.begin();
 
-    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
-                                         secondIterator++) {
-        if (i < firstV.vectorSize && i < secondV.vectorSize)
-            *resultIterator = *firstIterator - *secondIterator;
-        else if (i >= firstV.vectorSize)
-            *resultIterator = *firstIterator;
-        else
-            *resultIterator = -*secondIterator;
-    }
+    for (size_t i = 0; resultIterator; i++, resultIterator++, fromIter++)
+        *resultIterator = *resultIterator - *fromIter;
 }
 
 template<typename Type>
@@ -108,19 +100,13 @@ Vector<Type> Vector<Type>::difEl(const Type &element) const {
 }
 
 template<typename Type>
-void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
-                          const Vector<Type> &secondV) const{
-    Iterator<Type> resultIterator = result.begin();
-    ConstIterator<Type> firstIterator = firstV.begin();
-    ConstIterator<Type> secondIterator = secondV.begin();
+Vector<Type> &Vector<Type>::vecMul(const Vector<Type> &vector) const {
+    checkSizes(*this, vector, __LINE__);
+    Iterator<Type> resultIterator = this->begin();
+    ConstIterator<Type> fromIter = vector.begin();
 
-    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
-                                         secondIterator++) {
-        if (i < firstV.vectorSize && i < secondV.vectorSize)
-            *resultIterator = *firstIterator * *secondIterator;
-        else 
-            *resultIterator = 0;
-    }
+    for (size_t i = 0; resultIterator; i++, resultIterator++, fromIter++)
+        *resultIterator = *resultIterator * *fromIter;
 }
 
 template<typename Type>
@@ -137,19 +123,13 @@ Vector<Type> Vector<Type>:: mulEl(const Type &element) const {
 }
 
 template<typename Type>
-void Vector<Type>::vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
-                          const Vector<Type> &secondV) const{
-    Iterator<Type> resultIterator = result.begin();
-    ConstIterator<Type> firstIterator = firstV.begin();
-    ConstIterator<Type> secondIterator = secondV.begin();
+Vector<Type> &Vector<Type>::vecDiv(const Vector<Type> &vector) const {
+    checkSizes(*this, vector, __LINE__);
+    Iterator<Type> resultIterator = this->begin();
+    ConstIterator<Type> fromIter = vector.begin();
 
-    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
-                                         secondIterator++) {
-        if (i < firstV.vectorSize && i < secondV.vectorSize)
-            *resultIterator = *firstIterator / *secondIterator;
-        else
-            *resultIterator = 0;
-    }
+    for (size_t i = 0; resultIterator; i++, resultIterator++, fromIter++)
+        *resultIterator = *resultIterator / *fromIter;
 }
 
 template<typename Type>

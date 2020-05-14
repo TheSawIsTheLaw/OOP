@@ -92,26 +92,26 @@ public:
     Vector<Type> operator+(const Vector<Type> &vector) const; // R
     Vector<Type> operator+(const Type &element) const; // R
     Vector<Type> sumVec(const Vector<Type> &vector) const; // R
-    Vector<Type> sumEl(const Type &element) const; // R
+    Vector<Type> sumEl(const Type &element) const;
 
     // CheckSizes!!!
     Vector<Type> operator-(const Vector<Type> &vector) const; // EXCEPT на несоразмерные вектора
     Vector<Type> operator-(const Type &element) const; // R
     Vector<Type> difVec(const Vector<Type> &vector) const; // R
-    Vector<Type> difEl(const Type &element) const; // R
+    Vector<Type> difEl(const Type &element) const;
 
     double operator*(const Vector<Type> &vector) const;
     Vector<Type> operator*(const Type &element) const; // R
     double mulVec(const Vector<Type> &vector) const; // R
-    Vector<Type> mulEl(const Type &element) const; // R
+    Vector<Type> mulEl(const Type &element) const;
 
     double operator/(const Vector<Type> &vector) const;
     Vector<float> operator/(const Type &element) const; // R
     double divVec(const Vector<Type> &vector) const; // R
-    Vector<float> divEl(const Type &element) const; // R
+    Vector<float> divEl(const Type &element) const;
 
     Vector<Type> operator-();
-    void negative(); // REALIZE!!!
+    void negative();
 
     bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;
@@ -126,12 +126,9 @@ private:
 protected:
     Type summaryValue();
     Vector<Type> &vecSum(const Vector<Type> &vector) const; // избавься от result и firstV
-    void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
-    void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
-    void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const;
+    Vector<Type> &vecDif(const Vector<Type> &vector) const;
+    Vector<Type> &vecMul(const Vector<Type> &vector) const;
+    Vector<Type> &vecDiv(const Vector<Type> &vector) const;
 
     void checkSizes(Vector<Type> &vectorF, Vector<Type> &vectorS, int lineError);
 
