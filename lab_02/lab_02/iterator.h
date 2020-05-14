@@ -10,7 +10,7 @@ template<typename Type>
 class Vector;
 
 template<typename Type>
-class Iterator: public std::iterator<std::input_iterator_tag, int>
+class Iterator: public std::iterator<std::random_access_iterator_tag, int>
 {
 public:
     Iterator(const Iterator<Type> &iterator);
@@ -49,9 +49,9 @@ private:
 
 protected:
     Type *getCurrentPointer() const;
-    bool exceptionCheck(int lineError) const;
-    int currentIndex = 0;
-    int vectorLen = 0;
+    bool exceptionCheck(size_t lineError) const;
+    size_t currentIndex = 0;
+    size_t vectorSize = 0;
 };
 
 template<typename Type>
@@ -64,13 +64,13 @@ template<typename Type>
 Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
     wPointer = iterator.wPointer;
     currentIndex = iterator.currentIndex;
-    vectorLen = iterator.vectorLen;
+    vectorSize = iterator.vectorSize;
 }
 
 template<typename Type>
 Iterator<Type>::Iterator(const Vector<Type> &vector) {
     currentIndex = 0;
-    vectorLen = vector.size();
+    vectorSize = vector.size();
     wPointer = vector.values;
 }
 
@@ -224,7 +224,7 @@ template<typename Type>
 Iterator<Type>::operator bool() const {
     exceptionCheck(__LINE__);
 
-    if (currentIndex >= vectorLen || vectorLen == 0 || currentIndex < 0)
+    if (currentIndex >= vectorSize || vectorSize == 0)
         return false;
     else
         return true;
@@ -232,9 +232,13 @@ Iterator<Type>::operator bool() const {
 
 template<typename Type>
 Type &Iterator<Type>::operator[](const size_t index) {
-    exceptionCheck(__LINE__);
+    size_t curLine = __LINE__;
+    exceptionCheck(curLine);
 
-    if (index + this->currentIndex >= this->vectorLen) { }// throw outOfIndexException
+    time_t currentTime = time(NULL);
+    if (index + this->currentIndex >= this->vectorLen)
+        throw OutOfRangeException(__FILE__, typeid(*this).name(),
+                                  curLine, ctime(&currentTime));
 
     return *(this + index);
 }
@@ -255,7 +259,7 @@ const Type &Iterator<Type>::operator[](const size_t index) const {
 
 
 template<typename Type>
-bool Iterator<Type>::exceptionCheck(int lineError) const {
+bool Iterator<Type>::exceptionCheck(size_t lineError) const {
     if (!wPointer.expired())
         return true;
 
