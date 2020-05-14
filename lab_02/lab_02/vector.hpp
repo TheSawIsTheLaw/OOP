@@ -159,6 +159,24 @@ void Vector<Type>::vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
             *resultIterator = 0;
     }
 }
+
+template<typename Type>
+Vector<Type> Vector<Type>:: divEl(const Type element) const {
+    time_t currentTime = time(NULL);
+    if (!element)
+        throw ZeroDivisionException(__FILE__, typeid(*this).name(),
+                                    __LINE__, ctime(&currentTime));
+
+    Vector<Type> result(*this);
+
+    ConstIterator<Type> iterFrom = this->begin();
+    Iterator<Type> iterTo = result.begin();
+
+    for (; iterFrom; iterFrom++, iterTo++)
+        *iterTo = *iterFrom / element;
+
+    return result;
+}
 //< End
 
 //! Additive
