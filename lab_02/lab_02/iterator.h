@@ -49,14 +49,15 @@ private:
 
 protected:
     Type *getCurrentPointer() const;
-    void exceptionCheck(size_t lineError) const;
+    void exceptionCheck(int currentLine) const;
+    void indexCheck(int currentLine) const;
     size_t currentIndex = 0;
     size_t vectorSize = 0;
 };
 
 template<typename Type>
 Type *Iterator<Type>::getCurrentPointer() const {
-    std::shared_ptr<Type> copied = wPointer.lock();
+    std::shared_ptr<Type> copied = this->wPointer.lock();
     return copied.get() + currentIndex;
 }
 
@@ -77,7 +78,7 @@ Iterator<Type>::Iterator(const Vector<Type> &vector) {
 template<typename Type>
 Type &Iterator<Type>::operator*() {
     exceptionCheck(__LINE__);
-    // checkIndex!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ВО ВСЕХ ЗВЁЗДОЧКАХ И СТРЕЛОЧКАХ
+    indexCheck(__LINE__);
 
     return *getCurrentPointer();
 }
@@ -85,6 +86,7 @@ Type &Iterator<Type>::operator*() {
 template<typename Type>
 const Type &Iterator<Type>::operator*() const {
     exceptionCheck(__LINE__);
+    indexCheck(__LINE__);
 
     return *getCurrentPointer();
 }
@@ -92,6 +94,7 @@ const Type &Iterator<Type>::operator*() const {
 template<typename Type>
 Type *Iterator<Type>::operator->() {
     exceptionCheck(__LINE__);
+    indexCheck(__LINE__);
 
     return getCurrentPointer();
 }
@@ -99,6 +102,7 @@ Type *Iterator<Type>::operator->() {
 template<typename Type>
 const Type *Iterator<Type>::operator->() const {
     exceptionCheck(__LINE__);
+    indexCheck(__LINE__);
 
     return getCurrentPointer();
 }
@@ -256,11 +260,21 @@ const Type &Iterator<Type>::operator[](size_t index) const {
 
 
 template<typename Type>
-void Iterator<Type>::exceptionCheck(size_t lineError) const {
+void Iterator<Type>::indexCheck(int currentLine) const {
+    if (this->currentIndex + this->currentIndex >= this->vectorSize) {
+        time_t currentTime = time(NULL);
+        throw OutOfRangeException(__FILE__, typeid(*this).name(),
+                                  currentLine, ctime(&currentTime));
+    }
+}
+
+
+template<typename Type>
+void Iterator<Type>::exceptionCheck(int currentLine) const {
     if (wPointer.expired()) {
         time_t currentTime = time(NULL);
         throw DeletedObjectException(__FILE__, typeid(*this).name(),
-                                     lineError, ctime(&currentTime));
+                                     currentLine, ctime(&currentTime));
     }
 }
 
