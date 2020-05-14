@@ -15,7 +15,6 @@ class Iterator: public std::iterator<std::input_iterator_tag, int>
 public:
     Iterator(const Iterator<Type> &iterator);
     Iterator(const Vector<Type> &vector);
-    // Добавить передачу &&
 
     Type &operator *();
     const Type &operator *() const;
@@ -41,6 +40,9 @@ public:
     bool operator>(const Iterator<Type> &boolean) const;
     bool operator==(const Iterator<Type> &boolean) const;
     bool operator!=(const Iterator<Type> &boolean) const;
+
+    Type &operator[](const size_t index);
+    const Type &operator[](const size_t index) const;
 
 private:
     std::weak_ptr<Type> wPointer;
@@ -226,6 +228,25 @@ Iterator<Type>::operator bool() const {
         return false;
     else
         return true;
+}
+
+template<typename Type>
+Type &Iterator<Type>::operator[](const size_t index) {
+    exceptionCheck(__LINE__);
+
+    if (index + this->currentIndex >= this->vectorLen) { }// throw outOfIndexException
+
+    return *(this + index);
+}
+
+
+template<typename Type>
+const Type &Iterator<Type>::operator[](const size_t index) const {
+    exceptionCheck(__LINE__);
+
+    if (index + this->currentIndex >= this->vectorLen) { }// throw outOfIndexExc
+
+    return *(this + index);
 }
 
 
