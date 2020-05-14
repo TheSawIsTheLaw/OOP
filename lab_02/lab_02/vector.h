@@ -44,7 +44,7 @@ public:
 
     bool setItemByIndex(size_t index, const Type item);
     Type &at(size_t index);
-    const Type &at(size_t index) const; // Добавить исключение на выход за перделы, переименуй в at
+    const Type &at(size_t index) const;
 
     Vector<Type> getUnitV() const;
     //< End

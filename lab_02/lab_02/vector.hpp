@@ -316,7 +316,7 @@ Vector<Type>:: Vector(const Vector<Type> &vector): VectorBase(vector.vectorSize)
 template<typename Type>
 Type &Vector<Type>::at(size_t index) {
     time_t currentTime = time(NULL);
-    if (index < 0 || index >= vectorSize)
+    if (index >= vectorSize)
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
@@ -331,12 +331,12 @@ Type &Vector<Type>::at(size_t index) {
 template<typename Type>
 const Type &Vector<Type>::at(size_t index) const {
     time_t currentTime = time(NULL);
-    if (index < 0 || index >= vectorSize)
+    if (index >= vectorSize)
         throw InvalidIndexException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
     ConstIterator<Type> iterator = this->begin();
-    for (int i = 0; i < index; i++, iterator++) { }
+    for (size_t i = 0; i < index; i++, iterator++) { }
 
     return *iterator;
 }
