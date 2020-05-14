@@ -210,13 +210,14 @@ bool Vector<Type>::areOrthgonal(const Vector<Type> &vector) const {
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>::getUnitV() const {
-    Vector<Type> unitVector(*this);
+Vector<double> Vector<Type>::getUnitV() const {
+    Vector<double> unitVector(this->vectorSize);
     Type len = this->length();
 
-    Iterator<Type> iterator = unitVector.begin();
-    for (; iterator; iterator++)
-        *iterator /= len;
+    Iterator<double> iteratorTo = unitVector.begin();
+    ConstIterator<Type> iteratorFrom = this->begin();
+    for (; iteratorFrom; iteratorFrom++, iteratorTo++)
+        *iteratorTo = *iteratorFrom / len;
 
     return unitVector;
 }
@@ -251,7 +252,7 @@ Vector<Type>::Vector(size_t size) {
 template<typename Type>
 Vector<Type>::Vector(size_t size, Type element) {
     time_t currentTime = time(NULL);
-    if (size < 0)
+    if (size == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -270,7 +271,7 @@ Vector<Type>::Vector(size_t size, Type element) {
 template<typename Type>
 Vector<Type>::Vector(size_t size, Type *arrayFrom) {
     time_t currentTime = time(NULL);
-    if (size < 0)
+    if (size == 0)
         throw EmptyVectorException(__FILE__, typeod(*this).name(),
                                    __LINE__, ctime(&currentTime));
     if (!arrayFrom)
@@ -278,9 +279,6 @@ Vector<Type>::Vector(size_t size, Type *arrayFrom) {
                                       __LINE__, ctime(&currentTime));
 
     allocNewVectorMem(size);
-    if (!values)
-        throw MemoryException(__FILE__, typeid(*this).name(),
-                              __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator = this->begin();
     for (size_t i = 0; iterator; iterator++, i++)

@@ -46,7 +46,7 @@ public:
     Type &at(size_t index);
     const Type &at(size_t index) const;
 
-    Vector<Type> getUnitV() const;
+    Vector<double> getUnitV() const;
     //< End
 
 

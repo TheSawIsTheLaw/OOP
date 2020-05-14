@@ -39,8 +39,8 @@ int main(void)
 
     try {
         orthVecF.areCollinear(lenExample);
-    } catch (ZeroDivisionException &er) {
-        std::cout<< "Error catch:"<< er.what()<< std::endl;
+    } catch (ZeroDivisionException &err) {
+        std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 
     std::cout<< "Pushback: "<< orthVecF<< std::endl;
@@ -52,6 +52,18 @@ int main(void)
     std::cout<< "Popped: "<< orthVecF<< "\t"<< "Element: "<< gotEl<< std::endl;
 
     std::cout<< "Vector "<< colVecS<< " length is: "<< colVecS.length()<<std::endl;
+
+    std::cout<< "At 1 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(1)<<std::endl;
+    std::cout<< "At 2 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(2)<<std::endl;
+
+    try {
+        std::cout<< "At 5 el of vector "<< nonOrthVec<< " we have\n"<< nonOrthVec.at(5)<<std::endl;
+    } catch (InvalidIndexException &err) {
+        std::cout<< "Error catch:"<< err.what()<< std::endl;
+    }
+
+    Vector<double> unitVector = nonOrthVec.getUnitV();
+    std::cout<< "\nUnit vector for "<< nonOrthVec<< " is vector "<< unitVector<< std::endl;
 
     return SUCCESS;
 }
