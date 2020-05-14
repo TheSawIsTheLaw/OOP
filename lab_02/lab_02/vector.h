@@ -33,8 +33,8 @@ public:
 
 
     //! Vector bool funcs
-    bool isZeroV() const;
-    bool isUnitV() const;
+    bool isZeroV() const noexcept;
+    bool isUnitV() const noexcept;
     //< End
 
     //! One vector methods
@@ -56,12 +56,12 @@ public:
     //< End
 
     //! Iterator
-    ConstIterator<Type> begin() const;
-    ConstIterator<Type> end() const;
-    Iterator<Type> begin();
-    Iterator<Type> end();
-    ConstIterator<Type> cBegin() const;
-    ConstIterator<Type> cEnd() const;
+    ConstIterator<Type> begin() const noexcept;
+    ConstIterator<Type> end() const noexcept;
+    Iterator<Type> begin() noexcept;
+    Iterator<Type> end() noexcept;
+    ConstIterator<Type> cBegin() const noexcept;
+    ConstIterator<Type> cEnd() const noexcept;
     //< End
 
     //! Operators overloads

@@ -16,37 +16,37 @@ Vector<Type>::~Vector() {
 
 //! Iterator
 template<typename Type>
-Iterator<Type> Vector<Type>::begin() {
+Iterator<Type> Vector<Type>::begin() noexcept {
     Iterator<Type> iterator(*this);
     return iterator;
 }
 
 template<typename Type>
-Iterator<Type> Vector<Type>::end() {
+Iterator<Type> Vector<Type>::end() noexcept {
     Iterator<Type> iterator(*this);
     return iterator + this->vectorSize;
 }
 
 template<typename Type>
-ConstIterator<Type> Vector<Type>::begin() const {
+ConstIterator<Type> Vector<Type>::begin() const noexcept {
     ConstIterator<Type> cIterator(*this);
     return cIterator;
 }
 
 template<typename Type>
-ConstIterator<Type> Vector<Type>::end() const {
+ConstIterator<Type> Vector<Type>::end() const noexcept {
     ConstIterator<Type> cIterator(*this);
     return cIterator + this->vectorSize;
 }
 
 template<typename Type>
-ConstIterator<Type> Vector<Type>::cBegin() const {
+ConstIterator<Type> Vector<Type>::cBegin() const noexcept {
     ConstIterator<Type> cIterator(*this);
     return cIterator;
 }
 
 template<typename Type>
-ConstIterator<Type> Vector<Type>::cEnd() const {
+ConstIterator<Type> Vector<Type>::cEnd() const noexcept {
     ConstIterator<Type> cIterator(*this);
     return cIterator + this->vectorSize;
 }
@@ -739,7 +739,7 @@ void Vector<Type>::allocNewVectorMem(size_t amount) {
 
 //! Smth
 template<typename Type>
-bool Vector<Type>::isUnitV() const {
+bool Vector<Type>::isUnitV() const noexcept{
     bool retOut = false;
     if (fabs(this->length() - 1) < __FLT_EPSILON__)
         retOut = true;
@@ -747,7 +747,7 @@ bool Vector<Type>::isUnitV() const {
 }
 
 template<>
-bool Vector<long double>::isUnitV() const {
+bool Vector<long double>::isUnitV() const noexcept{
     bool retOut = false;
     if (fabs(this->length() - 1) < __DBL_EPSILON__)
         retOut = true;
@@ -755,7 +755,7 @@ bool Vector<long double>::isUnitV() const {
 }
 
 template<typename Type>
-bool Vector<Type>::isZeroV() const {
+bool Vector<Type>::isZeroV() const noexcept{
     bool retOut = false;
     if (this->length() < __FLT_EPSILON__)
         retOut = true;
@@ -808,7 +808,7 @@ void Vector<Type>::pushBack(const Type value) {
 template<typename Type>
 Type Vector<Type>::popBack() {
     time_t currentTime = time(NULL);
-    if (!this->vectorSize)
+    if (this->vectorSize == 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
     Vector<Type> tempVector(*this);
