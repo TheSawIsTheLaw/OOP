@@ -162,44 +162,44 @@ ConstIterator<Type> &ConstIterator<Type>::operator--() {
 
 template<typename Type>
 bool ConstIterator<Type>::operator<(const ConstIterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
-    return wPointer < compareTo.wPointer;
+    return this->currentIndex < compareTo.currentIndex;
 }
 
 template<typename Type>
 bool ConstIterator<Type>::operator<=(const ConstIterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
-    return wPointer <= compareTo.wPointer;
+    return this->currentIndex <= compareTo.currentIndex;
 }
 
 template<typename Type>
 bool ConstIterator<Type>::operator>(const ConstIterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
-    return wPointer > compareTo.wPointer;
+    return this->currentIndex > compareTo.currentIndex;
 }
 
 template<typename Type>
 bool ConstIterator<Type>::operator>=(const ConstIterator<Type> &compareTo) const {
     exceptionCheck();
 
-    return wPointer >= compareTo.wPointer;
+    return this->currentIndex >= compareTo.currentIndex;
 }
 
 template<typename Type>
 bool ConstIterator<Type>::operator==(const ConstIterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
-    return wPointer == compareTo.wPointer;
+    return this->currentIndex == compareTo.currentIndex;
 }
 
 template<typename Type>
 bool ConstIterator<Type>::operator!=(const ConstIterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
-    return wPointer != compareTo.wPointer;
+    return this->currentIndex != compareTo.currentIndex;
 }
 
 template<typename Type>
