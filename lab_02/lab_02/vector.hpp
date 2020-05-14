@@ -103,6 +103,19 @@ void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
+Vector<Type> Vector<Type>:: difEl(const Type element) const {
+    Vector<Type> result(*this);
+
+    ConstIterator<Type> iterFrom = this->begin();
+    Iterator<Type> iterTo = result.begin();
+
+    for (; iterFrom; iterFrom++, iterTo++)
+        *iterTo = *iterFrom - element;
+
+    return result;
+}
+
+template<typename Type>
 void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
                           const Vector<Type> &secondV) const{
     Iterator<Type> resultIterator = result.begin();

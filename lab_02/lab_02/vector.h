@@ -83,17 +83,17 @@ public:
     Vector<Type> operator-(const Vector<Type> &vector) const; // noexcept mb?
     void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> differenceEl(const Type element) const; // R
+    Vector<Type> difEl(const Type element) const; // R
 
     double operator*(const Vector<Type> &vector) const;
     void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> compositionEl(const Type element) const; // R
+    Vector<Type> mulEl(const Type element) const; // R
 
     double operator/(const Vector<Type> &vector) const;
     void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
-    Vector<Type> divisionEl(const Type element) const; // R
+    Vector<Type> divEl(const Type element) const; // R
 
     Vector<Type> operator-();
     void negative(Vector<Type> &result);
