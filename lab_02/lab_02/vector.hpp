@@ -54,21 +54,14 @@ ConstIterator<Type> Vector<Type>::cEnd() const {
 
 //! Methods
 template<typename Type>
-void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
-                          const Vector<Type> &secondV) const {
+Vector<Type> Vector<Type>::vecSum(const Vector<Type> &vector) const {
+    Vector<Type> result(*this);
     Iterator<Type> resultIterator = result.begin();
-    ConstIterator<Type> firstIterator = firstV.begin();
-    ConstIterator<Type> secondIterator = secondV.begin();
+    ConstIterator<Type> iterFrom = vector.begin();
 
-    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
-                                         secondIterator++) {
-        if (i < firstV.vectorSize && i < secondV.vectorSize)
-            *resultIterator = *firstIterator + *secondIterator;
-        else if (i >= firstV.vectorSize)
-            *resultIterator = *firstIterator;
-        else
-            *resultIterator = *secondIterator;
-    }
+    for (size_t i = 0; resultIterator; i++, resultIterator++, iterFrom++)
+        *resultIterator = *resultIterator + *iterFrom;
+    return result;
 }
 
 template<typename Type>
@@ -513,7 +506,7 @@ Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
 
     size_t maxLength = std::max(vectorSize, vector.vectorSize);
     Vector<Type> newVector(maxLength);
-    vecSum(newVector, *this, vector);
+    newVector = this->vecSum(vector);
 
     return newVector;
 }
