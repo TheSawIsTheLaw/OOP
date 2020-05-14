@@ -504,11 +504,7 @@ Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime));
 
-    size_t maxLength = std::max(vectorSize, vector.vectorSize);
-    Vector<Type> newVector(maxLength);
-    newVector = this->vecSum(vector);
-
-    return newVector;
+    return this->vecSum(vector);
 }
 
 template<typename Type>
