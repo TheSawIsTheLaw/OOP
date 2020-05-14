@@ -645,6 +645,22 @@ bool Vector<Type>::isUnitV() const {
     return retOut;
 }
 
+template<>
+bool Vector<double>::isUnitV() const {
+    bool retOut = false;
+    if (fabs(this->length() - 1) < __DBL_EPSILON__)
+        retOut = true;
+    return retOut;
+}
+
+template<>
+bool Vector<long double>::isUnitV() const {
+    bool retOut = false;
+    if (fabs(this->length() - 1) < __DBL_EPSILON__)
+        retOut = true;
+    return retOut;
+}
+
 template<typename Type>
 bool Vector<Type>::isZeroV() const {
     bool retOut = false;
