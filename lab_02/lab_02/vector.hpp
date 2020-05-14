@@ -431,28 +431,24 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator*=(const Type number) {
+Vector<Type> &Vector<Type>::operator*=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator = this->begin();
-    for (; iterator; iterator++)
-        *iterator *= number;
+    vecMul(*this, *this, vector);
     return *this;
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator/=(const Type number) {
+Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (vectorSize < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    Iterator<Type> iterator = this->begin();
-    for (; iterator; iterator++)
-        *iterator /= number;
+    vecDiv(*this, *this, vector);
     return *this;
 }
 
