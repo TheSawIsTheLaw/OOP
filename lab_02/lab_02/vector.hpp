@@ -188,7 +188,7 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    double angle = (*this * vector) * (1 / (this->length() * vector.length()));
+    double angle = (*this * vector) / (this->length() * vector.length());
     if (angle > 1)
         angle--;
     return acos(angle) * 180 / M_PI;
