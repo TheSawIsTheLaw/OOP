@@ -74,10 +74,6 @@ int main(void)
     std::cout<< "\nIs vector "<< nonOrthVec<< " zero? Answer: "<< nonOrthVec.isZeroV()<< std::endl;
     std::cout<< "Is vector "<< lenExample<< " zero? Answer: "<< lenExample.isZeroV()<< std::endl;
 
-    std::cout<< "\nSet in vector "<< lenExample<< " by index 2 new element '3' :";
-    lenExample.setItemByIndex(2, 3);
-    std::cout<< " "<< lenExample<< std::endl;
-
     std::cout<< "\nIncrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.sumEl(2)<<std::endl;
     std::cout<< "Decrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.difEl(2)<<std::endl;
     std::cout<< "Div to all coords 4 of "<< lenExample<< " is: "<< lenExample.divEl(4)<<std::endl;

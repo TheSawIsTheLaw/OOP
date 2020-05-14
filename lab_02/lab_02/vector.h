@@ -42,7 +42,6 @@ public:
     void pushBack(const Type value);
     Type popBack();
 
-    bool setItemByIndex(size_t index, const Type item);
     Type &at(size_t index);
     const Type &at(size_t index) const;
 

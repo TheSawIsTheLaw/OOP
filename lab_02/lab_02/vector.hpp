@@ -233,9 +233,6 @@ Vector<Type>::Vector() {
 template<typename Type>
 Vector<Type>::Vector(size_t size) {
     time_t currentTime = time(NULL);
-    if (size == 0)
-        throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                                   __LINE__, ctime(&currentTime));
 
     allocNewVectorMem(size);
     if (!values)
@@ -626,13 +623,11 @@ template<typename Type>
 void Vector<Type>::allocNewVectorMem(size_t amount) {
     time_t currentTime = time(NULL);
     try {
-        values.reset();
+        values.reset(new Type[amount]);
     } catch (std::bad_alloc &exception) {
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
     }
-    std::shared_ptr<Type> temp(new Type[amount], std::default_delete<Type[]>());
-    values = temp;
 }
 //< End
 
@@ -672,8 +667,9 @@ bool Vector<Type>::isZeroV() const {
 template<typename Type>
 Type Vector<Type>::summaryValue() {
     time_t currentTime = time(NULL);
-    if (vectorSize = 0) throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                                                    __LINE__, ctime(&currentTime));
+    if (vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
 
     Iterator<Type> iterator = this->begin();
     Type summary = 0;
@@ -730,15 +726,3 @@ Type Vector<Type>::popBack() {
     return *iterFrom;
 }
 //! End
-
-//! Set item func
-template<typename Type>
-bool Vector<Type>::setItemByIndex(size_t index, const Type item)
-{
-    if (index < 0 || index >= vectorSize)
-        return false;
-
-    at(index) = item;
-    return true;
-}
-//< End
