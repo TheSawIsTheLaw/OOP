@@ -10,7 +10,7 @@
 template<typename Type>
 Vector<Type>::~Vector() {
     if (values)
-        values.reset();
+        this->values.reset();
 }
 //< End
 
@@ -624,6 +624,7 @@ double Vector<Type>::operator*(const Vector<Type> &vector) {
 
     return this->vecMul(vector).summaryValue();
 }
+
 template<typename Type>
 Vector<Type> Vector<Type>::operator*(const Type &element) {
     time_t currentTime = time(NULL);
@@ -632,6 +633,11 @@ Vector<Type> Vector<Type>::operator*(const Type &element) {
                                    __LINE__, ctime(&currentTime));
 
     return this->mulEl(element);
+}
+
+template<typename Type>
+double Vector<Type>::VecMultip(const Vector<Type> &vector) {
+    return *this * vector;
 }
 
 template<typename Type>
@@ -653,6 +659,11 @@ Vector<float> Vector<Type>::operator/(const Type &element) {
                                    __LINE__, ctime(&currentTime));
 
     return this->divEl(element);
+}
+
+template<typename Type>
+double Vector<Type>::VecDivid(const Vector<Type> &vector) {
+    return *this / vector;
 }
 //< End
 

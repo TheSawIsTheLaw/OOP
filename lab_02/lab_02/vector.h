@@ -90,24 +90,24 @@ public:
     void divEq(const Type &element);
 
     Vector<Type> operator+(const Vector<Type> &vector);
-    Vector<Type> operator+(const Type &element); // R
-    Vector<Type> sumVec(const Vector<Type> &vector); // R
-    Vector<Type> sumEl(const Type &element) const; // R
+    Vector<Type> operator+(const Type &element);
+    Vector<Type> vecSum(const Vector<Type> &vector) const;
+    Vector<Type> sumEl(const Type &element) const;
 
     Vector<Type> operator-(const Vector<Type> &vector);
-    Vector<Type> operator-(const Type &element); // R
-    Vector<Type> difVec(const Vector<Type> &vector); // R
-    Vector<Type> difEl(const Type &element) const; // R
+    Vector<Type> operator-(const Type &element);
+    Vector<Type> vecDif(const Vector<Type> &vector) const;
+    Vector<Type> difEl(const Type &element) const;
 
     double operator*(const Vector<Type> &vector);
-    Vector<Type> operator*(const Type &element); // R
-    double mulVec(const Vector<Type> &vector); // R
-    Vector<Type> mulEl(const Type &element) const; // R
+    Vector<Type> operator*(const Type &element);
+    double VecMultip(const Vector<Type> &vector);
+    Vector<Type> mulEl(const Type &element) const;
 
     double operator/(const Vector<Type> &vector);
-    Vector<float> operator/(const Type &element); // R
-    double divVec(const Vector<Type> &vector); // R
-    Vector<float> divEl(const Type &element) const; // R
+    Vector<float> operator/(const Type &element);
+    double VecDivid(const Vector<Type> &vector);
+    Vector<float> divEl(const Type &element) const;
 
     Vector<Type> operator-();
     void negative();
@@ -124,8 +124,6 @@ private:
 
 protected:
     Type summaryValue();
-    Vector<Type> vecSum(const Vector<Type> &vector) const;
-    Vector<Type> vecDif(const Vector<Type> &vector) const;
     Vector<Type> vecMul(const Vector<Type> &vector) const;
     Vector<Type> vecDiv(const Vector<Type> &vector) const;
 
