@@ -18,9 +18,9 @@ public:
     //! Constructors
     Vector();
 
-    Vector(size_t len);
-    Vector(size_t len, Type *vector);
-    Vector(size_t len, Type element);
+    Vector(size_t size);
+    Vector(size_t size, Type *arrayFrom);
+    Vector(size_t size, Type element);
 
     Vector(std::initializer_list<Type> elements);
 

@@ -230,18 +230,18 @@ Vector<Type>::Vector() {
 }
 
 template<typename Type>
-Vector<Type>::Vector(size_t len) {
+Vector<Type>::Vector(size_t size) {
     time_t currentTime = time(NULL);
-    if (len < 0)
+    if (size < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    allocNewVectorMem(len);
+    allocNewVectorMem(size);
     if (!values)
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
 
-    vectorSize = len;
+    vectorSize = size;
 
     Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
@@ -249,18 +249,18 @@ Vector<Type>::Vector(size_t len) {
 }
 
 template<typename Type>
-Vector<Type>::Vector(size_t len, Type element) {
+Vector<Type>::Vector(size_t size, Type element) {
     time_t currentTime = time(NULL);
-    if (len < 0)
+    if (size < 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    allocNewVectorMem(len);
+    allocNewVectorMem(size);
     if (!values)
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
 
-    vectorSize = len;
+    vectorSize = size;
 
     Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
@@ -268,16 +268,16 @@ Vector<Type>::Vector(size_t len, Type element) {
 }
 
 template<typename Type>
-Vector<Type>::Vector(size_t len, Type *arrayFrom) {
+Vector<Type>::Vector(size_t size, Type *arrayFrom) {
     time_t currentTime = time(NULL);
-    if (len < 0)
+    if (size < 0)
         throw EmptyVectorException(__FILE__, typeod(*this).name(),
                                    __LINE__, ctime(&currentTime));
     if (!arrayFrom)
         throw InvalidCopyArrayPointer(__FILE__, typeid(*this).name(),
                                       __LINE__, ctime(&currentTime));
 
-    allocNewVectorMem(len);
+    allocNewVectorMem(size);
     if (!values)
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
