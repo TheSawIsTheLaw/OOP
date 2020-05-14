@@ -52,7 +52,7 @@ int main(void)
 
     std::cout<< "PopBack: "<< orthVecF<< std::endl;
     int gotEl = orthVecF.popBack();
-    std::cout<< "Popped: "<< orthVecF<< "\t"<< "Element: "<< gotEl<< std::endl;
+    std::cout<< "Popped: "<< orthVecF<< " Element: "<< gotEl<< std::endl;
 
     std::cout<< "\nVector "<< colVecS<< " length is: "<< colVecS.length()<<std::endl;
 
@@ -82,6 +82,10 @@ int main(void)
     std::cout<< "Decrement to all coords 2 of "<< lenExample<< " is: "<< lenExample.difEl(2)<<std::endl;
     std::cout<< "Div to all coords 4 of "<< lenExample<< " is: "<< lenExample.divEl(4)<<std::endl;
     std::cout<< "Mul to all coords 4 of "<< lenExample<< " is: "<< lenExample.mulEl(4)<<std::endl;
+
+    std::cout<< "\nFor each: ";
+    for (auto elem:orthVecF)
+        std::cout<< elem<< " ";
 
     return SUCCESS;
 }

@@ -180,21 +180,21 @@ Iterator<Type> &Iterator<Type>::operator--() {
 
 template<typename Type>
 bool Iterator<Type>::operator<(const Iterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
     return wPointer < compareTo.wPointer;
 }
 
 template<typename Type>
 bool Iterator<Type>::operator<=(const Iterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
     return wPointer <= compareTo.wPointer;
 }
 
 template<typename Type>
 bool Iterator<Type>::operator>(const Iterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
     return wPointer > compareTo.wPointer;
 }
@@ -208,16 +208,16 @@ bool Iterator<Type>::operator>=(const Iterator<Type> &compareTo) const {
 
 template<typename Type>
 bool Iterator<Type>::operator==(const Iterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
     return wPointer == compareTo.wPointer;
 }
 
 template<typename Type>
 bool Iterator<Type>::operator!=(const Iterator<Type> &compareTo) const {
-    exceptionCheck();
+    exceptionCheck(__LINE__);
 
-    return wPointer != compareTo.wPointer;
+    return this->currentIndex != compareTo.currentIndex;
 }
 
 template<typename Type>
