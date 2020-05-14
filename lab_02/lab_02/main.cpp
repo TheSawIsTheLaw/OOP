@@ -71,6 +71,10 @@ int main(void)
     std::cout<< "\nIs vector "<< nonOrthVec<< " zero? Answer: "<< nonOrthVec.isZeroV()<< std::endl;
     std::cout<< "\nIs vector "<< lenExample<< " zero? Answer: "<< lenExample.isZeroV()<< std::endl;
 
+    std::cout<< "\nSet in vector "<< lenExample<< " by index 2 new element '3' :";
+    lenExample.setItemByIndex(2, 3);
+    std::cout<< " "<< lenExample<< std::endl;
+
 
     return SUCCESS;
 }
