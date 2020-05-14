@@ -89,26 +89,26 @@ public:
     Vector<Type> divEq(const Vector<Type> &vector); // R
     Vector<Type> divEq(const Type &element); // R
 
-    Vector<Type> operator+(const Vector<Type> &vector); // R
-    Vector<Type> operator+(const Type &element); // R
-    Vector<Type> sumVec(const Vector<Type> &vector); // R
-    Vector<Type> sumEl(const Type &element); // R
+    Vector<Type> operator+(const Vector<Type> &vector) const; // R
+    Vector<Type> operator+(const Type &element) const; // R
+    Vector<Type> sumVec(const Vector<Type> &vector) const; // R
+    Vector<Type> sumEl(const Type &element) const; // R
 
     // CheckSizes!!!
     Vector<Type> operator-(const Vector<Type> &vector) const; // EXCEPT на несоразмерные вектора
-    Vector<Type> operator-(const Type &element); // R
-    Vector<Type> difVec(const Vector<Type> &vector); // R
-    Vector<Type> difEl(const Type &element); // R
+    Vector<Type> operator-(const Type &element) const; // R
+    Vector<Type> difVec(const Vector<Type> &vector) const; // R
+    Vector<Type> difEl(const Type &element) const; // R
 
     double operator*(const Vector<Type> &vector) const;
-    Vector<Type> operator*(const Type &element); // R
-    double mulVec(const Vector<Type> &vector); // R
-    Vector<Type> mulEl(const Type &element); // R
+    Vector<Type> operator*(const Type &element) const; // R
+    double mulVec(const Vector<Type> &vector) const; // R
+    Vector<Type> mulEl(const Type &element) const; // R
 
     double operator/(const Vector<Type> &vector) const;
-    Vector<float> operator/(const Type &element); // R
-    double divVec(const Vector<Type> &vector); // R
-    Vector<float> divEl(const Type &element); // R
+    Vector<float> operator/(const Type &element) const; // R
+    double divVec(const Vector<Type> &vector) const; // R
+    Vector<float> divEl(const Type &element) const; // R
 
     Vector<Type> operator-();
     void negative(); // REALIZE!!!
@@ -125,14 +125,17 @@ private:
 
 protected:
     Type summaryValue();
-    void vecSum(Vector<Type> &result, const Vector<Type> &firstV,
-                const Vector<Type> &secondV) const; // избавься от result и firstV
+    Vector<Type> &vecSum(const Vector<Type> &vector) const; // избавься от result и firstV
     void vecDif(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
     void vecMul(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
     void vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
                 const Vector<Type> &secondV) const;
+
+    void checkSizes(Vector<Type> &vectorF, Vector<Type> &vectorS, int lineError);
+
+    bool isEmpty() const;
 
     void allocNewVectorMem(size_t itemsAmount);
 };

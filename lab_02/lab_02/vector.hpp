@@ -54,21 +54,13 @@ ConstIterator<Type> Vector<Type>::cEnd() const {
 
 //! Methods
 template<typename Type>
-void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
-                          const Vector<Type> &secondV) const {
-    Iterator<Type> resultIterator = result.begin();
-    ConstIterator<Type> firstIterator = firstV.begin();
-    ConstIterator<Type> secondIterator = secondV.begin();
+Vector<Type> &Vector<Type>::vecSum(const Vector<Type> &vector) const {
+    checkSizes(*this, vector, __LINE__);
+    Iterator<Type> resultIterator = this->begin();
+    ConstIterator<Type> fromIter = vector.begin();
 
-    for (size_t i = 0; resultIterator; i++, resultIterator++, firstIterator++,
-                                         secondIterator++) {
-        if (i < firstV.vectorSize && i < secondV.vectorSize)
-            *resultIterator = *firstIterator + *secondIterator;
-        else if (i >= firstV.vectorSize)
-            *resultIterator = *firstIterator;
-        else
-            *resultIterator = *secondIterator;
-    }
+    for (size_t i = 0; resultIterator; i++, resultIterator++, fromIter++)
+        *resultIterator = *resultIterator + *fromIter;
 }
 
 template<typename Type>
@@ -103,7 +95,7 @@ void Vector<Type>::vecDif(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>::difEl(Type element) const {
+Vector<Type> Vector<Type>::difEl(const Type &element) const {
     Vector<Type> result(*this);
 
     ConstIterator<Type> iterFrom = this->begin();
@@ -132,7 +124,7 @@ void Vector<Type>::vecMul(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>:: mulEl(Type element) const {
+Vector<Type> Vector<Type>:: mulEl(const Type &element) const {
     Vector<Type> result(*this);
 
     ConstIterator<Type> iterFrom = this->begin();
@@ -161,7 +153,7 @@ void Vector<Type>::vecDiv(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<float> Vector<Type>::divEl(Type element) const {
+Vector<float> Vector<Type>::divEl(const Type &element) const {
     time_t currentTime = time(NULL);
     if (!element)
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
@@ -226,18 +218,13 @@ Vector<double> Vector<Type>::getUnitV() const {
 //! Constructors
 template<typename Type>
 Vector<Type>::Vector() {
-    vectorSize = 0;
-    allocNewVectorMem(vectorSize);
+    this->vectorSize = 0;
+    allocNewVectorMem(this->vectorSize);
 }
 
 template<typename Type>
 Vector<Type>::Vector(size_t size) {
-    time_t currentTime = time(NULL);
-
     allocNewVectorMem(size);
-    if (!values)
-        throw MemoryException(__FILE__, typeid(*this).name(),
-                              __LINE__, ctime(&currentTime));
 
     vectorSize = size;
 
@@ -249,7 +236,7 @@ Vector<Type>::Vector(size_t size) {
 template<typename Type>
 Vector<Type>::Vector(size_t size, Type element) {
     time_t currentTime = time(NULL);
-    if (size == 0)
+    if (this->isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -268,7 +255,7 @@ Vector<Type>::Vector(size_t size, Type element) {
 template<typename Type>
 Vector<Type>::Vector(size_t size, Type *arrayFrom) {
     time_t currentTime = time(NULL);
-    if (size == 0)
+    if (this->isEmpty())
         throw EmptyVectorException(__FILE__, typeod(*this).name(),
                                    __LINE__, ctime(&currentTime));
     if (!arrayFrom)
@@ -296,13 +283,13 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
 }
 
 template<typename Type>
-Vector<Type>:: Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
+Vector<Type>::Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
     values = vector.values;
     vector.values = nullptr;
 }
 
 template<typename Type>
-Vector<Type>:: Vector(const Vector<Type> &vector): VectorBase(vector.vectorSize) {
+Vector<Type>::Vector(const Vector<Type> &vector): VectorBase(vector.vectorSize) {
     *this = vector;
 }
 //< End
@@ -461,7 +448,7 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -473,7 +460,7 @@ Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -485,7 +472,7 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator*=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -496,7 +483,7 @@ Vector<Type> &Vector<Type>::operator*=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -505,9 +492,9 @@ Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
+Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime));
 
@@ -521,7 +508,7 @@ Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                          __LINE__, ctime(&currentTime));
 
@@ -535,7 +522,7 @@ Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) const {
 template<typename Type>
 double Vector<Type>::operator*(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
 
@@ -549,7 +536,7 @@ double Vector<Type>::operator*(const Vector<Type> &vector) const {
 template<typename Type>
 double Vector<Type>::operator/(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->isEmpty() || vector.isEmpty())
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
 
@@ -579,6 +566,11 @@ Vector<Type> Vector<Type>::operator-() {
         *iterator = -*iterator;
 
     return newVector;
+}
+
+template<typename Type>
+void Vector<Type>::negative() {
+    *this = -(*this);
 }
 
 template<typename Type>
@@ -633,6 +625,13 @@ void Vector<Type>::allocNewVectorMem(size_t amount) {
 
 //! Smth
 template<typename Type>
+bool Vector<Type>::isEmpty() const {
+    if (this->vectorSize)
+        return false;
+    return true;
+}
+
+template<typename Type>
 bool Vector<Type>::isUnitV() const {
     bool retOut = false;
     if (fabs(this->length() - 1) < __FLT_EPSILON__)
@@ -667,7 +666,7 @@ bool Vector<Type>::isZeroV() const {
 template<typename Type>
 Type Vector<Type>::summaryValue() {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -682,7 +681,7 @@ Type Vector<Type>::summaryValue() {
 template<typename Type>
 double Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->isEmpty())
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -710,10 +709,9 @@ void Vector<Type>::pushBack(const Type value) {
 template<typename Type>
 Type Vector<Type>::popBack() {
     time_t currentTime = time(NULL);
-    if (!this->vectorSize)
+    if (this->isEmpty())
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
-    //!!! Добавить проверку на размер вектора
     Vector<Type> tempVector(*this);
     values.reset();
 
@@ -725,4 +723,14 @@ Type Vector<Type>::popBack() {
         *iterTo = *iterFrom;
     return *iterFrom;
 }
-//! End
+//< End
+
+//! Check
+template<typename Type>
+void checkSizes(Vector<Type> &vectorF, Vector<Type> &vectorS, int lineError) {
+    time_t currentTime = time(NULL);
+    if (vectorF.vectorSize != vectorS.vectorSize)
+        throw InvalidVectorsSizes(__FILE__, typeid(vectorF).name(),
+                                  lineError, ctime(&currentTime));
+}
+//< End

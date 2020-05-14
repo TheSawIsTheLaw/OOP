@@ -60,4 +60,13 @@ public:
     };
 };
 
+class InvalidVectorsSizes: public ExceptionBase {
+public:
+    InvalidVectorsSizes(std::string fileName, std::string className,
+                            int currentLine, const char *errorTime,
+                            std::string information = "Vectors sizes equality error"):
+        ExceptionBase(fileName, className, currentLine, errorTime, information) {
+    };
+};
+
 #endif // EXCEPTIONS_H
