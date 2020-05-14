@@ -53,11 +53,11 @@ int main(void)
 
     std::cout<< "Vector "<< colVecS<< " length is: "<< colVecS.length()<<std::endl;
 
-    std::cout<< "At 1 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(1)<<std::endl;
-    std::cout<< "At 2 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(2)<<std::endl;
+    std::cout<< "\nAt 1 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(1)<<std::endl;
+    std::cout<< "\nAt 2 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(2)<<std::endl;
 
     try {
-        std::cout<< "At 5 el of vector "<< nonOrthVec<< " we have\n"<< nonOrthVec.at(5)<<std::endl;
+        std::cout<< "\nAt 5 el of vector "<< nonOrthVec<< " we have\n"<< nonOrthVec.at(5)<<std::endl;
     } catch (InvalidIndexException &err) {
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
@@ -69,6 +69,8 @@ int main(void)
     std::cout<< "\nIs vector "<< nonOrthVec<< " unit? Answer: "<< nonOrthVec.isUnitV()<< std::endl;
 
     std::cout<< "\nIs vector "<< nonOrthVec<< " zero? Answer: "<< nonOrthVec.isZeroV()<< std::endl;
+    std::cout<< "\nIs vector "<< lenExample<< " zero? Answer: "<< lenExample.isZeroV()<< std::endl;
+
 
     return SUCCESS;
 }
