@@ -72,7 +72,7 @@ void Vector<Type>::vecSum(Vector<Type> &result, const Vector<Type> &firstV,
 }
 
 template<typename Type>
-Vector<Type> Vector<Type>:: sumEl(Type element) const {
+Vector<Type> Vector<Type>:: sumEl(const Type &element) const {
     Vector<Type> result(*this);
 
     ConstIterator<Type> iterFrom = this->begin();

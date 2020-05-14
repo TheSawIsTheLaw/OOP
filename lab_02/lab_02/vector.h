@@ -89,21 +89,26 @@ public:
     Vector<Type> divEq(const Vector<Type> &vector); // R
     Vector<Type> divEq(const Type &element); // R
 
-    Vector<Type> operator+(const Vector<Type> &vector);
-    // ADD operator+(cosnt Type &elem, const vector<Type> &vect) { vect + elem;};
-    // realise in other file WITHOUT :: потому что функция
-    // ADD operator+(const Type element)
-    Vector<Type> sumEl(Type element) const;
+    Vector<Type> operator+(const Vector<Type> &vector); // R
+    Vector<Type> operator+(const Type &element); // R
+    Vector<Type> sumVec(const Vector<Type> &vector); // R
+    Vector<Type> sumEl(const Type &element); // R
 
     // CheckSizes!!!
     Vector<Type> operator-(const Vector<Type> &vector) const; // EXCEPT на несоразмерные вектора
-    Vector<Type> difEl(Type element) const;
+    Vector<Type> operator-(const Type &element); // R
+    Vector<Type> difVec(const Vector<Type> &vector); // R
+    Vector<Type> difEl(const Type &element); // R
 
     double operator*(const Vector<Type> &vector) const;
-    Vector<Type> mulEl(Type element) const;
+    Vector<Type> operator*(const Type &element); // R
+    double mulVec(const Vector<Type> &vector); // R
+    Vector<Type> mulEl(const Type &element); // R
 
     double operator/(const Vector<Type> &vector) const;
-    Vector<float> divEl(Type element) const;
+    Vector<float> operator/(const Type &element); // R
+    double divVec(const Vector<Type> &vector); // R
+    Vector<float> divEl(const Type &element); // R
 
     Vector<Type> operator-();
     void negative(); // REALIZE!!!
@@ -131,6 +136,11 @@ protected:
 
     void allocNewVectorMem(size_t itemsAmount);
 };
+
+template<typename Type>
+Vector<Type> operator+(const Type &element, const Vector<Type> &vector) {
+    return vector + element;
+}
 
 // cio wk
 template<typename Type>
