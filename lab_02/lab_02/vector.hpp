@@ -497,6 +497,20 @@ double Vector<Type>::operator*(const Vector<Type> &vector) const {
 
     return newVector.summaryValue();
 }
+
+template<typename Type>
+double Vector<Type>::operator/(const Vector<Type> &vector) const {
+    time_t currentTime = time(NULL);
+    if (vectorSize <= 0 || vector.vectorSize <= 0)
+        EmptyVectorException(__FILE__, typeid(*this).name(),
+                             __LINE__, ctime(&currentTime));
+
+    int maxLength = std::max(vectorSize, vector.vectorSize);
+    Vector<Type> newVector(maxLength);
+    vecDiv(newVector, *this, vector);
+
+    return newVector.summaryValue();
+}
 //< End
 
 template<typename Type>
