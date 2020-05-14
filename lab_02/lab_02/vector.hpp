@@ -584,6 +584,16 @@ Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
 }
 
 template<typename Type>
+Vector<Type> Vector<Type>::operator+(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    return this->sumEl(element);
+}
+
+template<typename Type>
 Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0 || vector.vectorSize == 0)
@@ -592,6 +602,16 @@ Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
     this->checkSizes(vector, __LINE__);
 
     return this->vecDif(vector);
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::operator-(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    return this->difEl(element);
 }
 
 template<typename Type>
@@ -604,6 +624,15 @@ double Vector<Type>::operator*(const Vector<Type> &vector) {
 
     return this->vecMul(vector).summaryValue();
 }
+template<typename Type>
+Vector<Type> Vector<Type>::operator*(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    return this->mulEl(element);
+}
 
 template<typename Type>
 double Vector<Type>::operator/(const Vector<Type> &vector) {
@@ -614,6 +643,16 @@ double Vector<Type>::operator/(const Vector<Type> &vector) {
     this->checkSizes(vector, __LINE__);
 
     return this->vecDif(vector).summaryValue();
+}
+
+template<typename Type>
+Vector<float> Vector<Type>::operator/(const Type &element) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
+
+    return this->divEl(element);
 }
 //< End
 

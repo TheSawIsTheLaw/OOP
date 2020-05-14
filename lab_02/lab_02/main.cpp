@@ -121,5 +121,10 @@ int main(void)
     nonOrthVec.divEq(2);
     std::cout<< "/= 2 "<< nonOrthVec<< std::endl;
 
+    std::cout<< nonOrthVec<< " + 3 = "<< nonOrthVec + float(3)<< std::endl;
+    std::cout<< nonOrthVec<< " - 3 = "<< nonOrthVec - float(3)<< std::endl;
+    std::cout<< nonOrthVec<< " / 3 = "<< nonOrthVec / float(3)<< std::endl;
+    std::cout<< nonOrthVec<< " * 3 = "<< nonOrthVec * float(3)<< std::endl;
+
     return SUCCESS;
 }

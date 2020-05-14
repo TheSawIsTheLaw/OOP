@@ -85,11 +85,11 @@ public:
     void mulEq(const Type &element);
 
     Vector<Type> &operator/=(const Vector<Type> &vector);
-    Vector<Type> &operator/=(const Type &element); // R
-    void divEq(const Vector<Type> &vector); // R
-    void divEq(const Type &element); // R
+    Vector<Type> &operator/=(const Type &element);
+    void divEq(const Vector<Type> &vector);
+    void divEq(const Type &element);
 
-    Vector<Type> operator+(const Vector<Type> &vector); // R
+    Vector<Type> operator+(const Vector<Type> &vector);
     Vector<Type> operator+(const Type &element); // R
     Vector<Type> sumVec(const Vector<Type> &vector); // R
     Vector<Type> sumEl(const Type &element) const; // R
