@@ -94,7 +94,6 @@ public:
     Vector<Type> sumVec(const Vector<Type> &vector); // R
     Vector<Type> sumEl(const Type &element) const; // R
 
-    // CheckSizes!!!
     Vector<Type> operator-(const Vector<Type> &vector); // EXCEPT на несоразмерные вектора
     Vector<Type> operator-(const Type &element); // R
     Vector<Type> difVec(const Vector<Type> &vector); // R
@@ -130,12 +129,29 @@ protected:
     Vector<Type> vecMul(const Vector<Type> &vector) const;
     Vector<Type> vecDiv(const Vector<Type> &vector) const;
 
+    void checkSizes(const Vector<Type> &vector, int lineError);
+
     void allocNewVectorMem(size_t itemsAmount);
 };
 
 template<typename Type>
 Vector<Type> operator+(const Type &element, const Vector<Type> &vector) {
     return vector + element;
+}
+
+template<typename Type>
+Vector<Type> operator-(const Type &element, const Vector<Type> &vector) {
+    return vector - element;
+}
+
+template<typename Type>
+Vector<Type> operator*(const Type &element, const Vector<Type> &vector) {
+    return vector * element;
+}
+
+template<typename Type>
+Vector<Type> operator/(const Type &element, const Vector<Type> &vector) {
+    return vector / element;
 }
 
 // cio wk

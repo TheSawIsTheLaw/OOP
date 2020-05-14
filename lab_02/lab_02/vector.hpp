@@ -115,7 +115,6 @@ Vector<Type> Vector<Type>::vecMul(const Vector<Type> &vector) const {
 template<typename Type>
 Vector<Type> Vector<Type>:: mulEl(const Type &element) const {
     Vector<Type> result(*this);
-
     ConstIterator<Type> iterFrom = this->begin();
     Iterator<Type> iterTo = result.begin();
 
@@ -133,6 +132,7 @@ Vector<Type> Vector<Type>::vecDiv(const Vector<Type> &vector) const {
 
     for (; resultIterator; resultIterator++, iterFrom++)
         *resultIterator = *resultIterator / *iterFrom;
+
     return result;
 }
 
@@ -202,20 +202,20 @@ Vector<double> Vector<Type>::getUnitV() const {
 //! Constructors
 template<typename Type>
 Vector<Type>::Vector() {
-    vectorSize = 0;
-    allocNewVectorMem(vectorSize);
+    this->vectorSize = 0;
+    this->allocNewVectorMem(vectorSize);
 }
 
 template<typename Type>
 Vector<Type>::Vector(size_t size) {
     time_t currentTime = time(NULL);
 
-    allocNewVectorMem(size);
-    if (!values)
+    this->allocNewVectorMem(size);
+    if (!this->values)
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
 
-    vectorSize = size;
+    this->vectorSize = size;
 
     Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
@@ -229,12 +229,12 @@ Vector<Type>::Vector(size_t size, Type element) {
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
-    allocNewVectorMem(size);
+    this->allocNewVectorMem(size);
     if (!values)
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
 
-    vectorSize = size;
+    this->vectorSize = size;
 
     Iterator<Type> iterator = this->begin();
     for (; iterator; iterator++)
@@ -251,7 +251,7 @@ Vector<Type>::Vector(size_t size, Type *arrayFrom) {
         throw InvalidCopyArrayPointer(__FILE__, typeid(*this).name(),
                                       __LINE__, ctime(&currentTime));
 
-    allocNewVectorMem(size);
+    this->allocNewVectorMem(size);
 
     Iterator<Type> iterator = this->begin();
     for (size_t i = 0; iterator; iterator++, i++)
@@ -260,8 +260,8 @@ Vector<Type>::Vector(size_t size, Type *arrayFrom) {
 
 template<typename Type>
 Vector<Type>::Vector(std::initializer_list<Type> arguments) {
-    vectorSize = arguments.size();
-    allocNewVectorMem(vectorSize);
+    this->vectorSize = arguments.size();
+    this->allocNewVectorMem(vectorSize);
 
     Iterator<Type> iterator = this->begin();
     for (auto &currentItem : arguments)
@@ -273,7 +273,7 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
 
 template<typename Type>
 Vector<Type>:: Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
-    values = vector.values;
+    this->values = vector.values;
     vector.values = nullptr;
 }
 
@@ -302,7 +302,7 @@ Type &Vector<Type>::at(size_t index) {
 template<typename Type>
 const Type &Vector<Type>::at(size_t index) const {
     time_t currentTime = time(NULL);
-    if (index >= vectorSize)
+    if (index >= this->vectorSize)
         throw OutOfRangeException(__FILE__, typeid(*this).name(),
                                   __LINE__, ctime(&currentTime));
 
@@ -317,7 +317,7 @@ const Type &Vector<Type>::at(size_t index) const {
 template<typename Type>
 bool Vector<Type>::operator==(const Vector<Type> &vector) const {
     bool areEqual = false;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areEqual;
 
     areEqual = true;
@@ -332,7 +332,7 @@ bool Vector<Type>::operator==(const Vector<Type> &vector) const {
 template<>
 bool Vector<float>::operator==(const Vector<float> &vector) const {
     bool areEqual = false;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areEqual;
 
     areEqual = true;
@@ -347,7 +347,7 @@ bool Vector<float>::operator==(const Vector<float> &vector) const {
 template<>
 bool Vector<double>::operator==(const Vector<double> &vector) const {
     bool areEqual = false;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areEqual;
 
     areEqual = true;
@@ -362,7 +362,7 @@ bool Vector<double>::operator==(const Vector<double> &vector) const {
 template<>
 bool Vector<long double>::operator==(const Vector<long double> &vector) const {
     bool areEqual = false;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areEqual;
 
     areEqual = true;
@@ -377,7 +377,7 @@ bool Vector<long double>::operator==(const Vector<long double> &vector) const {
 template<typename Type>
 bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
     bool areNotEqual = true;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areNotEqual;
 
     areNotEqual = false;
@@ -392,7 +392,7 @@ bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
 template<>
 bool Vector<float>::operator!=(const Vector<float> &vector) const {
     bool areNotEqual = true;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areNotEqual;
 
     areNotEqual = false;
@@ -407,7 +407,7 @@ bool Vector<float>::operator!=(const Vector<float> &vector) const {
 template<>
 bool Vector<double>::operator!=(const Vector<double> &vector) const {
     bool areNotEqual = true;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areNotEqual;
 
     areNotEqual = false;
@@ -422,7 +422,7 @@ bool Vector<double>::operator!=(const Vector<double> &vector) const {
 template<>
 bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
     bool areNotEqual = true;
-    if (vectorSize != vector.vectorSize)
+    if (this->vectorSize != vector.vectorSize)
         return areNotEqual;
 
     areNotEqual = false;
@@ -437,11 +437,12 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->vectorSize == 0 || vector.vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
-    vecSum(*this, *this, vector);
+    *this = this->vecSum(vector);
 
     return *this;
 }
@@ -449,9 +450,10 @@ Vector<Type> &Vector<Type>::operator+=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->vectorSize == 0 || vector.vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
     *this = this->vecDif(vector);
 
@@ -461,9 +463,10 @@ Vector<Type> &Vector<Type>::operator-=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator*=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
     *this = this->vecMul(vector);
     return *this;
@@ -472,9 +475,10 @@ Vector<Type> &Vector<Type>::operator*=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
     vecDiv(*this, *this, vector);
     return *this;
@@ -483,9 +487,10 @@ Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->vectorSize == 0 || vector.vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                         __LINE__, ctime(&currentTime));
+                                   __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
     return this->vecSum(vector);
 }
@@ -493,9 +498,10 @@ Vector<Type> Vector<Type>::operator+(const Vector<Type> &vector) {
 template<typename Type>
 Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->vectorSize == 0 || vector.vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                         __LINE__, ctime(&currentTime));
+                                   __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
     return this->vecDif(vector);
 }
@@ -503,9 +509,10 @@ Vector<Type> Vector<Type>::operator-(const Vector<Type> &vector) {
 template<typename Type>
 double Vector<Type>::operator*(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->vectorSize == 0 || vector.vectorSize == 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
     return this->vecMul(vector).summaryValue();
 }
@@ -513,9 +520,10 @@ double Vector<Type>::operator*(const Vector<Type> &vector) {
 template<typename Type>
 double Vector<Type>::operator/(const Vector<Type> &vector) {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0 || vector.vectorSize == 0)
+    if (this->vectorSize == 0 || vector.vectorSize == 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
 
     return this->vecDif(vector).summaryValue();
 }
@@ -543,8 +551,8 @@ Vector<Type> Vector<Type>::operator-() {
 
 template<typename Type>
 Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
-    vectorSize = vector.vectorSize;
-    allocNewVectorMem(vectorSize);
+    this->vectorSize = vector.vectorSize;
+    this->allocNewVectorMem(vectorSize);
 
     Iterator<Type> iteratorTo(*this);
     Iterator<Type> iteratorFrom(vector);
@@ -555,8 +563,8 @@ Vector<Type> &Vector<Type>::operator=(const Vector<Type> &vector) {
 
 template<typename Type>
 Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
-    vectorSize = arguments.size();
-    allocNewVectorMem(vectorSize);
+    this->vectorSize = arguments.size();
+    this->allocNewVectorMem(vectorSize);
 
     Iterator<Type> iterator = this->begin();
     for (auto &currentItem : arguments)
@@ -569,9 +577,9 @@ Vector<Type> &Vector<Type>::operator=(std::initializer_list<Type> arguments) {
 
 template<typename Type>
 Vector<Type> &Vector<Type>::operator=(Vector<Type> &&vector) {
-    vectorSize = vector.vectorSize;
-    allocNewVectorMem(vectorSize);
-    values = vector.values;
+    this->vectorSize = vector.vectorSize;
+    this->allocNewVectorMem(vectorSize);
+    this->values = vector.values;
     vector.values.reset();
 
     return *this;
@@ -583,7 +591,7 @@ template<typename Type>
 void Vector<Type>::allocNewVectorMem(size_t amount) {
     time_t currentTime = time(NULL);
     try {
-        values.reset(new Type[amount]);
+        this->values.reset(new Type[amount]);
     } catch (std::bad_alloc &exception) {
         throw MemoryException(__FILE__, typeid(*this).name(),
                               __LINE__, ctime(&currentTime));
@@ -619,7 +627,7 @@ bool Vector<Type>::isZeroV() const {
 template<typename Type>
 Type Vector<Type>::summaryValue() {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -634,7 +642,7 @@ Type Vector<Type>::summaryValue() {
 template<typename Type>
 double Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
-    if (vectorSize == 0)
+    if (this->vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
 
@@ -648,10 +656,10 @@ double Vector<Type>::length(void) const {
 template<typename Type>
 void Vector<Type>::pushBack(const Type value) {
     Vector<Type> tempVector(*this);
-    values.reset();
+    this->values.reset();
 
-    allocNewVectorMem(vectorSize + 1);
-    vectorSize++;
+    this->allocNewVectorMem(vectorSize + 1);
+    this->vectorSize++;
     ConstIterator<Type> iterFrom = tempVector.cBegin();
     Iterator<Type> iterTo = this->begin();
     for (; iterFrom; iterTo++, iterFrom++)
@@ -665,12 +673,11 @@ Type Vector<Type>::popBack() {
     if (!this->vectorSize)
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
-    //!!! Добавить проверку на размер вектора
     Vector<Type> tempVector(*this);
-    values.reset();
+    this->values.reset();
 
-    allocNewVectorMem(vectorSize - 1);
-    vectorSize--;
+    this->allocNewVectorMem(vectorSize - 1);
+    this->vectorSize--;
     ConstIterator<Type> iterFrom = tempVector.cBegin();
     Iterator<Type> iterTo = this->begin();
     for (; iterTo; iterTo++, iterFrom++)
@@ -683,3 +690,13 @@ void Vector<Type>::negative() {
     *this = -*this;
 }
 //! End
+
+//! Check
+template<typename Type>
+void Vector<Type>::checkSizes(const Vector<Type> &vector, int lineError) {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize != vector.vectorSize)
+        throw InvalidVectorsSizes(__FILE__, typeid(*this).name(),
+                                  lineError, ctime(&currentTime));
+}
+//< End
