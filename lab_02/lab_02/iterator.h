@@ -242,9 +242,13 @@ Type &Iterator<Type>::operator[](const size_t index) {
 
 template<typename Type>
 const Type &Iterator<Type>::operator[](const size_t index) const {
-    exceptionCheck(__LINE__);
+    size_t curLine = __LINE__;
+    exceptionCheck(curLine);
 
-    if (index + this->currentIndex >= this->vectorLen) { }// throw outOfIndexExc
+    time_t currentTime = time(NULL);
+    if (index + this->currentIndex >= this->vectorLen)
+        throw OutOfRangeException(__FILE__, typeid(*this).name(),
+                                  curLine, ctime(&currentTime));
 
     return *(this + index);
 }
