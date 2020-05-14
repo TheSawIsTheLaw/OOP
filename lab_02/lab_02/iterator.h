@@ -231,7 +231,7 @@ Iterator<Type>::operator bool() const {
 }
 
 template<typename Type>
-Type &Iterator<Type>::operator[](const size_t index) {
+Type &Iterator<Type>::operator[](size_t index) {
     size_t curLine = __LINE__;
     exceptionCheck(curLine);
 
@@ -245,7 +245,7 @@ Type &Iterator<Type>::operator[](const size_t index) {
 
 
 template<typename Type>
-const Type &Iterator<Type>::operator[](const size_t index) const {
+const Type &Iterator<Type>::operator[](size_t index) const {
     size_t curLine = __LINE__;
     exceptionCheck(curLine);
 

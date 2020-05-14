@@ -1,19 +1,16 @@
-#ifndef CONST_ITERATOR_H
-#define CONST_ITERATOR_H
-
+#ifndef CONSTITERATOR_H
+#define CONSTITERATOR_H
 
 #include "exceptions.h"
 
 #include <memory>
 #include <time.h>
-#include <vector>
-
 
 template<typename Type>
 class Vector;
 
 template<typename Type>
-class ConstIterator: public std::iterator<std::input_iterator_tag, int>
+class ConstIterator: public std::iterator<std::random_access_iterator_tag, int>
 {
 public:
     ConstIterator(const ConstIterator<Type> &iterator);
@@ -28,12 +25,12 @@ public:
     ConstIterator<Type> &operator-=(size_t number);
     ConstIterator<Type> operator-(size_t number) const;
     ConstIterator<Type> &operator--();
-    ConstIterator<Type> operator--(int number);
+    ConstIterator<Type> operator--(int);
 
     ConstIterator<Type> &operator+=(size_t number);
     ConstIterator<Type> operator+(size_t number) const;
     ConstIterator<Type> &operator++();
-    ConstIterator<Type> operator++(int number);
+    ConstIterator<Type> operator++(int);
 
     bool operator<=(const ConstIterator<Type> &boolean) const;
     bool operator<(const ConstIterator<Type> &boolean) const;
@@ -42,15 +39,16 @@ public:
     bool operator==(const ConstIterator<Type> &boolean) const;
     bool operator!=(const ConstIterator<Type> &boolean) const;
 
-    bool exceptionCheck(int lineError) const;
+    const Type &operator[](const size_t index) const;
 
 private:
     std::weak_ptr<Type> wPointer;
 
 protected:
     Type *getCurrentPointer() const;
-    int currentIndex = 0;
-    int vectorLen = 0;
+    bool exceptionCheck(size_t lineError) const;
+    size_t currentIndex = 0;
+    size_t vectorSize = 0;
 };
 
 template<typename Type>
@@ -63,15 +61,15 @@ template<typename Type>
 ConstIterator<Type>::ConstIterator(const ConstIterator<Type> &iterator) {
     wPointer = iterator.wPointer;
     currentIndex = iterator.currentIndex;
-    vectorLen = iterator.vectorLen;
+    vectorSize = iterator.vectorSize;
 }
 
 template<typename Type>
 ConstIterator<Type>::ConstIterator(const Vector<Type> &vector) {
     currentIndex = 0;
-    vectorLen = vector.size();
+    vectorSize = vector.size();
     wPointer = vector.values;
-}
+};
 
 template<typename Type>
 const Type &ConstIterator<Type>::operator*() const {
@@ -208,15 +206,27 @@ template<typename Type>
 ConstIterator<Type>::operator bool() const {
     exceptionCheck(__LINE__);
 
-    if (currentIndex >= vectorLen || vectorLen == 0 || currentIndex < 0)
+    if (currentIndex >= vectorSize || vectorSize == 0)
         return false;
     else
         return true;
 }
 
+template<typename Type>
+const Type &ConstIterator<Type>::operator[](size_t index) const {
+    size_t curLine = __LINE__;
+    exceptionCheck(curLine);
+
+    time_t currentTime = time(NULL);
+    if (index + this->currentIndex >= this->vectorLen)
+        throw OutOfRangeException(__FILE__, typeid(*this).name(),
+                                  curLine, ctime(&currentTime));
+
+    return *(this + index);
+}
 
 template<typename Type>
-bool ConstIterator<Type>::exceptionCheck(int lineError) const {
+bool ConstIterator<Type>::exceptionCheck(size_t lineError) const {
     if (!wPointer.expired())
         return true;
 
@@ -227,4 +237,4 @@ bool ConstIterator<Type>::exceptionCheck(int lineError) const {
 }
 
 
-#endif // CONST_ITERATOR_H
+#endif // CONSTITERATOR_H
