@@ -6,13 +6,6 @@
 #include <math.h>
 #include <exception>
 
-//! Distr
-template<typename Type>
-Vector<Type>::~Vector() { // ПЕРЕБОР
-    if (values)
-        this->values.reset();
-}
-//< End
 
 //! Iterator
 template<typename Type>
@@ -291,7 +284,7 @@ Vector<Type>::Vector(const std::initializer_list<Type> &arguments) {
 }
 
 template<typename Type>
-Vector<Type>::Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
+Vector<Type>::Vector(Vector<Type> &&vector) noexcept: VectorBase(vector.vectorSize) {
     this->values = vector.values;
     vector.values = nullptr;
 }

@@ -25,11 +25,11 @@ public:
     Vector(const std::initializer_list<Type> &elements);
 
     explicit Vector(const Vector<Type> &vector);
-    Vector(Vector<Type> &&vector); // noexcept!!!
+    Vector(Vector<Type> &&vector) noexcept; //! noexcept
     //< End
 
     // Destructor
-    virtual ~Vector(); // = default
+    virtual ~Vector() = default; //! = default
 
 
     //! Vector bool funcs
