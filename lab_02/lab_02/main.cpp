@@ -126,5 +126,9 @@ int main(void)
     std::cout<< nonOrthVec<< " / 3 = "<< nonOrthVec / float(3)<< std::endl;
     std::cout<< nonOrthVec<< " * 3 = "<< nonOrthVec * float(3)<< std::endl;
 
+    int arr[2] = {1, 2};
+    Vector<int> arrVec(2, arr);
+    std::cout<< arrVec<< std::endl;
+
     return SUCCESS;
 }

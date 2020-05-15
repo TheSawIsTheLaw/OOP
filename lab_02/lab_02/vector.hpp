@@ -240,16 +240,19 @@ Vector<Type>::Vector(size_t size, Type element) {
 }
 
 template<typename Type>
-Vector<Type>::Vector(size_t size, Type *arrayFrom) {
-    time_t currentTime = time(NULL);
-    if (size == 0)
-        throw EmptyVectorException(__FILE__, typeod(*this).name(),
+Vector<Type>::Vector(size_t size, const Type *arrayFrom) {
+    if (size == 0) {
+        time_t currentTime = time(NULL);
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
                                    __LINE__, ctime(&currentTime));
-    if (!arrayFrom)
+    }
+    if (!arrayFrom) {
+        time_t currentTime = time(NULL);
         throw InvalidCopyArrayPointer(__FILE__, typeid(*this).name(),
                                       __LINE__, ctime(&currentTime));
-
+    }
     this->allocNewVectorMem(size);
+    this->vectorSize = size;
 
     Iterator<Type> iterator = this->begin();
     for (size_t i = 0; iterator; iterator++, i++)
@@ -270,13 +273,13 @@ Vector<Type>::Vector(std::initializer_list<Type> arguments) {
 }
 
 template<typename Type>
-Vector<Type>:: Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
+Vector<Type>::Vector(Vector<Type> &&vector): VectorBase(vector.vectorSize) {
     this->values = vector.values;
     vector.values = nullptr;
 }
 
 template<typename Type>
-Vector<Type>:: Vector(const Vector<Type> &vector): VectorBase(vector.vectorSize) {
+Vector<Type>::Vector(const Vector<Type> &vector): VectorBase(vector.vectorSize) {
     *this = vector;
 }
 //< End
@@ -299,10 +302,11 @@ Type &Vector<Type>::at(size_t index) {
 //! Get item const
 template<typename Type>
 const Type &Vector<Type>::at(size_t index) const {
-    time_t currentTime = time(NULL);
-    if (index >= this->vectorSize)
+    if (index >= this->vectorSize) {
+        time_t currentTime = time(NULL);
         throw OutOfRangeException(__FILE__, typeid(*this).name(),
                                   __LINE__, ctime(&currentTime));
+    }
 
     ConstIterator<Type> iterator = this->begin();
     for (size_t i = 0; i < index; i++, iterator++) { }
@@ -790,7 +794,7 @@ double Vector<Type>::length(void) const {
 }
 
 template<typename Type>
-void Vector<Type>::pushBack(const Type value) {
+void Vector<Type>::pushBack(const Type &value) {
     Vector<Type> tempVector(*this);
     this->values.reset();
 

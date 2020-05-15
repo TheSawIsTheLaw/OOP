@@ -19,7 +19,7 @@ public:
     Vector();
 
     explicit Vector(size_t size);
-    Vector(size_t size, Type *arrayFrom);
+    Vector(size_t size, const Type *arrayFrom);
     Vector(size_t size, Type element);
 
     Vector(std::initializer_list<Type> elements);
@@ -39,7 +39,7 @@ public:
 
     //! One vector methods
     double length() const;
-    void pushBack(const Type value);
+    void pushBack(const Type &value);
     Type popBack();
 
     Type &at(size_t index);
