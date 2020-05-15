@@ -94,13 +94,18 @@ public:
     Vector<Type> &operator*=(const Type &element);
     void mulEq(const Vector<Type> &vector);
     void mulEq(const Type &element);
-    Vector<Type> operator*(const Vector<Type> &vector) const; // в новую функцию
+    Vector<Type> operator*(const Vector<Type> &vector) const; //! в новую функцию
     Vector<Type> operator*(const Type &element) const;
     Vector<Type> vecMultip(const Vector<Type> &vector) const;
     Vector<Type> mulEl(const Type &element) const;
 
-    double operator&(const Vector<Type> &vector) const; //! Вынесено!
-    double scalarMult(const Vector<Type> &vector) const;
+    Type operator&(const Vector<Type> &vector) const; //! Вынесено!
+    Type scalarMult(const Vector<Type> &vector) const;
+
+    Vector<Type> operator^(const Vector<Type> &vector) const; //! Добавлено векторное произведение
+    Vector<Type> &operator^=(const Vector<Type> &vector) const;
+    Vector<Type> VectorMult(const Vector<Type> &vector) const;
+    Vector<Type> &VectorEq(const Vector<Type> &vector) const;
 
     Vector<Type> &operator/=(const Vector<Type> &vector);
     Vector<Type> &operator/=(const Type &element);
@@ -128,6 +133,7 @@ protected:
     Vector<Type> vecDiv(const Vector<Type> &vector) const;
 
     void checkSizes(const Vector<Type> &vector, int lineError) const;
+    void checkSizeForVecMul(const Vector<Type> &vector, int lineError) const;
 
     void allocNewVectorMem(size_t itemsAmount);
 };

@@ -654,7 +654,7 @@ Vector<Type> Vector<Type>::vecMultip(const Vector<Type> &vector) const {
 }
 
 template<typename Type>
-double Vector<Type>::operator&(const Vector<Type> &vector) const {
+Type Vector<Type>::operator&(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0 || vector.vectorSize == 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
@@ -665,8 +665,42 @@ double Vector<Type>::operator&(const Vector<Type> &vector) const {
 }
 
 template<typename Type>
-double Vector<Type>::scalarMult(const Vector<Type> &vector) const {
+Type Vector<Type>::scalarMult(const Vector<Type> &vector) const {
     return this->vecMul(vector).summaryValue();
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::operator^(const Vector<Type> &vector) const {
+    checkSizeForVecMul(__LINE__);
+
+    Type xCoord = this->values[1] * vector.values[2] - this->values[2] * vector.values[1];
+    Type yCoord = this->values[2] * vector.values[0] - this->values[0] * vector.values[2];
+    Type zCoord = this->values[0] * vector.values[1] - this->values[1] * vector.values[0];
+
+    Vector<Type> newVector = {xCoord, yCoord, zCoord};
+    return newVector;
+}
+
+template<typename Type>
+Vector<Type> &Vector<Type>::operator^=(const Vector<Type> &vector) const {
+    checkSizeForVecMul(__LINE__);
+
+    Type xCoord = this->values[1] * vector.values[2] - this->values[2] * vector.values[1];
+    Type yCoord = this->values[2] * vector.values[0] - this->values[0] * vector.values[2];
+    Type zCoord = this->values[0] * vector.values[1] - this->values[1] * vector.values[0];
+
+    *this = {xCoord, yCoord, zCoord};
+    return *this;
+}
+
+template<typename Type>
+Vector<Type> Vector<Type>::VectorMult(const Vector<Type> &vector) const {
+    return *this ^ vector;
+}
+
+template<typename Type>
+Vector<Type> &Vector<Type>::VectorEq(const Vector<Type> &vector) const {
+    return *this ^= vector;
 }
 
 template<typename Type>
@@ -845,4 +879,13 @@ void Vector<Type>::checkSizes(const Vector<Type> &vector, int lineError) const {
         throw InvalidVectorsSizes(__FILE__, typeid(*this).name(),
                                   lineError, ctime(&currentTime));
 }
+
+template<typename Type>
+void Vector<Type>::checkSizeForVecMul(const Vector<Type> &vector, int lineError) const {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize != 3 || vector.vectorSize != 3)
+        throw InvalidVectorsSizes(__FILE__, typeid(*this).name(),
+                                  lineError, ctime(&currentTime));
+}
+
 //< End
