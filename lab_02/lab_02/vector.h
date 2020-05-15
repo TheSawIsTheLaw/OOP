@@ -66,7 +66,7 @@ public:
 
     //! Operators overloads
     Vector<Type> &operator=(const Vector<Type> &vector);
-    Vector<Type> &operator=(std::initializer_list<Type> arguments);
+    Vector<Type> &operator=(const std::initializer_list<Type> &arguments);
     Vector<Type> &operator=(Vector<Type> &&vector);
 
     Vector<Type> &operator+=(const Vector<Type> &vector);
@@ -89,24 +89,24 @@ public:
     void divEq(const Vector<Type> &vector);
     void divEq(const Type &element);
 
-    Vector<Type> operator+(const Vector<Type> &vector);
-    Vector<Type> operator+(const Type &element);
+    Vector<Type> operator+(const Vector<Type> &vector) const;
+    Vector<Type> operator+(const Type &element) const;
     Vector<Type> vecSum(const Vector<Type> &vector) const;
     Vector<Type> sumEl(const Type &element) const;
 
-    Vector<Type> operator-(const Vector<Type> &vector);
-    Vector<Type> operator-(const Type &element);
+    Vector<Type> operator-(const Vector<Type> &vector) const;
+    Vector<Type> operator-(const Type &element) const;
     Vector<Type> vecDif(const Vector<Type> &vector) const;
     Vector<Type> difEl(const Type &element) const;
 
-    double operator*(const Vector<Type> &vector);
-    Vector<Type> operator*(const Type &element);
-    double VecMultip(const Vector<Type> &vector);
+    double operator*(const Vector<Type> &vector) const;
+    Vector<Type> operator*(const Type &element) const;
+    double VecMultip(const Vector<Type> &vector) const;
     Vector<Type> mulEl(const Type &element) const;
 
-    double operator/(const Vector<Type> &vector);
-    Vector<float> operator/(const Type &element);
-    double VecDivid(const Vector<Type> &vector);
+    double operator/(const Vector<Type> &vector) const;
+    Vector<float> operator/(const Type &element) const;
+    double VecDivid(const Vector<Type> &vector) const;
     Vector<float> divEl(const Type &element) const;
 
     Vector<Type> operator-();
@@ -127,7 +127,7 @@ protected:
     Vector<Type> vecMul(const Vector<Type> &vector) const;
     Vector<Type> vecDiv(const Vector<Type> &vector) const;
 
-    void checkSizes(const Vector<Type> &vector, int lineError);
+    void checkSizes(const Vector<Type> &vector, int lineError) const;
 
     void allocNewVectorMem(size_t itemsAmount);
 };
