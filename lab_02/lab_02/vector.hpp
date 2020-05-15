@@ -1,5 +1,4 @@
 #include "vector.h"
-
 #include <limits>
 #include <stdlib.h>
 #include <cmath>
@@ -896,3 +895,41 @@ void Vector<Type>::checkSizeForVecMul(const Vector<Type> &vector, int lineError)
 }
 
 //< End
+
+template<typename Type> // Вынести в hpp и подключить в конец
+Vector<Type> operator+(const Type &element, const Vector<Type> &vector) {
+    return vector + element;
+}
+
+template<typename Type>
+Vector<Type> operator-(const Type &element, const Vector<Type> &vector) {
+    return vector - element;
+}
+
+template<typename Type>
+Vector<Type> operator*(const Type &element, const Vector<Type> &vector) {
+    return vector * element;
+}
+
+template<typename Type>
+Vector<Type> operator/(const Type &element, const Vector<Type> &vector) {
+    return vector / element;
+}
+
+// cio wk
+template<typename Type>
+std::ostream &operator<<(std::ostream &os, const Vector<Type> &vector) {
+    ConstIterator<Type> iterator = vector.begin();
+    if (!iterator) {
+        os<< "Empty mVector";
+        return os;
+    }
+
+    os<< "{";
+    os<< *iterator;
+    for (iterator++; iterator; iterator++)
+            os<< ", "<< *iterator;
+    os<< "}";
+
+    return os;
+}

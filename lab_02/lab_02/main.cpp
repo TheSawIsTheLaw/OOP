@@ -1,5 +1,5 @@
 #include <iostream>
-#include "vector.hpp"
+#include "vector.h"
 
 #include "defines.h"
 
@@ -42,7 +42,7 @@ int main(void)
 
     try {
         orthVecF.collinear(lenExample);
-    } catch (ExceptionBase &err) {
+    } catch (VectorException &err) {
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 
@@ -53,7 +53,7 @@ int main(void)
 
     try {
         std::cout<< "At 5 el of vector "<< nonOrthVec<< " we have\n"<< nonOrthVec.at(5)<<std::endl;
-    } catch (ExceptionBase &err) {
+    } catch (VectorException &err) {
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 

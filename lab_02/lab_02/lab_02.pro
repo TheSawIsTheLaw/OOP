@@ -7,6 +7,8 @@ SOURCES += \
         main.cpp
 
 HEADERS += \
+    ConstIterator.hpp \
+    Iterator.hpp \
     Vector.hpp \
     ConstantIterator.h \
     ExceptionBase.h \
