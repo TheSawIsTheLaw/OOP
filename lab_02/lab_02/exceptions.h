@@ -33,6 +33,8 @@ public:
     };
 };
 
+// новый класс ошибки под итератор
+
 class OutOfRangeException: public ExceptionBase {
 public:
     OutOfRangeException(std::string fileName, std::string className,

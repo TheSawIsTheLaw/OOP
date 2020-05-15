@@ -13,8 +13,8 @@ template<typename Type>
 class Iterator: public std::iterator<std::random_access_iterator_tag, int>
 {
 public:
-    Iterator(const Iterator<Type> &iterator);
-    Iterator(const Vector<Type> &vector);
+    Iterator(const Iterator<Type> &iterator) noexcept;
+    Iterator(const Vector<Type> &vector) noexcept;
 
     Type &operator*();
     const Type &operator*() const;
@@ -22,7 +22,7 @@ public:
     const Type *operator->() const;
     operator bool() const;
 
-    Iterator<Type> &operator=(const Iterator<Type> &iterator);
+    Iterator<Type> &operator=(const Iterator<Type> &iterator) noexcept;
 
     Iterator<Type> &operator-=(size_t number);
     Iterator<Type> operator-(size_t number) const;
@@ -62,14 +62,14 @@ Type *Iterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
-Iterator<Type>::Iterator(const Iterator<Type> &iterator) {
+Iterator<Type>::Iterator(const Iterator<Type> &iterator) noexcept {
     this->wPointer = iterator.wPointer;
     this->currentIndex = iterator.currentIndex;
     this->vectorSize = iterator.vectorSize;
 }
 
 template<typename Type>
-Iterator<Type>::Iterator(const Vector<Type> &vector) {
+Iterator<Type>::Iterator(const Vector<Type> &vector) noexcept {
     this->currentIndex = 0;
     this->vectorSize = vector.size();
     this->wPointer = vector.values;
@@ -108,7 +108,7 @@ const Type *Iterator<Type>::operator->() const {
 }
 
 template<typename Type>
-Iterator<Type> &Iterator<Type>::operator=(const Iterator<Type>& iterator) {
+Iterator<Type> &Iterator<Type>::operator=(const Iterator<Type>& iterator) noexcept {
     wPointer = iterator.wPointer;
     return *this;
 }

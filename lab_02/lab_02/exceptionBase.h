@@ -4,12 +4,12 @@
 #include <exception>
 #include <iostream>
 
+// Переименовать
 class ExceptionBase: public std::exception {
 public:
     ExceptionBase(std::string fileName, std::string className,
                   int currentLine, const char *errorTime,
                   std::string information);
-
     virtual const char *what() const noexcept override{
         return errorInformation.c_str();
     }
@@ -20,6 +20,7 @@ protected:
     std::string errorInformation;
 };
 
+// Реализация в отдельный файл
 ExceptionBase::ExceptionBase(std::string fileName, std::string className,
                              int currentLine, const char *errorTime,
                              std::string information = "Error") {

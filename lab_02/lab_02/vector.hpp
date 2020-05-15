@@ -8,7 +8,7 @@
 
 //! Distr
 template<typename Type>
-Vector<Type>::~Vector() {
+Vector<Type>::~Vector() { // ПЕРЕБОР
     if (values)
         this->values.reset();
 }
@@ -641,7 +641,7 @@ Vector<Type> Vector<Type>::operator*(const Type &element) const {
 }
 
 template<typename Type>
-double Vector<Type>::VecMultip(const Vector<Type> &vector) const {
+double Vector<Type>::vecMultip(const Vector<Type> &vector) const {
     return *this * vector;
 }
 
@@ -662,7 +662,7 @@ Vector<float> Vector<Type>::operator/(const Type &element) const {
 }
 
 template<typename Type>
-double Vector<Type>::VecDivid(const Vector<Type> &vector) const {
+double Vector<Type>::vecDivid(const Vector<Type> &vector) const {
     return *this / vector;
 }
 //< End

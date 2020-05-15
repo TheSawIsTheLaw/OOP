@@ -13,8 +13,8 @@ template<typename Type>
 class ConstIterator: public std::iterator<std::random_access_iterator_tag, int>
 {
 public:
-    ConstIterator(const ConstIterator<Type> &iterator);
-    ConstIterator(const Vector<Type> &vector);
+    ConstIterator(const ConstIterator<Type> &iterator) noexcept;
+    ConstIterator(const Vector<Type> &vector) noexcept;
 
     const Type &operator *() const;
     const Type *operator->() const;
@@ -58,14 +58,14 @@ Type *ConstIterator<Type>::getCurrentPointer() const {
 }
 
 template<typename Type>
-ConstIterator<Type>::ConstIterator(const ConstIterator<Type> &iterator) {
+ConstIterator<Type>::ConstIterator(const ConstIterator<Type> &iterator) noexcept {
     wPointer = iterator.wPointer;
     currentIndex = iterator.currentIndex;
     vectorSize = iterator.vectorSize;
 }
 
 template<typename Type>
-ConstIterator<Type>::ConstIterator(const Vector<Type> &vector) {
+ConstIterator<Type>::ConstIterator(const Vector<Type> &vector) noexcept {
     currentIndex = 0;
     vectorSize = vector.size();
     wPointer = vector.values;

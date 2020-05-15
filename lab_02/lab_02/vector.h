@@ -25,34 +25,36 @@ public:
     Vector(std::initializer_list<Type> elements);
 
     explicit Vector(const Vector<Type> &vector);
-    Vector(Vector<Type> &&vector);
+    Vector(Vector<Type> &&vector); // noexcept!!!
     //< End
 
     // Destructor
-    virtual ~Vector();
+    virtual ~Vector(); // = default
 
 
     //! Vector bool funcs
     bool isZeroV() const noexcept;
-    bool isUnitV() const noexcept;
+    bool isUnitV() const noexcept; // single
     //< End
 
     //! One vector methods
-    double length() const;
-    void pushBack(const Type &value);
-    Type popBack();
+    double length() const; // Для int нужен double специализация
+    void pushBack(const Type &value); // Убрать
+    Type popBack(); // Убрать
 
     Type &at(size_t index);
     const Type &at(size_t index) const;
+    Type &operator[](size_t index);
+    const Type &operator[](size_t index) const;
 
-    Vector<double> getUnitV() const;
+    Vector<double> getUnitV() const; // Специализация
     //< End
 
 
     //! Two vectors methods
-    double vectorsAngle(const Vector<Type> &vector) const;
-    bool areCollinear(const Vector<Type> &vector) const;
-    bool areOrthgonal(const Vector<Type> &vector) const;
+    double vectorsAngle(const Vector<Type> &vector) const; // переименовать на angle
+    bool areCollinear(const Vector<Type> &vector) const; // переименовать
+    bool areOrthgonal(const Vector<Type> &vector) const; // переименовать
     //< End
 
     //! Iterator
@@ -89,7 +91,7 @@ public:
     void divEq(const Vector<Type> &vector);
     void divEq(const Type &element);
 
-    Vector<Type> operator+(const Vector<Type> &vector) const;
+    Vector<Type> operator+(const Vector<Type> &vector) const; // перенести к +=
     Vector<Type> operator+(const Type &element) const;
     Vector<Type> vecSum(const Vector<Type> &vector) const;
     Vector<Type> sumEl(const Type &element) const;
@@ -99,28 +101,26 @@ public:
     Vector<Type> vecDif(const Vector<Type> &vector) const;
     Vector<Type> difEl(const Type &element) const;
 
-    double operator*(const Vector<Type> &vector) const;
+    double operator*(const Vector<Type> &vector) const; // в новую функцию
     Vector<Type> operator*(const Type &element) const;
-    double VecMultip(const Vector<Type> &vector) const;
+    double vecMultip(const Vector<Type> &vector) const;
     Vector<Type> mulEl(const Type &element) const;
 
     double operator/(const Vector<Type> &vector) const;
     Vector<float> operator/(const Type &element) const;
-    double VecDivid(const Vector<Type> &vector) const;
+    double vecDivid(const Vector<Type> &vector) const;
     Vector<float> divEl(const Type &element) const;
 
     Vector<Type> operator-();
     Vector<Type> negative();
 
-    bool operator==(const Vector<Type> &vector) const;
-    bool operator!=(const Vector<Type> &vector) const;
+    bool operator==(const Vector<Type> &vector) const; // + методы
+    bool operator!=(const Vector<Type> &vector) const; // + методы
 
-    Type &operator[](size_t index);
-    const Type &operator[](size_t index) const;
     //< End
 
 private:
-    std::shared_ptr<Type> values;
+    std::shared_ptr<Type[]> values;
 
 protected:
     Type summaryValue();
@@ -132,7 +132,7 @@ protected:
     void allocNewVectorMem(size_t itemsAmount);
 };
 
-template<typename Type>
+template<typename Type> // Вынести в hpp и подключить в конец
 Vector<Type> operator+(const Type &element, const Vector<Type> &vector) {
     return vector + element;
 }
