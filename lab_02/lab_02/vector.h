@@ -22,7 +22,7 @@ public:
     Vector(size_t size, const Type *arrayFrom);
     Vector(size_t size, Type element);
 
-    Vector(std::initializer_list<Type> elements);
+    Vector(const std::initializer_list<Type> &elements);
 
     explicit Vector(const Vector<Type> &vector);
     Vector(Vector<Type> &&vector); // noexcept!!!
@@ -38,23 +38,24 @@ public:
     //< End
 
     //! One vector methods
-    double length() const; // Для int нужен double специализация
-    void pushBack(const Type &value); // Убрать
-    Type popBack(); // Убрать
+    template<typename TypeOut>
+    TypeOut length() const; //! Сделана специализация для int
+    //! Убрал push, pop
 
     Type &at(size_t index);
     const Type &at(size_t index) const;
     Type &operator[](size_t index);
     const Type &operator[](size_t index) const;
 
-    Vector<double> getUnitV() const; // Специализация
+    template<typename TypeOut>
+    Vector<TypeOut> getUnitV() const; //! Специализация
     //< End
 
 
     //! Two vectors methods
-    double vectorsAngle(const Vector<Type> &vector) const; // переименовать на angle
-    bool areCollinear(const Vector<Type> &vector) const; // переименовать
-    bool areOrthgonal(const Vector<Type> &vector) const; // переименовать
+    double angle(const Vector<Type> &vector) const;
+    bool collinear(const Vector<Type> &vector) const;
+    bool orthgonal(const Vector<Type> &vector) const; //! Переименовано
     //< End
 
     //! Iterator

@@ -160,39 +160,54 @@ Vector<float> Vector<Type>::divEl(const Type &element) const {
 
 //! Additive
 template<typename Type>
-double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
+double Vector<Type>::angle(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
 //    std::cout<< std::endl<< this->length()<< std::endl<< vector.length()<< std::endl;
-    if (!this->length() || !vector.length())
+    if (!this->length<Type>() || !vector.length<Type>())
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    double angle = (*this * vector) / (this->length() * vector.length());
+    double angle = (*this * vector) / (this->length<Type>() * vector.length<Type>());
     return acos(angle) * 180 / M_PI;
 }
 
 template<typename Type>
-bool Vector<Type>::areCollinear(const Vector<Type> &vector) const {
+bool Vector<Type>::collinear(const Vector<Type> &vector) const {
 //    std::cout<< this->vectorsAngle(vector)<< std::endl;
-    if (this->vectorsAngle(vector) < __FLT_EPSILON__)
+    if (this->angle(vector) < __FLT_EPSILON__)
         return true;
     return false;
 }
 
 template<typename Type>
-bool Vector<Type>::areOrthgonal(const Vector<Type> &vector) const {
-    if (this->vectorsAngle(vector) - 90 < __DBL_EPSILON__)
+bool Vector<Type>::orthgonal(const Vector<Type> &vector) const {
+    if (this->angle(vector) - 90 < __DBL_EPSILON__)
         return true;
     return false;
 }
 
 template<typename Type>
-Vector<double> Vector<Type>::getUnitV() const {
+template<typename TypeOut>
+Vector<TypeOut> Vector<Type>::getUnitV() const {
+    Vector<TypeOut> unitVector(this->vectorSize);
+    Type len = this->length<Type>();
+
+    Iterator<TypeOut> iteratorTo = unitVector.begin();
+    ConstIterator<Type> iteratorFrom = this->begin();
+    for (; iteratorFrom; iteratorFrom++, iteratorTo++)
+        *iteratorTo = *iteratorFrom / len;
+
+    return unitVector;
+}
+
+template<>
+template<>
+Vector<double> Vector<int>::getUnitV() const {
     Vector<double> unitVector(this->vectorSize);
-    Type len = this->length();
+    float len = this->length<float>();
 
     Iterator<double> iteratorTo = unitVector.begin();
-    ConstIterator<Type> iteratorFrom = this->begin();
+    ConstIterator<int> iteratorFrom = this->begin();
     for (; iteratorFrom; iteratorFrom++, iteratorTo++)
         *iteratorTo = *iteratorFrom / len;
 
@@ -263,7 +278,7 @@ Vector<Type>::Vector(size_t size, const Type *arrayFrom) {
 }
 
 template<typename Type>
-Vector<Type>::Vector(std::initializer_list<Type> arguments) {
+Vector<Type>::Vector(const std::initializer_list<Type> &arguments) {
     this->vectorSize = arguments.size();
     this->allocNewVectorMem(vectorSize);
 
@@ -741,7 +756,7 @@ void Vector<Type>::allocNewVectorMem(size_t amount) {
 template<typename Type>
 bool Vector<Type>::isUnitV() const noexcept{
     bool retOut = false;
-    if (fabs(this->length() - 1) < __FLT_EPSILON__)
+    if (fabs(this->length<Type>() - 1) < __FLT_EPSILON__)
         retOut = true;
     return retOut;
 }
@@ -749,7 +764,7 @@ bool Vector<Type>::isUnitV() const noexcept{
 template<>
 bool Vector<long double>::isUnitV() const noexcept{
     bool retOut = false;
-    if (fabs(this->length() - 1) < __DBL_EPSILON__)
+    if (fabs(this->length<long double>() - 1) < __DBL_EPSILON__)
         retOut = true;
     return retOut;
 }
@@ -757,7 +772,7 @@ bool Vector<long double>::isUnitV() const noexcept{
 template<typename Type>
 bool Vector<Type>::isZeroV() const noexcept{
     bool retOut = false;
-    if (this->length() < __FLT_EPSILON__)
+    if (this->length<Type>() < __FLT_EPSILON__)
         retOut = true;
     return retOut;
 }
@@ -778,7 +793,8 @@ Type Vector<Type>::summaryValue() {
 }
 
 template<typename Type>
-double Vector<Type>::length(void) const {
+template<typename TypeOut>
+TypeOut Vector<Type>::length(void) const {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
@@ -791,36 +807,19 @@ double Vector<Type>::length(void) const {
     return sqrt(sum);
 }
 
-template<typename Type>
-void Vector<Type>::pushBack(const Type &value) {
-    Vector<Type> tempVector(*this);
-    this->values.reset();
-
-    this->allocNewVectorMem(vectorSize + 1);
-    this->vectorSize++;
-    ConstIterator<Type> iterFrom = tempVector.cBegin();
-    Iterator<Type> iterTo = this->begin();
-    for (; iterFrom; iterTo++, iterFrom++)
-        *iterTo = *iterFrom;
-    *iterTo = value;
-}
-
-template<typename Type>
-Type Vector<Type>::popBack() {
+template<>
+template<>
+double Vector<int>::length(void) const {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0)
-        EmptyVectorException(__FILE__, typeid(*this).name(),
-                             __LINE__, ctime(&currentTime));
-    Vector<Type> tempVector(*this);
-    this->values.reset();
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
 
-    this->allocNewVectorMem(vectorSize - 1);
-    this->vectorSize--;
-    ConstIterator<Type> iterFrom = tempVector.cBegin();
-    Iterator<Type> iterTo = this->begin();
-    for (; iterTo; iterTo++, iterFrom++)
-        *iterTo = *iterFrom;
-    return *iterFrom;
+    ConstIterator<int> iterator = this->begin();
+    int sum = 0;
+    for (; iterator; iterator++)
+        sum += *iterator * *iterator;
+    return sqrt(sum);
 }
 
 template<typename Type>

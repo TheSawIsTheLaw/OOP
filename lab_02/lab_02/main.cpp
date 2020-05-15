@@ -19,7 +19,7 @@ int main(void)
     Vector<int> operVecF = {1, 2, 1};
     Vector<int> operVecS = {3, 2, 4};
 
-    std::cout<< "\nLenFill and InitList angle: "<< lenFillExample.vectorsAngle(initializerListExample)<< std::endl;
+    std::cout<< "\nLenFill and InitList angle: "<< lenFillExample.angle(initializerListExample)<< std::endl;
 
     std::cout<< "\nFor vectors: "<< operVecF<< " and "<< operVecS<< std::endl;
     std::cout<< "Vectors *: "<< operVecF * operVecS<< std::endl;
@@ -31,30 +31,22 @@ int main(void)
     Vector<float> orthVecS = {0, 1, 0};
     Vector<float> nonOrthVec = {1, 2, 3};
 
-    std::cout<< "\nShould be orth: "<< orthVecF.areOrthgonal(orthVecS)<< std::endl;
-    std::cout<< "Shouldn't be orth: "<<orthVecF.areCollinear(nonOrthVec)<< std::endl;
+    std::cout<< "\nShould be orth: "<< orthVecF.orthgonal(orthVecS)<< std::endl;
+    std::cout<< "Shouldn't be orth: "<<orthVecF.collinear(nonOrthVec)<< std::endl;
 
     Vector<int> colVecF = {1, 0, 0};
     Vector<int> colVecS = {1, 0, 0};
 
-    std::cout<< "\nShould be coll: "<< colVecF.areCollinear(colVecS)<< std::endl;
-    std::cout<< "Shouldn't be coll: "<< colVecF.areCollinear(operVecF)<< std::endl;
+    std::cout<< "\nShould be coll: "<< colVecF.collinear(colVecS)<< std::endl;
+    std::cout<< "Shouldn't be coll: "<< colVecF.collinear(operVecF)<< std::endl;
 
     try {
-        orthVecF.areCollinear(lenExample);
+        orthVecF.collinear(lenExample);
     } catch (ExceptionBase &err) {
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 
-    std::cout<< "\nPushback: "<< orthVecF<< std::endl;
-    orthVecF.pushBack(666);
-    std::cout<< "After: "<< orthVecF<< std::endl;
-
-    std::cout<< "PopBack: "<< orthVecF<< std::endl;
-    int gotEl = orthVecF.popBack();
-    std::cout<< "Popped: "<< orthVecF<< " Element: "<< gotEl<< std::endl;
-
-    std::cout<< "\nVector "<< colVecS<< " length is: "<< colVecS.length()<<std::endl;
+    std::cout<< "\nVector "<< colVecS<< " length is: "<< colVecS.length<float>()<<std::endl;
 
     std::cout<< "\nAt 1 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(1)<<std::endl;
     std::cout<< "At 2 el of vector "<< nonOrthVec<< " we have "<< nonOrthVec.at(2)<<std::endl;
@@ -65,7 +57,7 @@ int main(void)
         std::cout<< "Error catch:"<< err.what()<< std::endl;
     }
 
-    Vector<double> unitVector = nonOrthVec.getUnitV();
+    Vector<double> unitVector = nonOrthVec.getUnitV<double>();
     std::cout<< "\nUnit vector for "<< nonOrthVec<< " is vector "<< unitVector<< std::endl;
 
     std::cout<< "\nIs vector "<< unitVector<< " unit? Answer: "<< unitVector.isUnitV()<< std::endl;
