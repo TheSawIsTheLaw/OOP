@@ -45,7 +45,7 @@ public:
     const Type &operator[](const size_t index) const;
 
 private:
-    std::weak_ptr<Type> wPointer;
+    std::weak_ptr<Type[]> wPointer;
 
 protected:
     Type *getCurrentPointer() const;
@@ -57,7 +57,7 @@ protected:
 
 template<typename Type>
 Type *Iterator<Type>::getCurrentPointer() const {
-    std::shared_ptr<Type> copied = this->wPointer.lock();
+    std::shared_ptr<Type[]> copied = this->wPointer.lock();
     return copied.get() + currentIndex;
 }
 
