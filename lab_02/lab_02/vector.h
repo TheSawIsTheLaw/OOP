@@ -34,7 +34,7 @@ public:
 
     //! Vector bool funcs
     bool isZeroV() const noexcept;
-    bool isUnitV() const noexcept; // single
+    bool isSingleV() const noexcept; //! Переименовано
     //< End
 
     //! One vector methods

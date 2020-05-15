@@ -60,8 +60,8 @@ int main(void)
     Vector<double> unitVector = nonOrthVec.getUnitV<double>();
     std::cout<< "\nUnit vector for "<< nonOrthVec<< " is vector "<< unitVector<< std::endl;
 
-    std::cout<< "\nIs vector "<< unitVector<< " unit? Answer: "<< unitVector.isUnitV()<< std::endl;
-    std::cout<< "Is vector "<< nonOrthVec<< " unit? Answer: "<< nonOrthVec.isUnitV()<< std::endl;
+    std::cout<< "\nIs vector "<< unitVector<< " unit? Answer: "<< unitVector.isSingleV()<< std::endl;
+    std::cout<< "Is vector "<< nonOrthVec<< " unit? Answer: "<< nonOrthVec.isSingleV()<< std::endl;
 
     std::cout<< "\nIs vector "<< nonOrthVec<< " zero? Answer: "<< nonOrthVec.isZeroV()<< std::endl;
     std::cout<< "Is vector "<< lenExample<< " zero? Answer: "<< lenExample.isZeroV()<< std::endl;

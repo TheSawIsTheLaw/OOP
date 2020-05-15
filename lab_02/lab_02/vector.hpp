@@ -747,7 +747,7 @@ void Vector<Type>::allocNewVectorMem(size_t amount) {
 
 //! Smth
 template<typename Type>
-bool Vector<Type>::isUnitV() const noexcept{
+bool Vector<Type>::isSingleV() const noexcept{
     bool retOut = false;
     if (fabs(this->length<Type>() - 1) < __FLT_EPSILON__)
         retOut = true;
@@ -755,7 +755,7 @@ bool Vector<Type>::isUnitV() const noexcept{
 }
 
 template<>
-bool Vector<long double>::isUnitV() const noexcept{
+bool Vector<long double>::isSingleV() const noexcept{
     bool retOut = false;
     if (fabs(this->length<long double>() - 1) < __DBL_EPSILON__)
         retOut = true;
