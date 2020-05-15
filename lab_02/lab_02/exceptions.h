@@ -33,7 +33,7 @@ public:
     };
 };
 
-// новый класс ошибки под итератор
+//! новый класс ошибки под итератор
 
 class OutOfRangeException: public VectorException {
 public:

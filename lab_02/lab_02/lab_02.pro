@@ -8,6 +8,7 @@ SOURCES += \
 
 HEADERS += \
     ConstIterator.hpp \
+    ExceptionBase.hpp \
     Iterator.hpp \
     Vector.hpp \
     ConstantIterator.h \

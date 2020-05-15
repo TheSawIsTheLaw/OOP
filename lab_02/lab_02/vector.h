@@ -21,8 +21,8 @@ public:
     explicit Vector(size_t size);
     Vector(size_t size, const Type *arrayFrom);
     Vector(size_t size, Type element);
-
     Vector(const std::initializer_list<Type> &elements);
+
 
     explicit Vector(const Vector<Type> &vector);
     Vector(Vector<Type> &&vector) noexcept; //! noexcept
@@ -41,22 +41,21 @@ public:
     template<typename TypeOut>
     TypeOut length() const; //! Сделана специализация для int
     //! Убрал push, pop
-
-    Type &at(size_t index);
-    const Type &at(size_t index) const;
-    Type &operator[](size_t index);
-    const Type &operator[](size_t index) const;
-
     template<typename TypeOut>
     Vector<TypeOut> getUnitV() const; //! Специализация
     //< End
-
 
     //! Two vectors methods
     double angle(const Vector<Type> &vector) const;
     bool collinear(const Vector<Type> &vector) const;
     bool orthgonal(const Vector<Type> &vector) const; //! Переименовано
     //< End
+
+    Type &at(size_t index);
+    const Type &at(size_t index) const;
+    Type &operator[](size_t index);
+    const Type &operator[](size_t index) const;
+
 
     //! Iterator
     ConstIterator<Type> begin() const noexcept;
@@ -76,7 +75,7 @@ public:
     Vector<Type> &operator+=(const Type &element);
     void sumEq(const Vector<Type> &vector);
     void sumEq(const Type &element);
-    Vector<Type> operator+(const Vector<Type> &vector) const; // перенести к +=
+    Vector<Type> operator+(const Vector<Type> &vector) const; //! перенести к +=
     Vector<Type> operator+(const Type &element) const;
     Vector<Type> vecSum(const Vector<Type> &vector) const;
     Vector<Type> sumEl(const Type &element) const;
