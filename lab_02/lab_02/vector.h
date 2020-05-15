@@ -93,7 +93,7 @@ public:
     Vector<Type> &operator*=(const Type &element);
     void mulEq(const Vector<Type> &vector);
     void mulEq(const Type &element);
-    Vector<Type> operator*(const Vector<Type> &vector) const; //! в новую функцию
+    Vector<Type> operator*(const Vector<Type> &vector) const; //! В новую функцию
     Vector<Type> operator*(const Type &element) const;
     Vector<Type> vecMultip(const Vector<Type> &vector) const;
     Vector<Type> mulEl(const Type &element) const;
@@ -135,7 +135,6 @@ protected:
 
     void checkSizes(const Vector<Type> &vector, int lineError) const;
     void checkSizeForVecMul(const Vector<Type> &vector, int lineError) const;
-
     void allocNewVectorMem(size_t itemsAmount);
 };
 
