@@ -91,8 +91,8 @@ int main(void)
     for (const auto &elem:orthVecF)
         std::cout<< elem<< " ";
 
-    std::cout<< "NonNeg: "<< nonOrthVec<< std::endl;
-    nonOrthVec.negative();
+    std::cout<< "\nNonNeg: "<< nonOrthVec<< std::endl;
+    nonOrthVec = nonOrthVec.negative();
     std::cout<< "Neg: "<< nonOrthVec<< std::endl;
 
     nonOrthVec += 1;

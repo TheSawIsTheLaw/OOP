@@ -110,7 +110,7 @@ public:
     Vector<float> divEl(const Type &element) const;
 
     Vector<Type> operator-();
-    void negative();
+    Vector<Type> negative();
 
     bool operator==(const Vector<Type> &vector) const;
     bool operator!=(const Vector<Type> &vector) const;

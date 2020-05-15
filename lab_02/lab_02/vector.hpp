@@ -826,8 +826,8 @@ Type Vector<Type>::popBack() {
 }
 
 template<typename Type>
-void Vector<Type>::negative() {
-    *this = -*this;
+Vector<Type> Vector<Type>::negative() {
+    return -*this;
 }
 //! End
 
