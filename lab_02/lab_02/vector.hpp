@@ -165,15 +165,13 @@ double Vector<Type>::vectorsAngle(const Vector<Type> &vector) const {
                                     __LINE__, ctime(&currentTime));
 
     double angle = (*this * vector) / (this->length() * vector.length());
-    if (angle > 1)
-        angle--;
     return acos(angle) * 180 / M_PI;
 }
 
 template<typename Type>
 bool Vector<Type>::areCollinear(const Vector<Type> &vector) const {
 //    std::cout<< this->vectorsAngle(vector)<< std::endl;
-    if (this->vectorsAngle(vector) < __DBL_EPSILON__)
+    if (this->vectorsAngle(vector) < __FLT_EPSILON__)
         return true;
     return false;
 }

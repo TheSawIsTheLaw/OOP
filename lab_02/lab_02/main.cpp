@@ -34,8 +34,8 @@ int main(void)
     std::cout<< "\nShould be orth: "<< orthVecF.areOrthgonal(orthVecS)<< std::endl;
     std::cout<< "Shouldn't be orth: "<<orthVecF.areCollinear(nonOrthVec)<< std::endl;
 
-    Vector<int> colVecF = {1, 1, 0};
-    Vector<int> colVecS = {1, 1, 0};
+    Vector<int> colVecF = {1, 0, 0};
+    Vector<int> colVecS = {1, 0, 0};
 
     std::cout<< "\nShould be coll: "<< colVecF.areCollinear(colVecS)<< std::endl;
     std::cout<< "Shouldn't be coll: "<< colVecF.areCollinear(operVecF)<< std::endl;
