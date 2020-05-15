@@ -76,37 +76,36 @@ public:
     Vector<Type> &operator+=(const Type &element);
     void sumEq(const Vector<Type> &vector);
     void sumEq(const Type &element);
-
-    Vector<Type> &operator-=(const Vector<Type> &vector);
-    Vector<Type> &operator-=(const Type &element);
-    void difEq(const Vector<Type> &vector);
-    void difEq(const Type &element);
-
-    Vector<Type> &operator*=(const Vector<Type> &vector);
-    Vector<Type> &operator*=(const Type &element);
-    void mulEq(const Vector<Type> &vector);
-    void mulEq(const Type &element);
-
-    Vector<Type> &operator/=(const Vector<Type> &vector);
-    Vector<Type> &operator/=(const Type &element);
-    void divEq(const Vector<Type> &vector);
-    void divEq(const Type &element);
-
     Vector<Type> operator+(const Vector<Type> &vector) const; // перенести к +=
     Vector<Type> operator+(const Type &element) const;
     Vector<Type> vecSum(const Vector<Type> &vector) const;
     Vector<Type> sumEl(const Type &element) const;
 
+    Vector<Type> &operator-=(const Vector<Type> &vector);
+    Vector<Type> &operator-=(const Type &element);
+    void difEq(const Vector<Type> &vector);
+    void difEq(const Type &element);
     Vector<Type> operator-(const Vector<Type> &vector) const;
     Vector<Type> operator-(const Type &element) const;
     Vector<Type> vecDif(const Vector<Type> &vector) const;
     Vector<Type> difEl(const Type &element) const;
 
-    double operator*(const Vector<Type> &vector) const; // в новую функцию
+    Vector<Type> &operator*=(const Vector<Type> &vector);
+    Vector<Type> &operator*=(const Type &element);
+    void mulEq(const Vector<Type> &vector);
+    void mulEq(const Type &element);
+    Vector<Type> operator*(const Vector<Type> &vector) const; // в новую функцию
     Vector<Type> operator*(const Type &element) const;
-    double vecMultip(const Vector<Type> &vector) const;
+    Vector<Type> vecMultip(const Vector<Type> &vector) const;
     Vector<Type> mulEl(const Type &element) const;
 
+    double operator&(const Vector<Type> &vector) const; //! Вынесено!
+    double scalarMult(const Vector<Type> &vector) const;
+
+    Vector<Type> &operator/=(const Vector<Type> &vector);
+    Vector<Type> &operator/=(const Type &element);
+    void divEq(const Vector<Type> &vector);
+    void divEq(const Type &element);
     double operator/(const Vector<Type> &vector) const;
     Vector<float> operator/(const Type &element) const;
     double vecDivid(const Vector<Type> &vector) const;

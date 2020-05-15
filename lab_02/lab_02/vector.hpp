@@ -160,7 +160,7 @@ double Vector<Type>::angle(const Vector<Type> &vector) const {
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    double angle = (*this * vector) / (this->length<Type>() * vector.length<Type>());
+    double angle = (*this & vector) / (this->length<Type>() * vector.length<Type>());
     return acos(angle) * 180 / M_PI;
 }
 
@@ -628,14 +628,14 @@ Vector<Type> Vector<Type>::operator-(const Type &element) const {
 }
 
 template<typename Type>
-double Vector<Type>::operator*(const Vector<Type> &vector) const {
+Vector<Type> Vector<Type>::operator*(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0 || vector.vectorSize == 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
     this->checkSizes(vector, __LINE__);
 
-    return this->vecMul(vector).summaryValue();
+    return this->vecMul(vector);
 }
 
 template<typename Type>
@@ -649,8 +649,24 @@ Vector<Type> Vector<Type>::operator*(const Type &element) const {
 }
 
 template<typename Type>
-double Vector<Type>::vecMultip(const Vector<Type> &vector) const {
+Vector<Type> Vector<Type>::vecMultip(const Vector<Type> &vector) const {
     return *this * vector;
+}
+
+template<typename Type>
+double Vector<Type>::operator&(const Vector<Type> &vector) const {
+    time_t currentTime = time(NULL);
+    if (this->vectorSize == 0 || vector.vectorSize == 0)
+        EmptyVectorException(__FILE__, typeid(*this).name(),
+                             __LINE__, ctime(&currentTime));
+    this->checkSizes(vector, __LINE__);
+
+    return this->vecMul(vector).summaryValue();
+}
+
+template<typename Type>
+double Vector<Type>::scalarMult(const Vector<Type> &vector) const {
+    return this->vecMul(vector).summaryValue();
 }
 
 template<typename Type>
