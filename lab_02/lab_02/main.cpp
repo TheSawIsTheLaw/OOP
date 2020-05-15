@@ -122,8 +122,9 @@ int main(void)
     Vector<int> arrVec(2, arr);
     std::cout<< arrVec<< std::endl;
 
-    Vector<int> vec = {1, 2, 3, 4};
-    Vector<float> vecdel = vec / 5;
+    Vector<int> vec = {1, 2, 3};
+    Vector<int> vecdel = {3, 2, 1};
+    vecdel ^= vec;
     std::cout<< vecdel;
 
     return SUCCESS;

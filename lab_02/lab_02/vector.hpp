@@ -130,7 +130,7 @@ Vector<Type> Vector<Type>::vecDiv(const Vector<Type> &vector) const {
 }
 
 template<typename Type>
-Vector<float> Vector<Type>::divEl(const Type &element) const {
+Vector<Type> Vector<Type>::divEl(const Type &element) const {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0)
         throw EmptyVectorException(__FILE__, typeid(*this).name(),
@@ -139,13 +139,13 @@ Vector<float> Vector<Type>::divEl(const Type &element) const {
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    Vector<float> result(this->vectorSize);
+    Vector<Type> result(this->vectorSize);
 
     ConstIterator<Type> iterFrom = this->begin();
-    Iterator<float> iterTo = result.begin();
+    Iterator<Type> iterTo = result.begin();
 
     for (; iterFrom; iterFrom++, iterTo++)
-        *iterTo = static_cast<float>(*iterFrom) / element;
+        *iterTo = *iterFrom / element;
 
     return result;
 }
@@ -388,6 +388,11 @@ bool Vector<long double>::operator==(const Vector<long double> &vector) const {
 }
 
 template<typename Type>
+bool Vector<Type>::isEqual(const Vector<Type> &vector) const {
+    return *this == vector;
+}
+
+template<typename Type>
 bool Vector<Type>::operator!=(const Vector<Type> &vector) const {
     bool areNotEqual = true;
     if (this->vectorSize != vector.vectorSize)
@@ -445,6 +450,11 @@ bool Vector<long double>::operator!=(const Vector<long double> &vector) const {
         if (std::abs(*firstIterator - *secondIterator) < std::numeric_limits<long double>::epsilon())
             areNotEqual = true;
     return areNotEqual;
+}
+
+template<typename Type>
+bool Vector<Type>::isNotEqual(const Vector<Type> &vector) const {
+    return *this != vector;
 }
 
 template<typename Type>
@@ -559,7 +569,7 @@ Vector<Type> &Vector<Type>::operator/=(const Vector<Type> &vector) {
                                    __LINE__, ctime(&currentTime));
     this->checkSizes(vector, __LINE__);
 
-    vecDiv(*this, *this, vector);
+    *this = this->vecDiv(vector);
     return *this;
 }
 
@@ -671,7 +681,7 @@ Type Vector<Type>::scalarMult(const Vector<Type> &vector) const {
 
 template<typename Type>
 Vector<Type> Vector<Type>::operator^(const Vector<Type> &vector) const {
-    checkSizeForVecMul(__LINE__);
+    checkSizeForVecMul(vector, __LINE__);
 
     Type xCoord = this->values[1] * vector.values[2] - this->values[2] * vector.values[1];
     Type yCoord = this->values[2] * vector.values[0] - this->values[0] * vector.values[2];
@@ -682,14 +692,11 @@ Vector<Type> Vector<Type>::operator^(const Vector<Type> &vector) const {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::operator^=(const Vector<Type> &vector) const {
-    checkSizeForVecMul(__LINE__);
+Vector<Type> &Vector<Type>::operator^=(const Vector<Type> &vector) {
+    checkSizeForVecMul(vector, __LINE__);
 
-    Type xCoord = this->values[1] * vector.values[2] - this->values[2] * vector.values[1];
-    Type yCoord = this->values[2] * vector.values[0] - this->values[0] * vector.values[2];
-    Type zCoord = this->values[0] * vector.values[1] - this->values[1] * vector.values[0];
+    *this = *this ^ vector;
 
-    *this = {xCoord, yCoord, zCoord};
     return *this;
 }
 
@@ -699,28 +706,28 @@ Vector<Type> Vector<Type>::VectorMult(const Vector<Type> &vector) const {
 }
 
 template<typename Type>
-Vector<Type> &Vector<Type>::VectorEq(const Vector<Type> &vector) const {
-    return *this ^= vector;
+void Vector<Type>::VectorEq(const Vector<Type> &vector) {
+    *this ^= vector;
 }
 
 template<typename Type>
-double Vector<Type>::operator/(const Vector<Type> &vector) const {
+Vector<Type> Vector<Type>::operator/(const Vector<Type> &vector) const {
     time_t currentTime = time(NULL);
     if (this->vectorSize == 0 || vector.vectorSize == 0)
         EmptyVectorException(__FILE__, typeid(*this).name(),
                              __LINE__, ctime(&currentTime));
     this->checkSizes(vector, __LINE__);
 
-    return this->vecDif(vector).summaryValue();
+    return this->vecDiv(vector);
 }
 
 template<typename Type>
-Vector<float> Vector<Type>::operator/(const Type &element) const {
+Vector<Type> Vector<Type>::operator/(const Type &element) const {
     return this->divEl(element);
 }
 
 template<typename Type>
-double Vector<Type>::vecDivid(const Vector<Type> &vector) const {
+Vector<Type> Vector<Type>::vecDivid(const Vector<Type> &vector) const {
     return *this / vector;
 }
 //< End

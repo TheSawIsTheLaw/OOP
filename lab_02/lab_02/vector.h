@@ -103,24 +103,26 @@ public:
     Type scalarMult(const Vector<Type> &vector) const;
 
     Vector<Type> operator^(const Vector<Type> &vector) const; //! Добавлено векторное произведение
-    Vector<Type> &operator^=(const Vector<Type> &vector) const;
+    Vector<Type> &operator^=(const Vector<Type> &vector);
     Vector<Type> VectorMult(const Vector<Type> &vector) const;
-    Vector<Type> &VectorEq(const Vector<Type> &vector) const;
+    void VectorEq(const Vector<Type> &vector);
 
     Vector<Type> &operator/=(const Vector<Type> &vector);
     Vector<Type> &operator/=(const Type &element);
     void divEq(const Vector<Type> &vector);
     void divEq(const Type &element);
-    double operator/(const Vector<Type> &vector) const;
-    Vector<float> operator/(const Type &element) const;
-    double vecDivid(const Vector<Type> &vector) const;
-    Vector<float> divEl(const Type &element) const;
+    Vector<Type> operator/(const Vector<Type> &vector) const;
+    Vector<Type> operator/(const Type &element) const;
+    Vector<Type> vecDivid(const Vector<Type> &vector) const;
+    Vector<Type> divEl(const Type &element) const;
 
     Vector<Type> operator-();
     Vector<Type> negative();
 
-    bool operator==(const Vector<Type> &vector) const; // + методы
-    bool operator!=(const Vector<Type> &vector) const; // + методы
+    bool operator==(const Vector<Type> &vector) const; //! + методы
+    bool isEqual(const Vector<Type> &vector) const;
+    bool operator!=(const Vector<Type> &vector) const; //! + методы
+    bool isNotEqual(const Vector<Type> &vector) const;
 
     //< End
 
