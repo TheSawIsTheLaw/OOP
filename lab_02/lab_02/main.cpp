@@ -130,5 +130,9 @@ int main(void)
     Vector<int> arrVec(2, arr);
     std::cout<< arrVec<< std::endl;
 
+    Vector<int> vec = {1, 2, 3, 4};
+    Vector<float> vecdel = vec / 5;
+    std::cout<< vecdel;
+
     return SUCCESS;
 }

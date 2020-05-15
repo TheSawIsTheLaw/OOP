@@ -139,17 +139,20 @@ Vector<Type> Vector<Type>::vecDiv(const Vector<Type> &vector) const {
 template<typename Type>
 Vector<float> Vector<Type>::divEl(const Type &element) const {
     time_t currentTime = time(NULL);
+    if (this->vectorSize == 0)
+        throw EmptyVectorException(__FILE__, typeid(*this).name(),
+                                   __LINE__, ctime(&currentTime));
     if (!element)
         throw ZeroDivisionException(__FILE__, typeid(*this).name(),
                                     __LINE__, ctime(&currentTime));
 
-    Vector<Type> result(*this);
+    Vector<float> result(this->vectorSize);
 
     ConstIterator<Type> iterFrom = this->begin();
-    Iterator<Type> iterTo = result.begin();
+    Iterator<float> iterTo = result.begin();
 
     for (; iterFrom; iterFrom++, iterTo++)
-        *iterTo = *iterFrom / element;
+        *iterTo = static_cast<float>(*iterFrom) / element;
 
     return result;
 }
@@ -655,11 +658,6 @@ double Vector<Type>::operator/(const Vector<Type> &vector) const {
 
 template<typename Type>
 Vector<float> Vector<Type>::operator/(const Type &element) const {
-    time_t currentTime = time(NULL);
-    if (this->vectorSize == 0)
-        throw EmptyVectorException(__FILE__, typeid(*this).name(),
-                                   __LINE__, ctime(&currentTime));
-
     return this->divEl(element);
 }
 

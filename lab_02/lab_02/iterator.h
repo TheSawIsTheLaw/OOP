@@ -16,8 +16,8 @@ public:
     Iterator(const Iterator<Type> &iterator);
     Iterator(const Vector<Type> &vector);
 
-    Type &operator *();
-    const Type &operator *() const;
+    Type &operator*();
+    const Type &operator*() const;
     Type *operator->();
     const Type *operator->() const;
     operator bool() const;
