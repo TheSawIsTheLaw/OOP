@@ -16,10 +16,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Vector/main.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    Vector/ConstIterator.hpp \
+    Vector/ConstantIterator.h \
+    Vector/ExceptionBase.hpp \
+    Vector/Iterator.hpp \
+    Vector/defines.h \
+    Vector/exceptionBase.h \
+    Vector/exceptions.h \
+    Vector/iterator.h \
+    Vector/vector.h \
+    Vector/vector.hpp \
+    Vector/vectorbase.h \
     mainwindow.h
 
 FORMS += \

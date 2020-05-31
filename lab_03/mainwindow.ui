@@ -6,15 +6,374 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1213</width>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1221</width>
+      <height>531</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>673</x>
+      <y>538</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Camera</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>673</x>
+      <y>580</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>Model</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>550</y>
+      <width>91</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>No Camera</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>580</y>
+      <width>91</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>No Model</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="minusMasstButton">
+    <property name="geometry">
+     <rect>
+      <x>1180</x>
+      <y>580</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+    <property name="shortcut">
+     <string>3</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="goRightButton">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>580</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>→</string>
+    </property>
+    <property name="shortcut">
+     <string>Right</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>0</number>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateXRightButton">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>540</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>⤵</string>
+    </property>
+    <property name="shortcut">
+     <string>5</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateZRightButton">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>530</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↻</string>
+    </property>
+    <property name="shortcut">
+     <string>7</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateXLeftButton">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>570</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>⤴</string>
+    </property>
+    <property name="shortcut">
+     <string>8</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="plusMasstButton">
+    <property name="geometry">
+     <rect>
+      <x>1180</x>
+      <y>550</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+    <property name="shortcut">
+     <string>1</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="goDownButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>580</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↓</string>
+    </property>
+    <property name="shortcut">
+     <string>Down</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>0</number>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateYdownButton">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>560</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↩</string>
+    </property>
+    <property name="shortcut">
+     <string>4</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateYupButton">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>560</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↪</string>
+    </property>
+    <property name="shortcut">
+     <string>6</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="goLeftButton">
+    <property name="geometry">
+     <rect>
+      <x>799</x>
+      <y>580</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>←</string>
+    </property>
+    <property name="shortcut">
+     <string>Left</string>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>0</number>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="goUpButton">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>550</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↑</string>
+    </property>
+    <property name="shortcut">
+     <string>Up</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>0</number>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="toratateZLeftButton">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>530</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↺</string>
+    </property>
+    <property name="shortcut">
+     <string>9</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>610</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Upload Scene</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1213</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
