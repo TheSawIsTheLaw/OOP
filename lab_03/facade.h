@@ -10,7 +10,7 @@ public:
 private:
     UploadManager Upload;
     SceneManager Scene;
-//    DrawManager Draw;
+    DrawManager Draw;
 //    TransformManager Transform;
 };
 
