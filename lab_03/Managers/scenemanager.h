@@ -3,12 +3,11 @@
 
 #include "managerbase.h"
 
-class SceneManager: ManagerBase
-{
+class SceneManager: public ManagerBase {
 public:
     SceneManager();
 
-    ~SceneManager() = default;
+    virtual ~SceneManager() = default;
 };
 
 #endif // SCENEMANAGER_H

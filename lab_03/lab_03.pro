@@ -19,6 +19,7 @@ SOURCES += \
     Managers/drawmanager.cpp \
     Managers/managerbase.cpp \
     Managers/scenemanager.cpp \
+    Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \
     main.cpp \
     mainwindow.cpp
@@ -27,6 +28,7 @@ HEADERS += \
     Managers/drawmanager.h \
     Managers/managerbase.h \
     Managers/scenemanager.h \
+    Managers/transformmanager.h \
     Managers/uploadmanager.h \
     Vector/ConstIterator.hpp \
     Vector/ConstantIterator.h \

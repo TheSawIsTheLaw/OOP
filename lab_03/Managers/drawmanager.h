@@ -3,12 +3,11 @@
 
 #include "managerbase.h"
 
-class DrawManager: ManagerBase
-{
+class DrawManager: public ManagerBase {
 public:
     DrawManager();
 
-    ~DrawManager() = default;
+    virtual ~DrawManager() = default;
 };
 
 #endif // DRAWMANAGER_H

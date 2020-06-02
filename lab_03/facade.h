@@ -4,6 +4,7 @@
 #include "Managers/UploadManager.h"
 #include "Managers/scenemanager.h"
 #include "Managers/drawmanager.h"
+#include "Managers/transformmanager.h"
 
 class Facade{
 public:
@@ -12,7 +13,7 @@ private:
     UploadManager Upload;
     SceneManager Scene;
     DrawManager Draw;
-//    TransformManager Transform;
+    TransformManager Transform;
 };
 
 #endif // FACADE_H
