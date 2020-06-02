@@ -31,6 +31,7 @@ HEADERS += \
     Vector/vector.h \
     Vector/vector.hpp \
     Vector/vectorbase.h \
+    facade.h \
     mainwindow.h
 
 FORMS += \
