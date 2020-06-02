@@ -3,6 +3,7 @@
 
 #include "Managers/UploadManager.h"
 #include "Managers/scenemanager.h"
+#include "Managers/drawmanager.h"
 
 class Facade{
 public:
