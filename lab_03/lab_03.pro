@@ -17,12 +17,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Managers/managerbase.cpp \
+    Managers/scenemanager.cpp \
     Managers/uploadmanager.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Managers/managerbase.h \
+    Managers/scenemanager.h \
     Managers/uploadmanager.h \
     Vector/ConstIterator.hpp \
     Vector/ConstantIterator.h \

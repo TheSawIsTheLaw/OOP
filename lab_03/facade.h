@@ -2,13 +2,14 @@
 #define FACADE_H
 
 #include "Managers/UploadManager.h"
+#include "Managers/scenemanager.h"
 
 class Facade{
 public:
 //    CommandBase Command();
 private:
     UploadManager Upload;
-//    SceneManager Scene;
+    SceneManager Scene;
 //    DrawManager Draw;
 //    TransformManager Transform;
 };
