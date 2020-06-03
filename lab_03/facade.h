@@ -6,14 +6,14 @@
 #include "Managers/drawmanager.h"
 #include "Managers/transformmanager.h"
 
-class Facade{
+class Facade {
 public:
-//    CommandBase Command();
+    // friend conCommand();
 private:
-    UploadManager Upload;
-    SceneManager Scene;
-    DrawManager Draw;
-    TransformManager Transform;
+    UploadManager UploadMan;
+    SceneManager SceneMan;
+    DrawManager DrawMan;
+    TransformManager TransformMan;
 };
 
 #endif // FACADE_H
