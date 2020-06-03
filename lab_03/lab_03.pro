@@ -22,6 +22,8 @@ SOURCES += \
     Managers/scenemanager.cpp \
     Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \
+    SceneUploader/scenebuilderbase.cpp \
+    SceneUploader/sceneuploader.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -32,6 +34,8 @@ HEADERS += \
     Managers/scenemanager.h \
     Managers/transformmanager.h \
     Managers/uploadmanager.h \
+    SceneUploader/scenebuilderbase.h \
+    SceneUploader/sceneuploader.h \
     Vector/ConstIterator.hpp \
     Vector/ConstantIterator.h \
     Vector/ExceptionBase.hpp \
