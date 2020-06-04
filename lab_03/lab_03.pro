@@ -24,6 +24,7 @@ SOURCES += \
     Managers/uploadmanager.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
+    facade.cpp \
     main.cpp \
     mainwindow.cpp
 

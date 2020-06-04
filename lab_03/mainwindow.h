@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "facade.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -20,5 +22,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Facade &facade;
 };
 #endif // MAINWINDOW_H

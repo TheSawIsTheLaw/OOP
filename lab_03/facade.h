@@ -8,6 +8,9 @@
 
 class Facade {
 public:
+    Facade();
+
+    ~Facade();
     // friend conCommand();
 private:
     UploadManager UploadMan;
