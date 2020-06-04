@@ -48,6 +48,7 @@ HEADERS += \
     Vector/vector.h \
     Vector/vector.hpp \
     Vector/vectorbase.h \
+    defines.h \
     facade.h \
     mainwindow.h
 
