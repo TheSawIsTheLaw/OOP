@@ -6,6 +6,8 @@ class SceneUploader
 {
 public:
     SceneUploader();
+
+
 };
 
 #endif // SCENEUPLOADER_H
