@@ -10,7 +10,7 @@ class Facade {
 public:
     Facade();
 
-    ~Facade();
+    ~Facade() = default;
     // friend conCommand();
 private:
     UploadManager UploadMan;
