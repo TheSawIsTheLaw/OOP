@@ -19,3 +19,19 @@ Camera::Camera(int xPosition, int yPosition, int zPosition,
     this->yIncline = yIncline;
     this->zIncline = zIncline;
 }
+
+void Camera::movement() {
+
+}
+
+void Camera::rotation() {
+
+}
+
+void Camera::getCurrentIncline() {
+
+}
+
+void Camera::getCurrentPosition() {
+
+}
