@@ -7,7 +7,7 @@ class CarcassModel : public ModelBase {
 public:
     CarcassModel();
 
-    virtual ~CarcassModel();
+    virtual ~CarcassModel() = default;
 
     void rotateCarcass();
     void scaleCarcass();
