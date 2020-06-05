@@ -10,6 +10,11 @@ public:
            int xIncline, int yIncline, int zIncline);
 
     virtual ~Camera() = default;
+
+    void movement() override;
+    void rotation() override;
+    void getCurrentIncline() override;
+    void getCurrentPosition() override;
 };
 
 #endif // CAMERA_H
