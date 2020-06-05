@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Camera/camerabase.cpp \
     Commands/commandbase.cpp \
     Managers/drawmanager.cpp \
     Managers/managerbase.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    Camera/camerabase.h \
     Commands/commandbase.h \
     Managers/drawmanager.h \
     Managers/managerbase.h \
@@ -60,4 +62,5 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+    Component/temp.txt

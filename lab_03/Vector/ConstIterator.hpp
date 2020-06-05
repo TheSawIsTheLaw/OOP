@@ -1,6 +1,6 @@
 #ifndef CONSTITERATOR_HPP
 #define CONSTITERATOR_HPP
-#include <ConstantIterator.h>
+#include "ConstantIterator.h"
 
 template<typename Type>
 Type *ConstIterator<Type>::getCurrentPointer() const {
