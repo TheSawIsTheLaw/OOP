@@ -25,6 +25,7 @@ SOURCES += \
     Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \
     Model/modeladaptee.cpp \
+    Model/modeladapter.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
     facade.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     Managers/transformmanager.h \
     Managers/uploadmanager.h \
     Model/modeladaptee.h \
+    Model/modeladapter.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
     Vector/ConstIterator.hpp \
