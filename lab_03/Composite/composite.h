@@ -1,17 +1,17 @@
 #ifndef COMPOSITE_H
 #define COMPOSITE_H
 
-#include "../Vector/vector.h"
+#include <iostream>
 
 class Composite {
 public:
     Composite();
     ~Composite() = default;
 
-    void accept();
-    bool isComposite();
-    void add();
-    void del();
+    virtual void accept() = 0;
+    virtual bool isComposite() = 0;
+    virtual void add() = 0;
+    virtual void del() = 0;
 //    CompIterator *makeIter();
 };
 

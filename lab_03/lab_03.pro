@@ -19,6 +19,7 @@ SOURCES += \
     Camera/camera.cpp \
     Camera/camerabase.cpp \
     Commands/commandbase.cpp \
+    Composite/component.cpp \
     Composite/composite.cpp \
     Managers/drawmanager.cpp \
     Managers/managerbase.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     Camera/camera.h \
     Camera/camerabase.h \
     Commands/commandbase.h \
+    Composite/component.h \
     Composite/composite.h \
     Managers/drawmanager.h \
     Managers/managerbase.h \
@@ -51,17 +53,6 @@ HEADERS += \
     Model/modelbase.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
-    Vector/ConstIterator.hpp \
-    Vector/ConstantIterator.h \
-    Vector/ExceptionBase.hpp \
-    Vector/Iterator.hpp \
-    Vector/defines.h \
-    Vector/exceptionBase.h \
-    Vector/exceptions.h \
-    Vector/iterator.h \
-    Vector/vector.h \
-    Vector/vector.hpp \
-    Vector/vectorbase.h \
     defines.h \
     facade.h \
     mainwindow.h
