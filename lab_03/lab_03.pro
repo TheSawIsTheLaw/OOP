@@ -30,6 +30,7 @@ SOURCES += \
     Model/dot.cpp \
     Model/edge.cpp \
     Model/modelbase.cpp \
+    Scene/scene.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
     facade.cpp \
@@ -51,6 +52,7 @@ HEADERS += \
     Model/dot.h \
     Model/edge.h \
     Model/modelbase.h \
+    Scene/scene.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
     defines.h \
@@ -65,4 +67,5 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+    Scene/temp.txt
