@@ -19,6 +19,7 @@ SOURCES += \
     Camera/camera.cpp \
     Camera/camerabase.cpp \
     Commands/commandbase.cpp \
+    Composite/composite.cpp \
     Managers/drawmanager.cpp \
     Managers/managerbase.cpp \
     Managers/scenemanager.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     Camera/camera.h \
     Camera/camerabase.h \
     Commands/commandbase.h \
+    Composite/composite.h \
     Managers/drawmanager.h \
     Managers/managerbase.h \
     Managers/scenemanager.h \
@@ -74,4 +76,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Component/temp.txt \
+    Composite/temp.txt \
     Model/temp.txt
