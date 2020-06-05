@@ -24,6 +24,7 @@ SOURCES += \
     Managers/scenemanager.cpp \
     Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \
+    Model/modelbase.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
     facade.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     Managers/scenemanager.h \
     Managers/transformmanager.h \
     Managers/uploadmanager.h \
+    Model/modelbase.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
     Vector/ConstIterator.hpp \
@@ -65,4 +67,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    Component/temp.txt
+    Component/temp.txt \
+    Model/temp.txt
