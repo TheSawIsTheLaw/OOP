@@ -24,6 +24,8 @@ SOURCES += \
     Managers/scenemanager.cpp \
     Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \
+    Model/carcassmodel.cpp \
+    Model/dot.cpp \
     Model/modelbase.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
@@ -40,6 +42,8 @@ HEADERS += \
     Managers/scenemanager.h \
     Managers/transformmanager.h \
     Managers/uploadmanager.h \
+    Model/carcassmodel.h \
+    Model/dot.h \
     Model/modelbase.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
