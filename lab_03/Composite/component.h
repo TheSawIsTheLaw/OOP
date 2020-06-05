@@ -1,17 +1,15 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "composite.h"
-
-class Component : public Composite {
+class Component {
 public:
     Component();
     ~Component() = default;
 
-    void accept() override;
-    void add() override;
-    void del() override;
-    bool isComposite() override;
+    void accept();
+    void add();
+    void del();
+    virtual bool isComposite() = 0;
 
     bool isVisible();
 };
