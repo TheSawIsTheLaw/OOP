@@ -65,7 +65,4 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    Component/temp.txt \
-    Composite/temp.txt \
-    Model/temp.txt
+DISTFILES +=
