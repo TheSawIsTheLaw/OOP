@@ -26,6 +26,7 @@ SOURCES += \
     Managers/uploadmanager.cpp \
     Model/carcassmodel.cpp \
     Model/dot.cpp \
+    Model/edge.cpp \
     Model/modelbase.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     Managers/uploadmanager.h \
     Model/carcassmodel.h \
     Model/dot.h \
+    Model/edge.h \
     Model/modelbase.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
