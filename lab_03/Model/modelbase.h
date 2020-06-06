@@ -2,9 +2,8 @@
 #define MODELBASE_H
 
 
-class ModelBase
-{
-public:
+class ModelBase {
+   public:
     ModelBase();
 
     virtual ~ModelBase() = 0;

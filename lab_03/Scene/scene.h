@@ -1,14 +1,14 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "../Composite/component.h"
-#include "../Model/modelbase.h"
-#include "../Camera/camerabase.h"
 #include <vector>
 
-class Scene
-{
-public:
+#include "../Camera/camerabase.h"
+#include "../Composite/component.h"
+#include "../Model/modelbase.h"
+
+class Scene {
+   public:
     Scene();
     ~Scene() = default;
 
@@ -18,7 +18,7 @@ public:
     void setScene();
     void resetScene();
 
-private:
+   private:
     std::vector<Component> components;
 };
 

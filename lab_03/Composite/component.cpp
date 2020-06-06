@@ -1,18 +1,12 @@
 #include "component.h"
 
-Component::Component() { }
+Component::Component() {}
 
-void Component::accept() {
+void Component::accept() {}
 
-}
+void Component::add() {}
 
-void Component::add() {
-
-}
-
-void Component::del() {
-
-}
+void Component::del() {}
 
 bool Component::isComposite() {
     return false;

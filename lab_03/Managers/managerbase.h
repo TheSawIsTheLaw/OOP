@@ -3,7 +3,7 @@
 
 
 class ManagerBase {
-public:
+   public:
     ManagerBase();
 
     virtual ~ManagerBase() = 0;

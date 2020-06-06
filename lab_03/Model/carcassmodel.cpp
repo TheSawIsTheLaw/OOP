@@ -1,9 +1,9 @@
 #include "carcassmodel.h"
 
-CarcassModel::CarcassModel() { }
+CarcassModel::CarcassModel() {}
 
-void CarcassModel::moveCarcass() { }
+void CarcassModel::moveCarcass() {}
 
-void CarcassModel::scaleCarcass() { }
+void CarcassModel::scaleCarcass() {}
 
-void CarcassModel::rotateCarcass() { }
+void CarcassModel::rotateCarcass() {}

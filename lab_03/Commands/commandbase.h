@@ -2,9 +2,8 @@
 #define COMMANDBASE_H
 
 
-class CommandBase
-{
-public:
+class CommandBase {
+   public:
     CommandBase();
 
     virtual ~CommandBase() = 0;

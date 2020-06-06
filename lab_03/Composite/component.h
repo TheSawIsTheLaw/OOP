@@ -2,7 +2,7 @@
 #define COMPONENT_H
 
 class Component {
-public:
+   public:
     Component();
     ~Component() = default;
 

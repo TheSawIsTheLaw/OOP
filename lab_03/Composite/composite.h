@@ -2,10 +2,11 @@
 #define COMPOSITE_H
 
 #include <vector>
+
 #include "component.h"
 
 class Composite : public Component {
-public:
+   public:
     Composite();
     ~Composite() = default;
 
@@ -13,9 +14,9 @@ public:
     void add();
     void del();
     bool isComposite() override;
-//    CompIterator *makeIter();
+    //    CompIterator *makeIter();
 
-private:
+   private:
     std::vector<Component> components;
 };
 

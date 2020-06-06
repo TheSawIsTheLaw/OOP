@@ -1,6 +1,3 @@
 #include "transformmanager.h"
 
-TransformManager::TransformManager()
-{
-
-}
+TransformManager::TransformManager() {}

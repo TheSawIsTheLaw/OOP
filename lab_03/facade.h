@@ -2,12 +2,12 @@
 #define FACADE_H
 
 #include "Managers/UploadManager.h"
-#include "Managers/scenemanager.h"
 #include "Managers/drawmanager.h"
+#include "Managers/scenemanager.h"
 #include "Managers/transformmanager.h"
 
 class Facade {
-public:
+   public:
     Facade();
 
     ~Facade() = default;
@@ -15,7 +15,7 @@ public:
     template<typename Command>
     void execute(Command);
 
-private:
+   private:
     UploadManager UploadMan;
     SceneManager SceneMan;
     DrawManager DrawMan;

@@ -1,6 +1,3 @@
 #include "UploadManager.h"
 
-UploadManager::UploadManager()
-{
-
-}
+UploadManager::UploadManager() {}

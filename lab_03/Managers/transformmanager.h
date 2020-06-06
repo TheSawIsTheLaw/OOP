@@ -3,8 +3,8 @@
 
 #include "managerbase.h"
 
-class TransformManager: public ManagerBase {
-public:
+class TransformManager : public ManagerBase {
+   public:
     TransformManager();
 
     virtual ~TransformManager() = default;

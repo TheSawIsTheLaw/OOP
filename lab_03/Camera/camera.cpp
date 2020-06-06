@@ -1,7 +1,6 @@
 #include "camera.h"
 
-Camera::Camera()
-{
+Camera::Camera() {
     this->xPosition = 0;
     this->yPosition = 0;
     this->zPosition = 0;
@@ -10,8 +9,8 @@ Camera::Camera()
     this->zIncline = 0;
 }
 
-Camera::Camera(int xPosition, int yPosition, int zPosition,
-               int xIncline, int yIncline, int zIncline) {
+Camera::Camera(int xPosition, int yPosition, int zPosition, int xIncline,
+               int yIncline, int zIncline) {
     this->xPosition = xPosition;
     this->yPosition = yPosition;
     this->zPosition = zPosition;
@@ -20,18 +19,10 @@ Camera::Camera(int xPosition, int yPosition, int zPosition,
     this->zIncline = zIncline;
 }
 
-void Camera::movement() {
+void Camera::movement() {}
 
-}
+void Camera::rotation() {}
 
-void Camera::rotation() {
+void Camera::getCurrentIncline() {}
 
-}
-
-void Camera::getCurrentIncline() {
-
-}
-
-void Camera::getCurrentPosition() {
-
-}
+void Camera::getCurrentPosition() {}

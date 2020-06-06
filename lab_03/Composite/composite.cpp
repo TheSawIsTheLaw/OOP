@@ -1,21 +1,15 @@
 #include "composite.h"
 
-Composite::Composite() { }
+Composite::Composite() {}
 
-void Composite::accept() {
-
-}
+void Composite::accept() {}
 
 bool Composite::isComposite() {
     return true;
 }
 
-void Composite::add() {
+void Composite::add() {}
 
-}
+void Composite::del() {}
 
-void Composite::del() {
-
-}
-
-//CompIterator *Composite()
+// CompIterator *Composite()

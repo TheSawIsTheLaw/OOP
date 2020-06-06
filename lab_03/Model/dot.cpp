@@ -1,6 +1,3 @@
 #include "dot.h"
 
-Dot::Dot()
-{
-
-}
+Dot::Dot() {}

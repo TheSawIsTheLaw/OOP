@@ -3,8 +3,8 @@
 
 #include "managerbase.h"
 
-class DrawManager: public ManagerBase {
-public:
+class DrawManager : public ManagerBase {
+   public:
     DrawManager();
 
     virtual ~DrawManager() = default;

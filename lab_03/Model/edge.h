@@ -3,16 +3,15 @@
 
 #include "stdio.h"
 
-class Edge
-{
-public:
+class Edge {
+   public:
     Edge();
     ~Edge() = default;
 
     Edge get();
     void set();
 
-private:
+   private:
     size_t firstNode, secondNode;
 };
 

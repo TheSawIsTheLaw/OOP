@@ -4,16 +4,16 @@
 #include "commandbase.h"
 #include "defines.h"
 
-class UploadCommand: CommandBase {
-public:
+class UploadCommand : CommandBase {
+   public:
     UploadCommand();
     explicit UploadCommand(const char *nameOfFile);
 
     ~UploadCommand() = default;
 
-    char fileName[FILE_NAME_LEN] = { 0 };
+    char fileName[FILE_NAME_LEN] = {0};
 
-private:
+   private:
 };
 
 #endif // UPLOADCOMMAND_H

@@ -1,10 +1,11 @@
 #include "uploadcommand.h"
+
 #include <string.h>
-#include "defines.h"
 
 #include "QFileDialog"
+#include "defines.h"
 
-UploadCommand::UploadCommand() { }
+UploadCommand::UploadCommand() {}
 
 UploadCommand::UploadCommand(const char *nameOfFile) {
     if (strlen(nameOfFile) < FILE_NAME_LEN)

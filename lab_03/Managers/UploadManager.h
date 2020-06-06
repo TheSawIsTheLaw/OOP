@@ -3,8 +3,8 @@
 
 #include "managerbase.h"
 
-class UploadManager: public ManagerBase {
-public:
+class UploadManager : public ManagerBase {
+   public:
     UploadManager();
 
     virtual ~UploadManager() = default;

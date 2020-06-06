@@ -4,7 +4,7 @@
 
 #include "defines.h"
 
-SceneUploader::SceneUploader() { }
+SceneUploader::SceneUploader() {}
 
 SceneUploader::SceneUploader(char *name) {
     if (!name) {

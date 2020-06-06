@@ -2,9 +2,8 @@
 #define DOT_H
 
 
-class Dot
-{
-public:
+class Dot {
+   public:
     Dot();
     ~Dot() = default;
 
@@ -14,7 +13,7 @@ public:
     Dot get();
     void set();
 
-private:
+   private:
     int xPosition, yPosition, zPosition;
 };
 

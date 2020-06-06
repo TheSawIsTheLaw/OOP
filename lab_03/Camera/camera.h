@@ -3,11 +3,14 @@
 
 #include "camerabase.h"
 
-class Camera: public CameraBase {
-public:
+class Camera : public CameraBase {
+   public:
     Camera();
-    Camera(int xPosition, int yPosition, int zPosition,
-           int xIncline, int yIncline, int zIncline);
+    // clang-format off
+    Camera(int xPosition, int yPosition,
+           int zPosition, int xIncline,
+           int yIncline, int zIncline);
+    // clang-format on
 
     virtual ~Camera() = default;
 

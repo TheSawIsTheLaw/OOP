@@ -1,6 +1,3 @@
 #include "drawmanager.h"
 
-DrawManager::DrawManager()
-{
-
-}
+DrawManager::DrawManager() {}
