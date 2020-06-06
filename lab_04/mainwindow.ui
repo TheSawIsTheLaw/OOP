@@ -14,7 +14,7 @@
    <string>Лифт (тут пахнет чем-то странным)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="CabinButtonFloor1">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -46,7 +46,7 @@
      <string>Lift Pannel</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="CabinButtonFloor2">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -59,7 +59,7 @@
      <string>Floor 2</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="CabinButtonFloor3">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -72,7 +72,7 @@
      <string>Floor 3</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="CabinButtonFloor4">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -85,7 +85,7 @@
      <string>Floor 4</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="CabinButtonFloor5">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -98,7 +98,7 @@
      <string>Floor 5</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="CabinButtonFloor6">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -111,7 +111,7 @@
      <string>Floor 6</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="CabinButtonFloor7">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -124,7 +124,7 @@
      <string>Floor 7</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="CabinButtonFloor8">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -137,7 +137,7 @@
      <string>Floor 8</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="CabinButtonFloor9">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -150,7 +150,7 @@
      <string>Floor 9</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="CabinButtonFloor10">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -163,7 +163,7 @@
      <string>Floor 10</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QPushButton" name="CabinButtonFloor11">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -176,7 +176,7 @@
      <string>Floor 11</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="CabinButtonFloor12">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -189,7 +189,7 @@
      <string>Floor 12</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_13">
+   <widget class="QPushButton" name="CabinButtonFloor13">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -202,7 +202,7 @@
      <string>Floor 13</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_14">
+   <widget class="QPushButton" name="CabinButtonFloor14">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -215,7 +215,7 @@
      <string>Floor 14</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_15">
+   <widget class="QPushButton" name="CabinButtonFloor15">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -228,7 +228,7 @@
      <string>Floor 15</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_16">
+   <widget class="QPushButton" name="CabinButtonFloor16">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -291,7 +291,7 @@
      <string>Floor Buttons</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_17">
+   <widget class="QPushButton" name="FloorButton1">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -304,7 +304,7 @@
      <string>Call on 1</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_18">
+   <widget class="QPushButton" name="FloorButton2">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -317,7 +317,7 @@
      <string>Call on 2</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_19">
+   <widget class="QPushButton" name="FloorButton3">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -330,7 +330,7 @@
      <string>Call on 3</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_20">
+   <widget class="QPushButton" name="FloorButton4">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -343,7 +343,7 @@
      <string>Call on 4</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_21">
+   <widget class="QPushButton" name="FloorButton7">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -356,7 +356,7 @@
      <string>Call on 7</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_22">
+   <widget class="QPushButton" name="FloorButton6">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -369,7 +369,7 @@
      <string>Call on 6</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_23">
+   <widget class="QPushButton" name="FloorButton5">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -382,7 +382,7 @@
      <string>Call on 5</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_24">
+   <widget class="QPushButton" name="FloorButton8">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -395,7 +395,7 @@
      <string>Call on 8</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_25">
+   <widget class="QPushButton" name="FloorButton11">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -408,7 +408,7 @@
      <string>Call on 11</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_26">
+   <widget class="QPushButton" name="FloorButton10">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -421,7 +421,7 @@
      <string>Call on 10</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_27">
+   <widget class="QPushButton" name="FloorButton9">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -434,7 +434,7 @@
      <string>Call on 9</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_28">
+   <widget class="QPushButton" name="FloorButton12">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -447,7 +447,7 @@
      <string>Call on 12</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_29">
+   <widget class="QPushButton" name="FloorButton15">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -460,7 +460,7 @@
      <string>Call on 15</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_30">
+   <widget class="QPushButton" name="FloorButton14">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -473,7 +473,7 @@
      <string>Call on 14</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_31">
+   <widget class="QPushButton" name="FloorButton13">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -486,7 +486,7 @@
      <string>Call on 13</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_32">
+   <widget class="QPushButton" name="FloorButton16">
     <property name="geometry">
      <rect>
       <x>110</x>
