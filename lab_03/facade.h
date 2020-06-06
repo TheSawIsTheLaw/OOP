@@ -11,7 +11,10 @@ public:
     Facade();
 
     ~Facade() = default;
-    // friend conCommand();
+
+    template<typename Command>
+    void execute(Command);
+
 private:
     UploadManager UploadMan;
     SceneManager SceneMan;

@@ -36,4 +36,5 @@ void MainWindow::on_pushButton_clicked()
             "Не был выбран файл.");
         return ;
     }
+
 }
