@@ -22,6 +22,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Facade Facade;
+    Facade facade;
 };
 #endif // MAINWINDOW_H

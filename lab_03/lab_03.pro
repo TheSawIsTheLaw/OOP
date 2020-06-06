@@ -19,6 +19,7 @@ SOURCES += \
     Camera/camera.cpp \
     Camera/camerabase.cpp \
     Commands/commandbase.cpp \
+    Commands/uploadcommand.cpp \
     Composite/component.cpp \
     Composite/composite.cpp \
     Managers/drawmanager.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     Camera/camera.h \
     Camera/camerabase.h \
     Commands/commandbase.h \
+    Commands/uploadcommand.h \
     Composite/component.h \
     Composite/composite.h \
     Managers/drawmanager.h \
