@@ -3,4 +3,6 @@
 
 #define FILE_NAME_LEN 30
 
+#define CONFIG "config.txt"
+
 #endif // DEFINES_H

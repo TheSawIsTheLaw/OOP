@@ -12,13 +12,9 @@ public:
     Scene();
     ~Scene() = default;
 
-    ModelBase &getModel();
-    void addModel();
-    void delModel();
-    CameraBase &getCamera();
-    void addCamera();
-    void delCamera();
-    Scene &getScene();
+    Component &getComponent();
+    void addComponent();
+    void delComponent();
     void setScene();
     void resetScene();
 
