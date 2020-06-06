@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define FILE_NAME_LEN 30
+#define FILE_NAME_LEN 200
 
 #define CONFIG "config.txt"
 

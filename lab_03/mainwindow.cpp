@@ -3,6 +3,9 @@
 
 #include "QFileDialog"
 #include "QMessageBox"
+#include "defines.h"
+#include "string.h"
+#include "Commands/uploadcommand.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,7 +32,6 @@ void MainWindow::on_pushButton_clicked()
 {
     qDebug("Upload");
     QString qFileName = getFileWay(this, ".", "");
-    qDebug("%s", qUtf8Printable(qFileName));
 
     if (qFileName == "") {
         QMessageBox::critical(this, "Ошибка!",
@@ -37,4 +39,12 @@ void MainWindow::on_pushButton_clicked()
         return ;
     }
 
+    UploadCommand command(qUtf8Printable(qFileName));
+    if (command.fileName[0] == '\0') {
+        QMessageBox::critical(this, "Ошибка!",
+            "Размер пути к файлу превышает заданное максимальное количество символов.");
+        return ;
+    }
+
+    qDebug("%s", command.fileName);
 }
