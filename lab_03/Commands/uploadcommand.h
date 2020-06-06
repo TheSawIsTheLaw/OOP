@@ -7,7 +7,7 @@
 class UploadCommand : CommandBase {
    public:
     UploadCommand();
-    explicit UploadCommand(const char *nameOfFile);
+    UploadCommand(const char *nameOfFile);
 
     ~UploadCommand() = default;
 
