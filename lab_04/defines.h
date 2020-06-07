@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-enum movement { GOESDOWN, STAY, GOESUP };
+enum direction { GOESDOWN, STAY, GOESUP };
 
 #define FLOOR_PASS 5000
 #define CLOSE_OPEN_TIME 5000

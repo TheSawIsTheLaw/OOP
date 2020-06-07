@@ -5,7 +5,9 @@
 #include <QTimer>
 
 class Door : public QObject {
+    Q_OBJECT
     enum states { OPENED, OPENING, CLOSED, CLOSING };
+
 
    public:
     explicit Door(QObject *parent = nullptr);
