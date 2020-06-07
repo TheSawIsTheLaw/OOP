@@ -1,5 +1,7 @@
 #include "cabine.h"
 
+#include <QDebug>
+
 Cabine::Cabine(QObject *parent)
     : QObject(parent),
       currentFloor(1),
@@ -37,5 +39,25 @@ void Cabine::cabineMoves() {
             emit cabineIsPassingFloor(currentFloor, currentMovementDirection);
             PassingFloorTimer.start(FLOOR_PASS);
         }
+    }
+}
+
+void Cabine::cabineStoppes() {
+    if (currentState == MOVE) {
+        currentState = STOP;
+        qDebug() << "Lift stopped on the floor "
+                 << QString::number(currentFloor) << ".";
+        emit cabineStopped(currentFloor);
+    }
+}
+
+void Cabine::cabineCall(short floor, direction dir) {
+    if (currentState == STOP) {
+        hasNewDestinationFloor = true;
+        currentState = WAIT;
+        destinationFloor = floor;
+
+        currentMovementDirection = dir;
+        emit cabineIsCalled();
     }
 }
