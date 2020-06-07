@@ -16,3 +16,26 @@ Cabine::Cabine(QObject *parent)
     QObject::connect(&PassingFloorTimer, SIGNAL(timeout()), this,
                      SLOT(cabin_move()));
 }
+
+
+void Cabine::cabineMoves() {
+    if (hasNewDestinationFloor && currentState == WAIT) {
+        currentState = MOVE;
+        if (currentFloor == destinationFloor) {
+            emit cabineReachedDestanation(currentFloor);
+        } else {
+            PassingFloorTimer.start(FLOOR_PASS);
+        }
+    } else if (currentState == MOVE) {
+        currentState = MOVE;
+
+        currentFloor += currentMovementDirection;
+
+        if (currentFloor == destinationFloor) {
+            emit cabineReachedDestanation(currentFloor);
+        } else {
+            emit cabineIsPassingFloor(currentFloor, currentMovementDirection);
+            PassingFloorTimer.start(FLOOR_PASS);
+        }
+    }
+}
