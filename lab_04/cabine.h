@@ -9,7 +9,7 @@
 
 class Cabine : public QObject {
     Q_OBJECT
-    enum cabineState { MOVE, WAIT, STOP };
+    enum cabineState { MOVES, ISWAITINGFOREVENT, STANDING };
 
    public:
     explicit Cabine(QObject *parent = nullptr);

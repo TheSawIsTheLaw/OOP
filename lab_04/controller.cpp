@@ -25,7 +25,7 @@ void Controller::setNewDestinationFloor(short floor) {
         currentDestinationFloor = floor;
     }
 
-    next_target(floor); // выбор следующей цели
+    nextFloorDestination(floor); // выбор следующей цели
     CurrentMovementDirection =
         (currentFloor > currentDestinationFloor) ? DOWN : UP;
     emit setDestinationFloor(floor,
@@ -38,10 +38,10 @@ void Controller::onFloor(short floor) {
         isCommonDestination[floor - 1] = false;
         if (currentFloor == currentDestinationFloor) {
             currentDestinationFloor = -1;
-            find_new_target();
+            findNewFloorDestination();
         }
 
-        if (next_target(floor)) { // если существует еще какой-то вызов
+        if (nextFloorDestination(floor)) { // если существует еще какой-то вызов
 
             CurrentMovementDirection =
                 (currentFloor > currentDestinationFloor) ? DOWN : UP;
@@ -58,7 +58,7 @@ void Controller::passedFloor(short floor) {
     qDebug() << "Движение, этаж" << floor;
 }
 
-void Controller::find_new_target() {
+void Controller::findNewFloorDestination() {
     int state = false;
     if (CurrentMovementDirection == UP && !state) {
         for (int i = NUM_FLOORS; i >= 1; i--) {
@@ -78,7 +78,7 @@ void Controller::find_new_target() {
 }
 
 // выбирается следующий этаж, на который поедет лифт
-bool Controller::next_target(short &floor) {
+bool Controller::nextFloorDestination(short &floor) {
     int state = false;
     bool flag = true;
     if (currentDestinationFloor > currentFloor) {

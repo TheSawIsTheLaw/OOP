@@ -28,8 +28,8 @@ class Controller : public QObject {
     QVector<bool> isCommonDestination;
     controllerState currentState;
     direction CurrentMovementDirection;
-    bool next_target(short &floor);
-    void find_new_target();
+    bool nextFloorDestination(short &floor);
+    void findNewFloorDestination();
 };
 
 #endif // CONTROLLER_H

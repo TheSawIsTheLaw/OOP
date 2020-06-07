@@ -16,8 +16,8 @@ class Lift : public QObject {
     void click(short floor);
 
    private:
-    Controller control_panel;
-    Cabine lift_cabin;
+    Controller controller;
+    Cabine cabine;
 };
 
 #endif // LIFT_H

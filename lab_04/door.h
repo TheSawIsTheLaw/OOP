@@ -8,28 +8,28 @@
 
 class Door : public QObject {
     Q_OBJECT
-    enum doors_state { OPENED, CLOSED, OPENNING, CLOSING };
+    enum doorState { OPENED, CLOSED, OPENNING, CLOSING };
 
    public:
     explicit Door(QObject *parent = nullptr);
 
    signals:
-    void closed_doors();
-    void opened_doors();
+    void doorIsClosed();
+    void doorIsOpened();
 
    public slots:
-    void start_openning();
-    void start_closing();
+    void startOpening();
+    void startClosing();
 
    private slots:
     void open();
     void close();
 
    private:
-    doors_state currentState;
-    QTimer doors_open_timer;
-    QTimer doors_close_timer;
-    QTimer doors_stay_open_timer;
+    doorState currentState;
+    QTimer openDoorTimer;
+    QTimer closeDoorTimer;
+    QTimer openStateDoorTimer;
 };
 
 #endif // DOOR_H
