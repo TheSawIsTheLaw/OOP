@@ -3,7 +3,7 @@
 #include "qdebug.h"
 
 Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
-    openStateDoorTimer.setInterval(WAITING_TIME);
+    openStateDoorTimer.setInterval(PASSENGER_TIME_SERVICE);
     openStateDoorTimer.setSingleShot(true);
 
     openDoorTimer.setSingleShot(true);
@@ -21,14 +21,14 @@ void Door::startOpening() {
     if (currentState == CLOSED) {
         currentState = OPENNING;
         qDebug() << "Двери открываются.";
-        openDoorTimer.start(DOORS_TIME);
+        openDoorTimer.start(OPEN_CLOSE_DOOR_TIME);
     }
     if (currentState == CLOSING) {
         currentState = OPENNING;
         qDebug() << "Двери открываются.";
         int t = closeDoorTimer.remainingTime();
         closeDoorTimer.stop();
-        openDoorTimer.start(DOORS_TIME - t);
+        openDoorTimer.start(OPEN_CLOSE_DOOR_TIME - t);
     }
 }
 
@@ -36,7 +36,7 @@ void Door::startClosing() {
     if (currentState == OPENED) {
         currentState = CLOSING;
         qDebug() << "Двери закрываются.";
-        closeDoorTimer.start(DOORS_TIME);
+        closeDoorTimer.start(OPEN_CLOSE_DOOR_TIME);
     } else if (currentState == CLOSED) {
         emit doorIsClosed();
     }

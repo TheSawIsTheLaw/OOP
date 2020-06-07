@@ -26,22 +26,17 @@ Cabine::Cabine(QObject *parent)
 void Cabine::cabineMoves() {
     if (hasNewDestinationFloor && currentState == ISWAITINGFOREVENT) {
         currentState = MOVES;
-        if (currentFloor == destinationFloor) {
+        if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
-        } else {
-            passFloorTimer.start(CROSSING_FLOOR);
-        }
+        passFloorTimer.start(FLOOR_PASS_TIME);
     } else if (currentState == MOVES) {
-        currentState = MOVES;
-
-        currentFloor += currentMovementDirection;
-
-        if (currentFloor == destinationFloor) {
+        if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
-        } else {
+        else {
             emit cabinePassingFloor(currentFloor, currentMovementDirection);
-            passFloorTimer.start(CROSSING_FLOOR);
+            passFloorTimer.start(FLOOR_PASS_TIME);
         }
+        currentFloor += currentMovementDirection;
     }
 }
 

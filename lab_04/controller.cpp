@@ -7,7 +7,7 @@ Controller::Controller(QObject *parent)
     : QObject(parent),
       currentFloor(START_FLOOR),
       currentDestinationFloor(NO_DESTINATION_FLOOR),
-      isCommonDestination(NUM_FLOORS, false),
+      isCommonDestination(FLOORS_AMOUNT, false),
       currentState(FREE),
       CurrentMovementDirection(STAND) {}
 
@@ -60,14 +60,14 @@ void Controller::passedFloor(short floor) {
 void Controller::findNewFloorDestination() {
     int state = false;
     if (CurrentMovementDirection == UP && !state) {
-        for (int i = NUM_FLOORS; i >= 1; i--) {
+        for (int i = FLOORS_AMOUNT; i >= 1; i--) {
             if (isCommonDestination[i - 1] == true) {
                 state = true;
                 currentDestinationFloor = i;
             }
         }
     } else {
-        for (int i = 1; i <= NUM_FLOORS && !state; i++) {
+        for (int i = 1; i <= FLOORS_AMOUNT && !state; i++) {
             if (isCommonDestination[i - 1]) {
                 state = true;
                 currentDestinationFloor = i;
@@ -81,7 +81,7 @@ bool Controller::nextFloorDestination(short &floor) {
     int state = false;
     bool flag = true;
     if (currentDestinationFloor > currentFloor) {
-        for (int i = currentFloor; i <= NUM_FLOORS && flag; i += 1) {
+        for (int i = currentFloor; i <= FLOORS_AMOUNT && flag; i += 1) {
             if (isCommonDestination[i - 1]) {
                 floor = i;
                 state = true;
