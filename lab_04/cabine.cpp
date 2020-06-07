@@ -24,13 +24,15 @@ Cabine::Cabine(QObject *parent)
 }
 
 void Cabine::cabineMoves() {
-    if (hasNewDestinationFloor && currentState == ISWAITINGFOREVENT) {
+    if (!hasNewDestinationFloor)
+        return;
+    if (currentState == ISWAITINGFOREVENT) {
         currentState = MOVES;
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
         else
             passFloorTimer.start(FLOOR_PASS_TIME);
-    } else if (hasNewDestinationFloor && currentState == MOVES) {
+    } else if (currentState == MOVES) {
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
         else {
