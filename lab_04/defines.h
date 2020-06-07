@@ -9,5 +9,6 @@ enum direction { DOWN, STAY, UP };
 #define FLOOR_AMOUNT 16
 
 #define NO_PURPOISE -1
+#define NO_DESTINATION_FLOOR -1
 
 #endif // DEFINES_H
