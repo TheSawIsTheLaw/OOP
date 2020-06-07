@@ -23,7 +23,7 @@ class Controller : public QObject {
 
    private:
     short currentFloor;
-    short currentDestinationFloor = -1;
+    short currentDestinationFloor = NO_DESTINATION_FLOOR;
 
     QVector<bool> isCommonDestination;
     controllerState currentState;

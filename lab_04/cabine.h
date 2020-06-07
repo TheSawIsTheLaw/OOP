@@ -9,10 +9,11 @@
 
 class Cabine : public QObject {
     Q_OBJECT
-    enum cabineState { MOVES, ISWAITINGFOREVENT, STANDING };
-
-   public:
-    explicit Cabine(QObject *parent = nullptr);
+   public slots:
+    void cabineMovesBetweenFloors();
+    void cabineStartMoving();
+    void cabineStand();
+    void cabineCall(short floor, direction dir);
 
    signals:
     void cabineIsCalled();
@@ -20,19 +21,20 @@ class Cabine : public QObject {
     void cabineReachedDestinationFloor(short floor);
     void cabineStopped(short floor);
 
-   public slots:
-    void cabineMoves();
-    void cabineStopping();
-    void cabineCall(short floor, direction dir);
+   public:
+    explicit Cabine(QObject *parent = nullptr);
+
 
    private:
+    enum cabineState { MOVES, ISWAITINGFOREVENT, STANDING };
+
+    Door door;
     short currentFloor;
     short destinationFloor;
     bool hasNewDestinationFloor;
+    QTimer passFloorTimer;
     cabineState currentState;
     direction currentMovementDirection;
-    Door door;
-    QTimer passFloorTimer;
 };
 
 #endif // CABINE_H

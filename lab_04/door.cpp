@@ -3,14 +3,15 @@
 #include "qdebug.h"
 
 Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
+    openDoorTimer.setSingleShot(true);
+    QObject::connect(&openDoorTimer, SIGNAL(timeout()), this, SLOT(open()));
+
+    closeDoorTimer.setSingleShot(true);
+    QObject::connect(&closeDoorTimer, SIGNAL(timeout()), this, SLOT(close()));
+
+
     openStateDoorTimer.setInterval(PASSENGER_TIME_SERVICE);
     openStateDoorTimer.setSingleShot(true);
-
-    openDoorTimer.setSingleShot(true);
-    closeDoorTimer.setSingleShot(true);
-
-    QObject::connect(&openDoorTimer, SIGNAL(timeout()), this, SLOT(open()));
-    QObject::connect(&closeDoorTimer, SIGNAL(timeout()), this, SLOT(close()));
     QObject::connect(this, SIGNAL(doorIsOpened()), &openStateDoorTimer,
                      SLOT(start()));
     QObject::connect(&openStateDoorTimer, SIGNAL(timeout()), this,
@@ -18,16 +19,9 @@ Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
 }
 
 void Door::startOpening() {
-    doorState tempState = currentState;
     currentState = OPENNING;
     qDebug("Door is opening...");
-    if (tempState == CLOSED) {
-        openDoorTimer.start(OPEN_CLOSE_DOOR_TIME);
-    } else if (tempState == CLOSING) {
-        openDoorTimer.start(OPEN_CLOSE_DOOR_TIME -
-                            closeDoorTimer.remainingTime());
-        closeDoorTimer.stop();
-    }
+    openDoorTimer.start(OPEN_CLOSE_DOOR_TIME);
 }
 
 void Door::startClosing() {
@@ -45,7 +39,7 @@ void Door::open() {
     if (currentState != OPENNING)
         return;
     currentState = OPENED;
-    qDebug() << "Door is open. Dear passengers! Go aboard!.";
+    qDebug() << "Door is open. Dear passengers! Go aboard!";
     emit doorIsOpened();
 }
 

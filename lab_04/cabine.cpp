@@ -10,45 +10,51 @@ Cabine::Cabine(QObject *parent)
       hasNewDestinationFloor(false),
       currentState(STANDING),
       currentMovementDirection(STAND) {
-    passFloorTimer.setSingleShot(true);
-
-    QObject::connect(this, SIGNAL(cabineIsCalled()), &door,
-                     SLOT(startClosing()));
-    QObject::connect(this, SIGNAL(cabineReachedDestinationFloor(short)), this,
-                     SLOT(cabineStopping()));
     QObject::connect(this, SIGNAL(cabineStopped(short)), &door,
                      SLOT(startOpening()));
-    QObject::connect(&door, SIGNAL(doorIsClosed()), this, SLOT(cabineMoves()));
+    QObject::connect(this, SIGNAL(cabineIsCalled()), &door,
+                     SLOT(startClosing()));
+
+    QObject::connect(this, SIGNAL(cabineReachedDestinationFloor(short)), this,
+                     SLOT(cabineStand()));
+
+    passFloorTimer.setSingleShot(true);
     QObject::connect(&passFloorTimer, SIGNAL(timeout()), this,
-                     SLOT(cabineMoves()));
+                     SLOT(cabineMovesBetweenFloors()));
+
+    QObject::connect(&door, SIGNAL(doorIsClosed()), this,
+                     SLOT(cabineStartMoving()));
 }
 
-void Cabine::cabineMoves() {
-    if (!hasNewDestinationFloor)
+void Cabine::cabineStartMoving() {
+    if (currentState != ISWAITINGFOREVENT || !hasNewDestinationFloor)
         return;
 
-    if (currentState == ISWAITINGFOREVENT) {
-        currentState = MOVES;
-        if (currentFloor == destinationFloor)
-            emit cabineReachedDestinationFloor(currentFloor);
-        else
-            passFloorTimer.start(FLOOR_PASS_TIME);
-    } else if (currentState == MOVES) {
-        if (currentFloor == destinationFloor)
-            emit cabineReachedDestinationFloor(currentFloor);
-        else {
-            emit cabinePassingFloor(currentFloor, currentMovementDirection);
-            currentFloor += currentMovementDirection;
-            passFloorTimer.start(FLOOR_PASS_TIME);
-        }
+    currentState = MOVES;
+    if (currentFloor == destinationFloor)
+        emit cabineReachedDestinationFloor(currentFloor);
+    else
+        passFloorTimer.start(FLOOR_PASS_TIME);
+}
+
+void Cabine::cabineMovesBetweenFloors() {
+    if (currentState != MOVES || !hasNewDestinationFloor)
+        return;
+
+    if (currentFloor == destinationFloor)
+        emit cabineReachedDestinationFloor(currentFloor);
+    else {
+        emit cabinePassingFloor(currentFloor, currentMovementDirection);
+        currentFloor += currentMovementDirection;
+        passFloorTimer.start(FLOOR_PASS_TIME);
     }
 }
 
-void Cabine::cabineStopping() {
+void Cabine::cabineStand() {
     if (currentState != MOVES)
         return;
     currentState = STANDING;
-    qDebug("Lift stopped on the floor %d", currentFloor);
+    qDebug("Lift stands on the floor %d", currentFloor);
     emit cabineStopped(currentFloor);
 }
 

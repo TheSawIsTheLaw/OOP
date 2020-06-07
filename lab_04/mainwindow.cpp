@@ -2,12 +2,15 @@
 
 #include <QDebug>
 
+#include "defines.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
-    qDebug() << "Лифт находится на этаже 1, двери закрыты.\n"
-                "Лифт находится в режиме ожидания.";
+    qDebug(
+        "Lift is on %d floor, doors are closed.\nWe are waiting for your "
+        "commands!",
+        START_FLOOR);
     ui->setupUi(this);
 }
 

@@ -10,6 +10,6 @@ enum direction { DOWN = -1, STAND = 0, UP = 1 };
 #define FLOORS_AMOUNT 16
 
 #define START_FLOOR 1
-#define NO_DESTINATION_FLOOR -1
+#define NO_DESTINATION_FLOOR -666
 
 #endif // DEFINES_H
