@@ -16,7 +16,7 @@ class Cabine : public QObject {
    signals:
     void cabineisCalled();
     void cabineIsPassingFloor(short floor, direction dir);
-    void cabineReachedDistanation(short floor);
+    void cabineReachedDestanation(short floor);
     void cabineStopped(short floor);
 
    public slots:

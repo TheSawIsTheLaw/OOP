@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QTimer>
 
+#include "defines.h"
+
 class Door : public QObject {
     Q_OBJECT
     enum states { OPENED, OPENING, CLOSED, CLOSING };
