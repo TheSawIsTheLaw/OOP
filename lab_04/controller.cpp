@@ -52,3 +52,46 @@ void Controller::passedFloor(short floor) {
     currentFloor = floor;
     qDebug("Current floor is %d", floor);
 }
+
+void Controller::findNewFloorPurpoise() {
+    int state = false;
+    if (currentMovementDirection == UP) {
+        for (int i = FLOOR_AMOUNT; i > 0; i--) {
+            if (isPurpoise[i - 1] == true) {
+                state = true;
+                currentFloorPurpoise = i;
+            }
+        }
+    } else {
+        for (int i = 1; i <= FLOOR_AMOUNT && !state; i++) {
+            if (isPurpoise[i - 1]) {
+                state = true;
+                currentFloorPurpoise = i;
+            }
+        }
+    }
+}
+
+bool Controller::nextFloorPurpoise(short &floor) {
+    int state = false;
+    bool flag = true;
+    if (currentFloorPurpoise > currentFloor) {
+        for (int i = currentFloor; i <= FLOOR_AMOUNT && flag; i++) {
+            if (isPurpoise[i - 1]) {
+                floor = i;
+                state = true;
+                flag = false;
+            }
+        }
+    } else {
+        for (int i = currentFloor; i >= 1 && flag; i--) {
+            if (isPurpoise[i - 1]) {
+                floor = i;
+                state = true;
+                flag = false;
+                ;
+            }
+        }
+    }
+    return state;
+}

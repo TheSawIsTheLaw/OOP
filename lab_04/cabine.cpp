@@ -1,6 +1,3 @@
 #include "cabine.h"
 
-Cabine::Cabine()
-{
-
-}
+Cabine::Cabine(QObject *parent) {}
