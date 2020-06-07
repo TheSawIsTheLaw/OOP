@@ -3,35 +3,36 @@
 
 #include <QObject>
 
+#include "controller.h"
 #include "defines.h"
 #include "door.h"
 
 class Cabine : public QObject {
     Q_OBJECT
-    enum state { MOVE, WAIT, STOP };
+    enum cabineState { MOVE, WAIT, STOP };
 
    public:
     explicit Cabine(QObject *parent = nullptr);
 
    signals:
     void cabineIsCalled();
-    void cabineIsPassingFloor(short floor, direction dir);
-    void cabineReachedDestanation(short floor);
-    void cabineStopped(short floor);
+    void cabinePassingFloor(short floor, direction d);
+    void cabineReachedDestanationFloor(short floor);
+    void cabin_stopped(short floor);
 
    public slots:
-    void cabineMoves();
-    void cabineStoppes();
-    void cabineCall(short floor, direction dir);
+    void cabin_move();
+    void cabin_stopping();
+    void cabin_call(short floor, direction dir);
 
    private:
-    short currentFloor;
-    short destinationFloor;
-    bool hasNewDestinationFloor;
-    state currentState;
-    direction currentMovementDirection;
+    int current_floor;
+    int target;
+    bool new_target;
+    cabineState current_state;
+    direction current_direction;
     Door door;
-    QTimer PassingFloorTimer;
+    QTimer crossing_floor_timer;
 };
 
 #endif // CABINE_H

@@ -1,91 +1,94 @@
 #include "controller.h"
 
+#include "iostream"
+#include "qdebug.h"
+
+// начальное состояние контрольной панели
 Controller::Controller(QObject *parent)
     : QObject(parent),
-      currentFloor(1),
-      currentFloorPurpoise(NO_PURPOISE),
-      isPurpoise(FLOOR_AMOUNT, false),
-      currentState(FREE),
-      currentMovementDirection(STAY) {}
+      cur_floor(1),
+      cur_target(-1),
+      is_target(NUM_FLOORS, false),
+      current_state(FREE),
+      cur_direction(STAY) {}
 
-void Controller::setNewFloorPurpose(short floor) {
-    currentState = BUSY;
-    isPurpoise[floor - 1] = true;
+void Controller::set_new_target(short floor) {
+    current_state = BUSY;
+    is_target[floor - 1] = true;
 
-    if (currentFloorPurpoise == NO_PURPOISE)
-        currentFloorPurpoise = floor;
-    else if (currentMovementDirection == UP && floor > currentFloorPurpoise)
-        currentFloorPurpoise = floor;
-    else if (currentMovementDirection == DOWN && floor < currentFloorPurpoise)
-        currentFloorPurpoise = floor;
-
-    nextFloorPurpoise(floor);
-    if (currentFloor > currentFloorPurpoise)
-        currentFloorPurpoise = DOWN;
-    else
-        currentFloorPurpoise = UP;
-    emit setFloorPurpose(floor, currentMovementDirection);
-}
-
-void Controller::onFloor(short floor) {
-    if (currentState != BUSY)
-        return;
-    currentFloor = floor;
-    isPurpoise[floor - 1] = false;
-    if (currentFloor == currentFloorPurpoise) {
-        currentFloorPurpoise = NO_PURPOISE;
-        findNewFloorPurpoise();
+    if (cur_target == -1) {
+        cur_target = floor;
     }
 
-    if (nextFloorPurpoise(floor)) {
-        if (currentFloor > currentFloorPurpoise)
-            currentMovementDirection = DOWN;
-        else
-            currentMovementDirection = UP;
+    if ((cur_direction == UP && floor > cur_target) ||
+        (cur_direction == DOWN && floor < cur_target)) {
+        cur_target = floor;
+    }
 
-        emit setFloorPurpose(floor, currentMovementDirection);
-    } else
-        currentState = FREE;
+    next_target(floor); // выбор следующей цели
+    cur_direction = (cur_floor > cur_target) ? DOWN : UP;
+    emit set_target(floor, cur_direction); // передача цели кабине
 }
 
-void Controller::passedFloor(short floor) {
-    currentFloor = floor;
-    qDebug("Current floor is %d", floor);
+void Controller::achieved_floor(short floor) {
+    if (current_state == BUSY) {
+        cur_floor = floor;
+        is_target[floor - 1] = false;
+        if (cur_floor == cur_target) {
+            cur_target = -1;
+            find_new_target();
+        }
+
+        if (next_target(floor)) { // если существует еще какой-то вызов
+
+            cur_direction = (cur_floor > cur_target) ? DOWN : UP;
+
+            emit set_target(floor, cur_direction);
+        } else {
+            current_state = FREE;
+        }
+    }
 }
 
-void Controller::findNewFloorPurpoise() {
+void Controller::passed_floor(short floor) {
+    cur_floor = floor;
+    qDebug() << "Движение, этаж" << floor;
+}
+
+void Controller::find_new_target() {
     int state = false;
-    if (currentMovementDirection == UP) {
-        for (int i = FLOOR_AMOUNT; i > 0; i--) {
-            if (isPurpoise[i - 1] == true) {
+    if (cur_direction == UP && !state) {
+        for (int i = NUM_FLOORS; i >= 1; i--) {
+            if (is_target[i - 1] == true) {
                 state = true;
-                currentFloorPurpoise = i;
+                cur_target = i;
             }
         }
     } else {
-        for (int i = 1; i <= FLOOR_AMOUNT && !state; i++) {
-            if (isPurpoise[i - 1]) {
+        for (int i = 1; i <= NUM_FLOORS && !state; i++) {
+            if (is_target[i - 1]) {
                 state = true;
-                currentFloorPurpoise = i;
+                cur_target = i;
             }
         }
     }
 }
 
-bool Controller::nextFloorPurpoise(short &floor) {
+// выбирается следующий этаж, на который поедет лифт
+bool Controller::next_target(short &floor) {
     int state = false;
     bool flag = true;
-    if (currentFloorPurpoise > currentFloor) {
-        for (int i = currentFloor; i <= FLOOR_AMOUNT && flag; i++) {
-            if (isPurpoise[i - 1]) {
+    if (cur_target > cur_floor) {
+        for (int i = cur_floor; i <= NUM_FLOORS && flag; i += 1) {
+            if (is_target[i - 1]) {
                 floor = i;
                 state = true;
                 flag = false;
             }
         }
     } else {
-        for (int i = currentFloor; i >= 1 && flag; i--) {
-            if (isPurpoise[i - 1]) {
+        for (int i = cur_floor; i >= 1 && flag; i -= 1) {
+            if (is_target[i - 1]) {
                 floor = i;
                 state = true;
                 flag = false;

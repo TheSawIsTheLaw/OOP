@@ -1,14 +1,11 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-enum direction { DOWN, STAY, UP };
+enum direction { DOWN = -1, STAY, UP };
 
-#define FLOOR_PASS 5000
-#define CLOSE_OPEN_TIME 5000
-#define PASSENGER_WAITING 5000
-#define FLOOR_AMOUNT 16
-
-#define NO_PURPOISE -1
-#define NO_DESTINATION_FLOOR -1
+#define CROSSING_FLOOR 1500
+#define DOORS_TIME 2000
+#define WAITING_TIME 2000
+#define NUM_FLOORS 16
 
 #endif // DEFINES_H

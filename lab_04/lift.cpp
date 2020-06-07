@@ -1,17 +1,14 @@
 #include "lift.h"
 
-#include "cabine.h"
-#include "controller.h"
-
 Lift::Lift() {
-    QObject::connect(&controller, SIGNAL(set_target(int, direction)), &cabine,
-                     SLOT(cabin_call(int, direction)));
-    QObject::connect(&cabine, SIGNAL(cabineIsPassingFloor(int, direction)),
-                     &controller, SLOT(passedFloor(short)));
-    QObject::connect(&cabine, SIGNAL(cabineStopped(short)), &controller,
-                     SLOT(achieved_floor(int)));
+    QObject::connect(&control_panel, SIGNAL(set_target(short, direction)),
+                     &lift_cabin, SLOT(cabin_call(short, direction)));
+    QObject::connect(&lift_cabin, SIGNAL(cabinePassingFloor(short, direction)),
+                     &control_panel, SLOT(passed_floor(short)));
+    QObject::connect(&lift_cabin, SIGNAL(cabin_stopped(short)), &control_panel,
+                     SLOT(achieved_floor(short)));
 }
 
-void Lift::clickButton(short floor) {
-    controller.setNewFloorPurpose(floor);
+void Lift::click(short floor) {
+    control_panel.set_new_target(floor);
 }

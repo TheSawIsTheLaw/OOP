@@ -8,27 +8,28 @@
 
 class Controller : public QObject {
     Q_OBJECT
-    enum states { FREE, BUSY };
+    enum panel_state { FREE, BUSY };
 
    public:
     explicit Controller(QObject *parent = nullptr);
-    void setNewFloorPurpose(short floor);
+    void set_new_target(short floor);
 
    signals:
-    void setFloorPurpose(short floor, direction direct);
+    void set_target(short floor, direction dir);
 
    public slots:
-    void onFloor(short floor);
-    void passedFloor(short floor);
+    void achieved_floor(short floor);
+    void passed_floor(short floor);
 
    private:
-    short currentFloor;
-    int currentFloorPurpoise = NO_PURPOISE;
+    int cur_floor;
+    int cur_target = -1;
 
-    QVector<bool> isPurpoise;
-    states currentState;
-    direction currentMovementDirection;
-    bool nextFloorPurpoise(short &floor);
-    void findNewFloorPurpoise();
+    QVector<bool> is_target;
+    panel_state current_state;
+    direction cur_direction;
+    bool next_target(short &floor);
+    void find_new_target();
 };
+
 #endif // CONTROLLER_H

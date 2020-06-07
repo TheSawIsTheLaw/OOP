@@ -2,19 +2,22 @@
 #define LIFT_H
 
 #include <QObject>
+#include <QTextEdit>
 
 #include "cabine.h"
 #include "controller.h"
+#include "defines.h"
 
 class Lift : public QObject {
     Q_OBJECT
+
    public:
     Lift();
-    void clickButton(short floorNumber);
+    void click(short floor);
 
    private:
-    Controller controller;
-    Cabine cabine;
+    Controller control_panel;
+    Cabine lift_cabin;
 };
 
 #endif // LIFT_H
