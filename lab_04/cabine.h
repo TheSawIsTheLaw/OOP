@@ -14,7 +14,7 @@ class Cabine : public QObject {
     explicit Cabine(QObject *parent = nullptr);
 
    signals:
-    void cabineisCalled();
+    void cabineIsCalled();
     void cabineIsPassingFloor(short floor, direction dir);
     void cabineReachedDestanation(short floor);
     void cabineStopped(short floor);
