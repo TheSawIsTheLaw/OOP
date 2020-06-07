@@ -29,7 +29,7 @@ void Cabine::cabineMoves() {
         if (currentFloor == destinationFloor) {
             emit cabineReachedDestinationFloor(currentFloor);
         } else {
-            passFloorTimer.start(CROSSING_FLOOR);
+            passFloorTimer.start(FLOOR_PASS_TIME);
         }
     } else if (currentState == MOVES) {
         currentState = MOVES;
@@ -40,7 +40,7 @@ void Cabine::cabineMoves() {
             emit cabineReachedDestinationFloor(currentFloor);
         } else {
             emit cabinePassingFloor(currentFloor, currentMovementDirection);
-            passFloorTimer.start(CROSSING_FLOOR);
+            passFloorTimer.start(FLOOR_PASS_TIME);
         }
     }
 }

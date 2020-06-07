@@ -1,22 +1,21 @@
 #include "controller.h"
 
-#include "iostream"
-#include "qdebug.h"
+#include <QDebug>
 
 // начальное состояние контрольной панели
 Controller::Controller(QObject *parent)
     : QObject(parent),
-      currentFloor(1),
-      currentDestinationFloor(-1),
+      currentFloor(START_FLOOR),
+      currentDestinationFloor(NO_DESTINATION_FLOOR),
       isCommonDestination(NUM_FLOORS, false),
       currentState(FREE),
-      CurrentMovementDirection(STAY) {}
+      CurrentMovementDirection(STAND) {}
 
 void Controller::setNewDestinationFloor(short floor) {
     currentState = BUSY;
     isCommonDestination[floor - 1] = true;
 
-    if (currentDestinationFloor == -1) {
+    if (currentDestinationFloor == NO_DESTINATION_FLOOR) {
         currentDestinationFloor = floor;
     }
 
@@ -37,7 +36,7 @@ void Controller::onFloor(short floor) {
         currentFloor = floor;
         isCommonDestination[floor - 1] = false;
         if (currentFloor == currentDestinationFloor) {
-            currentDestinationFloor = -1;
+            currentDestinationFloor = NO_DESTINATION_FLOOR;
             findNewFloorDestination();
         }
 
