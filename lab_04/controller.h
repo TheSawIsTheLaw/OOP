@@ -23,11 +23,12 @@ class Controller : public QObject {
 
    private:
     short currentFloor;
-    int currentFloorPurpoise = -1;
+    int currentFloorPurpoise = NO_PURPOISE;
 
+    QVector<bool> isPurpoise;
     states currentState;
     direction currentMovementDirection;
     bool nextFloorPurpoise(short &floor);
-    void findNewTarget();
+    void findNewFloorPurpoise();
 };
 #endif // CONTROLLER_H
