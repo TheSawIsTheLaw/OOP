@@ -26,6 +26,7 @@ Cabine::Cabine(QObject *parent)
 void Cabine::cabineMoves() {
     if (!hasNewDestinationFloor)
         return;
+
     if (currentState == ISWAITINGFOREVENT) {
         currentState = MOVES;
         if (currentFloor == destinationFloor)

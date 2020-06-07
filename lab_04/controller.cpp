@@ -2,81 +2,84 @@
 
 #include <QDebug>
 
-// начальное состояние контрольной панели
 Controller::Controller(QObject *parent)
     : QObject(parent),
       currentFloor(START_FLOOR),
       currentDestinationFloor(NO_DESTINATION_FLOOR),
       isCommonDestination(FLOORS_AMOUNT, false),
       currentState(FREE),
-      CurrentMovementDirection(STAND) {}
+      currentMovementDirection(STAND) {}
 
 void Controller::setNewDestinationFloor(short floor) {
     currentState = BUSY;
     isCommonDestination[floor - 1] = true;
 
-    if (currentDestinationFloor == NO_DESTINATION_FLOOR) {
+    if (currentDestinationFloor == NO_DESTINATION_FLOOR)
         currentDestinationFloor = floor;
-    }
 
-    if ((CurrentMovementDirection == UP && floor > currentDestinationFloor) ||
-        (CurrentMovementDirection == DOWN && floor < currentDestinationFloor)) {
+    if (currentMovementDirection == UP && floor > currentDestinationFloor) {
         currentDestinationFloor = floor;
-    }
+    } else if (currentMovementDirection == DOWN &&
+               floor < currentDestinationFloor)
+        currentDestinationFloor = floor;
 
-    nextFloorDestination(floor); // выбор следующей цели
-    CurrentMovementDirection =
-        (currentFloor > currentDestinationFloor) ? DOWN : UP;
-    emit setDestinationFloor(floor,
-                             CurrentMovementDirection); // передача цели кабине
+    nextFloorDestination(floor);
+    if (currentFloor > currentDestinationFloor)
+        currentMovementDirection = DOWN;
+    else
+        currentMovementDirection = UP;
+
+    emit setDestinationFloor(floor, currentMovementDirection);
 }
 
 void Controller::onFloor(short floor) {
-    if (currentState == BUSY) {
-        currentFloor = floor;
-        isCommonDestination[floor - 1] = false;
-        if (currentFloor == currentDestinationFloor) {
-            currentDestinationFloor = NO_DESTINATION_FLOOR;
-            findNewFloorDestination();
-        }
+    if (currentState != BUSY)
+        return;
 
-        if (nextFloorDestination(floor)) { // если существует еще какой-то вызов
-
-            CurrentMovementDirection =
-                (currentFloor > currentDestinationFloor) ? DOWN : UP;
-
-            emit setDestinationFloor(floor, CurrentMovementDirection);
-        } else {
-            currentState = FREE;
-        }
+    currentFloor = floor;
+    isCommonDestination[floor - 1] = false;
+    if (currentFloor == currentDestinationFloor) {
+        currentDestinationFloor = NO_DESTINATION_FLOOR;
+        findNewFloorDestination();
     }
+
+    if (nextFloorDestination(floor)) {
+        if (currentFloor > currentDestinationFloor)
+            currentMovementDirection = DOWN;
+        else
+            currentMovementDirection = UP;
+
+        emit setDestinationFloor(floor, currentMovementDirection);
+    } else
+        currentState = FREE;
 }
 
 void Controller::passedFloor(short floor) {
     currentFloor = floor;
-    qDebug() << "Движение, этаж" << floor;
+    qDebug("It's moving! Now we are at floor %d", currentFloor);
 }
 
 void Controller::findNewFloorDestination() {
-    int state = false;
-    if (CurrentMovementDirection == UP && !state) {
-        for (int i = FLOORS_AMOUNT; i >= 1; i--) {
-            if (isCommonDestination[i - 1] == true) {
-                state = true;
+    int floorFound = false;
+    if (currentMovementDirection == UP) {
+        for (int i = FLOORS_AMOUNT - 1; i >= 0 && floorFound == false; i--) {
+            if (isCommonDestination[i]) {
+                i++;
                 currentDestinationFloor = i;
+                floorFound = true;
             }
         }
     } else {
-        for (int i = 1; i <= FLOORS_AMOUNT && !state; i++) {
-            if (isCommonDestination[i - 1]) {
-                state = true;
+        for (int i = 0; i < FLOORS_AMOUNT && floorFound == false; i++) {
+            if (isCommonDestination[i]) {
+                i++;
                 currentDestinationFloor = i;
+                floorFound = true;
             }
         }
     }
 }
 
-// выбирается следующий этаж, на который поедет лифт
 bool Controller::nextFloorDestination(short &floor) {
     int state = false;
     bool flag = true;

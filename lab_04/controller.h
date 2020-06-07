@@ -27,7 +27,7 @@ class Controller : public QObject {
 
     QVector<bool> isCommonDestination;
     controllerState currentState;
-    direction CurrentMovementDirection;
+    direction currentMovementDirection;
     bool nextFloorDestination(short &floor);
     void findNewFloorDestination();
 };
