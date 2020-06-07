@@ -60,7 +60,7 @@ void Controller::passedFloor(short floor) {
 }
 
 void Controller::findNewFloorDestination() {
-    int floorFound = false;
+    bool floorFound = false;
     if (currentMovementDirection == UP) {
         for (int i = FLOORS_AMOUNT - 1; i >= 0 && floorFound == false; i--) {
             if (isCommonDestination[i]) {
@@ -81,25 +81,24 @@ void Controller::findNewFloorDestination() {
 }
 
 bool Controller::nextFloorDestination(short &floor) {
-    int state = false;
-    bool flag = true;
+    bool doesNextExist = false;
     if (currentDestinationFloor > currentFloor) {
-        for (int i = currentFloor; i <= FLOORS_AMOUNT && flag; i += 1) {
-            if (isCommonDestination[i - 1]) {
+        for (int i = currentFloor - 1;
+             i < FLOORS_AMOUNT && doesNextExist == false; i++) {
+            if (isCommonDestination[i]) {
+                i++;
                 floor = i;
-                state = true;
-                flag = false;
+                doesNextExist = true;
             }
         }
     } else {
-        for (int i = currentFloor; i >= 1 && flag; i -= 1) {
-            if (isCommonDestination[i - 1]) {
+        for (int i = currentFloor - 1; i >= 0 && doesNextExist == false; i--) {
+            if (isCommonDestination[i]) {
+                i++;
                 floor = i;
-                state = true;
-                flag = false;
-                ;
+                doesNextExist = true;
             }
         }
     }
-    return state;
+    return doesNextExist;
 }
