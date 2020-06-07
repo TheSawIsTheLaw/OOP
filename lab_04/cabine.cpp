@@ -28,34 +28,34 @@ void Cabine::cabineMoves() {
         currentState = MOVES;
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
-        passFloorTimer.start(FLOOR_PASS_TIME);
-    } else if (currentState == MOVES) {
+        else
+            passFloorTimer.start(FLOOR_PASS_TIME);
+    } else if (hasNewDestinationFloor && currentState == MOVES) {
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
         else {
             emit cabinePassingFloor(currentFloor, currentMovementDirection);
+            currentFloor += currentMovementDirection;
             passFloorTimer.start(FLOOR_PASS_TIME);
         }
-        currentFloor += currentMovementDirection;
     }
 }
 
 void Cabine::cabineStopping() {
-    if (currentState == MOVES) {
-        currentState = STANDING;
-        qDebug() << "Лифт остановился на этаже "
-                 << QString::number(currentFloor) << ".";
-        emit cabineStopped(currentFloor);
-    }
+    if (currentState != MOVES)
+        return;
+    currentState = STANDING;
+    qDebug("Lift stopped on the floor %d", currentFloor);
+    emit cabineStopped(currentFloor);
 }
 
 void Cabine::cabineCall(short floor, direction dir) {
-    if (currentState == STANDING) {
-        hasNewDestinationFloor = true;
-        currentState = ISWAITINGFOREVENT;
-        destinationFloor = floor;
+    if (currentState != STANDING)
+        return;
+    hasNewDestinationFloor = true;
+    currentState = ISWAITINGFOREVENT;
+    destinationFloor = floor;
 
-        currentMovementDirection = dir;
-        emit cabineIsCalled();
-    }
+    currentMovementDirection = dir;
+    emit cabineIsCalled();
 }
