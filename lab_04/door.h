@@ -26,7 +26,7 @@ class Door : public QObject {
     void close();
 
    private:
-    doors_state current_state;
+    doors_state currentState;
     QTimer doors_open_timer;
     QTimer doors_close_timer;
     QTimer doors_stay_open_timer;

@@ -2,7 +2,7 @@
 
 #include "qdebug.h"
 
-Door::Door(QObject *parent) : QObject(parent), current_state(CLOSED) {
+Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
     doors_stay_open_timer.setInterval(WAITING_TIME);
     doors_stay_open_timer.setSingleShot(true);
 
@@ -19,13 +19,13 @@ Door::Door(QObject *parent) : QObject(parent), current_state(CLOSED) {
 }
 
 void Door::start_openning() {
-    if (current_state == CLOSED) {
-        current_state = OPENNING;
+    if (currentState == CLOSED) {
+        currentState = OPENNING;
         qDebug() << "Двери открываются.";
         doors_open_timer.start(DOORS_TIME);
     }
-    if (current_state == CLOSING) {
-        current_state = OPENNING;
+    if (currentState == CLOSING) {
+        currentState = OPENNING;
         qDebug() << "Двери открываются.";
         int t = doors_close_timer.remainingTime();
         doors_close_timer.stop();
@@ -34,26 +34,26 @@ void Door::start_openning() {
 }
 
 void Door::start_closing() {
-    if (current_state == OPENED) {
-        current_state = CLOSING;
+    if (currentState == OPENED) {
+        currentState = CLOSING;
         qDebug() << "Двери закрываются.";
         doors_close_timer.start(DOORS_TIME);
-    } else if (current_state == CLOSED) {
+    } else if (currentState == CLOSED) {
         emit closed_doors();
     }
 }
 
 void Door::open() {
-    if (current_state == OPENNING) {
-        current_state = OPENED;
+    if (currentState == OPENNING) {
+        currentState = OPENED;
         qDebug() << "Двери открыты.\nЛифт ожидает выхода и входа пассажиров.";
         emit opened_doors();
     }
 }
 
 void Door::close() {
-    if (current_state == CLOSING) {
-        current_state = CLOSED;
+    if (currentState == CLOSING) {
+        currentState = CLOSED;
         qDebug() << "Двери закрыты.";
         emit closed_doors();
     }

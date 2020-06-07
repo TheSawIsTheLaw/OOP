@@ -16,23 +16,23 @@ class Cabine : public QObject {
 
    signals:
     void cabineIsCalled();
-    void cabinePassingFloor(short floor, direction d);
-    void cabineReachedDestanationFloor(short floor);
-    void cabin_stopped(short floor);
+    void cabinePassingFloor(short floor, direction dir);
+    void cabineReachedDestinationFloor(short floor);
+    void cabineStopped(short floor);
 
    public slots:
-    void cabin_move();
-    void cabin_stopping();
-    void cabin_call(short floor, direction dir);
+    void cabineMoves();
+    void cabineStopping();
+    void cabineCall(short floor, direction dir);
 
    private:
-    int current_floor;
-    int target;
-    bool new_target;
-    cabineState current_state;
-    direction current_direction;
+    short currentFloor;
+    short destinationFloor;
+    bool hasNewDestinationFloor;
+    cabineState currentState;
+    direction currentMovementDirection;
     Door door;
-    QTimer crossing_floor_timer;
+    QTimer passFloorTimer;
 };
 
 #endif // CABINE_H

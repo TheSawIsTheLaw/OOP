@@ -6,62 +6,62 @@
 
 Cabine::Cabine(QObject *parent)
     : QObject(parent),
-      current_floor(1),
-      target(-1),
-      new_target(false),
-      current_state(STOP),
-      current_direction(STAY) {
-    crossing_floor_timer.setSingleShot(true);
+      currentFloor(1),
+      destinationFloor(-1),
+      hasNewDestinationFloor(false),
+      currentState(STOP),
+      currentMovementDirection(STAY) {
+    passFloorTimer.setSingleShot(true);
 
     QObject::connect(this, SIGNAL(cabineIsCalled()), &door,
                      SLOT(start_closing()));
-    QObject::connect(this, SIGNAL(cabineReachedDestanationFloor(short)), this,
-                     SLOT(cabin_stopping()));
-    QObject::connect(this, SIGNAL(cabin_stopped(short)), &door,
+    QObject::connect(this, SIGNAL(cabineReachedDestinationFloor(short)), this,
+                     SLOT(cabineStopping()));
+    QObject::connect(this, SIGNAL(cabineStopped(short)), &door,
                      SLOT(start_openning()));
-    QObject::connect(&door, SIGNAL(closed_doors()), this, SLOT(cabin_move()));
-    QObject::connect(&crossing_floor_timer, SIGNAL(timeout()), this,
-                     SLOT(cabin_move()));
+    QObject::connect(&door, SIGNAL(closed_doors()), this, SLOT(cabineMoves()));
+    QObject::connect(&passFloorTimer, SIGNAL(timeout()), this,
+                     SLOT(cabineMoves()));
 }
 
-void Cabine::cabin_move() {
-    if (new_target && current_state == WAIT) {
-        current_state = MOVE;
-        if (current_floor == target) {
-            emit cabineReachedDestanationFloor(current_floor);
+void Cabine::cabineMoves() {
+    if (hasNewDestinationFloor && currentState == WAIT) {
+        currentState = MOVE;
+        if (currentFloor == destinationFloor) {
+            emit cabineReachedDestinationFloor(currentFloor);
         } else {
-            crossing_floor_timer.start(CROSSING_FLOOR);
+            passFloorTimer.start(CROSSING_FLOOR);
         }
-    } else if (current_state == MOVE) {
-        current_state = MOVE;
+    } else if (currentState == MOVE) {
+        currentState = MOVE;
 
-        current_floor += current_direction;
+        currentFloor += currentMovementDirection;
 
-        if (current_floor == target) {
-            emit cabineReachedDestanationFloor(current_floor);
+        if (currentFloor == destinationFloor) {
+            emit cabineReachedDestinationFloor(currentFloor);
         } else {
-            emit cabinePassingFloor(current_floor, current_direction);
-            crossing_floor_timer.start(CROSSING_FLOOR);
+            emit cabinePassingFloor(currentFloor, currentMovementDirection);
+            passFloorTimer.start(CROSSING_FLOOR);
         }
     }
 }
 
-void Cabine::cabin_stopping() {
-    if (current_state == MOVE) {
-        current_state = STOP;
+void Cabine::cabineStopping() {
+    if (currentState == MOVE) {
+        currentState = STOP;
         qDebug() << "Лифт остановился на этаже "
-                 << QString::number(current_floor) << ".";
-        emit cabin_stopped(current_floor);
+                 << QString::number(currentFloor) << ".";
+        emit cabineStopped(currentFloor);
     }
 }
 
-void Cabine::cabin_call(short floor, direction dir) {
-    if (current_state == STOP) {
-        new_target = true;
-        current_state = WAIT;
-        target = floor;
+void Cabine::cabineCall(short floor, direction dir) {
+    if (currentState == STOP) {
+        hasNewDestinationFloor = true;
+        currentState = WAIT;
+        destinationFloor = floor;
 
-        current_direction = dir;
+        currentMovementDirection = dir;
         emit cabineIsCalled();
     }
 }

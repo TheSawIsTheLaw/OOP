@@ -9,11 +9,11 @@ Controller::Controller(QObject *parent)
       cur_floor(1),
       cur_target(-1),
       is_target(NUM_FLOORS, false),
-      current_state(FREE),
+      currentState(FREE),
       cur_direction(STAY) {}
 
 void Controller::set_new_target(short floor) {
-    current_state = BUSY;
+    currentState = BUSY;
     is_target[floor - 1] = true;
 
     if (cur_target == -1) {
@@ -31,7 +31,7 @@ void Controller::set_new_target(short floor) {
 }
 
 void Controller::achieved_floor(short floor) {
-    if (current_state == BUSY) {
+    if (currentState == BUSY) {
         cur_floor = floor;
         is_target[floor - 1] = false;
         if (cur_floor == cur_target) {
@@ -45,7 +45,7 @@ void Controller::achieved_floor(short floor) {
 
             emit set_target(floor, cur_direction);
         } else {
-            current_state = FREE;
+            currentState = FREE;
         }
     }
 }
