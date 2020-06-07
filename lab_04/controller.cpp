@@ -6,69 +6,72 @@
 // начальное состояние контрольной панели
 Controller::Controller(QObject *parent)
     : QObject(parent),
-      cur_floor(1),
-      cur_target(-1),
-      is_target(NUM_FLOORS, false),
+      currentFloor(1),
+      currentDestinationFloor(-1),
+      isCommonDestination(NUM_FLOORS, false),
       currentState(FREE),
-      cur_direction(STAY) {}
+      CurrentMovementDirection(STAY) {}
 
-void Controller::set_new_target(short floor) {
+void Controller::setNewDestinationFloor(short floor) {
     currentState = BUSY;
-    is_target[floor - 1] = true;
+    isCommonDestination[floor - 1] = true;
 
-    if (cur_target == -1) {
-        cur_target = floor;
+    if (currentDestinationFloor == -1) {
+        currentDestinationFloor = floor;
     }
 
-    if ((cur_direction == UP && floor > cur_target) ||
-        (cur_direction == DOWN && floor < cur_target)) {
-        cur_target = floor;
+    if ((CurrentMovementDirection == UP && floor > currentDestinationFloor) ||
+        (CurrentMovementDirection == DOWN && floor < currentDestinationFloor)) {
+        currentDestinationFloor = floor;
     }
 
     next_target(floor); // выбор следующей цели
-    cur_direction = (cur_floor > cur_target) ? DOWN : UP;
-    emit set_target(floor, cur_direction); // передача цели кабине
+    CurrentMovementDirection =
+        (currentFloor > currentDestinationFloor) ? DOWN : UP;
+    emit setDestinationFloor(floor,
+                             CurrentMovementDirection); // передача цели кабине
 }
 
-void Controller::achieved_floor(short floor) {
+void Controller::onFloor(short floor) {
     if (currentState == BUSY) {
-        cur_floor = floor;
-        is_target[floor - 1] = false;
-        if (cur_floor == cur_target) {
-            cur_target = -1;
+        currentFloor = floor;
+        isCommonDestination[floor - 1] = false;
+        if (currentFloor == currentDestinationFloor) {
+            currentDestinationFloor = -1;
             find_new_target();
         }
 
         if (next_target(floor)) { // если существует еще какой-то вызов
 
-            cur_direction = (cur_floor > cur_target) ? DOWN : UP;
+            CurrentMovementDirection =
+                (currentFloor > currentDestinationFloor) ? DOWN : UP;
 
-            emit set_target(floor, cur_direction);
+            emit setDestinationFloor(floor, CurrentMovementDirection);
         } else {
             currentState = FREE;
         }
     }
 }
 
-void Controller::passed_floor(short floor) {
-    cur_floor = floor;
+void Controller::passedFloor(short floor) {
+    currentFloor = floor;
     qDebug() << "Движение, этаж" << floor;
 }
 
 void Controller::find_new_target() {
     int state = false;
-    if (cur_direction == UP && !state) {
+    if (CurrentMovementDirection == UP && !state) {
         for (int i = NUM_FLOORS; i >= 1; i--) {
-            if (is_target[i - 1] == true) {
+            if (isCommonDestination[i - 1] == true) {
                 state = true;
-                cur_target = i;
+                currentDestinationFloor = i;
             }
         }
     } else {
         for (int i = 1; i <= NUM_FLOORS && !state; i++) {
-            if (is_target[i - 1]) {
+            if (isCommonDestination[i - 1]) {
                 state = true;
-                cur_target = i;
+                currentDestinationFloor = i;
             }
         }
     }
@@ -78,17 +81,17 @@ void Controller::find_new_target() {
 bool Controller::next_target(short &floor) {
     int state = false;
     bool flag = true;
-    if (cur_target > cur_floor) {
-        for (int i = cur_floor; i <= NUM_FLOORS && flag; i += 1) {
-            if (is_target[i - 1]) {
+    if (currentDestinationFloor > currentFloor) {
+        for (int i = currentFloor; i <= NUM_FLOORS && flag; i += 1) {
+            if (isCommonDestination[i - 1]) {
                 floor = i;
                 state = true;
                 flag = false;
             }
         }
     } else {
-        for (int i = cur_floor; i >= 1 && flag; i -= 1) {
-            if (is_target[i - 1]) {
+        for (int i = currentFloor; i >= 1 && flag; i -= 1) {
+            if (isCommonDestination[i - 1]) {
                 floor = i;
                 state = true;
                 flag = false;

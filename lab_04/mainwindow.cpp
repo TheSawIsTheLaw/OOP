@@ -61,23 +61,23 @@ void MainWindow::on_CabinButtonFloor9_clicked() {
 }
 
 void MainWindow::on_CabinButtonFloor10_clicked() {
+    qDebug() << "В лифте нажали кнопку 10.";
+    lift.click(10);
+}
+
+void MainWindow::on_CabinButtonFloor11_clicked() {
     qDebug() << "В лифте нажали кнопку 11.";
     lift.click(11);
 }
 
-void MainWindow::on_CabinButtonFloor11_clicked() {
+void MainWindow::on_CabinButtonFloor12_clicked() {
     qDebug() << "В лифте нажали кнопку 12.";
     lift.click(12);
 }
 
-void MainWindow::on_CabinButtonFloor12_clicked() {
+void MainWindow::on_CabinButtonFloor13_clicked() {
     qDebug() << "В лифте нажали кнопку 13.";
     lift.click(13);
-}
-
-void MainWindow::on_CabinButtonFloor13_clicked() {
-    qDebug() << "В лифте нажали кнопку 14.";
-    lift.click(14);
 }
 
 void MainWindow::on_CabinButtonFloor14_clicked() {

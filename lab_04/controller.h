@@ -18,16 +18,16 @@ class Controller : public QObject {
     void setDestinationFloor(short floor, direction dir);
 
    public slots:
-    void achieved_floor(short floor);
-    void passed_floor(short floor);
+    void onFloor(short floor);
+    void passedFloor(short floor);
 
    private:
-    int cur_floor;
-    int cur_target = -1;
+    short currentFloor;
+    short currentDestinationFloor = -1;
 
-    QVector<bool> is_target;
+    QVector<bool> isCommonDestination;
     controllerState currentState;
-    direction cur_direction;
+    direction CurrentMovementDirection;
     bool next_target(short &floor);
     void find_new_target();
 };
