@@ -26,6 +26,7 @@ SOURCES += \
 HEADERS += \
     cabine.h \
     controller.h \
+    defines.h \
     door.h \
     lift.h \
     mainwindow.h
