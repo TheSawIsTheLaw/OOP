@@ -20,7 +20,7 @@ class Cabine : public QObject {
 
    signals:
     void cabineIsCalled();
-    void cabinePassingFloor(short floor);
+    void cabinePassingFloor(short floor); // Убрать direction
     void cabineReachedDestinationFloor(short floor);
     void cabineStopped(short floor);
 

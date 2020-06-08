@@ -14,7 +14,6 @@ class Door : public QObject {
     void startClosing();
     void moveToCall();
 
-
    public:
     explicit Door(QObject *parent = nullptr);
 
