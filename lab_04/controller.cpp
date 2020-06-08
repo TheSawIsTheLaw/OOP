@@ -47,14 +47,11 @@ void Controller::onFloor(short floor) {
         }
     }
 
-    if (isNewFloorFound) {
-        if (currentFloor > newFloor)
-            currentMovementDirection = DOWN;
-        else
-            currentMovementDirection = UP;
-
+    // Зачем-то хотел здесь меня направление движения, хотя мы не отвечаем за это
+    // состояние
+    if (isNewFloorFound)
         emit setDestinationFloor(newFloor);
-    } else
+    else
         currentState = FREE;
 }
 
