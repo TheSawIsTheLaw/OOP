@@ -29,7 +29,8 @@ class Controller : public QObject {
     controllerState currentState;
     direction currentMovementDirection;
     bool nextFloorDestination(short &floor);
-    void findNewFloorDestination();
+    void findNewFloorDestinationUpper();
+    void findNewFloorDestinationLower();
 };
 
 #endif // CONTROLLER_H

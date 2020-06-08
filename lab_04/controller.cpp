@@ -38,7 +38,10 @@ void Controller::onFloor(short floor) {
     isCommonDestination[floor - 1] = false;
     if (currentFloor == currentDestinationFloor) {
         currentDestinationFloor = NO_DESTINATION_FLOOR;
-        findNewFloorDestination();
+        if (currentMovementDirection == UP)
+            findNewFloorDestinationUpper();
+        else
+            findNewFloorDestinationLower();
     }
 
     if (nextFloorDestination(floor)) {
@@ -57,23 +60,24 @@ void Controller::passedFloor(short floor) {
     qDebug("It's moving! Now we are at floor %d", currentFloor);
 }
 
-void Controller::findNewFloorDestination() {
+void Controller::findNewFloorDestinationUpper() {
     bool floorFound = false;
-    if (currentMovementDirection == UP) {
-        for (int i = FLOORS_AMOUNT - 1; i >= 0 && floorFound == false; i--) {
-            if (isCommonDestination[i]) {
-                i++;
-                currentDestinationFloor = i;
-                floorFound = true;
-            }
+    for (int i = FLOORS_AMOUNT - 1; i >= 0 && floorFound == false; i--) {
+        if (isCommonDestination[i]) {
+            i++;
+            currentDestinationFloor = i;
+            floorFound = true;
         }
-    } else {
-        for (int i = 0; i < FLOORS_AMOUNT && floorFound == false; i++) {
-            if (isCommonDestination[i]) {
-                i++;
-                currentDestinationFloor = i;
-                floorFound = true;
-            }
+    }
+}
+
+void Controller::findNewFloorDestinationLower() {
+    bool floorFound = false;
+    for (int i = 0; i < FLOORS_AMOUNT && floorFound == false; i++) {
+        if (isCommonDestination[i]) {
+            i++;
+            currentDestinationFloor = i;
+            floorFound = true;
         }
     }
 }
