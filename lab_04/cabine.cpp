@@ -31,10 +31,10 @@ void Cabine::cabineMoves() {
         return;
 
     if (currentState == GOTREQUEST) {
+        currentState = MOVES;
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
         else {
-            currentState = MOVES;
             if (destinationFloor > currentFloor)
                 currentMovementDirection = UP;
             else
