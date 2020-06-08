@@ -14,20 +14,18 @@ void Controller::setNewDestinationFloor(short floor) {
     currentState = BUSY;
     isCommonDestination[floor - 1] = true;
 
-    if (currentDestinationFloor == NO_DESTINATION_FLOOR)
+    if (currentDestinationFloor == NO_DESTINATION_FLOOR) {
         currentDestinationFloor = floor;
-
-    if (currentMovementDirection == UP && floor > currentDestinationFloor) {
+        if (currentFloor > currentDestinationFloor)
+            currentMovementDirection = DOWN;
+        else
+            currentMovementDirection = UP;
+    } else if (currentMovementDirection == UP &&
+               floor > currentDestinationFloor) {
         currentDestinationFloor = floor;
     } else if (currentMovementDirection == DOWN &&
                floor < currentDestinationFloor)
         currentDestinationFloor = floor;
-
-    nextFloorDestination(floor);
-    if (currentFloor > currentDestinationFloor)
-        currentMovementDirection = DOWN;
-    else
-        currentMovementDirection = UP;
 
     emit setDestinationFloor(floor, currentMovementDirection);
 }

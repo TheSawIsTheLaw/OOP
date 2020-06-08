@@ -59,8 +59,6 @@ void Cabine::cabineStand() {
 }
 
 void Cabine::cabineCall(short floor, direction dir) {
-    if (currentState != STANDING)
-        return;
     hasNewDestinationFloor = true;
     currentState = ISWAITINGFOREVENT;
     destinationFloor = floor;
