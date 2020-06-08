@@ -8,7 +8,10 @@
 
 class Controller : public QObject {
     Q_OBJECT
-    enum controllerState { FREE, BUSY };
+
+   public slots:
+    void onFloor(const short floor);
+    void passedFloor(short floor);
 
    public:
     explicit Controller(QObject *parent = nullptr);
@@ -17,11 +20,9 @@ class Controller : public QObject {
    signals:
     void setDestinationFloor(short floor, direction dir);
 
-   public slots:
-    void onFloor(const short floor);
-    void passedFloor(short floor);
-
    private:
+    enum controllerState { FREE, BUSY };
+
     short currentFloor;
     short currentDestinationFloor = NO_DESTINATION_FLOOR;
 

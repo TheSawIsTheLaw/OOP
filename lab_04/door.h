@@ -8,9 +8,6 @@
 
 class Door : public QObject {
     Q_OBJECT
-   signals:
-    void doorIsClosed();
-    void doorIsOpened();
 
    public slots:
     void startOpening();
@@ -20,6 +17,9 @@ class Door : public QObject {
    public:
     explicit Door(QObject *parent = nullptr);
 
+   signals:
+    void doorIsClosed();
+    void doorIsOpened();
 
    private slots:
     void open();

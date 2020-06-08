@@ -9,11 +9,15 @@
 
 class Cabine : public QObject {
     Q_OBJECT
+
    public slots:
     void cabineMovesBetweenFloors();
     void cabineStartMoving();
     void cabineStand();
     void cabineCall(short floor, direction dir);
+
+   public:
+    explicit Cabine(QObject *parent = nullptr);
 
    signals:
     void cabineIsCalled();
@@ -21,12 +25,8 @@ class Cabine : public QObject {
     void cabineReachedDestinationFloor(short floor);
     void cabineStopped(short floor);
 
-   public:
-    explicit Cabine(QObject *parent = nullptr);
-
-
    private:
-    enum cabineState { MOVES, ISWAITINGFOREVENT, STANDING };
+    enum cabineState { MOVES, GOTREQUEST, STANDING };
 
     Door door;
     short currentFloor;

@@ -31,9 +31,6 @@ void Controller::setNewDestinationFloor(short floor) {
 }
 
 void Controller::onFloor(const short floor) {
-    if (currentState != BUSY)
-        return;
-
     currentFloor = floor;
     isCommonDestination[floor - 1] = false;
 

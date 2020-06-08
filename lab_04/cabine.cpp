@@ -27,7 +27,7 @@ Cabine::Cabine(QObject *parent)
 }
 
 void Cabine::cabineStartMoving() {
-    if (currentState != ISWAITINGFOREVENT || !hasNewDestinationFloor)
+    if (currentState != GOTREQUEST || !hasNewDestinationFloor)
         return;
 
     currentState = MOVES;
@@ -41,13 +41,12 @@ void Cabine::cabineMovesBetweenFloors() {
     if (currentState != MOVES || !hasNewDestinationFloor)
         return;
 
-    if (currentFloor == destinationFloor)
-        emit cabineReachedDestinationFloor(currentFloor);
-    else {
+    if (currentFloor != destinationFloor) {
         emit cabinePassingFloor(currentFloor, currentMovementDirection);
         currentFloor += currentMovementDirection;
         passFloorTimer.start(FLOOR_PASS_TIME);
-    }
+    } else
+        emit cabineReachedDestinationFloor(currentFloor);
 }
 
 void Cabine::cabineStand() {
@@ -60,7 +59,7 @@ void Cabine::cabineStand() {
 
 void Cabine::cabineCall(short floor, direction dir) {
     hasNewDestinationFloor = true;
-    currentState = ISWAITINGFOREVENT;
+    currentState = GOTREQUEST;
     destinationFloor = floor;
 
     currentMovementDirection = dir;
