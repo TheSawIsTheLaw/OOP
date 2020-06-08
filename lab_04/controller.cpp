@@ -15,19 +15,7 @@ void Controller::setNewDestinationFloor(short floor) {
 
     isCommonDestination[floor - 1] = true;
 
-    if (currentDestinationFloor == NO_DESTINATION_FLOOR) {
-        currentDestinationFloor = floor;
-        if (currentFloor > currentDestinationFloor)
-            currentMovementDirection = DOWN;
-        else
-            currentMovementDirection = UP;
-    } else if (currentMovementDirection == UP &&
-               floor > currentDestinationFloor) {
-        currentDestinationFloor = floor;
-    } else if (currentMovementDirection == DOWN &&
-               floor < currentDestinationFloor)
-        currentDestinationFloor = floor;
-
+    // Тут вновь пытался делать работу за других, выставлял currentDestFloor
     emit setDestinationFloor(floor);
 }
 
