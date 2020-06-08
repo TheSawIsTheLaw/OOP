@@ -32,6 +32,8 @@ void Cabine::cabineMoves() {
 
     if (currentState == GOTREQUEST) {
         currentState = MOVES;
+        // В первом случае требуется пройти полный цикл, чтобы не нарушать
+        // закономерности, несмотря на аллогичность движения стоящей кабины
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
         else {

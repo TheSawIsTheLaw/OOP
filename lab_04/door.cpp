@@ -37,7 +37,6 @@ void Door::open() {
     emit doorIsOpened();
 }
 
-// Пришлось добавить в отдельный слот. Кажется, за это меня убьют.
 void Door::moveToCall() {
     if (currentState == CLOSED)
         emit doorIsClosed();
