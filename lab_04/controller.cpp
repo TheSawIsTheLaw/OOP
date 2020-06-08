@@ -12,6 +12,7 @@ Controller::Controller(QObject *parent)
 
 void Controller::setNewDestinationFloor(short floor) {
     currentState = BUSY;
+
     isCommonDestination[floor - 1] = true;
 
     if (currentDestinationFloor == NO_DESTINATION_FLOOR) {
@@ -27,29 +28,32 @@ void Controller::setNewDestinationFloor(short floor) {
                floor < currentDestinationFloor)
         currentDestinationFloor = floor;
 
-    emit setDestinationFloor(floor, currentMovementDirection);
+    emit setDestinationFloor(floor);
 }
 
-void Controller::onFloor(const short floor) {
+// Доработай for
+void Controller::onFloor(short floor) {
+    if (currentState != BUSY)
+        return;
     currentFloor = floor;
     isCommonDestination[floor - 1] = false;
 
-    if (currentFloor == currentDestinationFloor) {
-        currentDestinationFloor = NO_DESTINATION_FLOOR;
-        if (currentMovementDirection == UP)
-            findNewFloorDestinationUpper();
-        else
-            findNewFloorDestinationLower();
+    short newFloor = NO_DESTINATION_FLOOR;
+    bool isNewFloorFound = false;
+    for (int i = 0; i < FLOORS_AMOUNT - 1 && !isNewFloorFound; i++) {
+        if (isCommonDestination[i]) {
+            newFloor = i + 1;
+            isNewFloorFound = true;
+        }
     }
 
-    short newFloor = NO_DESTINATION_FLOOR;
-    if (nextFloorDestination(newFloor)) {
-        if (currentFloor > currentDestinationFloor)
+    if (isNewFloorFound) {
+        if (currentFloor > newFloor)
             currentMovementDirection = DOWN;
         else
             currentMovementDirection = UP;
 
-        emit setDestinationFloor(newFloor, currentMovementDirection);
+        emit setDestinationFloor(newFloor);
     } else
         currentState = FREE;
 }
@@ -57,62 +61,4 @@ void Controller::onFloor(const short floor) {
 void Controller::passedFloor(short floor) {
     currentFloor = floor;
     qDebug("It's moving! Now we are at floor %d", currentFloor);
-}
-
-void Controller::findNewFloorDestinationUpper() {
-    bool floorFound = false;
-    for (int i = FLOORS_AMOUNT - 1; i >= 0 && floorFound == false; i--) {
-        if (isCommonDestination[i]) {
-            i++;
-            currentDestinationFloor = i;
-            floorFound = true;
-        }
-    }
-}
-
-void Controller::findNewFloorDestinationLower() {
-    bool floorFound = false;
-    for (int i = 0; i < FLOORS_AMOUNT && floorFound == false; i++) {
-        if (isCommonDestination[i]) {
-            i++;
-            currentDestinationFloor = i;
-            floorFound = true;
-        }
-    }
-}
-
-bool Controller::nextFloorDestinationUpper(short &floor) {
-    bool wasMovement = false;
-    for (int i = currentFloor - 1; i < FLOORS_AMOUNT && wasMovement == false;
-         i++) {
-        if (isCommonDestination[i]) {
-            i++;
-            floor = i;
-            wasMovement = true;
-        }
-    }
-    return wasMovement;
-}
-
-bool Controller::nextFloorDestinationLower(short &floor) {
-    bool wasMovement = false;
-    for (int i = currentFloor - 1; i >= 0 && wasMovement == false; i--) {
-        if (isCommonDestination[i]) {
-            i++;
-            floor = i;
-            wasMovement = true;
-        }
-    }
-    return wasMovement;
-}
-
-bool Controller::nextFloorDestination(short &floor) {
-    bool wasMovement = false;
-
-    if (currentDestinationFloor > currentFloor)
-        wasMovement = nextFloorDestinationUpper(floor);
-    else if (currentDestinationFloor < currentFloor)
-        wasMovement = nextFloorDestinationLower(floor);
-
-    return wasMovement;
 }

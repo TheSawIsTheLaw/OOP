@@ -12,35 +12,39 @@ Cabine::Cabine(QObject *parent)
     QObject::connect(this, SIGNAL(cabineStopped(short)), &door,
                      SLOT(startOpening()));
     QObject::connect(this, SIGNAL(cabineIsCalled()), &door,
-                     SLOT(startClosing()));
+                     SLOT(closeDoorIfNeed()));
 
     QObject::connect(this, SIGNAL(cabineReachedDestinationFloor(short)), this,
                      SLOT(cabineStand()));
 
     passFloorTimer.setSingleShot(true);
     QObject::connect(&passFloorTimer, SIGNAL(timeout()), this,
-                     SLOT(cabineMovesBetweenFloors()));
+                     SLOT(cabineMoves()));
 
-    QObject::connect(&door, SIGNAL(doorIsClosed()), this,
-                     SLOT(cabineStartMoving()));
+    QObject::connect(&door, SIGNAL(doorIsClosed()), this, SLOT(cabineMoves()));
 }
 
 
 // Тотальный бардак. Проходить все этажи сразу нельзя.
+// Исправлено
 void Cabine::cabineMoves() {
     if (currentState != GOTREQUEST && currentState != MOVES)
         return;
-    currentState = MOVES;
 
-    if (currentFloor != destinationFloor) {
-        currentState = MOVES;
+    if (currentState == GOTREQUEST) {
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
-        else
+        else {
+            currentState = MOVES;
+            if (destinationFloor > currentFloor)
+                currentMovementDirection = UP;
+            else
+                currentMovementDirection = DOWN;
             passFloorTimer.start(FLOOR_PASS_TIME);
+        }
     } else {
         if (currentFloor != destinationFloor) {
-            emit cabinePassingFloor(currentFloor, currentMovementDirection);
+            emit cabinePassingFloor(currentFloor);
             currentFloor += currentMovementDirection;
             passFloorTimer.start(FLOOR_PASS_TIME);
         } else
@@ -56,10 +60,13 @@ void Cabine::cabineStand() {
     emit cabineStopped(currentFloor);
 }
 
-void Cabine::cabineCall(short floor, direction dir) {
+// Добавлена обработка перехода только из состояния стоит
+void Cabine::cabineCall(short floor) {
+    if (currentState != STANDING)
+        return;
+
     currentState = GOTREQUEST;
     destinationFloor = floor;
 
-    currentMovementDirection = dir;
     emit cabineIsCalled();
 }

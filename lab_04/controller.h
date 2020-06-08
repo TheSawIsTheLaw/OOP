@@ -10,7 +10,7 @@ class Controller : public QObject {
     Q_OBJECT
 
    public slots:
-    void onFloor(const short floor);
+    void onFloor(short floor);
     void passedFloor(short floor);
 
    public:
@@ -18,7 +18,7 @@ class Controller : public QObject {
     void setNewDestinationFloor(short floor);
 
    signals:
-    void setDestinationFloor(short floor, direction dir);
+    void setDestinationFloor(short floor);
 
    private:
     enum controllerState { FREE, BUSY };
@@ -29,11 +29,6 @@ class Controller : public QObject {
     QVector<bool> isCommonDestination;
     controllerState currentState;
     direction currentMovementDirection;
-    bool nextFloorDestination(short &floor);
-    bool nextFloorDestinationUpper(short &floor);
-    bool nextFloorDestinationLower(short &floor);
-    void findNewFloorDestinationUpper();
-    void findNewFloorDestinationLower();
 };
 
 #endif // CONTROLLER_H

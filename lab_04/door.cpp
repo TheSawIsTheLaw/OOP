@@ -19,7 +19,11 @@ Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
 }
 
 // Переход в это состояние только из состояния Closed
+// Исправлено
 void Door::startOpening() {
+    if (currentState != CLOSED)
+        return;
+
     currentState = OPENNING;
     qDebug("Door is opening...");
     openDoorTimer.start(OPEN_CLOSE_DOOR_TIME);
@@ -33,10 +37,17 @@ void Door::open() {
     emit doorIsOpened();
 }
 
+// Пришлось добавить в отдельный слот. Кажется, за это меня убьют.
+void Door::closeDoorIfNeed() {
+    if (currentState == CLOSED)
+        emit doorIsClosed();
+    else
+        emit startClosing();
+}
+
 void Door::startClosing() {
-    if (currentState != OPENED) { // Исправлен переход в состояние
+    if (currentState != OPENED)
         return;
-    }
 
     currentState = CLOSING;
     qDebug("Door is closing...");
