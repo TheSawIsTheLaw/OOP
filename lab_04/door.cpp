@@ -39,7 +39,7 @@ void Door::open() {
     if (currentState != OPENNING)
         return;
     currentState = OPENED;
-    qDebug() << "Door is open. Dear passengers! Go aboard!";
+    qDebug("Door is open. Dear passengers! Go aboard!");
     emit doorIsOpened();
 }
 
@@ -48,6 +48,6 @@ void Door::close() {
         return;
 
     currentState = CLOSED;
-    qDebug() << "Door is closed.";
+    qDebug("Door is closed.");
     emit doorIsClosed();
 }

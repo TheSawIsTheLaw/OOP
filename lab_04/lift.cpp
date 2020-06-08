@@ -11,6 +11,6 @@ Lift::Lift() {
                      SLOT(onFloor(short)));
 }
 
-void Lift::click(short floor) {
+void Lift::call(short floor) {
     controller.setNewDestinationFloor(floor);
 }

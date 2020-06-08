@@ -13,7 +13,7 @@ class Lift : public QObject {
 
    public:
     Lift();
-    void click(short floor);
+    void call(short floor);
 
    private:
     Controller controller;
