@@ -31,7 +31,7 @@ void Controller::setNewDestinationFloor(short floor) {
     emit setDestinationFloor(floor);
 }
 
-// Доработай for
+// Доработай for по направлению.
 void Controller::onFloor(short floor) {
     if (currentState != BUSY)
         return;

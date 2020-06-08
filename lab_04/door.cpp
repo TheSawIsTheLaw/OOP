@@ -45,6 +45,7 @@ void Door::closeDoorIfNeed() {
         emit startClosing();
 }
 
+// Теперь двери закрываются только из состояния "открыты"
 void Door::startClosing() {
     if (currentState != OPENED)
         return;
