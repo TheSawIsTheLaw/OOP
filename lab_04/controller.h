@@ -18,7 +18,7 @@ class Controller : public QObject {
     void setDestinationFloor(short floor, direction dir);
 
    public slots:
-    void onFloor(short floor);
+    void onFloor(const short floor);
     void passedFloor(short floor);
 
    private:
@@ -29,6 +29,8 @@ class Controller : public QObject {
     controllerState currentState;
     direction currentMovementDirection;
     bool nextFloorDestination(short &floor);
+    bool nextFloorDestinationUpper(short &floor);
+    bool nextFloorDestinationLower(short &floor);
     void findNewFloorDestinationUpper();
     void findNewFloorDestinationLower();
 };
