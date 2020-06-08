@@ -11,18 +11,17 @@ class Cabine : public QObject {
     Q_OBJECT
 
    public slots:
-    void cabineMovesBetweenFloors();
-    void cabineStartMoving();
+    void cabineMoves();
     void cabineStand();
-    void cabineCall(short floor, direction dir);
+    void cabineCall(short floor,
+                    direction dir); // Убрать direction отсюда к чертям собачьим
 
    public:
     explicit Cabine(QObject *parent = nullptr);
 
    signals:
     void cabineIsCalled();
-    void cabinePassingFloor(
-        short floor, direction dir); // Убрать direction отсюда к чертям собачьим
+    void cabinePassingFloor(short floor, direction dir);
     void cabineReachedDestinationFloor(short floor);
     void cabineStopped(short floor);
 

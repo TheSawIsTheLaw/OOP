@@ -34,8 +34,7 @@ void Door::open() {
 }
 
 void Door::startClosing() {
-    if (currentState == CLOSED) {
-        emit doorIsClosed();
+    if (currentState != OPENED) { // Исправлен переход в состояние
         return;
     }
 

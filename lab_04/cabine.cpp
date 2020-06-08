@@ -27,27 +27,25 @@ Cabine::Cabine(QObject *parent)
 
 
 // Тотальный бардак. Проходить все этажи сразу нельзя.
-void Cabine::cabineStartMoving() {
-    if (currentState != GOTREQUEST)
+void Cabine::cabineMoves() {
+    if (currentState != GOTREQUEST && currentState != MOVES)
         return;
-
     currentState = MOVES;
-    if (currentFloor == destinationFloor)
-        emit cabineReachedDestinationFloor(currentFloor);
-    else
-        passFloorTimer.start(FLOOR_PASS_TIME);
-}
-
-void Cabine::cabineMovesBetweenFloors() {
-    if (currentState != MOVES)
-        return;
 
     if (currentFloor != destinationFloor) {
-        emit cabinePassingFloor(currentFloor, currentMovementDirection);
-        currentFloor += currentMovementDirection;
-        passFloorTimer.start(FLOOR_PASS_TIME);
-    } else
-        emit cabineReachedDestinationFloor(currentFloor);
+        currentState = MOVES;
+        if (currentFloor == destinationFloor)
+            emit cabineReachedDestinationFloor(currentFloor);
+        else
+            passFloorTimer.start(FLOOR_PASS_TIME);
+    } else {
+        if (currentFloor != destinationFloor) {
+            emit cabinePassingFloor(currentFloor, currentMovementDirection);
+            currentFloor += currentMovementDirection;
+            passFloorTimer.start(FLOOR_PASS_TIME);
+        } else
+            emit cabineReachedDestinationFloor(currentFloor);
+    }
 }
 
 void Cabine::cabineStand() {
