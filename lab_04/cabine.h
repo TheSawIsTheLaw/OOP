@@ -21,7 +21,8 @@ class Cabine : public QObject {
 
    signals:
     void cabineIsCalled();
-    void cabinePassingFloor(short floor, direction dir);
+    void cabinePassingFloor(
+        short floor, direction dir); // Убрать direction отсюда к чертям собачьим
     void cabineReachedDestinationFloor(short floor);
     void cabineStopped(short floor);
 
@@ -31,7 +32,6 @@ class Cabine : public QObject {
     Door door;
     short currentFloor;
     short destinationFloor;
-    bool hasNewDestinationFloor;
     QTimer passFloorTimer;
     cabineState currentState;
     direction currentMovementDirection;

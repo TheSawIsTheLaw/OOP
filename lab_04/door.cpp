@@ -8,6 +8,7 @@ Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
 
     openStateDoorTimer.setInterval(PASSENGER_TIME_SERVICE);
     openStateDoorTimer.setSingleShot(true);
+    // doorIsOpened можно оставить, чтобы расширить с следующих дополнениях
     QObject::connect(this, SIGNAL(doorIsOpened()), &openStateDoorTimer,
                      SLOT(start()));
     QObject::connect(&openStateDoorTimer, SIGNAL(timeout()), this,
@@ -17,6 +18,7 @@ Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
     QObject::connect(&closeDoorTimer, SIGNAL(timeout()), this, SLOT(close()));
 }
 
+// Переход в это состояние только из состояния Closed
 void Door::startOpening() {
     currentState = OPENNING;
     qDebug("Door is opening...");
@@ -27,7 +29,7 @@ void Door::open() {
     if (currentState != OPENNING)
         return;
     currentState = OPENED;
-    qDebug("Door is open. Dear passengers! Go aboard!");
+    qDebug("Door is opened. Dear passengers! Go aboard!");
     emit doorIsOpened();
 }
 

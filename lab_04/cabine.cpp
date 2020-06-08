@@ -7,7 +7,6 @@ Cabine::Cabine(QObject *parent)
     : QObject(parent),
       currentFloor(START_FLOOR),
       destinationFloor(NO_DESTINATION_FLOOR),
-      hasNewDestinationFloor(false),
       currentState(STANDING),
       currentMovementDirection(STAND) {
     QObject::connect(this, SIGNAL(cabineStopped(short)), &door,
@@ -26,8 +25,10 @@ Cabine::Cabine(QObject *parent)
                      SLOT(cabineStartMoving()));
 }
 
+
+// Тотальный бардак. Проходить все этажи сразу нельзя.
 void Cabine::cabineStartMoving() {
-    if (currentState != GOTREQUEST || !hasNewDestinationFloor)
+    if (currentState != GOTREQUEST)
         return;
 
     currentState = MOVES;
@@ -38,7 +39,7 @@ void Cabine::cabineStartMoving() {
 }
 
 void Cabine::cabineMovesBetweenFloors() {
-    if (currentState != MOVES || !hasNewDestinationFloor)
+    if (currentState != MOVES)
         return;
 
     if (currentFloor != destinationFloor) {
@@ -58,7 +59,6 @@ void Cabine::cabineStand() {
 }
 
 void Cabine::cabineCall(short floor, direction dir) {
-    hasNewDestinationFloor = true;
     currentState = GOTREQUEST;
     destinationFloor = floor;
 
