@@ -12,7 +12,7 @@ class Door : public QObject {
    public slots:
     void startOpening();
     void startClosing();
-    void closeDoorIfNeed();
+    void moveToCall();
 
 
    public:

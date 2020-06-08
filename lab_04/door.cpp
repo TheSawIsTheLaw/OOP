@@ -38,11 +38,9 @@ void Door::open() {
 }
 
 // Пришлось добавить в отдельный слот. Кажется, за это меня убьют.
-void Door::closeDoorIfNeed() {
+void Door::moveToCall() {
     if (currentState == CLOSED)
         emit doorIsClosed();
-    else
-        emit startClosing();
 }
 
 // Теперь двери закрываются только из состояния "открыты"

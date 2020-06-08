@@ -11,8 +11,7 @@ Cabine::Cabine(QObject *parent)
       currentMovementDirection(STAND) {
     QObject::connect(this, SIGNAL(cabineStopped(short)), &door,
                      SLOT(startOpening()));
-    QObject::connect(this, SIGNAL(cabineIsCalled()), &door,
-                     SLOT(closeDoorIfNeed()));
+    QObject::connect(this, SIGNAL(cabineIsCalled()), &door, SLOT(moveToCall()));
 
     QObject::connect(this, SIGNAL(cabineReachedDestinationFloor(short)), this,
                      SLOT(cabineStand()));
