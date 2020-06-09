@@ -30,7 +30,7 @@ void Cabine::cabineMoves() {
     if (currentState != GOTREQUEST && currentState != MOVES)
         return;
 
-    if (currentState != GOTREQUEST) {
+    if (currentState == MOVES) {
         if (currentFloor != destinationFloor) {
             emit cabinePassingFloor(currentFloor);
             currentFloor += currentMovementDirection;
