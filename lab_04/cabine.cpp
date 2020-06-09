@@ -30,7 +30,14 @@ void Cabine::cabineMoves() {
     if (currentState != GOTREQUEST && currentState != MOVES)
         return;
 
-    if (currentState == GOTREQUEST) {
+    if (currentState != GOTREQUEST) {
+        if (currentFloor != destinationFloor) {
+            emit cabinePassingFloor(currentFloor);
+            currentFloor += currentMovementDirection;
+            passFloorTimer.start(FLOOR_PASS_TIME);
+        } else
+            emit cabineReachedDestinationFloor(currentFloor);
+    } else {
         currentState = MOVES;
         // В первом случае требуется пройти полный цикл, чтобы не нарушать
         // закономерности, несмотря на аллогичность движения стоящей кабины
@@ -43,19 +50,13 @@ void Cabine::cabineMoves() {
                 currentMovementDirection = DOWN;
             passFloorTimer.start(FLOOR_PASS_TIME);
         }
-    } else {
-        if (currentFloor != destinationFloor) {
-            emit cabinePassingFloor(currentFloor);
-            currentFloor += currentMovementDirection;
-            passFloorTimer.start(FLOOR_PASS_TIME);
-        } else
-            emit cabineReachedDestinationFloor(currentFloor);
     }
 }
 
 void Cabine::cabineStand() {
     if (currentState != MOVES)
         return;
+
     currentState = STANDING;
     qDebug("Lift stands on the floor %d", currentFloor);
     emit cabineStopped(currentFloor);

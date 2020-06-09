@@ -19,7 +19,6 @@ void Controller::setNewDestinationFloor(short floor) {
     emit setDestinationFloor(floor);
 }
 
-// Доработай for по направлению.
 void Controller::onFloor(short floor) {
     if (currentState != BUSY)
         return;
@@ -35,8 +34,8 @@ void Controller::onFloor(short floor) {
         }
     }
 
-    // Зачем-то хотел здесь меня направление движения, хотя мы не отвечаем за это
-    // состояние
+    // Зачем-то хотел здесь менять направление движения, хотя мы не отвечаем за
+    // это состояние
     if (isNewFloorFound)
         emit setDestinationFloor(newFloor);
     else
