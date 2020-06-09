@@ -2,17 +2,18 @@
 
 #include "qdebug.h"
 
-Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
+Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED)
+{
     openDoorTimer.setSingleShot(true);
     QObject::connect(&openDoorTimer, SIGNAL(timeout()), this, SLOT(open()));
 
     openStateDoorTimer.setInterval(PASSENGER_TIME_SERVICE);
     openStateDoorTimer.setSingleShot(true);
     // doorIsOpened можно оставить, чтобы расширить с следующих дополнениях
-    QObject::connect(this, SIGNAL(doorIsOpened()), &openStateDoorTimer,
-                     SLOT(start()));
-    QObject::connect(&openStateDoorTimer, SIGNAL(timeout()), this,
-                     SLOT(startClosing()));
+    QObject::connect(
+        this, SIGNAL(doorIsOpened()), &openStateDoorTimer, SLOT(start()));
+    QObject::connect(
+        &openStateDoorTimer, SIGNAL(timeout()), this, SLOT(startClosing()));
 
     closeDoorTimer.setSingleShot(true);
     QObject::connect(&closeDoorTimer, SIGNAL(timeout()), this, SLOT(close()));
@@ -20,7 +21,8 @@ Door::Door(QObject *parent) : QObject(parent), currentState(CLOSED) {
 
 // Переход в это состояние только из состояния Closed
 // Исправлено
-void Door::startOpening() {
+void Door::startOpening()
+{
     if (currentState != CLOSED)
         return;
 
@@ -29,7 +31,8 @@ void Door::startOpening() {
     openDoorTimer.start(OPEN_CLOSE_DOOR_TIME);
 }
 
-void Door::open() {
+void Door::open()
+{
     if (currentState != OPENNING)
         return;
     currentState = OPENED;
@@ -37,13 +40,15 @@ void Door::open() {
     emit doorIsOpened();
 }
 
-void Door::moveToCall() {
+void Door::moveToCall()
+{
     if (currentState == CLOSED)
         emit doorIsClosed();
 }
 
 // Теперь двери закрываются только из состояния "открыты"
-void Door::startClosing() {
+void Door::startClosing()
+{
     if (currentState != OPENED)
         return;
 
@@ -53,7 +58,8 @@ void Door::startClosing() {
 }
 
 
-void Door::close() {
+void Door::close()
+{
     if (currentState != CLOSING)
         return;
 

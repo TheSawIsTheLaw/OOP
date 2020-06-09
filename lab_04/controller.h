@@ -6,7 +6,8 @@
 
 #include "defines.h"
 
-class Controller : public QObject {
+class Controller : public QObject
+{
     Q_OBJECT
 
    public slots:
@@ -21,7 +22,11 @@ class Controller : public QObject {
     void setDestinationFloor(short floor);
 
    private:
-    enum controllerState { FREE, BUSY };
+    enum controllerState
+    {
+        FREE,
+        BUSY
+    };
 
     short currentFloor;
 

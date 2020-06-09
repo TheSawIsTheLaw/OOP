@@ -6,9 +6,12 @@ Controller::Controller(QObject *parent)
     : QObject(parent),
       currentFloor(START_FLOOR),
       destinations(FLOORS_AMOUNT, false),
-      currentState(FREE) {}
+      currentState(FREE)
+{
+}
 
-void Controller::setNewDestinationFloor(short floor) {
+void Controller::setNewDestinationFloor(short floor)
+{
     currentState = BUSY;
 
     destinations[floor - 1] = true;
@@ -16,7 +19,8 @@ void Controller::setNewDestinationFloor(short floor) {
     emit setDestinationFloor(floor);
 }
 
-void Controller::onFloor(short floor) {
+void Controller::onFloor(short floor)
+{
     if (currentState != BUSY)
         return;
     currentFloor = floor;
@@ -24,8 +28,10 @@ void Controller::onFloor(short floor) {
 
     short newFloor = NO_DESTINATION_FLOOR;
     bool isNewFloorFound = false;
-    for (int i = 0; i < FLOORS_AMOUNT - 1 && !isNewFloorFound; i++) {
-        if (destinations[i]) {
+    for (int i = 0; i < FLOORS_AMOUNT - 1 && !isNewFloorFound; i++)
+    {
+        if (destinations[i])
+        {
             newFloor = i + 1;
             isNewFloorFound = true;
         }
@@ -37,7 +43,8 @@ void Controller::onFloor(short floor) {
         currentState = FREE;
 }
 
-void Controller::passedFloor(short floor) {
+void Controller::passedFloor(short floor)
+{
     currentFloor = floor;
     qDebug("It's moving! Now we are at floor %d", currentFloor);
 }

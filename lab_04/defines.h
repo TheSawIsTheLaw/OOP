@@ -11,6 +11,11 @@
 #define START_FLOOR 1
 #define NO_DESTINATION_FLOOR -666
 
-enum direction { DOWN = -1, STAND = 0, UP = 1 };
+enum direction
+{
+    DOWN = -1,
+    STAND = 0,
+    UP = 1
+};
 
 #endif // DEFINES_H

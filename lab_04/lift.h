@@ -8,7 +8,8 @@
 #include "controller.h"
 #include "defines.h"
 
-class Lift : public QObject {
+class Lift : public QObject
+{
     Q_OBJECT
 
    public:

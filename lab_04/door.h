@@ -6,7 +6,8 @@
 
 #include "defines.h"
 
-class Door : public QObject {
+class Door : public QObject
+{
     Q_OBJECT
 
    public slots:
@@ -26,7 +27,13 @@ class Door : public QObject {
     void close();
 
    private:
-    enum doorState { OPENED, OPENNING, CLOSED, CLOSING };
+    enum doorState
+    {
+        OPENED,
+        OPENNING,
+        CLOSED,
+        CLOSING
+    };
 
     doorState currentState;
     QTimer openDoorTimer;

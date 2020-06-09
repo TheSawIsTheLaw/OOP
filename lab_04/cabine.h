@@ -7,7 +7,8 @@
 #include "defines.h"
 #include "door.h"
 
-class Cabine : public QObject {
+class Cabine : public QObject
+{
     Q_OBJECT
 
    public slots:
@@ -25,7 +26,12 @@ class Cabine : public QObject {
     void cabineStopped(short floor);
 
    private:
-    enum cabineState { MOVES, GOTREQUEST, STANDING };
+    enum cabineState
+    {
+        MOVES,
+        GOTREQUEST,
+        STANDING
+    };
 
     Door door;
     short currentFloor;
