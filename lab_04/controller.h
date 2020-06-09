@@ -24,11 +24,10 @@ class Controller : public QObject {
     enum controllerState { FREE, BUSY };
 
     short currentFloor;
-    short currentDestinationFloor = NO_DESTINATION_FLOOR;
 
-    QVector<bool> isCommonDestination;
+    //
+    QVector<bool> destinations;
     controllerState currentState;
-    direction currentMovementDirection;
 };
 
 #endif // CONTROLLER_H

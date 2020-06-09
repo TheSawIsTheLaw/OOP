@@ -39,7 +39,7 @@ void Cabine::cabineMoves() {
             emit cabineReachedDestinationFloor(currentFloor);
     } else {
         currentState = MOVES;
-        // В первом случае требуется пройти полный цикл, чтобы не нарушать
+        // В этом случае требуется пройти полный цикл, чтобы не нарушать
         // закономерности, несмотря на аллогичность движения стоящей кабины
         if (currentFloor == destinationFloor)
             emit cabineReachedDestinationFloor(currentFloor);
