@@ -7,7 +7,8 @@
 
 UploadCommand::UploadCommand() {}
 
-UploadCommand::UploadCommand(const char *nameOfFile) {
+UploadCommand::UploadCommand(const char *nameOfFile)
+{
     if (strlen(nameOfFile) < FILE_NAME_LEN)
         strcpy(this->fileName, nameOfFile);
 }

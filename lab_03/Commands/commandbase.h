@@ -1,10 +1,9 @@
 #ifndef COMMANDBASE_H
 #define COMMANDBASE_H
 
-
 class CommandBase
 {
-   public:
+public:
     CommandBase();
 
     virtual ~CommandBase() = 0;

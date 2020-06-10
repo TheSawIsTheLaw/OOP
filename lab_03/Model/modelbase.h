@@ -1,10 +1,9 @@
 #ifndef MODELBASE_H
 #define MODELBASE_H
 
-
 class ModelBase
 {
-   public:
+public:
     ModelBase();
 
     virtual ~ModelBase() = 0;

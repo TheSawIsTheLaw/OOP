@@ -5,14 +5,14 @@
 
 class Edge
 {
-   public:
+public:
     Edge();
     ~Edge() = default;
 
     Edge get();
     void set();
 
-   private:
+private:
     size_t firstNode, secondNode;
 };
 

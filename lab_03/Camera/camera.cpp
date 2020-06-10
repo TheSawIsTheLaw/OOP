@@ -10,8 +10,7 @@ Camera::Camera()
     this->zIncline = 0;
 }
 
-Camera::Camera(int xPosition, int yPosition, int zPosition, int xIncline,
-    int yIncline, int zIncline)
+Camera::Camera(int xPosition, int yPosition, int zPosition, int xIncline, int yIncline, int zIncline)
 {
     this->xPosition = xPosition;
     this->yPosition = yPosition;

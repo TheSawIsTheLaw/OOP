@@ -5,7 +5,7 @@
 
 class Camera : public CameraBase
 {
-   public:
+public:
     Camera();
     // clang-format off
     Camera(int xPosition, int yPosition,

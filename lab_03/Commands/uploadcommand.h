@@ -6,7 +6,7 @@
 
 class UploadCommand : CommandBase
 {
-   public:
+public:
     UploadCommand();
     UploadCommand(const char *nameOfFile);
 
@@ -14,7 +14,7 @@ class UploadCommand : CommandBase
 
     char fileName[FILE_NAME_LEN] = {0};
 
-   private:
+private:
 };
 
 #endif // UPLOADCOMMAND_H

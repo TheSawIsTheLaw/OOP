@@ -1,10 +1,11 @@
 #ifndef SCENEUPLOADER_H
 #define SCENEUPLOADER_H
 
+#include "defines.h"
 
 class SceneUploader
 {
-   public:
+public:
     SceneUploader();
     SceneUploader(char *name);
 
@@ -12,8 +13,8 @@ class SceneUploader
 
     //    Composite getComponents();
 
-   private:
-    char fileName[30] = {0};
+private:
+    char fileName[FILE_NAME_LEN] = {0};
 };
 
 #endif // SCENEUPLOADER_H

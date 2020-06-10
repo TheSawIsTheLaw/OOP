@@ -10,8 +10,7 @@ Facade::Facade()
 
 template<typename Command>
 void execute(const Command &)
-{
-}
+{}
 
 template<>
 void Facade::execute(const UploadCommand &command)

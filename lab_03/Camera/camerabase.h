@@ -1,10 +1,9 @@
 #ifndef CAMERABASE_H
 #define CAMERABASE_H
 
-
 class CameraBase
 {
-   public:
+public:
     // clang-format off
     CameraBase(int xPosition = 0, int yPosition = 0,
                int zPosition = 0, int xIncline = 0,
@@ -21,7 +20,7 @@ class CameraBase
     virtual void getCurrentPosition() = 0;
     virtual void getCurrentIncline() = 0;
 
-   protected:
+protected:
     int xPosition = 0, yPosition = 0, zPosition = 0;
     int xIncline = 0, yIncline = 0, zIncline = 0;
 };

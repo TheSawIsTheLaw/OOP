@@ -5,7 +5,7 @@
 
 class CarcassModel : public ModelBase
 {
-   public:
+public:
     CarcassModel();
 
     virtual ~CarcassModel() = default;

@@ -7,7 +7,7 @@
 
 class Composite : public Component
 {
-   public:
+public:
     Composite();
     ~Composite() = default;
 
@@ -17,7 +17,7 @@ class Composite : public Component
     bool isComposite() override;
     //    CompIterator *makeIter();
 
-   private:
+private:
     std::vector<Component> components;
 };
 

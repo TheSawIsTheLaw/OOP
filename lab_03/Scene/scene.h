@@ -9,7 +9,7 @@
 
 class Scene
 {
-   public:
+public:
     Scene();
     ~Scene() = default;
 
@@ -19,7 +19,7 @@ class Scene
     void setScene();
     void resetScene();
 
-   private:
+private:
     std::vector<Component> components;
 };
 

@@ -3,7 +3,7 @@
 
 class Component
 {
-   public:
+public:
     Component();
     ~Component() = default;
 

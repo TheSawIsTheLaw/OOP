@@ -5,7 +5,7 @@
 
 class DrawManager : public ManagerBase
 {
-   public:
+public:
     DrawManager();
 
     virtual ~DrawManager() = default;

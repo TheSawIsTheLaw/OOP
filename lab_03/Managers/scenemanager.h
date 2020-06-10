@@ -5,7 +5,7 @@
 
 class SceneManager : public ManagerBase
 {
-   public:
+public:
     SceneManager();
 
     virtual ~SceneManager() = default;

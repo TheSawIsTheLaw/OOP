@@ -8,7 +8,7 @@
 
 class Facade
 {
-   public:
+public:
     Facade();
 
     ~Facade() = default;
@@ -16,7 +16,7 @@ class Facade
     template<typename Command>
     void execute(const Command &);
 
-   private:
+private:
     UploadManager UploadMan;
     SceneManager SceneMan;
     DrawManager DrawMan;

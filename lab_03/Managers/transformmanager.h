@@ -5,7 +5,7 @@
 
 class TransformManager : public ManagerBase
 {
-   public:
+public:
     TransformManager();
 
     virtual ~TransformManager() = default;
