@@ -6,13 +6,10 @@
 
 SceneUploader::SceneUploader() {}
 
-SceneUploader::SceneUploader(char *name)
+SceneUploader::SceneUploader(char name[FILE_NAME_LEN])
 {
     if (!name) {
         // Exception
     }
-    if (strlen(name) > FILE_NAME_LEN) {
-        // Exception, который поймает манагер и выпишет QDialog
-    }
-    strcpy(this->fileName, name);
+    strcpy(fileName, name);
 }

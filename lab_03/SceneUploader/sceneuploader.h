@@ -2,6 +2,7 @@
 #define SCENEUPLOADER_H
 
 #include "defines.h"
+#include "scenebuilderbase.h"
 
 class SceneUploader
 {
@@ -14,6 +15,7 @@ public:
     //    Composite getComponents();
 
 private:
+    SceneBuilderBase builder;
     char fileName[FILE_NAME_LEN] = {0};
 };
 
