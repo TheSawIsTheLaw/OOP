@@ -14,7 +14,7 @@ class Facade
     ~Facade() = default;
 
     template<typename Command>
-    void execute(Command);
+    void execute(const Command &);
 
    private:
     UploadManager UploadMan;

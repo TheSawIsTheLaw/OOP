@@ -48,5 +48,5 @@ void MainWindow::on_pushButton_clicked()
         return;
     }
 
-    qDebug("%s", command.fileName);
+    facade.execute(command);
 }
