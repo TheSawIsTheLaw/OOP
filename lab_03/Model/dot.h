@@ -2,7 +2,8 @@
 #define DOT_H
 
 
-class Dot {
+class Dot
+{
    public:
     Dot();
     ~Dot() = default;

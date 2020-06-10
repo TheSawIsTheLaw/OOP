@@ -8,6 +8,7 @@ void Component::add() {}
 
 void Component::del() {}
 
-bool Component::isComposite() {
+bool Component::isComposite()
+{
     return false;
 }

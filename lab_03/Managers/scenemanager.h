@@ -3,7 +3,8 @@
 
 #include "managerbase.h"
 
-class SceneManager : public ManagerBase {
+class SceneManager : public ManagerBase
+{
    public:
     SceneManager();
 

@@ -4,7 +4,8 @@
 #include "commandbase.h"
 #include "defines.h"
 
-class UploadCommand : CommandBase {
+class UploadCommand : CommandBase
+{
    public:
     UploadCommand();
     UploadCommand(const char *nameOfFile);

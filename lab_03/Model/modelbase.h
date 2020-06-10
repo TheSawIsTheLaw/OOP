@@ -2,7 +2,8 @@
 #define MODELBASE_H
 
 
-class ModelBase {
+class ModelBase
+{
    public:
     ModelBase();
 

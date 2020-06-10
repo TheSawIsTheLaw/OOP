@@ -5,7 +5,8 @@
 
 #include "component.h"
 
-class Composite : public Component {
+class Composite : public Component
+{
    public:
     Composite();
     ~Composite() = default;

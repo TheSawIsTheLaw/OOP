@@ -3,7 +3,8 @@
 
 #include "camerabase.h"
 
-class Camera : public CameraBase {
+class Camera : public CameraBase
+{
    public:
     Camera();
     // clang-format off

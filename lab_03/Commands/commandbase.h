@@ -2,7 +2,8 @@
 #define COMMANDBASE_H
 
 
-class CommandBase {
+class CommandBase
+{
    public:
     CommandBase();
 

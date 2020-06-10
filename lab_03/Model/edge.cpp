@@ -2,7 +2,8 @@
 
 Edge::Edge() {}
 
-Edge Edge::get() {
+Edge Edge::get()
+{
     return *this;
 }
 

@@ -2,7 +2,8 @@
 #define SCENEUPLOADER_H
 
 
-class SceneUploader {
+class SceneUploader
+{
    public:
     SceneUploader();
     SceneUploader(char *name);

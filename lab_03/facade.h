@@ -6,7 +6,8 @@
 #include "Managers/scenemanager.h"
 #include "Managers/transformmanager.h"
 
-class Facade {
+class Facade
+{
    public:
     Facade();
 

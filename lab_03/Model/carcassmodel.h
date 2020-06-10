@@ -3,7 +3,8 @@
 
 #include "modelbase.h"
 
-class CarcassModel : public ModelBase {
+class CarcassModel : public ModelBase
+{
    public:
     CarcassModel();
 

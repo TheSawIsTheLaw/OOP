@@ -2,7 +2,8 @@
 #define CAMERABASE_H
 
 
-class CameraBase {
+class CameraBase
+{
    public:
     // clang-format off
     CameraBase(int xPosition = 0, int yPosition = 0,

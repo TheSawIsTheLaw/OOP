@@ -3,7 +3,8 @@
 
 #include "managerbase.h"
 
-class TransformManager : public ManagerBase {
+class TransformManager : public ManagerBase
+{
    public:
     TransformManager();
 

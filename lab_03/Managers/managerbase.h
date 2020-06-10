@@ -2,7 +2,8 @@
 #define MANAGERBASE_H
 
 
-class ManagerBase {
+class ManagerBase
+{
    public:
     ManagerBase();
 

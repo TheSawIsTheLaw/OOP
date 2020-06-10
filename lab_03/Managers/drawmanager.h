@@ -3,7 +3,8 @@
 
 #include "managerbase.h"
 
-class DrawManager : public ManagerBase {
+class DrawManager : public ManagerBase
+{
    public:
     DrawManager();
 

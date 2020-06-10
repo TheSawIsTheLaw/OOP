@@ -7,7 +7,8 @@
 #include "../Composite/component.h"
 #include "../Model/modelbase.h"
 
-class Scene {
+class Scene
+{
    public:
     Scene();
     ~Scene() = default;

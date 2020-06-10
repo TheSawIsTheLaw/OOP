@@ -3,7 +3,8 @@
 
 #include "managerbase.h"
 
-class UploadManager : public ManagerBase {
+class UploadManager : public ManagerBase
+{
    public:
     UploadManager();
 

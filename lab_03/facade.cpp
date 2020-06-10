@@ -1,6 +1,7 @@
 #include "facade.h"
 
-Facade::Facade() {
+Facade::Facade()
+{
     this->DrawMan = DrawManager();
     this->SceneMan = SceneManager();
     this->UploadMan = UploadManager();

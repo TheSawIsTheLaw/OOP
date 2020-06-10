@@ -3,7 +3,8 @@
 
 #include "stdio.h"
 
-class Edge {
+class Edge
+{
    public:
     Edge();
     ~Edge() = default;

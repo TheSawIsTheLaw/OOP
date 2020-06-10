@@ -4,7 +4,8 @@ Composite::Composite() {}
 
 void Composite::accept() {}
 
-bool Composite::isComposite() {
+bool Composite::isComposite()
+{
     return true;
 }
 
