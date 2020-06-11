@@ -32,8 +32,11 @@ SOURCES += \
     Model/edge.cpp \
     Model/modelbase.cpp \
     Scene/scene.cpp \
+    SceneUploader/camerauploader.cpp \
+    SceneUploader/modeluploader.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
+    SceneUploader/txtscenebuilder.cpp \
     facade.cpp \
     main.cpp \
     mainwindow.cpp
@@ -55,8 +58,11 @@ HEADERS += \
     Model/edge.h \
     Model/modelbase.h \
     Scene/scene.h \
+    SceneUploader/camerauploader.h \
+    SceneUploader/modeluploader.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
+    SceneUploader/txtscenebuilder.h \
     defines.h \
     facade.h \
     mainwindow.h
