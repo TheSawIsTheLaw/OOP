@@ -85,6 +85,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    Exceptions/temp.txt \
-    Vector/temp.txt \
     config.txt
