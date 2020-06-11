@@ -27,9 +27,11 @@ SOURCES += \
     Managers/scenemanager.cpp \
     Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \
+    Model/adapter.cpp \
     Model/carcassmodel.cpp \
     Model/dot.cpp \
     Model/edge.cpp \
+    Model/model.cpp \
     Model/modelbase.cpp \
     Scene/scene.cpp \
     SceneUploader/camerauploader.cpp \
@@ -57,9 +59,11 @@ HEADERS += \
     Managers/scenemanager.h \
     Managers/transformmanager.h \
     Managers/uploadmanager.h \
+    Model/adapter.h \
     Model/carcassmodel.h \
     Model/dot.h \
     Model/edge.h \
+    Model/model.h \
     Model/modelbase.h \
     Scene/scene.h \
     SceneUploader/camerauploader.h \
