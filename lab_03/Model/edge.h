@@ -6,11 +6,11 @@
 class Edge
 {
 public:
-    Edge();
+    Edge() = default;
+    Edge(size_t fNode, size_t sNode);
     ~Edge() = default;
 
-    Edge get();
-    void set();
+    Edge &get();
 
 private:
     size_t firstNode, secondNode;

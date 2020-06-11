@@ -1,10 +1,8 @@
 #include "edge.h"
 
-Edge::Edge() {}
+Edge::Edge(size_t fNode, size_t sNode) : firstNode(fNode), secondNode(sNode) {}
 
-Edge Edge::get()
+Edge &Edge::get()
 {
     return *this;
 }
-
-void Edge::set() {}
