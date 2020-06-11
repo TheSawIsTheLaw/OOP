@@ -4,17 +4,23 @@
 class Dot
 {
 public:
-    Dot();
+    Dot() = default;
+    Dot(double xPos, double yPos, double zPos);
+    Dot(const Dot &) = default;
     ~Dot() = default;
+
+    Dot &operator=(const Dot &) = default;
 
     void move();
     void rotate();
     void scale();
-    Dot get();
-    void set();
+
+    double getXPos();
+    double getYPos();
+    double getZPos();
 
 private:
-    int xPosition, yPosition, zPosition;
+    double xPosition, yPosition, zPosition;
 };
 
 #endif // DOT_H
