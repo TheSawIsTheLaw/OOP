@@ -4,6 +4,8 @@
 #include "defines.h"
 #include "scenebuilderbase.h"
 
+#include <memory>
+
 class SceneUploader
 {
 public:
@@ -15,7 +17,7 @@ public:
     //    Composite getComponents();
 
 private:
-    SceneBuilderBase builder;
+    std::shared_ptr<SceneBuilderBase> builder;
     char fileName[FILE_NAME_LEN] = {0};
 };
 

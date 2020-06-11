@@ -17,7 +17,7 @@ public:
     void setFileName(const UploadCommand &);
 
 private:
-    SceneUploader sceneUpl;
+    SceneUploader &sceneUpl;
     char fileName[FILE_NAME_LEN];
 };
 

@@ -33,6 +33,7 @@ SOURCES += \
     Model/modelbase.cpp \
     Scene/scene.cpp \
     SceneUploader/camerauploader.cpp \
+    SceneUploader/modelbuilderbase.cpp \
     SceneUploader/modeluploader.cpp \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
@@ -48,6 +49,9 @@ HEADERS += \
     Commands/uploadcommand.h \
     Composite/component.h \
     Composite/composite.h \
+    Exceptions/exceptionbase.h \
+    Exceptions/exceptionbase.hpp \
+    Exceptions/exceptions.h \
     Managers/drawmanager.h \
     Managers/managerbase.h \
     Managers/scenemanager.h \
@@ -59,10 +63,15 @@ HEADERS += \
     Model/modelbase.h \
     Scene/scene.h \
     SceneUploader/camerauploader.h \
+    SceneUploader/modelbuilderbase.h \
     SceneUploader/modeluploader.h \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
     SceneUploader/txtscenebuilder.h \
+    Vector/BaseVector.h \
+    Vector/Iterator.hpp \
+    Vector/Vector.h \
+    Vector/VectorR.hpp \
     defines.h \
     facade.h \
     mainwindow.h
@@ -76,4 +85,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    Exceptions/temp.txt \
+    Vector/temp.txt \
     config.txt

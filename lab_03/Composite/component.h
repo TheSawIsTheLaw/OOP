@@ -5,14 +5,14 @@ class Component
 {
 public:
     Component();
-    ~Component() = default;
+    virtual ~Component() = 0;
 
-    void accept();
-    void add();
-    void del();
+    virtual void accept() = 0;
+    virtual void add() = 0;
+    virtual void del() = 0;
     virtual bool isComposite() = 0;
 
-    bool isVisible();
+    virtual bool isVisible() = 0;
 };
 
 #endif // COMPONENT_H

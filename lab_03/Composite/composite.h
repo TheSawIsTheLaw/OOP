@@ -8,7 +8,7 @@
 class Composite : public Component
 {
 public:
-    Composite();
+    Composite() = default;
     ~Composite() = default;
 
     void accept();
