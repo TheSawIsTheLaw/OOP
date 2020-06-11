@@ -9,18 +9,13 @@
 class Model
 {
 public:
-    Model();
-    Model(Vector<Dot> d, Vector<Edge> e);
+    Model() = default;
 
-    ~Model() = default;
+    virtual ~Model() = 0;
 
-    void scale();
-    void rotate();
-    void move();
-
-private:
-    Vector<Dot> dots;
-    Vector<Edge> edges;
+    virtual void scale() = 0;
+    virtual void rotate() = 0;
+    virtual void move() = 0;
 };
 
 #endif // MODEL_H

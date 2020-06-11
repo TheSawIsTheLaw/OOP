@@ -1,18 +1,26 @@
 #ifndef CARCASSMODEL_H
 #define CARCASSMODEL_H
 
-#include "modelbase.h"
+#include "../Vector/Vector.h"
+#include "dot.h"
+#include "edge.h"
+#include "model.h"
 
-class CarcassModel : public ModelBase
+class CarcassModel : public Model
 {
 public:
     CarcassModel();
+    CarcassModel(Vector<Dot> ds, Vector<Edge> es);
 
     ~CarcassModel() = default;
 
-    void rotateCarcass();
-    void scaleCarcass();
-    void moveCarcass();
+    void rotate() override;
+    void scale() override;
+    void move() override;
+
+private:
+    Vector<Dot> dots;
+    Vector<Edge> edges;
 };
 
 #endif // CARCASSMODEL_H

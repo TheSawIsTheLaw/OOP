@@ -2,8 +2,10 @@
 
 CarcassModel::CarcassModel() {}
 
-void CarcassModel::moveCarcass() {}
+CarcassModel::CarcassModel(Vector<Dot> ds, Vector<Edge> es) : dots(ds), edges(es) {}
 
-void CarcassModel::scaleCarcass() {}
+void CarcassModel::move() {}
 
-void CarcassModel::rotateCarcass() {}
+void CarcassModel::scale() {}
+
+void CarcassModel::rotate() {}
