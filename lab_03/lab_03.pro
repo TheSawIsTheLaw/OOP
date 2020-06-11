@@ -58,6 +58,8 @@ HEADERS += \
     Managers/scenemanager.h \
     Managers/transformmanager.h \
     Managers/uploadmanager.h \
+    Matrix/matrix.hpp \
+    Matrix/matrixR.hpp \
     Model/carcassmodel.h \
     Model/dot.h \
     Model/edge.h \

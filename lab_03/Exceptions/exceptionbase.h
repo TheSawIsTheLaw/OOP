@@ -4,7 +4,6 @@
 #include <exception>
 #include <iostream>
 
-// Переименовать
 class VectorException : public std::exception
 {
 public:
@@ -21,7 +20,22 @@ protected:
     std::string errorInformation;
 };
 
-//! Реализация в отдельный файл
+class MatrixException : public std::exception
+{
+public:
+    MatrixException(std::string fileName,
+                    std::string className,
+                    int currentLine,
+                    const char *errorTime,
+                    std::string information);
+    virtual const char *what() const noexcept override;
+
+    virtual ~MatrixException() {}
+
+protected:
+    std::string errorInformation;
+};
+
 #include "exceptionbase.hpp"
 
 #endif // EXCEPTIONBASE_H

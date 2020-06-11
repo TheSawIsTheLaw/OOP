@@ -37,8 +37,6 @@ public:
         : VectorException(fileName, className, currentLine, errorTime, information){};
 };
 
-//! новый класс ошибки под итератор
-
 class OutOfRangeException : public VectorException
 {
 public:
@@ -90,7 +88,7 @@ public:
                     std::string className,
                     int currentLine,
                     const char *errorTime,
-                    std::string information = "*Iterator is invalid")
+                    std::string information = "Iterator is invalid")
         : VectorException(fileName, className, currentLine, errorTime, information){};
 };
 
@@ -101,8 +99,30 @@ public:
                             std::string className,
                             int currentLine,
                             const char *errorTime,
-                            std::string information = "*Iterator is out of vector range")
+                            std::string information = "Iterator is out of vector range")
         : VectorException(fileName, className, currentLine, errorTime, information){};
+};
+
+class InvalidInitializerList : public MatrixException
+{
+public:
+    InvalidInitializerList(std::string fileName,
+                           std::string className,
+                           int currentLine,
+                           const char *errorTime,
+                           std::string information = "Invalid initializer list")
+        : MatrixException(fileName, className, currentLine, errorTime, information){};
+};
+
+class OutOfRangeMatException : public MatrixException
+{
+public:
+    OutOfRangeMatException(std::string fileName,
+                           std::string className,
+                           int currentLine,
+                           const char *errorTime,
+                           std::string information = "Invalid initializer list")
+        : MatrixException(fileName, className, currentLine, errorTime, information){};
 };
 
 #endif // EXCEPTIONS_H
