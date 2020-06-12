@@ -1,29 +1,13 @@
 #include "camera.h"
 
-Camera::Camera()
-{
-    this->xPosition = 0;
-    this->yPosition = 0;
-    this->zPosition = 0;
-    this->xIncline = 0;
-    this->yIncline = 0;
-    this->zIncline = 0;
-}
+Camera::Camera(double xPos, double yPos, double zPos, double xNor, double yNor, double zNor)
+    : xPosition(xPos), yPosition(yPos), zPosition(zPos), xNormal(xNor), yNormal(yNor), zNormal(zNor)
+{}
 
-Camera::Camera(int xPosition, int yPosition, int zPosition, int xIncline, int yIncline, int zIncline)
-{
-    this->xPosition = xPosition;
-    this->yPosition = yPosition;
-    this->zPosition = zPosition;
-    this->xIncline = xIncline;
-    this->yIncline = yIncline;
-    this->zIncline = zIncline;
-}
+void Camera::movement(double dx, double dy, double dz) {}
 
-void Camera::movement() {}
+void Camera::rotation(double ax, double ay, double az) {}
 
-void Camera::rotation() {}
+void Camera::setCurrentNormal(double ax, double ay, double az) {}
 
-void Camera::getCurrentIncline() {}
-
-void Camera::getCurrentPosition() {}
+void Camera::setCurrentPosition(double xPos, double yPos, double zPos) {}
