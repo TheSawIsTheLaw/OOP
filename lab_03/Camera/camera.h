@@ -1,6 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "../Matrix/matrix.hpp"
 #include "camerabase.h"
 
 class Camera : public CameraBase
@@ -16,7 +17,7 @@ public:
     virtual ~Camera() = default;
 
     void movement(double dx, double dy, double dz) override;
-    void rotation(double ax, double ay, double az) override;
+    void rotation(double angle, axis axRot) override;
     void setCurrentNormal(double ax, double ay, double az) override;
     void setCurrentPosition(double xPos, double yPos, double zPos) override;
 
