@@ -3,6 +3,8 @@
 
 class Dot
 {
+    enum axis { X, Y, Z };
+
 public:
     Dot() = default;
     Dot(double xPos, double yPos, double zPos);
@@ -12,7 +14,7 @@ public:
     Dot &operator=(const Dot &) = default;
 
     Dot move(double dx, double dy, double dz);
-    Dot rotate();
+    Dot rotate(double angle, axis ax);
     Dot scale(double coef);
 
     double getXPos();
