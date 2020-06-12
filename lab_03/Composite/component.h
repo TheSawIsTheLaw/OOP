@@ -14,7 +14,7 @@ public:
     virtual void accept() = 0;
     virtual void add() = 0;
     virtual void del() = 0;
-    virtual bool isComposite() = 0;
+    virtual bool isComposite() const = 0;
 
     virtual bool isVisible() const noexcept = 0;
 };

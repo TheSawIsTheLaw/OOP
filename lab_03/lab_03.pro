@@ -20,6 +20,7 @@ SOURCES += \
     Commands/commandbase.cpp \
     Commands/uploadcommand.cpp \
     Composite/component.cpp \
+    Composite/componentvisitorbase.cpp \
     Composite/composite.cpp \
     Managers/drawmanager.cpp \
     Managers/managerbase.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     Commands/commandbase.h \
     Commands/uploadcommand.h \
     Composite/component.h \
+    Composite/componentvisitorbase.h \
     Composite/composite.h \
     Exceptions/exceptionbase.h \
     Exceptions/exceptionbase.hpp \
