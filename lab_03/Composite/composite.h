@@ -11,9 +11,9 @@ public:
     Composite() = default;
     ~Composite() = default;
 
-    void accept();
-    void add();
-    void del();
+    void accept() override;
+    void add() override;
+    void del() override;
     bool isComposite() override;
     //    CompIterator *makeIter();
 
