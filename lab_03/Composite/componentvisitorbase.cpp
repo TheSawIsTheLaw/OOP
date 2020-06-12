@@ -1,4 +1,5 @@
 #include "componentvisitorbase.h"
+#include "../Camera/camera.h"
 #include "../Model/carcassmodel.h"
 
 RotateVisitor::RotateVisitor(double ang, axis axi) : angle(ang), ax(axi) {}
@@ -51,4 +52,36 @@ void ScaleVisitor::visit(ModelComponent &component) const
     reformTo->scale(coefficient);
     shared_ptr<Model> ret(reformTo);
     component.setModel(ret);
+}
+
+void MoveVisitor::visit(ModelComponent &component) const
+{
+    CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
+    reformTo->move(xDelta, yDelta, zDelta);
+    shared_ptr<Model> ret(reformTo);
+    component.setModel(ret);
+}
+
+void MoveVisitor::visit(CameraComponent &component) const
+{
+    Camera *reformTo = dynamic_cast<Camera *>(component.getCamera().get());
+    reformTo->movement(xDelta, yDelta, zDelta);
+    shared_ptr<CameraBase> ret(reformTo);
+    component.setCamera(ret);
+}
+
+void RotateVisitor::visit(ModelComponent &component) const
+{
+    CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
+    reformTo->rotate(angle, ax);
+    shared_ptr<Model> ret(reformTo);
+    component.setModel(ret);
+}
+
+void RotateVisitor::visit(CameraComponent &component) const
+{
+    Camera *reformTo = dynamic_cast<Camera *>(component.getCamera().get());
+    reformTo->rotation(angle, ax);
+    shared_ptr<Camera> ret(reformTo);
+    component.setCamera(ret);
 }

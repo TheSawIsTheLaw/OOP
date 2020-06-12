@@ -60,7 +60,7 @@ public:
     //    virtual void accept(const BaseComponentVisitor &visitor) override;
 
     shared_ptr<CameraBase> getCamera();
-    void setModel(const shared_ptr<CameraBase>);
+    void setCamera(const shared_ptr<CameraBase>);
 };
 
 #endif // COMPONENT_H
