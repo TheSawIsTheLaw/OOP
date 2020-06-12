@@ -15,6 +15,22 @@ void CarcassModel::move(double dx, double dy, double dz)
     dots = result;
 }
 
-void CarcassModel::scale(double coef) {}
+void CarcassModel::scale(double coef)
+{
+    Vector<Dot> result(dots.size());
+    for (size_t i = 0; i < dots.size(); i++) {
+        result[i] = dots[i].scale(coef);
+    }
 
-void CarcassModel::rotate() {}
+    dots = result;
+}
+
+void CarcassModel::rotate(double angle, axis ax)
+{
+    Vector<Dot> result(dots.size());
+    for (size_t i = 0; i < dots.size(); i++) {
+        result[i] = dots[i].rotate(angle, ax);
+    }
+
+    dots = result;
+}
