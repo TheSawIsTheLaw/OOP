@@ -13,9 +13,9 @@ public:
 
     virtual ~Model() = 0;
 
-    virtual void scale() = 0;
+    virtual void scale(double coef) = 0;
     virtual void rotate() = 0;
-    virtual void move() = 0;
+    virtual void move(double dx, double dy, double dz) = 0;
 };
 
 #endif // MODEL_H

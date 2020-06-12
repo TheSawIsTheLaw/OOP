@@ -11,9 +11,9 @@ public:
 
     Dot &operator=(const Dot &) = default;
 
-    void move();
-    void rotate();
-    void scale();
+    Dot move(double dx, double dy, double dz);
+    Dot rotate();
+    Dot scale(double coef);
 
     double getXPos();
     double getYPos();
