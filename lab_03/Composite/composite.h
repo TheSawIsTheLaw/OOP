@@ -14,9 +14,8 @@ public:
     Composite &operator=(Vector<shared_ptr<Component>> components);
     //    virtual void accept(const BaseComponentVisitor &visitor) override;
     virtual bool isComposite() const override;
-    virtual shared_ptr<Component> clone() override;
-    virtual bool add(shared_ptr<Component> element) override;
-    virtual bool remove(ComponentIterator &it) override;
+    virtual void add(shared_ptr<Component> element) override;
+    virtual void del(ComponentIterator &it) override;
     virtual ComponentIterator begin() override;
     virtual ComponentIterator end() override;
 

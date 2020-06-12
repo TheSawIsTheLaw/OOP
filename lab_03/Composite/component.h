@@ -5,6 +5,10 @@
 #include "../Model/model.h"
 #include "../Vector/Vector.h"
 
+class Component;
+
+using ComponentIterator = VecIterator<shared_ptr<Component>>;
+
 class Component
 {
 public:
@@ -12,9 +16,12 @@ public:
     virtual ~Component() = 0;
 
     virtual void accept() = 0;
-    virtual void add() = 0;
-    virtual void del() = 0;
+    virtual void add(shared_ptr<Component> element) = 0;
+    virtual void del(ComponentIterator &it) = 0;
     virtual bool isComposite() const = 0;
+
+    virtual ComponentIterator begin();
+    virtual ComponentIterator end();
 
     virtual bool isVisible() const noexcept = 0;
 };
@@ -31,6 +38,9 @@ public:
     ModelComponent &operator=(const ModelComponent &) = default;
     virtual bool isVisible() const noexcept override;
     //    virtual void accept(const BaseComponentVisitor &visitor) override;
+
+    virtual void add() override;
+    virtual void del() override;
 
     shared_ptr<Model> getModel();
     void setModel(const shared_ptr<Model>);
