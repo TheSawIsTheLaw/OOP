@@ -17,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Camera/camera.cpp \
-    Camera/camerabase.cpp \
     Commands/commandbase.cpp \
     Commands/uploadcommand.cpp \
     Composite/component.cpp \
