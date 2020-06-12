@@ -44,6 +44,7 @@ SOURCES += \
 HEADERS += \
     Camera/camera.h \
     Camera/camerabase.h \
+    Camera/dotxy.h \
     Commands/commandbase.h \
     Commands/uploadcommand.h \
     Composite/component.h \

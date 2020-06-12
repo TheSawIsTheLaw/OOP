@@ -20,6 +20,7 @@ public:
     void rotation(double angle, axis axRot) override;
     void setCurrentNormal(double ax, double ay, double az) override;
     void setCurrentPosition(double xPos, double yPos, double zPos) override;
+    DotXY getProjection(Dot &dot, std::shared_ptr<CameraBase> camera) override;
 
 protected:
     double xPosition, yPosition, zPosition;
