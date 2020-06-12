@@ -1,10 +1,10 @@
 #ifndef DOT_H
 #define DOT_H
 
+#include "defines.h"
+
 class Dot
 {
-    enum axis { X, Y, Z };
-
 public:
     Dot() = default;
     Dot(double xPos, double yPos, double zPos);

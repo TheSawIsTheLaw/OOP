@@ -11,11 +11,7 @@ class Model
 public:
     Model() = default;
 
-    virtual ~Model() = 0;
-
-    virtual void scale(double coef) = 0;
-    virtual void rotate() = 0;
-    virtual void move(double dx, double dy, double dz) = 0;
+    virtual ~Model() = default;
 };
 
 #endif // MODEL_H

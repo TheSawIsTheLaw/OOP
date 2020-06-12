@@ -14,9 +14,9 @@ public:
 
     ~CarcassModel() = default;
 
-    void rotate() override;
-    void scale(double coef) override;
-    void move(double dx, double dy, double dz) override;
+    void rotate(double angle, axis ax);
+    void scale(double coef);
+    void move(double dx, double dy, double dz);
 
 private:
     Vector<Dot> dots;

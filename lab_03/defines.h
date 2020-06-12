@@ -5,4 +5,6 @@
 
 #define CONFIG "config.txt"
 
+enum axis { X, Y, Z };
+
 #endif // DEFINES_H

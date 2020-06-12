@@ -27,11 +27,9 @@ SOURCES += \
     Managers/scenemanager.cpp \
     Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \
-    Model/adapter.cpp \
     Model/carcassmodel.cpp \
     Model/dot.cpp \
     Model/edge.cpp \
-    Model/modelbase.cpp \
     Scene/scene.cpp \
     SceneUploader/camerauploader.cpp \
     SceneUploader/modelbuilderbase.cpp \
