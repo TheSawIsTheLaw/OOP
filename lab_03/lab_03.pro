@@ -22,6 +22,8 @@ SOURCES += \
     Composite/component.cpp \
     Composite/componentvisitorbase.cpp \
     Composite/composite.cpp \
+    Drawer/drawer.cpp \
+    Drawer/drawingfactorybase.cpp \
     Managers/drawmanager.cpp \
     Managers/managerbase.cpp \
     Managers/scenemanager.cpp \
@@ -50,6 +52,8 @@ HEADERS += \
     Composite/component.h \
     Composite/componentvisitorbase.h \
     Composite/composite.h \
+    Drawer/drawer.h \
+    Drawer/drawingfactorybase.h \
     Exceptions/exceptionbase.h \
     Exceptions/exceptionbase.hpp \
     Exceptions/exceptions.h \
@@ -89,4 +93,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    Drawer/temp.txt \
     config.txt
