@@ -12,10 +12,10 @@ public:
     Composite(const Composite &) = default;
     Composite(Vector<shared_ptr<Component>> components);
     Composite &operator=(Vector<shared_ptr<Component>> components);
-    //    virtual void accept(const BaseComponentVisitor &visitor) override;
-    virtual bool isComposite() const override;
-    virtual void add(shared_ptr<Component> element) override;
-    virtual void del(ComponentIterator &it) override;
+    virtual void accept(const ComponentVisitorBase &visitor) override;
+    virtual bool isComposite() const noexcept override;
+    virtual bool add(shared_ptr<Component> element) override;
+    virtual bool del(ComponentIterator &it) override;
     virtual ComponentIterator begin() override;
     virtual ComponentIterator end() override;
 

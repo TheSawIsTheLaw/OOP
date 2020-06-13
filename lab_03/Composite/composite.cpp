@@ -1,16 +1,49 @@
 #include "composite.h"
 
-Composite::Composite() {}
+Composite::Composite(Vector<shared_ptr<Component>> comps) : components(comps) {}
 
-void Composite::accept(const ComponentVisitorBase &) {}
+Composite &Composite::operator=(Vector<shared_ptr<Component>> comps)
+{
+    components = comps;
+    return *this;
+}
 
-bool Composite::isComposite()
+bool Composite::add(shared_ptr<Component> comp)
+{
+    try {
+        components.push_back(comp);
+    } catch (std::exception &error) {
+        return false;
+    }
+    return true;
+}
+
+bool Composite::del(ComponentIterator &iter)
+{
+    try {
+        components.erase(iter);
+    } catch (std::exception &error) {
+        return false;
+    }
+    return true;
+}
+
+void Composite::accept(const ComponentVisitorBase &visitor)
+{
+    visitor.visit(*this);
+}
+
+bool Composite::isComposite() const noexcept
 {
     return true;
 }
 
-void Composite::add() {}
+ComponentIterator Composite::begin()
+{
+    return components.begin();
+}
 
-void Composite::del() {}
-
-// CompIterator *Composite()
+ComponentIterator Composite::end()
+{
+    return components.end();
+}
