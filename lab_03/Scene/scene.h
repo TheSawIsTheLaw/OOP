@@ -21,7 +21,7 @@ private:
     Vector<Component> components;
     size_t currentScene = 0;
 
-    bool isSceneFull(size_t index);
+    bool isFull(size_t index);
 };
 
 #endif // SCENE_H
