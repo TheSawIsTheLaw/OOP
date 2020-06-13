@@ -2,7 +2,7 @@
 
 Composite::Composite() {}
 
-void Composite::accept() {}
+void Composite::accept(const ComponentVisitorBase &) {}
 
 bool Composite::isComposite()
 {

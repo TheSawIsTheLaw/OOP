@@ -4,6 +4,7 @@
 #include "../Camera/camerabase.h"
 #include "../Model/model.h"
 #include "../Vector/Vector.h"
+#include "componentvisitorbase.h"
 
 class Component;
 
@@ -12,13 +13,10 @@ using ComponentIterator = VecIterator<shared_ptr<Component>>;
 class Component
 {
 public:
-    Component();
-    virtual ~Component() = 0;
-
-    virtual void accept() = 0;
-    virtual void add(shared_ptr<Component> element) = 0;
-    virtual void del(ComponentIterator &it) = 0;
-    virtual bool isComposite() const = 0;
+    virtual void accept(const ComponentVisitorBase &) = 0;
+    virtual bool add(shared_ptr<Component>);
+    virtual bool del(ComponentIterator &);
+    virtual bool isComposite() const noexcept = 0;
 
     virtual ComponentIterator begin();
     virtual ComponentIterator end();
@@ -37,10 +35,7 @@ public:
     ModelComponent(shared_ptr<Model> model);
     ModelComponent &operator=(const ModelComponent &) = default;
     virtual bool isVisible() const noexcept override;
-    //    virtual void accept(const BaseComponentVisitor &visitor) override;
-
-    virtual void add() override;
-    virtual void del() override;
+    virtual void accept(const ComponentVisitorBase &) override;
 
     shared_ptr<Model> getModel();
     void setModel(const shared_ptr<Model>);
@@ -49,15 +44,15 @@ public:
 class CameraComponent : public Component
 {
 private:
-    shared_ptr<CameraComponent> camera;
+    shared_ptr<CameraBase> camera;
 
 public:
     CameraComponent() = delete;
-    CameraComponent(const ModelComponent &) = delete;
-    CameraComponent(shared_ptr<CameraBase> camera);
+    CameraComponent(const CameraComponent &) = delete;
+    CameraComponent(shared_ptr<CameraBase> cam);
     CameraComponent &operator=(const CameraComponent &) = default;
     virtual bool isVisible() const noexcept override;
-    //    virtual void accept(const BaseComponentVisitor &visitor) override;
+    virtual void accept(const ComponentVisitorBase &) override;
 
     shared_ptr<CameraBase> getCamera();
     void setCamera(const shared_ptr<CameraBase>);
