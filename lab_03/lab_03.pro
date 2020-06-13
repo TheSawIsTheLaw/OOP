@@ -64,6 +64,7 @@ HEADERS += \
     Model/dot.h \
     Model/edge.h \
     Model/model.h \
+    Scene/ComponentName.h \
     Scene/scene.h \
     SceneUploader/camerauploader.h \
     SceneUploader/modelbuilderbase.h \

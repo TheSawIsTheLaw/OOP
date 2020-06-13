@@ -4,8 +4,6 @@
 
 #include "string.h"
 
-UploadManager::UploadManager() {}
-
 UploadManager::UploadManager(const UploadCommand &command)
 {
     strcpy(fileName, command.fileName);

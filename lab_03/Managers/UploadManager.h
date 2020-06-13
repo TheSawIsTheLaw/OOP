@@ -8,8 +8,6 @@
 class UploadManager : public ManagerBase
 {
 public:
-    UploadManager();
-
     UploadManager(const UploadCommand &);
 
     virtual ~UploadManager() = default;

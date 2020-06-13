@@ -36,6 +36,22 @@ protected:
     std::string errorInformation;
 };
 
+class SceneException : public std::exception
+{
+public:
+    SceneException(std::string fileName,
+                   std::string className,
+                   int currentLine,
+                   const char *errorTime,
+                   std::string information);
+    virtual const char *what() const noexcept override;
+
+    virtual ~SceneException() {}
+
+protected:
+    std::string errorInformation;
+};
+
 #include "exceptionbase.hpp"
 
 #endif // EXCEPTIONBASE_H

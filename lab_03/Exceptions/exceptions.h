@@ -125,4 +125,15 @@ public:
         : MatrixException(fileName, className, currentLine, errorTime, information){};
 };
 
+class InvalidComponentName : public SceneException
+{
+public:
+    InvalidComponentName(std::string fileName,
+                         std::string className,
+                         int currentLine,
+                         const char *errorTime,
+                         std::string information = "Invalid component name")
+        : SceneException(fileName, className, currentLine, errorTime, information){};
+};
+
 #endif // EXCEPTIONS_H
