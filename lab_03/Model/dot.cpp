@@ -20,7 +20,7 @@ double Dot::getZPos()
     return zPosition;
 }
 
-Dot Dot::move(double dx, double dy, double dz)
+Dot Dot::move(const double dx, const double dy, const double dz) const
 {
     // clang-format off
     Matrix<4, double> moveMatrix
@@ -35,7 +35,7 @@ Dot Dot::move(double dx, double dy, double dz)
     return Dot(result.at(0), result.at(1), result.at(2));
 }
 
-Dot Dot::scale(double coef)
+Dot Dot::scale(const double coef) const
 {
     // clang-format off
     Matrix<4, double> scaleMatrix = { coef,    0,    0, 0,
@@ -48,7 +48,7 @@ Dot Dot::scale(double coef)
     return Dot(result.at(0), result.at(1), result.at(2));
 }
 
-Dot Dot::rotate(double angle, axis ax)
+Dot Dot::rotate(const double angle, axis ax) const
 {
     Matrix<4, double> rotateMatrix;
 

@@ -10,6 +10,10 @@ MoveVisitor::MoveVisitor(double dx, double dy, double dz) : xDelta(dx), yDelta(d
 
 ScaleVisitor::ScaleVisitor(double coef) : coefficient(coef) {}
 
+DrawVisitor::DrawVisitor(shared_ptr<DrawerBase> draw, shared_ptr<CameraBase> cam)
+    : drawer(draw), camera(cam)
+{}
+
 void ScaleVisitor::visit(Composite &composite) const
 {
     for (auto &component : composite) {

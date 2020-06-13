@@ -6,11 +6,12 @@
 #include "../Vector/Vector.h"
 #include "componentvisitorbase.h"
 
+class ComponentVisitorBase;
 class Component;
 
 using ComponentIterator = VecIterator<shared_ptr<Component>>;
 
-class Component
+class Component;
 {
 public:
     virtual void accept(const ComponentVisitorBase &) = 0;

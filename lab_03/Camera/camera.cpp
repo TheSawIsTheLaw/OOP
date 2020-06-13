@@ -7,7 +7,7 @@ Camera::Camera(double xPos, double yPos, double zPos, double xNor, double yNor, 
     : xPosition(xPos), yPosition(yPos), zPosition(zPos), xNormal(xNor), yNormal(yNor), zNormal(zNor)
 {}
 
-DotXY Camera::getProjection(const Dot &dot) const
+DotXY Camera::getProjection(Dot &dot)
 {
     double length = xNormal * xNormal + yNormal * yNormal + zNormal * zNormal;
     double projection = xNormal * xNormal + yNormal * yNormal;

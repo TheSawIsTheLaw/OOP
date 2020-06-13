@@ -14,7 +14,7 @@ public:
     virtual void rotation(double angle, axis axRot) = 0;
     virtual void setCurrentPosition(double xPosition, double yPosition, double zPosition) = 0;
     virtual void setCurrentNormal(double ax, double ay, double az) = 0;
-    virtual DotXY getProjection(const Dot &dot) const;
+    virtual DotXY getProjection(Dot &dot);
 };
 
 #endif // CAMERABASE_H

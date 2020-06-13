@@ -3,9 +3,7 @@
 
 #include <vector>
 
-#include "../Camera/camerabase.h"
 #include "../Composite/component.h"
-#include "../Model/model.h"
 #include "ComponentName.h"
 
 class Scene
