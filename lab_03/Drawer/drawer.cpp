@@ -1,6 +1,6 @@
 #include "drawer.h"
 
-QTDrawer::QTDrawer(QGraphicsScene *scene) : grScene(scene) {}
+QTDrawer::QTDrawer(QGraphicsScene *const scene) : grScene(scene) {}
 
 void QTDrawer::drawLine(const DotXY &fDot, const DotXY &sDot)
 {
@@ -8,4 +8,9 @@ void QTDrawer::drawLine(const DotXY &fDot, const DotXY &sDot)
                      fDot.getYCoordinate(),
                      sDot.getXCoordinate(),
                      sDot.getYCoordinate());
+}
+
+void QTDrawer::clear()
+{
+    grScene->clear();
 }
