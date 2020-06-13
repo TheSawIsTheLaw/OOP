@@ -1,6 +1,7 @@
 #ifndef COMPONENTVISITORBASE_H
 #define COMPONENTVISITORBASE_H
 
+#include "../Drawer/drawer.h"
 #include "defines.h"
 
 class ModelComponent;
@@ -52,19 +53,17 @@ private:
     axis ax;
 };
 
-//class DrawVisitor : public ComponentVisitorBase
-//{
-//public:
-//    DrawVisitor(shared_ptr<DrawerBase> draw, shared_ptr<CameraBase> cam);
-//    virtual void visit(Composite &) const override;
-//    virtual void visit(ModelComponent &) const override;
-//    virtual void visit(CameraComponent &) const override;
+class DrawVisitor : public ComponentVisitorBase
+{
+public:
+    DrawVisitor(shared_ptr<DrawerBase> draw, shared_ptr<CameraBase> cam);
+    virtual void visit(Composite &) const override;
+    virtual void visit(ModelComponent &) const override;
+    virtual void visit(CameraComponent &) const override;
 
-//private:
-//    shared_ptr<DrawerBase> drawer;
-//    shared_ptr<CameraBase> camera;
-//};
-
-#include "composite.h"
+private:
+    shared_ptr<DrawerBase> drawer;
+    shared_ptr<CameraBase> camera;
+};
 
 #endif // COMPONENTVISITORBASE_H

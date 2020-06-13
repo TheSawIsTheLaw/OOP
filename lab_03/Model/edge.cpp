@@ -2,7 +2,12 @@
 
 Edge::Edge(size_t fNode, size_t sNode) : firstNode(fNode), secondNode(sNode) {}
 
-Edge &Edge::get()
+size_t Edge::getFNodeNum()
 {
-    return *this;
+    return firstNode;
+}
+
+size_t Edge::getSNodeNum()
+{
+    return secondNode;
 }

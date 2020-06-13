@@ -34,3 +34,13 @@ void CarcassModel::rotate(double angle, axis ax)
 
     dots = result;
 }
+
+Vector<Edge> &CarcassModel::getEdges()
+{
+    return edges;
+}
+
+Vector<Dot> &CarcassModel::getDots()
+{
+    return dots;
+}

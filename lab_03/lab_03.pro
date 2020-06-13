@@ -21,7 +21,6 @@ SOURCES += \
     Commands/uploadcommand.cpp \
     Composite/component.cpp \
     Composite/componentvisitorbase.cpp \
-    Composite/composite.cpp \
     Drawer/drawer.cpp \
     Drawer/drawingfactorybase.cpp \
     Managers/drawmanager.cpp \
@@ -51,7 +50,6 @@ HEADERS += \
     Commands/uploadcommand.h \
     Composite/component.h \
     Composite/componentvisitorbase.h \
-    Composite/composite.h \
     Drawer/drawer.h \
     Drawer/drawingfactorybase.h \
     Exceptions/exceptionbase.h \

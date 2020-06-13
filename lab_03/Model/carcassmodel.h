@@ -18,6 +18,9 @@ public:
     void scale(double coef);
     void move(double dx, double dy, double dz);
 
+    Vector<Edge> &getEdges();
+    Vector<Dot> &getDots();
+
 private:
     Vector<Dot> dots;
     Vector<Edge> edges;

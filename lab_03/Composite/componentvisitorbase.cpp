@@ -85,3 +85,30 @@ void RotateVisitor::visit(CameraComponent &component) const
     shared_ptr<Camera> ret(reformTo);
     component.setCamera(ret);
 }
+
+void DrawVisitor::visit(Composite &composite) const
+{
+    for (auto &component : composite) {
+        if (component->isComposite())
+            visit(*static_cast<Composite *>(component.get()));
+        else if (component->isVisible())
+            visit(*static_cast<ModelComponent *>(component.get()));
+        else
+            visit(*static_cast<CameraComponent *>(component.get()));
+    }
+}
+
+void DrawVisitor::visit(CameraComponent &) const {}
+
+void DrawVisitor::visit(ModelComponent &model) const
+{
+    shared_ptr<Model> mod = model.getModel();
+    CarcassModel *modelToDraw = dynamic_cast<CarcassModel *>(mod.get());
+    const auto &edges = modelToDraw->getEdges();
+    const auto &dots = modelToDraw->getDots();
+    for (size_t i = 0; i < edges.size(); i++) {
+        Edge curEdge = edges[i];
+        drawer->drawLine(camera->getProjection(dots[curEdge.getFNodeNum()]),
+                         camera->getProjection(dots[curEdge.getSNodeNum()]));
+    }
+}

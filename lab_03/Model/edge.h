@@ -10,7 +10,8 @@ public:
     Edge(size_t fNode, size_t sNode);
     ~Edge() = default;
 
-    Edge &get();
+    size_t getFNodeNum();
+    size_t getSNodeNum();
 
 private:
     size_t firstNode, secondNode;

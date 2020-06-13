@@ -7,22 +7,20 @@ Camera::Camera(double xPos, double yPos, double zPos, double xNor, double yNor, 
     : xPosition(xPos), yPosition(yPos), zPosition(zPos), xNormal(xNor), yNormal(yNor), zNormal(zNor)
 {}
 
-DotXY Camera::getProjection(Dot &dot, std::shared_ptr<CameraBase> camera)
+DotXY Camera::getProjection(const Dot &dot) const
 {
-    Camera *cam = dynamic_cast<Camera *>(camera.get());
-    double length = cam->xNormal * cam->xNormal + cam->yNormal * cam->yNormal
-                    + cam->zNormal * cam->zNormal;
-    double projection = cam->xNormal * cam->xNormal + cam->yNormal * cam->yNormal;
+    double length = xNormal * xNormal + yNormal * yNormal + zNormal * zNormal;
+    double projection = xNormal * xNormal + yNormal * yNormal;
 
-    dot.move(-cam->xNormal, -cam->yNormal, -cam->zNormal);
+    dot.move(-xNormal, -yNormal, -zNormal);
 
-    if (std::fabs(cam->xNormal) > std::numeric_limits<double>::epsilon()) {
-        double zAngle = std::acos(sqrt(cam->xNormal * cam->xNormal) / sqrt(projection));
+    if (std::fabs(xNormal) > std::numeric_limits<double>::epsilon()) {
+        double zAngle = std::acos(sqrt(xNormal * xNormal) / sqrt(projection));
         dot.rotate(zAngle, Z);
     }
 
-    if (std::fabs(cam->yNormal) > std::numeric_limits<double>::epsilon()) {
-        double yAngle = std::acos(sqrt(length - cam->zNormal * cam->zNormal) / sqrt(length));
+    if (std::fabs(yNormal) > std::numeric_limits<double>::epsilon()) {
+        double yAngle = std::acos(sqrt(length - zNormal * zNormal) / sqrt(length));
         dot.rotate(yAngle, Y);
     }
 

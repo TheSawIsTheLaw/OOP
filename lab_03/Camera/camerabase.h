@@ -14,7 +14,7 @@ public:
     virtual void rotation(double angle, axis axRot) = 0;
     virtual void setCurrentPosition(double xPosition, double yPosition, double zPosition) = 0;
     virtual void setCurrentNormal(double ax, double ay, double az) = 0;
-    virtual DotXY getProjection(Dot &dot, std::shared_ptr<CameraBase> camera);
+    virtual DotXY getProjection(const Dot &dot) const;
 };
 
 #endif // CAMERABASE_H
