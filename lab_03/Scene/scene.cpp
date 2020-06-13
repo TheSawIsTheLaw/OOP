@@ -21,7 +21,7 @@ void Scene::delComponent(ComponentIterator iter, ComponentName name)
         components[currentScene]->del(iter);
 }
 
-bool Scene::isFull(size_t index)
+bool Scene::isFull(int index)
 {
     bool hasCam = false;
     bool hasMod = false;
@@ -35,4 +35,44 @@ bool Scene::isFull(size_t index)
     }
 
     return hasCam && hasMod;
+}
+
+ComponentIterator Scene::getIter(int index, ComponentName name)
+{
+    if (currentScene < 0 || currentScene >= static_cast<int>(components.size())) {
+        time_t curTime = time(NULL);
+        throw InvalidCurrentSceneNum(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+    }
+
+    if (name == SCENE)
+        return components.begin() + currentScene;
+
+    Composite &composite = dynamic_cast<Composite &>(*components[currentScene]);
+
+    int i = -1;
+    auto iter = composite.begin();
+    while (iter != composite.end() && i != index) {
+        if ((*iter)->isVisible())
+            i++;
+        if (index == i)
+            return iter;
+        iter++;
+    }
+    time_t curTime = time(NULL);
+    throw InvalidComponentIndex(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+}
+
+shared_ptr<Component> Scene::getComponent(int index, ComponentName name)
+{
+    ComponentIterator iter = getIter(index, name);
+    return *iter;
+}
+
+int Scene::setScene(int index)
+{
+    if (index >= 0)
+        currentScene = index;
+    else
+        currentScene = 0;
+    return currentScene;
 }

@@ -136,4 +136,26 @@ public:
         : SceneException(fileName, className, currentLine, errorTime, information){};
 };
 
+class InvalidComponentIndex : public SceneException
+{
+public:
+    InvalidComponentIndex(std::string fileName,
+                          std::string className,
+                          int currentLine,
+                          const char *errorTime,
+                          std::string information = "Invalid component index")
+        : SceneException(fileName, className, currentLine, errorTime, information){};
+};
+
+class InvalidCurrentSceneNum : public SceneException
+{
+public:
+    InvalidCurrentSceneNum(std::string fileName,
+                           std::string className,
+                           int currentLine,
+                           const char *errorTime,
+                           std::string information = "Invalid current scene number")
+        : SceneException(fileName, className, currentLine, errorTime, information){};
+};
+
 #endif // EXCEPTIONS_H

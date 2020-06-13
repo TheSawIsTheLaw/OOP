@@ -11,17 +11,17 @@
 class Scene
 {
 public:
-    ComponentIterator getIter(size_t index, ComponentName name);
+    ComponentIterator getIter(int index, ComponentName name);
     void addComponent(shared_ptr<Component> component, ComponentName name);
     void delComponent(ComponentIterator iter, ComponentName name);
-    shared_ptr<Component> getComponent(size_t index, ComponentName name);
-    void setScene(size_t index);
+    shared_ptr<Component> getComponent(int index, ComponentName name);
+    int setScene(int index);
 
 private:
     Vector<Component> components;
-    size_t currentScene = 0;
+    int currentScene = -1;
 
-    bool isFull(size_t index);
+    bool isFull(int index);
 };
 
 #endif // SCENE_H
