@@ -52,6 +52,4 @@ protected:
     std::string errorInformation;
 };
 
-#include "exceptionbase.hpp"
-
 #endif // EXCEPTIONBASE_H

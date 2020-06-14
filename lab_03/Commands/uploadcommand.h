@@ -12,7 +12,7 @@ public:
 
     ~UploadCommand() = default;
 
-    char fileName[FILE_NAME_LEN] = {0};
+    char fileName[FILE_NAME_LEN] = {0}; // Убирай и сделай get и set
 
 private:
 };

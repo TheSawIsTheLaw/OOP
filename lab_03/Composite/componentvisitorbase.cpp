@@ -1,6 +1,6 @@
-#include "componentvisitorbase.h"
 #include "../Camera/camera.h"
 #include "../Model/carcassmodel.h"
+#include "component.h"
 
 RotateVisitor::RotateVisitor(double ang, axis axi) : angle(ang), ax(axi) {}
 
@@ -14,7 +14,7 @@ DrawVisitor::DrawVisitor(shared_ptr<DrawerBase> draw, shared_ptr<CameraBase> cam
     : drawer(draw), camera(cam)
 {}
 
-void ScaleVisitor::visit(Composite &composite) const
+void ScaleVisitor::visit(Composite &composite)
 {
     for (auto &component : composite) {
         if (component->isComposite())
@@ -26,7 +26,7 @@ void ScaleVisitor::visit(Composite &composite) const
     }
 }
 
-void MoveVisitor::visit(Composite &composite) const
+void MoveVisitor::visit(Composite &composite)
 {
     for (auto &component : composite) {
         if (component->isComposite())
@@ -38,7 +38,7 @@ void MoveVisitor::visit(Composite &composite) const
     }
 }
 
-void RotateVisitor::visit(Composite &composite) const
+void RotateVisitor::visit(Composite &composite)
 {
     for (auto &component : composite) {
         if (component->isComposite())
@@ -50,7 +50,7 @@ void RotateVisitor::visit(Composite &composite) const
     }
 }
 
-void ScaleVisitor::visit(ModelComponent &component) const
+void ScaleVisitor::visit(ModelComponent &component)
 {
     CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
     reformTo->scale(coefficient);
@@ -58,7 +58,7 @@ void ScaleVisitor::visit(ModelComponent &component) const
     component.setModel(ret);
 }
 
-void MoveVisitor::visit(ModelComponent &component) const
+void MoveVisitor::visit(ModelComponent &component)
 {
     CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
     reformTo->move(xDelta, yDelta, zDelta);
@@ -66,7 +66,7 @@ void MoveVisitor::visit(ModelComponent &component) const
     component.setModel(ret);
 }
 
-void MoveVisitor::visit(CameraComponent &component) const
+void MoveVisitor::visit(CameraComponent &component)
 {
     Camera *reformTo = dynamic_cast<Camera *>(component.getCamera().get());
     reformTo->movement(xDelta, yDelta, zDelta);
@@ -74,7 +74,7 @@ void MoveVisitor::visit(CameraComponent &component) const
     component.setCamera(ret);
 }
 
-void RotateVisitor::visit(ModelComponent &component) const
+void RotateVisitor::visit(ModelComponent &component)
 {
     CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
     reformTo->rotate(angle, ax);
@@ -82,7 +82,7 @@ void RotateVisitor::visit(ModelComponent &component) const
     component.setModel(ret);
 }
 
-void RotateVisitor::visit(CameraComponent &component) const
+void RotateVisitor::visit(CameraComponent &component)
 {
     Camera *reformTo = dynamic_cast<Camera *>(component.getCamera().get());
     reformTo->rotation(angle, ax);
@@ -90,7 +90,7 @@ void RotateVisitor::visit(CameraComponent &component) const
     component.setCamera(ret);
 }
 
-void DrawVisitor::visit(Composite &composite) const
+void DrawVisitor::visit(Composite &composite)
 {
     for (auto &component : composite) {
         if (component->isComposite())
@@ -102,14 +102,14 @@ void DrawVisitor::visit(Composite &composite) const
     }
 }
 
-void DrawVisitor::visit(CameraComponent &) const {}
+void DrawVisitor::visit(CameraComponent &) {}
 
-void DrawVisitor::visit(ModelComponent &model) const
+void DrawVisitor::visit(ModelComponent &model)
 {
     shared_ptr<Model> mod = model.getModel();
     CarcassModel *modelToDraw = dynamic_cast<CarcassModel *>(mod.get());
-    const auto &edges = modelToDraw->getEdges();
-    const auto &dots = modelToDraw->getDots();
+    auto &edges = modelToDraw->getEdges();
+    auto &dots = modelToDraw->getDots();
     for (size_t i = 0; i < edges.size(); i++) {
         Edge curEdge = edges[i];
         drawer->drawLine(camera->getProjection(dots[curEdge.getFNodeNum()]),

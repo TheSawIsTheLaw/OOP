@@ -1,8 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <vector>
-
 #include "../Composite/component.h"
 #include "ComponentName.h"
 
@@ -16,7 +14,7 @@ public:
     int setScene(int index);
 
 private:
-    Vector<Component> components;
+    Vector<std::shared_ptr<Component>> components;
     int currentScene = -1;
 
     bool isFull(int index);

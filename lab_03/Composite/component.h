@@ -1,21 +1,20 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "../Camera/camerabase.h"
+#include "../Camera/camera.h"
 #include "../Model/model.h"
-#include "../Vector/Vector.h"
 #include "componentvisitorbase.h"
 
 class ComponentVisitorBase;
 class Component;
 
-using ComponentIterator = VecIterator<shared_ptr<Component>>;
+using ComponentIterator = VecIterator<std::shared_ptr<Component>>;
 
-class Component;
+class Component
 {
 public:
-    virtual void accept(const ComponentVisitorBase &) = 0;
-    virtual bool add(shared_ptr<Component>);
+    virtual void accept(ComponentVisitorBase &) = 0;
+    virtual bool add(std::shared_ptr<Component>);
     virtual bool del(ComponentIterator &);
     virtual bool isComposite() const noexcept = 0;
 
@@ -30,9 +29,9 @@ class Composite : public Component
 public:
     Composite() = default;
     Composite(const Composite &) = default;
-    Composite(Vector<shared_ptr<Component>> components);
-    Composite &operator=(Vector<shared_ptr<Component>> components);
-    virtual void accept(const ComponentVisitorBase &) override;
+    Composite(Vector<std::shared_ptr<Component>> components);
+    Composite &operator=(Vector<std::shared_ptr<Component>> components);
+    virtual void accept(ComponentVisitorBase &) override;
     virtual bool isComposite() const noexcept override;
     virtual bool add(shared_ptr<Component> element) override;
     virtual bool del(ComponentIterator &it) override;
@@ -40,41 +39,41 @@ public:
     virtual ComponentIterator end() override;
 
 private:
-    Vector<shared_ptr<Component>> components;
+    Vector<std::shared_ptr<Component>> components;
 };
 
 class ModelComponent : public Component
 {
-private:
-    shared_ptr<Model> model;
-
 public:
     ModelComponent() = delete;
     ModelComponent(const ModelComponent &) = delete;
-    ModelComponent(shared_ptr<Model> model);
+    ModelComponent(std::shared_ptr<Model> model);
     ModelComponent &operator=(const ModelComponent &) = default;
     virtual bool isVisible() const noexcept override;
-    virtual void accept(const ComponentVisitorBase &) override;
+    virtual void accept(ComponentVisitorBase &) override;
 
-    shared_ptr<Model> getModel();
-    void setModel(const shared_ptr<Model>);
+    std::shared_ptr<Model> getModel();
+    void setModel(const std::shared_ptr<Model>);
+
+private:
+    std::shared_ptr<Model> model;
 };
 
 class CameraComponent : public Component
 {
-private:
-    shared_ptr<CameraBase> camera;
-
 public:
     CameraComponent() = delete;
     CameraComponent(const CameraComponent &) = delete;
-    CameraComponent(shared_ptr<CameraBase> cam);
+    CameraComponent(std::shared_ptr<CameraBase> cam);
     CameraComponent &operator=(const CameraComponent &) = default;
     virtual bool isVisible() const noexcept override;
-    virtual void accept(const ComponentVisitorBase &) override;
+    virtual void accept(ComponentVisitorBase &) override;
 
-    shared_ptr<CameraBase> getCamera();
+    std::shared_ptr<CameraBase> getCamera();
     void setCamera(const shared_ptr<CameraBase>);
+
+private:
+    std::shared_ptr<CameraBase> camera;
 };
 
 #endif // COMPONENT_H

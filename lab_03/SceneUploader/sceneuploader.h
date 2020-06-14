@@ -10,7 +10,7 @@ class SceneUploader
 {
 public:
     SceneUploader();
-    SceneUploader(char *name);
+    SceneUploader(const char name[]);
 
     ~SceneUploader() = default;
 

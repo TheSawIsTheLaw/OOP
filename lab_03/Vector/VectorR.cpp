@@ -1,7 +1,6 @@
 #ifndef VECTORR_H
 #define VECTORR_H
 
-#include "../Exceptions/exceptions.h"
 #include "Vector.h"
 #include "time.h"
 
@@ -13,7 +12,7 @@ void Vector<T>::_allocateMemory(size_t size)
         tmp.reset(new T[size]);
     } catch (std::bad_alloc &) {
         time_t curTime = time(NULL);
-        throw MemoryException(__FILE__, tyoeid(*this).name(), __LINE__, ctime(&curTime));
+        throw MemoryException(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }
 
     for (size_t i = 0; i < std::min(size, _size); i++)
@@ -53,7 +52,7 @@ T &Vector<T>::operator[](size_t index)
 {
     if (index > _size) {
         time_t curTime = time(NULL);
-        throw OutOfRangeException(__FILE__, tyoeid(*this).name(), __LINE__, ctime(&curTime));
+        throw OutOfRangeException(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }
 
     return _data[index];
@@ -64,7 +63,7 @@ const T &Vector<T>::operator[](size_t index) const
 {
     if (index > _size) {
         time_t curTime = time(NULL);
-        throw OutOfRangeException(__FILE__, tyoeid(*this).name(), __LINE__, ctime(&curTime));
+        throw OutOfRangeException(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }
     return _data[index];
 };

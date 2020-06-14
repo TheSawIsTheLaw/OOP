@@ -4,7 +4,7 @@
 void Scene::addComponent(shared_ptr<Component> component, ComponentName name)
 {
     if (name == SCENE && component->isComposite())
-        components.push_back(component);
+        components.pushBack(component);
     else if (!component->isComposite())
         components[currentScene]->add(component);
     else {
@@ -28,7 +28,7 @@ bool Scene::isFull(int index)
     auto curScene = components[index];
 
     for (auto iter = curScene->begin(); iter != curScene->end() && !(hasCam && hasMod); iter++) {
-        if ((*iter).isVisible())
+        if ((*iter)->isVisible())
             hasMod = true;
         else if (!(*iter)->isComposite())
             hasCam = true;

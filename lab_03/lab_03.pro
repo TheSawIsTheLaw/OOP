@@ -23,6 +23,7 @@ SOURCES += \
     Composite/componentvisitorbase.cpp \
     Drawer/drawer.cpp \
     Drawer/drawingfactorybase.cpp \
+    Exceptions/exceptionbase.cpp \
     Managers/drawmanager.cpp \
     Managers/managerbase.cpp \
     Managers/scenemanager.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
     SceneUploader/txtscenebuilder.cpp \
+    Vector/VectorR.cpp \
     facade.cpp \
     main.cpp \
     mainwindow.cpp
@@ -53,7 +55,6 @@ HEADERS += \
     Drawer/drawer.h \
     Drawer/drawingfactorybase.h \
     Exceptions/exceptionbase.h \
-    Exceptions/exceptionbase.hpp \
     Exceptions/exceptions.h \
     Managers/drawmanager.h \
     Managers/managerbase.h \

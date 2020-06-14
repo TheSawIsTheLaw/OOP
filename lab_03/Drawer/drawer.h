@@ -3,7 +3,6 @@
 
 #include "../Camera/dotxy.h"
 #include "QGraphicsScene"
-#include "mainwindow.h"
 
 class DrawerBase
 {

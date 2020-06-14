@@ -6,7 +6,7 @@
 
 SceneUploader::SceneUploader() {}
 
-SceneUploader::SceneUploader(char name[FILE_NAME_LEN])
+SceneUploader::SceneUploader(const char name[FILE_NAME_LEN])
 {
     if (!name) {
         // Exception

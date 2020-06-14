@@ -3,7 +3,6 @@
 
 #include "../Exceptions/exceptions.h"
 #include "BaseVector.h"
-#include <cstddef>
 #include <memory>
 
 template<typename T>
@@ -21,7 +20,7 @@ class ConstIterator;
 template<typename Type>
 class Vector : public BaseVector
 {
-    shared_ptr<Type[]> _data;
+    std::shared_ptr<Type[]> _data;
     void _allocateMemory(size_t size);
 
 public:
@@ -43,13 +42,13 @@ public:
 template<typename T>
 class VecIterator : public std::iterator<std::random_access_iterator_tag, T>
 {
-    weak_ptr<T[]> _data;
+    std::weak_ptr<T[]> _data;
     size_t _size = 0;
     size_t _index = 0;
 
 public:
     VecIterator();
-    VecIterator(shared_ptr<T[]> data, size_t size, size_t index = 0);
+    VecIterator(std::shared_ptr<T[]> data, size_t size, size_t index = 0);
     VecIterator(const VecIterator<T> &) = default;
     VecIterator(VecIterator<T> &&) = default;
     VecIterator<T> &operator=(VecIterator<T> &) = default;
@@ -81,7 +80,7 @@ public:
     ConstIterator() = delete;
     ConstIterator(const ConstIterator<T> &) = default;
     ConstIterator(ConstIterator<T> &&) = default;
-    ConstIterator(shared_ptr<T[]> data, size_t size, size_t index = 0);
+    ConstIterator(std::shared_ptr<T[]> data, size_t size, size_t index = 0);
     VecIterator<T> &operator=(ConstIterator<T> &) = default;
 
     bool operator!=(const ConstIterator<T> &vec) const { return _index == vec._index; }

@@ -8,14 +8,12 @@
 class UploadManager : public ManagerBase
 {
 public:
-    UploadManager(const UploadCommand &);
-
-    virtual ~UploadManager() = default;
+    UploadManager();
+    UploadManager(UploadCommand &);
 
     void setFileName(const UploadCommand &);
 
 private:
-    SceneUploader &sceneUpl;
     char fileName[FILE_NAME_LEN];
 };
 

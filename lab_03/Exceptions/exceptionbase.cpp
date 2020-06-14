@@ -1,6 +1,3 @@
-#ifndef EXCEPTIONBASE_HPP
-#define EXCEPTIONBASE_HPP
-
 #include "exceptionbase.h"
 
 VectorException::VectorException(std::string fileName,
@@ -50,5 +47,3 @@ const char *SceneException::what() const noexcept
 {
     return errorInformation.c_str();
 }
-
-#endif // EXCEPTIONBASE_HPP

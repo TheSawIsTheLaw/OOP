@@ -30,7 +30,7 @@ ComponentIterator Component::end()
     return ComponentIterator();
 }
 
-Composite::Composite(Vector<shared_ptr<Component>> comps) : components(comps) {}
+Composite::Composite(Vector<std::shared_ptr<Component>> comps) : components(comps) {}
 
 Composite &Composite::operator=(Vector<shared_ptr<Component>> comps)
 {
@@ -58,7 +58,7 @@ bool Composite::del(ComponentIterator &iter)
     return true;
 }
 
-void Composite::accept(const ComponentVisitorBase &visitor)
+void Composite::accept(ComponentVisitorBase &visitor)
 {
     visitor.visit(*this);
 }
@@ -85,7 +85,7 @@ bool ModelComponent::isVisible() const noexcept
     return true;
 }
 
-void ModelComponent::accept(const ComponentVisitorBase &visitor)
+void ModelComponent::accept(ComponentVisitorBase &visitor)
 {
     visitor.visit(*this);
 }
@@ -107,7 +107,7 @@ bool CameraComponent::isVisible() const noexcept
     return false;
 }
 
-void CameraComponent::accept(const ComponentVisitorBase &visitor)
+void CameraComponent::accept(ComponentVisitorBase &visitor)
 {
     visitor.visit(*this);
 }
