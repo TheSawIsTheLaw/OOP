@@ -3,17 +3,12 @@
 
 #include "../Commands/uploadcommand.h"
 #include "managerbase.h"
+#include <memory>
 
 class UploadManager : public ManagerBase
 {
 public:
-    UploadManager();
-    UploadManager(UploadCommand &);
-
-    void setFileName(const UploadCommand &);
-
-private:
-    char fileName[FILE_NAME_LEN];
+    std::shared_ptr<Component> uploadScene(const UploadCommand &command);
 };
 
 #endif // UPLOADMANAGER_H

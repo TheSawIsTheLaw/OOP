@@ -4,15 +4,7 @@
 
 #include "string.h"
 
-UploadManager::UploadManager() {}
-
-UploadManager::UploadManager(UploadCommand &command)
+std::shared_ptr<Component> UploadManager::uploadScene(const UploadCommand &command)
 {
-    strcpy(fileName, command.fileName);
-}
-
-void UploadManager::setFileName(const UploadCommand &command)
-{
-    strcpy(fileName, command.fileName);
-    qDebug("%s", fileName);
+    // Сюда билдеров и ААААААААААААААААААААА
 }

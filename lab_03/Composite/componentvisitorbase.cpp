@@ -90,7 +90,7 @@ void RotateVisitor::visit(CameraComponent &component)
     component.setCamera(ret);
 }
 
-void ScaleVisitor::visit(CameraComponent &) {}
+void ScaleVisitor::visit(CameraComponent&) {}
 
 void DrawVisitor::visit(Composite &composite)
 {

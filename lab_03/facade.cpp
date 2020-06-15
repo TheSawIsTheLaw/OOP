@@ -15,5 +15,5 @@ void execute(const Command &)
 template<>
 void Facade::execute(const UploadCommand &command)
 {
-    UploadMan.setFileName(command);
+    UploadMan.uploadScene(command);
 }
