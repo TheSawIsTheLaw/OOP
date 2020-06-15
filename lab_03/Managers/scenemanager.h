@@ -7,13 +7,13 @@
 class SceneManager : public ManagerBase
 {
 public:
-    SceneManager();
-
-    virtual ~SceneManager() = default;
+    void addComponent(std::shared_ptr<Component> component, ComponentName name);
+    void delComponent(ComponentName name);
+    std::shared_ptr<Component> getComponent(ComponentName name);
 
 private:
     Scene scene;
-    size_t currentCam = 0, currentModel = 0;
+    size_t currentCam = 0, currentModel = 0, currentScene = 0;
 };
 
 #endif // SCENEMANAGER_H
