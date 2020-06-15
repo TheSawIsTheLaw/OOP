@@ -9,7 +9,7 @@ protected:
     size_t _size = 0;
 
 public:
-    virtual bool isEmpty() const;
+    virtual bool isEmpty() const = 0;
 };
 
 #endif // BASEVECTOR_HPP
