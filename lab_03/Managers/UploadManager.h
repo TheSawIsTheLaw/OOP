@@ -2,7 +2,6 @@
 #define UPLOADMANAGER_H
 
 #include "../Commands/uploadcommand.h"
-#include "../SceneUploader/sceneuploader.h"
 #include "managerbase.h"
 
 class UploadManager : public ManagerBase

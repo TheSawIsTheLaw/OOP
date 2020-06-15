@@ -1,7 +1,6 @@
 #ifndef TRANSFORMMANAGER_H
 #define TRANSFORMMANAGER_H
 
-#include "../Composite/component.h"
 #include "managerbase.h"
 #include <memory>
 
