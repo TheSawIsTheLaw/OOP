@@ -1,5 +1,4 @@
 #include "camera.h"
-#include "../Model/dot.h"
 #include <cmath>
 #include <limits>
 

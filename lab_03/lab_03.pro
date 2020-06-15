@@ -39,7 +39,6 @@ SOURCES += \
     SceneUploader/scenebuilderbase.cpp \
     SceneUploader/sceneuploader.cpp \
     SceneUploader/txtscenebuilder.cpp \
-    Vector/VectorR.cpp \
     facade.cpp \
     main.cpp \
     mainwindow.cpp
@@ -75,10 +74,10 @@ HEADERS += \
     SceneUploader/scenebuilderbase.h \
     SceneUploader/sceneuploader.h \
     SceneUploader/txtscenebuilder.h \
-    Vector/BaseVector.h \
     Vector/Iterator.hpp \
-    Vector/Vector.h \
+    Vector/Vector.hpp \
     Vector/VectorR.hpp \
+    Vector/baseVector.hpp \
     defines.h \
     facade.h \
     mainwindow.h

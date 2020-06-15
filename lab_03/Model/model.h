@@ -4,8 +4,6 @@
 #include "dot.h"
 #include "edge.h"
 
-#include "Vector/Vector.h"
-
 class Model
 {
 public:

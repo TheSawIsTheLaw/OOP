@@ -1,7 +1,7 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
 
-#include "Vector.h"
+#include "Vector.hpp"
 #include "time.h"
 
 template<typename T>
@@ -44,11 +44,11 @@ T &VecIterator<T>::operator*()
 {
     if (_index >= _size) {
         time_t curTime = time(NULL);
-        throw OutOfRangeIterException(__FILE__, tyoeid(*this).name(), __LINE__, ctime(&curTime));
+        throw OutOfRangeIterException(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }
     if (_data.expired()) {
         time_t curTime = time(NULL);
-        throw InvalidIterator(__FILE__, tyoeid(*this).name(), __LINE__, ctime(&curTime));
+        throw InvalidIterator(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }
     return _data.lock()[_index];
 }

@@ -10,7 +10,7 @@ bool Component::isComposite() const noexcept
     return false;
 }
 
-bool Component::add(shared_ptr<Component>)
+bool Component::add(std::shared_ptr<Component>)
 {
     return false;
 }
@@ -41,7 +41,7 @@ Composite &Composite::operator=(Vector<shared_ptr<Component>> comps)
 bool Composite::add(shared_ptr<Component> comp)
 {
     try {
-        components.pushBack(comp);
+        components.push_back(comp);
     } catch (std::exception &error) {
         return false;
     }
@@ -110,4 +110,14 @@ bool CameraComponent::isVisible() const noexcept
 void CameraComponent::accept(ComponentVisitorBase &visitor)
 {
     visitor.visit(*this);
+}
+
+std::shared_ptr<CameraBase> CameraComponent::getCamera()
+{
+    return camera;
+}
+
+void CameraComponent::setCamera(const shared_ptr<CameraBase> cam)
+{
+    camera = cam;
 }

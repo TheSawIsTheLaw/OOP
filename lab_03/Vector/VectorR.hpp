@@ -1,8 +1,4 @@
-#ifndef VECTORR_H
-#define VECTORR_H
-
-#include "Vector.h"
-#include "time.h"
+#include "Vector.hpp"
 
 template<typename T>
 void Vector<T>::_allocateMemory(size_t size)
@@ -33,7 +29,7 @@ Vector<T>::Vector(size_t size)
 template<typename T>
 Vector<T> &Vector<T>::operator=(const Vector &vec)
 {
-    _allocateMemory(vec.size());
+    _allocateMemory(vec._size);
     for (size_t i = 0; i < _size; ++i)
         _data[i] = vec[i];
     return *this;
@@ -42,8 +38,8 @@ Vector<T> &Vector<T>::operator=(const Vector &vec)
 template<typename T>
 Vector<T>::Vector(const Vector &vec)
 {
-    _allocateMemory(vec.size());
-    for (size_t i = 0; i < vec.size(); ++i)
+    _allocateMemory(vec._size);
+    for (size_t i = 0; i < vec._size; ++i)
         _data[i] = vec[i];
 };
 
@@ -54,7 +50,6 @@ T &Vector<T>::operator[](size_t index)
         time_t curTime = time(NULL);
         throw OutOfRangeException(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }
-
     return _data[index];
 };
 
@@ -69,7 +64,7 @@ const T &Vector<T>::operator[](size_t index) const
 };
 
 template<typename T>
-void Vector<T>::pushBack(T elem)
+void Vector<T>::push_back(T elem)
 {
     _allocateMemory(_size + 1);
     _data[_size - 1] = elem;
@@ -107,5 +102,3 @@ ConstIterator<T> Vector<T>::end() const
 {
     return ConstIterator<T>(_data, _size, _size);
 }
-
-#endif // VECTORR_H

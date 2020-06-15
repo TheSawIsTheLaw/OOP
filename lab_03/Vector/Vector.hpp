@@ -1,8 +1,8 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
-#include "../Exceptions/exceptions.h"
-#include "BaseVector.h"
+#include "Exceptions/exceptions.h"
+#include "baseVector.hpp"
+#include <cstddef>
 #include <memory>
 
 template<typename T>
@@ -20,7 +20,7 @@ class ConstIterator;
 template<typename Type>
 class Vector : public BaseVector
 {
-    std::shared_ptr<Type[]> _data;
+    shared_ptr<Type[]> _data;
     void _allocateMemory(size_t size);
 
 public:
@@ -28,10 +28,11 @@ public:
     Vector(size_t size);
     Vector(const Vector &);
     Vector<Type> &operator=(const Vector &);
-    void pushBack(Type elem);
+    void push_back(Type elem);
     void erase(VecIterator<Type>);
     Type &operator[](size_t index);
     const Type &operator[](size_t index) const;
+    size_t size() { return _size; }
 
     VecIterator<Type> begin();
     ConstIterator<Type> begin() const;
@@ -42,13 +43,13 @@ public:
 template<typename T>
 class VecIterator : public std::iterator<std::random_access_iterator_tag, T>
 {
-    std::weak_ptr<T[]> _data;
+    weak_ptr<T[]> _data;
     size_t _size = 0;
     size_t _index = 0;
 
 public:
     VecIterator();
-    VecIterator(std::shared_ptr<T[]> data, size_t size, size_t index = 0);
+    VecIterator(shared_ptr<T[]> data, size_t size, size_t index = 0);
     VecIterator(const VecIterator<T> &) = default;
     VecIterator(VecIterator<T> &&) = default;
     VecIterator<T> &operator=(VecIterator<T> &) = default;
@@ -80,7 +81,7 @@ public:
     ConstIterator() = delete;
     ConstIterator(const ConstIterator<T> &) = default;
     ConstIterator(ConstIterator<T> &&) = default;
-    ConstIterator(std::shared_ptr<T[]> data, size_t size, size_t index = 0);
+    ConstIterator(shared_ptr<T[]> data, size_t size, size_t index = 0);
     VecIterator<T> &operator=(ConstIterator<T> &) = default;
 
     bool operator!=(const ConstIterator<T> &vec) const { return _index == vec._index; }
@@ -97,4 +98,5 @@ public:
     ConstIterator<T> operator-(size_t diff) const;
 };
 
-#endif // VECTOR_H
+#include "Iterator.hpp"
+#include "VectorR.hpp"

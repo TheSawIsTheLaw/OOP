@@ -1,7 +1,7 @@
 #ifndef CARCASSMODEL_H
 #define CARCASSMODEL_H
 
-#include "../Vector/Vector.h"
+#include "../Vector/Vector.hpp"
 #include "dot.h"
 #include "edge.h"
 #include "model.h"

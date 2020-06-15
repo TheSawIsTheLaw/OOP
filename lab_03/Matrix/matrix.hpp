@@ -1,8 +1,6 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include <cstddef>
-#include <iostream>
 #include <memory>
 
 template<typename T>
@@ -40,5 +38,7 @@ public:
     T &at(size_t pos);
     const T &at(size_t pos) const;
 };
+
+#include "matrixR.hpp"
 
 #endif

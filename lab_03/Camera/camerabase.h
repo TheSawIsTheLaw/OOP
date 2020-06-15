@@ -5,8 +5,6 @@
 #include "defines.h"
 #include "dotxy.h"
 
-#include <memory>
-
 class CameraBase
 {
 public:

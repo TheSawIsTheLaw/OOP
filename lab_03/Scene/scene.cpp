@@ -4,7 +4,7 @@
 void Scene::addComponent(shared_ptr<Component> component, ComponentName name)
 {
     if (name == SCENE && component->isComposite())
-        components.pushBack(component);
+        components.push_back(component);
     else if (!component->isComposite())
         components[currentScene]->add(component);
     else {

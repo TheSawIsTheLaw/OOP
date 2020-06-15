@@ -1,8 +1,8 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "../Camera/camera.h"
 #include "../Model/model.h"
+#include "Vector/Vector.hpp"
 #include "componentvisitorbase.h"
 
 class ComponentVisitorBase;
