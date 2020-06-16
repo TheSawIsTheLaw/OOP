@@ -8,7 +8,7 @@
 class UploadManager : public ManagerBase
 {
 public:
-    std::shared_ptr<Component> uploadScene(const UploadCommand &command);
+    std::shared_ptr<Component> uploadScene(UploadCommand &command);
 };
 
 #endif // UPLOADMANAGER_H

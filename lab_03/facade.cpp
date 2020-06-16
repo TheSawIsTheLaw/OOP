@@ -9,12 +9,12 @@ Facade::Facade()
     this->TransformMan = TransformManager();
 }
 
-template<typename Command>
-void execute(const Command &)
+template <typename Command>
+void execute(Command &)
 {}
 
 template <>
-void Facade::execute(const DrawCommand &command)
+void Facade::execute(DrawCommand &command)
 {
     std::shared_ptr<Component> currentScene;
     std::shared_ptr<Component> currentCamera;
@@ -27,10 +27,19 @@ void Facade::execute(const DrawCommand &command)
     {
         return;
     }
+
+    shared_ptr<DrawerBase> drawer = command.getFactory()->createDrawer();
+    drawer->clear();
+    auto camera = dynamic_cast<CameraComponent *>(currentCamera.get())->getCamera();
+    DrawMan.drawScene(currentScene, camera, drawer);
 }
 
-template<>
-void Facade::execute(const UploadCommand &command)
+template <>
+void Facade::execute(UploadCommand &command)
 {
     SceneMan.addComponent(UploadMan.uploadScene(command), SCENE);
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    factoryPtr.reset(new QTDrawingFactory(new QGraphicsScene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    this->execute(comm);
 }

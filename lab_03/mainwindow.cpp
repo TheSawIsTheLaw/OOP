@@ -7,7 +7,9 @@
 #include "string.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     facade = Facade();
@@ -28,13 +30,15 @@ void MainWindow::on_pushButton_clicked()
     qDebug("Upload");
     QString qFileName = getFileWay(this, ".", "");
 
-    if (qFileName == "") {
+    if (qFileName == "")
+    {
         QMessageBox::critical(this, "Ошибка!", "Не был выбран файл.");
         return;
     }
 
     UploadCommand command(qUtf8Printable(qFileName));
-    if (command.fileName[0] == '\0') {
+    if (command.getFileName()[0] == '\0')
+    {
         QMessageBox::critical(this,
                               "Ошибка!",
                               "Размер пути к файлу превышает заданное "
