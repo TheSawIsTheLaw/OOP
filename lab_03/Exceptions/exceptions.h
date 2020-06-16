@@ -158,4 +158,15 @@ public:
         : SceneException(fileName, className, currentLine, errorTime, information){};
 };
 
+class BadFile : public SceneUploaderException
+{
+public:
+    BadFile(std::string fileName,
+            std::string className,
+            int currentLine,
+            const char *errorTime,
+            std::string information = "Invalid current scene number")
+        : SceneUploaderException(fileName, className, currentLine, errorTime, information){};
+};
+
 #endif // EXCEPTIONS_H

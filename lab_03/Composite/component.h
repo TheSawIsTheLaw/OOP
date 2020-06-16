@@ -21,7 +21,7 @@ public:
     virtual ComponentIterator begin();
     virtual ComponentIterator end();
 
-    virtual bool isVisible() const noexcept = 0;
+    virtual bool isVisible() const noexcept;
 };
 
 class Composite : public Component

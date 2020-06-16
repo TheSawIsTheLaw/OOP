@@ -1,6 +1,7 @@
 #ifndef SCENEUPLOADER_H
 #define SCENEUPLOADER_H
 
+#include "Composite/component.h"
 #include "defines.h"
 #include "scenebuilderbase.h"
 
@@ -9,12 +10,8 @@
 class SceneUploader
 {
 public:
-    SceneUploader();
-    SceneUploader(const char name[]);
-
-    ~SceneUploader() = default;
-
-    //    Composite getComponents();
+    explicit SceneUploader(std::shared_ptr<SceneBuilderBase> build, const char name[]);
+    std::shared_ptr<Component> getComponent();
 
 private:
     std::shared_ptr<SceneBuilderBase> builder;
