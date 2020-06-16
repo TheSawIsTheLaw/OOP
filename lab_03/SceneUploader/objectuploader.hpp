@@ -17,7 +17,7 @@ protected:
     bool isBui = false;
 };
 
-class ObjectUploader : public ObjectBuilderBase
+class ObjectUploader
 {
 public:
     ObjectUploader(std::shared_ptr<ObjectBuilderBase> bui);
