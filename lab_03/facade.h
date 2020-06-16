@@ -11,8 +11,6 @@ class Facade
 public:
     Facade();
 
-    ~Facade() = default;
-
     template<typename Command>
     void execute(const Command &);
 

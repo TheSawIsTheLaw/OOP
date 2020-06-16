@@ -27,6 +27,8 @@ void Facade::execute(const DrawCommand &command)
     {
         return;
     }
+    
+    shared_ptr<DrawerBase> drawer = command.factory
 }
 
 template<>
