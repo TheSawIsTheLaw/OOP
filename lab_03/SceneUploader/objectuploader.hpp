@@ -3,7 +3,7 @@
 
 #include "Camera/camera.h"
 #include "Composite/component.h"
-#include "Model/model.h"
+#include "Model/carcassmodel.h"
 
 class ObjectBuilderBase
 {
@@ -20,7 +20,7 @@ protected:
 class ObjectUploader : public ObjectBuilderBase
 {
 public:
-    ObjectUploader(std::shared_ptr<ObjectBuilderBase> builder);
+    ObjectUploader(std::shared_ptr<ObjectBuilderBase> bui);
     std::shared_ptr<Component> getObj(std::ifstream &input);
 
 private:
@@ -32,10 +32,10 @@ class CameraBuilder : public ObjectBuilderBase
 public:
     virtual void buildObject() override;
     virtual void buildData(std::ifstream &input) override;
-    virtual shared_ptr<Component> getObject() override;
+    virtual std::shared_ptr<Component> getObject() override;
 
 private:
-    shared_ptr<CameraBase> camera = nullptr;
+    std::shared_ptr<CameraBase> camera = nullptr;
 };
 
 class ModelBuilder : public ObjectBuilderBase
@@ -43,10 +43,10 @@ class ModelBuilder : public ObjectBuilderBase
 public:
     virtual void buildObject() override;
     virtual void buildData(std::ifstream &input) override;
-    virtual shared_ptr<Component> getObject() override;
+    virtual std::shared_ptr<Component> getObject() override;
 
 private:
-    shared_ptr<Model> model = nullptr;
+    std::shared_ptr<Model> model = nullptr;
     Vector<Dot> dots;
     Vector<Edge> edges;
     Vector<Dot> buildDots(std::ifstream &input);

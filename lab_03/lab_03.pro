@@ -32,6 +32,7 @@ SOURCES += \
     Model/carcassmodel.cpp \
     Model/dot.cpp \
     Model/edge.cpp \
+    Model/model.cpp \
     Scene/scene.cpp \
     SceneUploader/camerauploader.cpp \
     SceneUploader/modeluploader.cpp \

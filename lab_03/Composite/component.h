@@ -16,7 +16,7 @@ public:
     virtual void accept(ComponentVisitorBase &) = 0;
     virtual bool add(std::shared_ptr<Component>);
     virtual bool del(ComponentIterator &);
-    virtual bool isComposite() const noexcept = 0;
+    virtual bool isComposite() const noexcept;
 
     virtual ComponentIterator begin();
     virtual ComponentIterator end();

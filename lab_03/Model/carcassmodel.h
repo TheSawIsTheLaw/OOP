@@ -12,7 +12,7 @@ public:
     CarcassModel();
     CarcassModel(Vector<Dot> ds, Vector<Edge> es);
 
-    ~CarcassModel() = default;
+    ~CarcassModel();
 
     void rotate(double angle, axis ax);
     void scale(double coef);

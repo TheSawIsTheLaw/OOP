@@ -1,15 +1,10 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "dot.h"
-#include "edge.h"
-
 class Model
 {
 public:
-    Model() = default;
-
-    virtual ~Model() = default;
+    virtual ~Model() = 0;
 };
 
 #endif // MODEL_H

@@ -68,17 +68,49 @@ protected:
     std::string errorInformation;
 };
 
+class ObjectUploaderException : public std::exception
+{
+public:
+    ObjectUploaderException(std::string fileName,
+                            std::string className,
+                            int currentLine,
+                            const char *errorTime,
+                            std::string information);
+    virtual const char *what() const noexcept override;
+
+    virtual ~ObjectUploaderException() {}
+
+protected:
+    std::string errorInformation;
+};
+
 class CameraBuilderException : public std::exception
 {
 public:
     CameraBuilderException(std::string fileName,
-        std::string className,
-        int currentLine,
-        const char *errorTime,
-        std::string information);
+                           std::string className,
+                           int currentLine,
+                           const char *errorTime,
+                           std::string information);
     virtual const char *what() const noexcept override;
 
     virtual ~CameraBuilderException() {}
+
+protected:
+    std::string errorInformation;
+};
+
+class ModelBuilderException : public std::exception
+{
+public:
+    ModelBuilderException(std::string fileName,
+                          std::string className,
+                          int currentLine,
+                          const char *errorTime,
+                          std::string information);
+    virtual const char *what() const noexcept override;
+
+    virtual ~ModelBuilderException() {}
 
 protected:
     std::string errorInformation;

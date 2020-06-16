@@ -17,88 +17,108 @@ void CameraBuilder::buildData(std::ifstream &input)
     if (input >> x >> y >> z)
         camera->setCurrentPosition(x, y, z);
     else
-        throw AppInvalidArgument("Can't read camera data");
+    {
+        time_t curTime = time(NULL);
+        throw InvalidCamera(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+    }
 
     if (input >> x >> y >> z)
-        _camera->setNormal(x, y, z);
+        camera->setCurrentNormal(x, y, z);
     else
-        throw AppInvalidArgument("Can't read camera data");
-
-    _isBuilt = true;
+    {
+        time_t curTime = time(NULL);
+        throw InvalidCamera(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+    }
+    isBui = true;
 }
 
-shared_ptr<Component> MyCameraBuilder::getObject()
+shared_ptr<Component> CameraBuilder::getObject()
 {
-    shared_ptr<Component> component(new CameraComponent(_camera));
+    shared_ptr<Component> component(new CameraComponent(camera));
     return component;
 }
 
-void MyModelBuilder::buildObject()
+void ModelBuilder::buildObject()
 {
-    _model.reset(new FrameModel());
+    model.reset(new CarcassModel());
 }
 
-void MyModelBuilder::buildData(std::ifstream &input)
+void ModelBuilder::buildData(std::ifstream &input)
 {
-    FrameModel &model = dynamic_cast<FrameModel &>(*_model);
-    vector<Point> &pts = model.getPoints();
-    vector<Link> &links = model.getLinks();
-    pts = _buildPoints(input);
-    links = _buildLinks(input);
-    _isBuilt = true;
+    CarcassModel &mod = dynamic_cast<CarcassModel &>(*model);
+    Vector<Dot> &pts = mod.getDots();
+    Vector<Edge> &edges = mod.getEdges();
+    pts = buildDots(input);
+    edges = buildEdges(input);
+    isBui = true;
 }
 
-vector<Point> MyModelBuilder::_buildPoints(std::ifstream &input)
+Vector<Dot> ModelBuilder::buildDots(std::ifstream &input)
 {
     size_t n = 0;
     if (!(input >> n))
-        throw AppInvalidArgument("Can't read points amount");
-    vector<Point> tmp;
+    {
+        time_t curTime = time(NULL);
+        throw InvalidDotNum(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+    }
+    Vector<Dot> tmp;
 
     double x, y, z;
     for (size_t i = 0; i < n; ++i)
     {
         if (input >> x >> y >> z)
-            tmp.push_back(Point(x, y, z));
+            tmp.push_back(Dot(x, y, z));
         else
-            throw AppInvalidArgument("Bad data in file: can't build model's points");
+        {
+            time_t curTime = time(NULL);
+            throw InvalidModelData(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+        }
     }
 
     return tmp;
 }
 
-vector<Link> MyModelBuilder::_buildLinks(std::ifstream &input)
+Vector<Edge> ModelBuilder::buildEdges(std::ifstream &input)
 {
     size_t n = 0;
     if (!(input >> n))
-        throw AppInvalidArgument("Can't read links amount");
-    vector<Link> tmp;
+    {
+        time_t curTime = time(NULL);
+        throw InvalidDotNum(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+    }
+    Vector<Edge> tmp;
 
     size_t l1, l2;
     for (size_t i = 0; i < n; ++i)
     {
         if (input >> l1 >> l2)
-            tmp.push_back(Link(l1, l2));
+            tmp.push_back(Edge(l1, l2));
         else
-            throw AppInvalidArgument("Bad data in file: can't read link number");
+        {
+            time_t curTime = time(NULL);
+            throw InvalidModelData(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+        }
     }
     return tmp;
 }
 
-shared_ptr<Component> MyModelBuilder::getObject()
+std::shared_ptr<Component> ModelBuilder::getObject()
 {
-    return shared_ptr<Component>(new ModelComponent(_model));
+    return shared_ptr<Component>(new ModelComponent(model));
 }
 
-ObjectLoader::ObjectLoader(shared_ptr<BaseObjectBuilder> builder)
-    : _builder(builder) {};
+ObjectUploader::ObjectUploader(std::shared_ptr<ObjectBuilderBase> bui)
+    : builder(bui) {};
 
-shared_ptr<Component> ObjectLoader::getObject(std::ifstream &input)
+std::shared_ptr<Component> ObjectUploader::getObj(std::ifstream &input)
 {
-    _builder->buildObject();
-    _builder->buildData(input);
-    if (_builder->isBuilt())
-        return _builder->getObject();
+    builder->buildObject();
+    builder->buildData(input);
+    if (builder->isBuilt())
+        return builder->getObject();
     else
-        throw AppInvalidArgument("Failed to build object");
+    {
+        time_t curTime = time(NULL);
+        throw ObjectBuildFail(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+    }
 }

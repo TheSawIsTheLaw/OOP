@@ -3,6 +3,8 @@
 
 CarcassModel::CarcassModel() {}
 
+CarcassModel::~CarcassModel() {}
+
 CarcassModel::CarcassModel(Vector<Dot> ds, Vector<Edge> es) : dots(ds), edges(es) {}
 
 void CarcassModel::move(double dx, double dy, double dz)
