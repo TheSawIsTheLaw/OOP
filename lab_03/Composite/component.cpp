@@ -30,7 +30,10 @@ ComponentIterator Component::end()
     return ComponentIterator();
 }
 
-Composite::Composite(Vector<std::shared_ptr<Component>> comps) : components(comps) {}
+Composite::Composite(Vector<std::shared_ptr<Component>> comps)
+    : components(comps)
+{
+}
 
 Composite &Composite::operator=(Vector<shared_ptr<Component>> comps)
 {
@@ -40,9 +43,12 @@ Composite &Composite::operator=(Vector<shared_ptr<Component>> comps)
 
 bool Composite::add(shared_ptr<Component> comp)
 {
-    try {
+    try
+    {
         components.push_back(comp);
-    } catch (std::exception &error) {
+    }
+    catch (std::exception &error)
+    {
         return false;
     }
     return true;
@@ -50,9 +56,12 @@ bool Composite::add(shared_ptr<Component> comp)
 
 bool Composite::del(ComponentIterator &iter)
 {
-    try {
+    try
+    {
         components.erase(iter);
-    } catch (std::exception &error) {
+    }
+    catch (std::exception &error)
+    {
         return false;
     }
     return true;
@@ -78,7 +87,10 @@ ComponentIterator Composite::end()
     return components.end();
 }
 
-ModelComponent::ModelComponent(shared_ptr<Model> mod) : model(mod) {}
+ModelComponent::ModelComponent(shared_ptr<Model> mod)
+    : model(mod)
+{
+}
 
 bool ModelComponent::isVisible() const noexcept
 {
@@ -100,7 +112,10 @@ void ModelComponent::setModel(const shared_ptr<Model> mod)
     model = mod;
 }
 
-CameraComponent::CameraComponent(shared_ptr<CameraBase> cam) : camera(cam) {}
+CameraComponent::CameraComponent(shared_ptr<CameraBase> cam)
+    : camera(cam)
+{
+}
 
 bool CameraComponent::isVisible() const noexcept
 {

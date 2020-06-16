@@ -1,6 +1,7 @@
 #ifndef OBJECTLOADER_HPP
 #define OBJECTLOADER_HPP
 
+#include "Camera/camera.h"
 #include "Composite/component.h"
 #include "Model/model.h"
 
@@ -16,10 +17,10 @@ protected:
     bool isBui = false;
 };
 
-class ObjectLoader : public ObjectBuilderBase
+class ObjectUploader : public ObjectBuilderBase
 {
 public:
-    ObjectLoader(std::shared_ptr<ObjectBuilderBase> builder);
+    ObjectUploader(std::shared_ptr<ObjectBuilderBase> builder);
     std::shared_ptr<Component> getObj(std::ifstream &input);
 
 private:
@@ -34,7 +35,7 @@ public:
     virtual shared_ptr<Component> getObject() override;
 
 private:
-    shared_ptr<CameraBase> _camera = nullptr;
+    shared_ptr<CameraBase> camera = nullptr;
 };
 
 class ModelBuilder : public ObjectBuilderBase
@@ -45,7 +46,7 @@ public:
     virtual shared_ptr<Component> getObject() override;
 
 private:
-    shared_ptr<Model> _model = nullptr;
+    shared_ptr<Model> model = nullptr;
     Vector<Dot> dots;
     Vector<Edge> edges;
     Vector<Dot> buildDots(std::ifstream &input);

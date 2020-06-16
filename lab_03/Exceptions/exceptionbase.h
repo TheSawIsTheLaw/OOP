@@ -68,4 +68,20 @@ protected:
     std::string errorInformation;
 };
 
+class CameraBuilderException : public std::exception
+{
+public:
+    CameraBuilderException(std::string fileName,
+        std::string className,
+        int currentLine,
+        const char *errorTime,
+        std::string information);
+    virtual const char *what() const noexcept override;
+
+    virtual ~CameraBuilderException() {}
+
+protected:
+    std::string errorInformation;
+};
+
 #endif // EXCEPTIONBASE_H
