@@ -1,4 +1,4 @@
-#include "uploadcommand.h"
+#include "commands.h"
 
 #include <string.h>
 
@@ -36,3 +36,15 @@ void DrawCommand::setFactory(std::shared_ptr<DrawingFactoryBase> fac)
 {
     factory = fac;
 }
+
+void TransformCommand::setDX(double set) { dx = set; }
+
+double TransformCommand::getDX() { return dx; }
+
+void TransformCommand::setDY(double set) { dy = set; }
+
+double TransformCommand::getDY() { return dy; }
+
+void TransformCommand::setDZ(double set) { dz = set; }
+
+double TransformCommand::getDZ() { return dz; }

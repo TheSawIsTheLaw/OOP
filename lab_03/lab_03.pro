@@ -18,7 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Camera/camera.cpp \
     Commands/commandbase.cpp \
-    Commands/uploadcommand.cpp \
+    Commands/commands.cpp \
     Composite/component.cpp \
     Composite/componentvisitorbase.cpp \
     Drawer/drawer.cpp \
@@ -46,7 +46,7 @@ HEADERS += \
     Camera/camerabase.h \
     Camera/dotxy.h \
     Commands/commandbase.h \
-    Commands/uploadcommand.h \
+    Commands/commands.h \
     Composite/component.h \
     Composite/componentvisitorbase.h \
     Drawer/drawer.h \

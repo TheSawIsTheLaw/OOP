@@ -23,7 +23,6 @@ QGraphicsScene *Facade::execute(DrawCommand &command)
 
     shared_ptr<DrawerBase> drawer = command.getFactory()->createDrawer();
     std::shared_ptr<CameraBase> camera = dynamic_cast<CameraComponent *>(currentCamera.get())->getCamera();
-    qDebug("Опа, твоя программа упала");
     return DrawMan.drawScene(currentScene, camera, drawer);
 }
 

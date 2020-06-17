@@ -1,7 +1,7 @@
 #ifndef UPLOADMANAGER_H
 #define UPLOADMANAGER_H
 
-#include "../Commands/uploadcommand.h"
+#include "../Commands/commands.h"
 #include "managerbase.h"
 #include <memory>
 
