@@ -52,6 +52,9 @@ void MainWindow::on_pushButton_clicked()
     QGraphicsScene *scene = facade.execute(command);
 
     ui->graphicsView->setScene(scene);
+
+    ui->radioButton->setEnabled(true);
+    ui->radioButton_2->setEnabled(true);
 }
 
 void MainWindow::on_goLeftButton_clicked()

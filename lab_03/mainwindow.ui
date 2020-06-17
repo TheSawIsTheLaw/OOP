@@ -39,6 +39,9 @@
     <property name="text">
      <string>Camera</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_2">
     <property name="enabled">
@@ -58,36 +61,6 @@
     <property name="text">
      <string>Model</string>
     </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>550</y>
-      <width>91</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>No Camera</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QComboBox" name="comboBox_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>580</y>
-      <width>91</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>No Model</string>
-     </property>
-    </item>
    </widget>
    <widget class="QPushButton" name="minusMasstButton">
     <property name="geometry">
@@ -361,6 +334,32 @@
     </property>
     <property name="text">
      <string>Upload Scene</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PreviousButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>550</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Previous</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="NextButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>550</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Next</string>
     </property>
    </widget>
   </widget>

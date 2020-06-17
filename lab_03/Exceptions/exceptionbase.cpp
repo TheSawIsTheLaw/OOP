@@ -111,3 +111,19 @@ const char *ModelBuilderException::what() const noexcept
 {
     return errorInformation.c_str();
 }
+
+SceneManagerException::SceneManagerException(std::string fileName,
+                                             std::string className,
+                                             int currentLine,
+                                             const char *errorTime,
+                                             std::string information = "Error")
+{
+    errorInformation = "\nFile: " + fileName + "\nClass: " + className
+        + "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime
+        + "Information about error: " + information;
+}
+
+const char *SceneManagerException::what() const noexcept
+{
+    return errorInformation.c_str();
+}
