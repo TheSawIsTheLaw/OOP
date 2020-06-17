@@ -31,7 +31,7 @@ private:
     std::shared_ptr<DrawingFactoryBase> factory;
 };
 
-class TransformModelMoveCommand : CommandBase
+class TransformMoveCommand : CommandBase
 {
 public:
     void setDX(double set);
@@ -47,7 +47,7 @@ private:
     double dx, dy, dz;
 };
 
-class TransformModelRotateCommand : CommandBase
+class TransformRotateCommand : CommandBase
 {
 public:
     void setAxis(axis newAx);
@@ -61,7 +61,7 @@ private:
     double angle;
 };
 
-class TransformModelScaleCommand : CommandBase
+class TransformScaleCommand : CommandBase
 {
 public:
     void setCoef(double set);

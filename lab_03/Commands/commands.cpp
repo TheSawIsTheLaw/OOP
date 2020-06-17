@@ -37,26 +37,26 @@ void DrawCommand::setFactory(std::shared_ptr<DrawingFactoryBase> fac)
     factory = fac;
 }
 
-void TransformModelMoveCommand::setDX(double set) { dx = set; }
+void TransformMoveCommand::setDX(double set) { dx = set; }
 
-double TransformModelMoveCommand::getDX() { return dx; }
+double TransformMoveCommand::getDX() { return dx; }
 
-void TransformModelMoveCommand::setDY(double set) { dy = set; }
+void TransformMoveCommand::setDY(double set) { dy = set; }
 
-double TransformModelMoveCommand::getDY() { return dy; }
+double TransformMoveCommand::getDY() { return dy; }
 
-void TransformModelMoveCommand::setDZ(double set) { dz = set; }
+void TransformMoveCommand::setDZ(double set) { dz = set; }
 
-double TransformModelMoveCommand::getDZ() { return dz; }
+double TransformMoveCommand::getDZ() { return dz; }
 
-void TransformModelRotateCommand::setAxis(axis newAx) { ax = newAx; }
+void TransformRotateCommand::setAxis(axis newAx) { ax = newAx; }
 
-axis TransformModelRotateCommand::getAxis() { return ax; }
+axis TransformRotateCommand::getAxis() { return ax; }
 
-void TransformModelRotateCommand::setAngle(double set) { angle = set; }
+void TransformRotateCommand::setAngle(double set) { angle = set; }
 
-double TransformModelRotateCommand::getAngle() { return angle; }
+double TransformRotateCommand::getAngle() { return angle; }
 
-void TransformModelScaleCommand::setCoef(double set) { coefficient = set; }
+void TransformScaleCommand::setCoef(double set) { coefficient = set; }
 
-double TransformModelScaleCommand::getCoef() { return coefficient; }
+double TransformScaleCommand::getCoef() { return coefficient; }

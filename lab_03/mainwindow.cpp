@@ -59,7 +59,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_goLeftButton_clicked()
 {
-    TransformModelMoveCommand command;
+    TransformMoveCommand command;
     command.setDX(-MOVE_MEASURE);
     command.setDY(0);
     command.setDZ(0);
@@ -71,7 +71,7 @@ void MainWindow::on_goLeftButton_clicked()
 
 void MainWindow::on_goRightButton_clicked()
 {
-    TransformModelMoveCommand command;
+    TransformMoveCommand command;
     command.setDX(MOVE_MEASURE);
     command.setDY(0);
     command.setDZ(0);
@@ -83,7 +83,7 @@ void MainWindow::on_goRightButton_clicked()
 
 void MainWindow::on_goDownButton_clicked()
 {
-    TransformModelMoveCommand command;
+    TransformMoveCommand command;
     command.setDX(0);
     command.setDY(MOVE_MEASURE);
     command.setDZ(0);
@@ -95,7 +95,7 @@ void MainWindow::on_goDownButton_clicked()
 
 void MainWindow::on_goUpButton_clicked()
 {
-    TransformModelMoveCommand command;
+    TransformMoveCommand command;
     command.setDX(0);
     command.setDY(-MOVE_MEASURE);
     command.setDZ(0);
@@ -107,7 +107,7 @@ void MainWindow::on_goUpButton_clicked()
 
 void MainWindow::on_rotateYupButton_clicked()
 {
-    TransformModelRotateCommand command;
+    TransformRotateCommand command;
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(Y);
 
@@ -118,7 +118,7 @@ void MainWindow::on_rotateYupButton_clicked()
 
 void MainWindow::on_rotateYdownButton_clicked()
 {
-    TransformModelRotateCommand command;
+    TransformRotateCommand command;
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Y);
 
@@ -129,7 +129,7 @@ void MainWindow::on_rotateYdownButton_clicked()
 
 void MainWindow::on_rotateXLeftButton_clicked()
 {
-    TransformModelRotateCommand command;
+    TransformRotateCommand command;
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(X);
 
@@ -140,7 +140,7 @@ void MainWindow::on_rotateXLeftButton_clicked()
 
 void MainWindow::on_rotateXRightButton_clicked()
 {
-    TransformModelRotateCommand command;
+    TransformRotateCommand command;
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(X);
 
@@ -151,7 +151,7 @@ void MainWindow::on_rotateXRightButton_clicked()
 
 void MainWindow::on_toratateZLeftButton_clicked()
 {
-    TransformModelRotateCommand command;
+    TransformRotateCommand command;
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Z);
 
@@ -162,7 +162,7 @@ void MainWindow::on_toratateZLeftButton_clicked()
 
 void MainWindow::on_rotateZRightButton_clicked()
 {
-    TransformModelRotateCommand command;
+    TransformRotateCommand command;
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(Z);
 
@@ -173,7 +173,7 @@ void MainWindow::on_rotateZRightButton_clicked()
 
 void MainWindow::on_plusMasstButton_clicked()
 {
-    TransformModelScaleCommand command;
+    TransformScaleCommand command;
     command.setCoef(SCALE_COEF_PLUS);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -183,7 +183,7 @@ void MainWindow::on_plusMasstButton_clicked()
 
 void MainWindow::on_minusMasstButton_clicked()
 {
-    TransformModelScaleCommand command;
+    TransformScaleCommand command;
     command.setCoef(SCALE_COEF_MINUS);
 
     QGraphicsScene *scene = facade.execute(command);

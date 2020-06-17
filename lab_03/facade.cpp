@@ -38,7 +38,7 @@ QGraphicsScene *Facade::execute(UploadCommand &command)
     return this->execute(comm);
 }
 
-QGraphicsScene *Facade::execute(TransformModelMoveCommand &command)
+QGraphicsScene *Facade::execute(TransformMoveCommand &command)
 {
     auto component = SceneMan.getComponent(MODEL);
     std::shared_ptr<ComponentVisitorBase> visitor(new MoveVisitor(command.getDX(), command.getDY(), command.getDZ()));
@@ -51,7 +51,7 @@ QGraphicsScene *Facade::execute(TransformModelMoveCommand &command)
     return this->execute(comm);
 }
 
-QGraphicsScene *Facade::execute(TransformModelRotateCommand &command)
+QGraphicsScene *Facade::execute(TransformRotateCommand &command)
 {
     auto component = SceneMan.getComponent(MODEL);
     std::shared_ptr<ComponentVisitorBase> visitor(new RotateVisitor(command.getAngle(), command.getAxis()));
@@ -64,7 +64,7 @@ QGraphicsScene *Facade::execute(TransformModelRotateCommand &command)
     return this->execute(comm);
 }
 
-QGraphicsScene *Facade::execute(TransformModelScaleCommand &command)
+QGraphicsScene *Facade::execute(TransformScaleCommand &command)
 {
     auto component = SceneMan.getComponent(MODEL);
     std::shared_ptr<ComponentVisitorBase> visitor(new ScaleVisitor(command.getCoef()));
