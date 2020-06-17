@@ -46,5 +46,6 @@ void MainWindow::on_pushButton_clicked()
         return;
     }
 
-    facade.execute(command);
+    QGraphicsScene *scene = facade.execute(command);
+    ui->graphicsView->setScene(scene);
 }

@@ -11,8 +11,9 @@ class Facade
 public:
     Facade();
 
-    template <typename Command>
-    void execute(Command &);
+    QGraphicsScene *execute(UploadCommand &);
+
+    QGraphicsScene *execute(DrawCommand &);
 
 private:
     UploadManager UploadMan;

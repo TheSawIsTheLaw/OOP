@@ -7,9 +7,9 @@
 class DrawManager : public ManagerBase
 {
 public:
-    void drawScene(std::shared_ptr<Component> component,
-                   std::shared_ptr<CameraBase> camera,
-                   shared_ptr<DrawerBase> drawer);
+    QGraphicsScene *drawScene(std::shared_ptr<Component> component,
+                              std::shared_ptr<CameraBase> camera,
+                              shared_ptr<DrawerBase> drawer);
 };
 
 #endif // DRAWMANAGER_H

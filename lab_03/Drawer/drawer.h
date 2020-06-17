@@ -17,6 +17,7 @@ public:
     explicit QTDrawer(QGraphicsScene *const scene);
     virtual void drawLine(const DotXY &fDot, const DotXY &sDot) override;
     virtual void clear() override;
+    QGraphicsScene *getScene();
 
 private:
     QGraphicsScene *const grScene;

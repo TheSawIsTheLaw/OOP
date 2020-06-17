@@ -14,3 +14,8 @@ void QTDrawer::clear()
 {
     grScene->clear();
 }
+
+QGraphicsScene *QTDrawer::getScene()
+{
+    return grScene;
+}
