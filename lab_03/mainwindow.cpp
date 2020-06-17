@@ -55,6 +55,7 @@ void MainWindow::on_pushButton_clicked()
 
     ui->radioButton->setEnabled(true);
     ui->radioButton_2->setEnabled(true);
+    ui->radioButton->setChecked(true);
 }
 
 void MainWindow::on_goLeftButton_clicked()
@@ -64,7 +65,12 @@ void MainWindow::on_goLeftButton_clicked()
     command.setDY(0);
     command.setDZ(0);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -76,7 +82,12 @@ void MainWindow::on_goRightButton_clicked()
     command.setDY(0);
     command.setDZ(0);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -88,7 +99,12 @@ void MainWindow::on_goDownButton_clicked()
     command.setDY(MOVE_MEASURE);
     command.setDZ(0);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -100,7 +116,12 @@ void MainWindow::on_goUpButton_clicked()
     command.setDY(-MOVE_MEASURE);
     command.setDZ(0);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -111,7 +132,12 @@ void MainWindow::on_rotateYupButton_clicked()
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(Y);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -122,7 +148,12 @@ void MainWindow::on_rotateYdownButton_clicked()
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Y);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -133,7 +164,12 @@ void MainWindow::on_rotateXLeftButton_clicked()
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(X);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -144,7 +180,12 @@ void MainWindow::on_rotateXRightButton_clicked()
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(X);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -155,7 +196,12 @@ void MainWindow::on_toratateZLeftButton_clicked()
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Z);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -166,7 +212,12 @@ void MainWindow::on_rotateZRightButton_clicked()
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(Z);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -176,7 +227,12 @@ void MainWindow::on_plusMasstButton_clicked()
     TransformScaleCommand command;
     command.setCoef(SCALE_COEF_PLUS);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }
@@ -186,7 +242,12 @@ void MainWindow::on_minusMasstButton_clicked()
     TransformScaleCommand command;
     command.setCoef(SCALE_COEF_MINUS);
 
-    QGraphicsScene *scene = facade.execute(command);
+    QGraphicsScene *scene = Q_NULLPTR;
+
+    if (ui->radioButton->isChecked())
+        scene = facade.execute(command, CAMERA);
+    else
+        scene = facade.execute(command, MODEL);
 
     ui->graphicsView->setScene(scene);
 }

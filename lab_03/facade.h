@@ -15,11 +15,11 @@ public:
 
     QGraphicsScene *execute(DrawCommand &);
 
-    QGraphicsScene *execute(TransformMoveCommand &);
+    QGraphicsScene *execute(TransformMoveCommand &, ComponentName);
 
-    QGraphicsScene *execute(TransformRotateCommand &);
+    QGraphicsScene *execute(TransformRotateCommand &, ComponentName);
 
-    QGraphicsScene *execute(TransformScaleCommand &);
+    QGraphicsScene *execute(TransformScaleCommand &, ComponentName);
 
 private:
     UploadManager UploadMan;
