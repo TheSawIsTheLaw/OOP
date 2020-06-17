@@ -4,7 +4,12 @@
 void Scene::addComponent(shared_ptr<Component> component, ComponentName name)
 {
     if (name == SCENE && component->isComposite())
+    {
+        qDebug("Yep, it's composite");
         components.push_back(component);
+        if (currentScene < 0)
+            currentScene = 0;
+    }
     else if (!component->isComposite())
         components[currentScene]->add(component);
     else {
@@ -39,6 +44,7 @@ bool Scene::isFull(int index)
 
 ComponentIterator Scene::getIter(int index, ComponentName name)
 {
+    qDebug("CurScene: %d; curComponentsSize:%zu \n", currentScene, components.size());
     if (currentScene < 0 || currentScene >= static_cast<int>(components.size())) {
         time_t curTime = time(NULL);
         throw InvalidCurrentSceneNum(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
@@ -49,14 +55,31 @@ ComponentIterator Scene::getIter(int index, ComponentName name)
 
     Composite &composite = dynamic_cast<Composite &>(*components[currentScene]);
 
-    int i = -1;
-    auto iter = composite.begin();
-    while (iter != composite.end() && i != index) {
-        if ((*iter)->isVisible())
-            i++;
-        if (index == i)
-            return iter;
-        iter++;
+    if (name == MODEL)
+    {
+        int i = -1;
+        auto iter = composite.begin();
+        while (iter != composite.end() && i != index)
+        {
+            if ((*iter)->isVisible())
+                i++;
+            if (index == i)
+                return iter;
+            iter++;
+        }
+    }
+    else if (name == CAMERA)
+    {
+        int i = -1;
+        auto iter = composite.begin();
+        while (iter != composite.end() && i != index)
+        {
+            if (!(*iter)->isVisible())
+                i++;
+            if (index == i)
+                return iter;
+            iter++;
+        }
     }
     time_t curTime = time(NULL);
     throw InvalidComponentIndex(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));

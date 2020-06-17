@@ -17,19 +17,13 @@ QGraphicsScene *Facade::execute(DrawCommand &command)
 {
     std::shared_ptr<Component> currentScene;
     std::shared_ptr<Component> currentCamera;
-    try
-    {
-        currentScene = SceneMan.getComponent(SCENE);
-        currentCamera = SceneMan.getComponent(CAMERA);
-    }
-    catch (SceneException &err)
-    {
-        return Q_NULLPTR;
-    }
+
+    currentScene = SceneMan.getComponent(SCENE);
+    currentCamera = SceneMan.getComponent(CAMERA);
 
     shared_ptr<DrawerBase> drawer = command.getFactory()->createDrawer();
-    drawer->clear();
-    auto camera = dynamic_cast<CameraComponent *>(currentCamera.get())->getCamera();
+    std::shared_ptr<CameraBase> camera = dynamic_cast<CameraComponent *>(currentCamera.get())->getCamera();
+    qDebug("Опа, твоя программа упала");
     return DrawMan.drawScene(currentScene, camera, drawer);
 }
 
