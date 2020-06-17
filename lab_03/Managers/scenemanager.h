@@ -10,6 +10,7 @@ public:
     void addComponent(std::shared_ptr<Component> component, ComponentName name);
     void delComponent(ComponentName name);
     std::shared_ptr<Component> getComponent(ComponentName name);
+    void changeCurComp(int moveTo, ComponentName name);
 
 private:
     Scene scene;

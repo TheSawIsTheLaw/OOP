@@ -224,4 +224,15 @@ public:
         : ModelBuilderException(fileName, className, currentLine, errorTime, information) {};
 };
 
+class BadComponentName : public SceneManagerException
+{
+public:
+    BadComponentName(std::string fileName,
+                     std::string className,
+                     int currentLine,
+                     const char *errorTime,
+                     std::string information = "Bad Component Name")
+        : SceneManagerException(fileName, className, currentLine, errorTime, information) {};
+};
+
 #endif // EXCEPTIONS_H

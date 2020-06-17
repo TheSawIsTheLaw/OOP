@@ -116,4 +116,20 @@ protected:
     std::string errorInformation;
 };
 
+class SceneManagerException : public std::exception
+{
+public:
+    SceneManagerException(std::string fileName,
+                          std::string className,
+                          int currentLine,
+                          const char *errorTime,
+                          std::string information);
+    virtual const char *what() const noexcept override;
+
+    virtual ~SceneManagerException() {}
+
+protected:
+    std::string errorInformation;
+};
+
 #endif // EXCEPTIONBASE_H

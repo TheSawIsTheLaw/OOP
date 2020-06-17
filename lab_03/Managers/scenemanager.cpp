@@ -20,3 +20,22 @@ std::shared_ptr<Component> SceneManager::getComponent(ComponentName name)
                                          : scene.getComponent(currentCam, name));
     return res;
 }
+
+void SceneManager::changeCurComp(int moveTo, ComponentName name)
+{
+    if (name == SCENE)
+    {
+        currentScene += moveTo;
+        currentCam = 0;
+        currentModel = 0;
+    }
+    else if (name == MODEL)
+        currentModel += moveTo;
+    else if (name == CAMERA)
+        currentCam += moveTo;
+    else
+    {
+        time_t curTime = time(NULL);
+        throw BadComponentName(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+    }
+}
