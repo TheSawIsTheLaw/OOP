@@ -57,7 +57,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_goLeftButton_clicked()
 {
     TransformModelMoveCommand command;
-    command.setDX(-10);
+    command.setDX(-MOVE_MEASURE);
     command.setDY(0);
     command.setDZ(0);
 
@@ -69,7 +69,7 @@ void MainWindow::on_goLeftButton_clicked()
 void MainWindow::on_goRightButton_clicked()
 {
     TransformModelMoveCommand command;
-    command.setDX(10);
+    command.setDX(MOVE_MEASURE);
     command.setDY(0);
     command.setDZ(0);
 
@@ -82,7 +82,7 @@ void MainWindow::on_goDownButton_clicked()
 {
     TransformModelMoveCommand command;
     command.setDX(0);
-    command.setDY(10);
+    command.setDY(MOVE_MEASURE);
     command.setDZ(0);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -94,7 +94,7 @@ void MainWindow::on_goUpButton_clicked()
 {
     TransformModelMoveCommand command;
     command.setDX(0);
-    command.setDY(-10);
+    command.setDY(-MOVE_MEASURE);
     command.setDZ(0);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -105,7 +105,7 @@ void MainWindow::on_goUpButton_clicked()
 void MainWindow::on_rotateYupButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(0.174533);
+    command.setAngle(ROTATE_ANGLE);
     command.setAxis(Y);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -116,7 +116,7 @@ void MainWindow::on_rotateYupButton_clicked()
 void MainWindow::on_rotateYdownButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(-0.174533);
+    command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Y);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -127,7 +127,7 @@ void MainWindow::on_rotateYdownButton_clicked()
 void MainWindow::on_rotateXLeftButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(-0.174533);
+    command.setAngle(-ROTATE_ANGLE);
     command.setAxis(X);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -138,7 +138,7 @@ void MainWindow::on_rotateXLeftButton_clicked()
 void MainWindow::on_rotateXRightButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(0.174533);
+    command.setAngle(ROTATE_ANGLE);
     command.setAxis(X);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -149,7 +149,7 @@ void MainWindow::on_rotateXRightButton_clicked()
 void MainWindow::on_toratateZLeftButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(-0.174533);
+    command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Z);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -160,7 +160,7 @@ void MainWindow::on_toratateZLeftButton_clicked()
 void MainWindow::on_rotateZRightButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(0.174533);
+    command.setAngle(ROTATE_ANGLE);
     command.setAxis(Z);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -171,7 +171,7 @@ void MainWindow::on_rotateZRightButton_clicked()
 void MainWindow::on_plusMasstButton_clicked()
 {
     TransformModelScaleCommand command;
-    command.setCoef(1.1);
+    command.setCoef(SCALE_COEF_PLUS);
 
     QGraphicsScene *scene = facade.execute(command);
 
@@ -181,7 +181,7 @@ void MainWindow::on_plusMasstButton_clicked()
 void MainWindow::on_minusMasstButton_clicked()
 {
     TransformModelScaleCommand command;
-    command.setCoef(0.9);
+    command.setCoef(SCALE_COEF_MINUS);
 
     QGraphicsScene *scene = facade.execute(command);
 
