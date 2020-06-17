@@ -48,3 +48,15 @@ double TransformCommand::getDY() { return dy; }
 void TransformCommand::setDZ(double set) { dz = set; }
 
 double TransformCommand::getDZ() { return dz; }
+
+void TransformCommand::setAxis(axis newAx) { ax = newAx; }
+
+axis TransformCommand::getAxis() { return ax; }
+
+void TransformCommand::setCoef(double set) { coefficient = set; }
+
+double TransformCommand::getCoef() { return coefficient; }
+
+void TransformCommand::setAngle(double set) { angle = set; }
+
+double TransformCommand::getAngle() { return angle; }

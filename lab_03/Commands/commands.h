@@ -37,7 +37,7 @@ public:
     void setAxis(axis newAx);
     axis getAxis();
 
-    void setAngle(double angle);
+    void setAngle(double set);
     double getAngle();
 
     void setDX(double set);
