@@ -57,7 +57,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_goLeftButton_clicked()
 {
     TransformModelCommand command;
-    command.setDX(1);
+    command.setDX(-1);
     command.setDY(0);
     command.setDZ(0);
 

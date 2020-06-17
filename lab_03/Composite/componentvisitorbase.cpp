@@ -54,41 +54,31 @@ void ScaleVisitor::visit(ModelComponent &component)
 {
     CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
     reformTo->scale(coefficient);
-    shared_ptr<Model> ret(reformTo);
-    component.setModel(ret);
 }
 
 void MoveVisitor::visit(ModelComponent &component)
 {
+    CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
     qDebug("Тут?");
-    CarcassModel *reformTo = static_cast<CarcassModel *>((component.getModel()).get());
     reformTo->move(xDelta, yDelta, zDelta);
-    shared_ptr<Model> ret(reformTo);
-    component.setModel(ret);
 }
 
 void MoveVisitor::visit(CameraComponent &component)
 {
     Camera *reformTo = dynamic_cast<Camera *>(component.getCamera().get());
     reformTo->movement(xDelta, yDelta, zDelta);
-    shared_ptr<CameraBase> ret(reformTo);
-    component.setCamera(ret);
 }
 
 void RotateVisitor::visit(ModelComponent &component)
 {
     CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
     reformTo->rotate(angle, ax);
-    shared_ptr<Model> ret(reformTo);
-    component.setModel(ret);
 }
 
 void RotateVisitor::visit(CameraComponent &component)
 {
     Camera *reformTo = dynamic_cast<Camera *>(component.getCamera().get());
     reformTo->rotation(angle, ax);
-    shared_ptr<Camera> ret(reformTo);
-    component.setCamera(ret);
 }
 
 void ScaleVisitor::visit(CameraComponent&) {}

@@ -52,7 +52,7 @@ public:
     virtual bool isVisible() const noexcept override;
     virtual void accept(ComponentVisitorBase &) override;
 
-    std::shared_ptr<Model> getModel();
+    shared_ptr<Model> getModel();
     void setModel(const std::shared_ptr<Model>);
 
 private:

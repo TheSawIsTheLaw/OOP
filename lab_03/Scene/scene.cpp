@@ -7,8 +7,7 @@ void Scene::addComponent(shared_ptr<Component> component, ComponentName name)
     {
         qDebug("Yep, it's composite");
         components.push_back(component);
-        if (currentScene < 0)
-            currentScene = 0;
+        currentScene++;
     }
     else if (!component->isComposite())
         components[currentScene]->add(component);

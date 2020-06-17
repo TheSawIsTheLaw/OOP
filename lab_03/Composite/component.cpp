@@ -104,7 +104,7 @@ void ModelComponent::accept(ComponentVisitorBase &visitor)
 
 shared_ptr<Model> ModelComponent::getModel()
 {
-    return shared_ptr<Model>(this->model.get());
+    return this->model;
 }
 
 void ModelComponent::setModel(const shared_ptr<Model> mod)
@@ -129,7 +129,7 @@ void CameraComponent::accept(ComponentVisitorBase &visitor)
 
 std::shared_ptr<CameraBase> CameraComponent::getCamera()
 {
-    return camera;
+    return this->camera;
 }
 
 void CameraComponent::setCamera(const shared_ptr<CameraBase> cam)
