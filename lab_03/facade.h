@@ -19,6 +19,8 @@ public:
 
     QGraphicsScene *execute(TransformModelRotateCommand &);
 
+    QGraphicsScene *execute(TransformModelScaleCommand &);
+
 private:
     UploadManager UploadMan;
     SceneManager SceneMan;

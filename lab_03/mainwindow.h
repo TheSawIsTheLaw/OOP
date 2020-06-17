@@ -36,6 +36,16 @@ private slots:
 
     void on_rotateXLeftButton_clicked();
 
+    void on_rotateXRightButton_clicked();
+
+    void on_toratateZLeftButton_clicked();
+
+    void on_rotateZRightButton_clicked();
+
+    void on_plusMasstButton_clicked();
+
+    void on_minusMasstButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Facade facade;

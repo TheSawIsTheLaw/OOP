@@ -105,7 +105,7 @@ void MainWindow::on_goUpButton_clicked()
 void MainWindow::on_rotateYupButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(0.0174533);
+    command.setAngle(0.174533);
     command.setAxis(Y);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -116,7 +116,7 @@ void MainWindow::on_rotateYupButton_clicked()
 void MainWindow::on_rotateYdownButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(-0.0174533);
+    command.setAngle(-0.174533);
     command.setAxis(Y);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -127,7 +127,7 @@ void MainWindow::on_rotateYdownButton_clicked()
 void MainWindow::on_rotateXLeftButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(-0.0174533);
+    command.setAngle(-0.174533);
     command.setAxis(X);
 
     QGraphicsScene *scene = facade.execute(command);
@@ -138,8 +138,50 @@ void MainWindow::on_rotateXLeftButton_clicked()
 void MainWindow::on_rotateXRightButton_clicked()
 {
     TransformModelRotateCommand command;
-    command.setAngle(0.0174533);
+    command.setAngle(0.174533);
     command.setAxis(X);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_toratateZLeftButton_clicked()
+{
+    TransformModelRotateCommand command;
+    command.setAngle(-0.174533);
+    command.setAxis(Z);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_rotateZRightButton_clicked()
+{
+    TransformModelRotateCommand command;
+    command.setAngle(0.174533);
+    command.setAxis(Z);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_plusMasstButton_clicked()
+{
+    TransformModelScaleCommand command;
+    command.setCoef(1.1);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_minusMasstButton_clicked()
+{
+    TransformModelScaleCommand command;
+    command.setCoef(0.9);
 
     QGraphicsScene *scene = facade.execute(command);
 
