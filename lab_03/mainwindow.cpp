@@ -56,10 +56,90 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_goLeftButton_clicked()
 {
-    TransformModelCommand command;
-    command.setDX(-1);
+    TransformModelMoveCommand command;
+    command.setDX(-10);
     command.setDY(0);
     command.setDZ(0);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_goRightButton_clicked()
+{
+    TransformModelMoveCommand command;
+    command.setDX(10);
+    command.setDY(0);
+    command.setDZ(0);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_goDownButton_clicked()
+{
+    TransformModelMoveCommand command;
+    command.setDX(0);
+    command.setDY(10);
+    command.setDZ(0);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_goUpButton_clicked()
+{
+    TransformModelMoveCommand command;
+    command.setDX(0);
+    command.setDY(-10);
+    command.setDZ(0);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_rotateYupButton_clicked()
+{
+    TransformModelRotateCommand command;
+    command.setAngle(0.0174533);
+    command.setAxis(Y);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_rotateYdownButton_clicked()
+{
+    TransformModelRotateCommand command;
+    command.setAngle(-0.0174533);
+    command.setAxis(Y);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_rotateXLeftButton_clicked()
+{
+    TransformModelRotateCommand command;
+    command.setAngle(-0.0174533);
+    command.setAxis(X);
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_rotateXRightButton_clicked()
+{
+    TransformModelRotateCommand command;
+    command.setAngle(0.0174533);
+    command.setAxis(X);
 
     QGraphicsScene *scene = facade.execute(command);
 

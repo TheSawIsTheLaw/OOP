@@ -24,6 +24,18 @@ private slots:
 
     void on_goLeftButton_clicked();
 
+    void on_goRightButton_clicked();
+
+    void on_goDownButton_clicked();
+
+    void on_goUpButton_clicked();
+
+    void on_rotateYupButton_clicked();
+
+    void on_rotateYdownButton_clicked();
+
+    void on_rotateXLeftButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Facade facade;

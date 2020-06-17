@@ -31,15 +31,9 @@ private:
     std::shared_ptr<DrawingFactoryBase> factory;
 };
 
-class TransformModelCommand : CommandBase
+class TransformModelMoveCommand : CommandBase
 {
 public:
-    void setAxis(axis newAx);
-    axis getAxis();
-
-    void setAngle(double set);
-    double getAngle();
-
     void setDX(double set);
     double getDX();
 
@@ -49,14 +43,31 @@ public:
     void setDZ(double set);
     double getDZ();
 
+private:
+    double dx, dy, dz;
+};
+
+class TransformModelRotateCommand : CommandBase
+{
+public:
+    void setAxis(axis newAx);
+    axis getAxis();
+
+    void setAngle(double set);
+    double getAngle();
+
+private:
+    axis ax;
+    double angle;
+};
+
+class TransformModelScaleCommand : CommandBase
+{
+public:
     void setCoef(double set);
     double getCoef();
 
 private:
-    axis ax;
-
-    double angle;
-    double dx, dy, dz;
     double coefficient;
 };
 
