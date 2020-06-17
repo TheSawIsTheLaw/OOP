@@ -21,6 +21,8 @@ public:
 
 private:
     QGraphicsScene *const grScene;
+    QVector<QGraphicsLineItem *> line;
+    QPen blackPen;
 };
 
 #endif // DRAWER_H

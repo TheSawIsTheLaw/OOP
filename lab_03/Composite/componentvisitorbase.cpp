@@ -112,7 +112,9 @@ void DrawVisitor::visit(ModelComponent &model)
     CarcassModel *modelToDraw = dynamic_cast<CarcassModel *>(mod.get());
     auto &edges = modelToDraw->getEdges();
     auto &dots = modelToDraw->getDots();
-    for (size_t i = 0; i < edges.size(); i++) {
+
+    for (size_t i = 0; i < edges.size(); i++)
+    {
         Edge curEdge = edges[i];
         drawer->drawLine(camera->getProjection(dots[curEdge.getFNodeNum()]),
                          camera->getProjection(dots[curEdge.getSNodeNum()]));

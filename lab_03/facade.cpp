@@ -37,7 +37,10 @@ QGraphicsScene *Facade::execute(UploadCommand &command)
 {
     SceneMan.addComponent(UploadMan.uploadScene(command), SCENE);
     std::shared_ptr<DrawingFactoryBase> factoryPtr;
-    factoryPtr.reset(new QTDrawingFactory(new QGraphicsScene));
+    QGraphicsScene *newScene = new QGraphicsScene(Q_NULLPTR);
+    newScene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(newScene));
+    qDebug("Ну ходют и ходют...");
     DrawCommand comm = DrawCommand(factoryPtr);
     return this->execute(comm);
 }
