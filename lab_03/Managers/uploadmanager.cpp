@@ -14,5 +14,6 @@ std::shared_ptr<Component> UploadManager::uploadScene(UploadCommand &command)
     ObjectUploader modelUploader(modelBuilder);
     std::shared_ptr<SceneBuilderBase> sceneBuilder(new SceneBuilder(cameraUploader, modelUploader));
     SceneUploader loader(sceneBuilder, command.getFileName());
+    qDebug("uploadScene");
     return loader.getComponent();
 }

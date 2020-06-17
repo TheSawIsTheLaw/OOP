@@ -46,10 +46,8 @@ void ModelBuilder::buildObject()
 void ModelBuilder::buildData(std::ifstream &input)
 {
     CarcassModel &mod = dynamic_cast<CarcassModel &>(*model);
-    Vector<Dot> &pts = mod.getDots();
-    Vector<Edge> &edges = mod.getEdges();
-    pts = buildDots(input);
-    edges = buildEdges(input);
+    mod.setDots(buildDots(input));
+    mod.setEdges(buildEdges(input));
     isBui = true;
 }
 

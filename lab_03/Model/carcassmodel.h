@@ -20,6 +20,8 @@ public:
 
     Vector<Edge> &getEdges();
     Vector<Dot> &getDots();
+    void setDots(Vector<Dot> newDots);
+    void setEdges(Vector<Edge> newEdges);
 
 private:
     Vector<Dot> dots;

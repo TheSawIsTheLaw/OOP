@@ -1,5 +1,6 @@
 #include "carcassmodel.h"
 #include "Matrix/matrix.hpp"
+#include <QDebug>
 
 CarcassModel::CarcassModel() {}
 
@@ -45,4 +46,17 @@ Vector<Edge> &CarcassModel::getEdges()
 Vector<Dot> &CarcassModel::getDots()
 {
     return dots;
+}
+
+void CarcassModel::setDots(Vector<Dot> newDots)
+{
+    dots = newDots;
+    qDebug("Dots set:\n");
+    for (size_t i = 0; i < dots.size(); i++)
+        qDebug("%lf %lf %lf\n", dots[i].getXPos(), dots[i].getYPos(), dots[i].getZPos());
+}
+
+void CarcassModel::setEdges(Vector<Edge> newEdges)
+{
+    edges = newEdges;
 }

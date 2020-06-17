@@ -28,7 +28,7 @@ QString getFileWay(QWidget *const parent, const QString startLocation, const QSt
 void MainWindow::on_pushButton_clicked()
 {
     qDebug("Upload");
-    QString qFileName = getFileWay(this, ".", "");
+    QString qFileName = getFileWay(this, "../", "");
 
     if (qFileName == "")
     {
@@ -45,6 +45,8 @@ void MainWindow::on_pushButton_clicked()
                               "максимальное количество символов.");
         return;
     }
+
+    qDebug("FileName in command: %s\n", command.getFileName());
 
     QGraphicsScene *scene = facade.execute(command);
     ui->graphicsView->setScene(scene);
