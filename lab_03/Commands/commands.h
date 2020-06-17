@@ -71,4 +71,20 @@ private:
     double coefficient;
 };
 
+class ChangeCurComponentCommand : CommandBase
+{
+public:
+    enum Dir
+    {
+        PREV = -1,
+        NEXT = 1
+    };
+
+    void setDirection(Dir dir);
+    Dir getDirection();
+
+private:
+    Dir direction;
+};
+
 #endif // UPLOADCOMMAND_H

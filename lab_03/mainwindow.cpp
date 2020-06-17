@@ -251,3 +251,25 @@ void MainWindow::on_minusMasstButton_clicked()
 
     ui->graphicsView->setScene(scene);
 }
+
+void MainWindow::on_NextButton_clicked()
+{
+    ChangeCurComponentCommand command;
+    command.setDirection(ChangeCurComponentCommand::NEXT);
+
+    if (ui->radioButton->isChecked())
+        facade.execute(command, CAMERA);
+    else
+        facade.execute(command, MODEL);
+}
+
+void MainWindow::on_PreviousButton_clicked()
+{
+    ChangeCurComponentCommand command;
+    command.setDirection(ChangeCurComponentCommand::PREV);
+
+    if (ui->radioButton->isChecked())
+        facade.execute(command, CAMERA);
+    else
+        facade.execute(command, MODEL);
+}

@@ -76,3 +76,9 @@ QGraphicsScene *Facade::execute(TransformScaleCommand &command, ComponentName na
     DrawCommand comm = DrawCommand(factoryPtr);
     return this->execute(comm);
 }
+
+void Facade::execute(ChangeCurComponentCommand &command, ComponentName name)
+{
+    auto component = SceneMan.getComponent(name);
+    SceneMan.changeCurComp(command.getDirection(), name);
+}

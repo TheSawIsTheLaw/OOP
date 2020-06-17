@@ -46,6 +46,10 @@ private slots:
 
     void on_minusMasstButton_clicked();
 
+    void on_NextButton_clicked();
+
+    void on_PreviousButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Facade facade;

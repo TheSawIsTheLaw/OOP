@@ -60,3 +60,7 @@ double TransformRotateCommand::getAngle() { return angle; }
 void TransformScaleCommand::setCoef(double set) { coefficient = set; }
 
 double TransformScaleCommand::getCoef() { return coefficient; }
+
+void ChangeCurComponentCommand::setDirection(Dir dir) { direction = dir; }
+
+ChangeCurComponentCommand::Dir ChangeCurComponentCommand::getDirection() { return direction; }
