@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 
-#include "Commands/uploadcommand.h"
+#include "Commands/commands.h"
 #include "QFileDialog"
 #include "QMessageBox"
 #include "defines.h"
@@ -48,6 +48,18 @@ void MainWindow::on_pushButton_clicked()
     }
 
     qDebug("FileName in command: %s\n", command.getFileName());
+
+    QGraphicsScene *scene = facade.execute(command);
+
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::on_goLeftButton_clicked()
+{
+    TransformModelCommand command;
+    command.setDX(1);
+    command.setDY(0);
+    command.setDZ(0);
 
     QGraphicsScene *scene = facade.execute(command);
 

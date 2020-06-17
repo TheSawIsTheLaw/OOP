@@ -31,7 +31,7 @@ private:
     std::shared_ptr<DrawingFactoryBase> factory;
 };
 
-class TransformCommand : CommandBase
+class TransformModelCommand : CommandBase
 {
 public:
     void setAxis(axis newAx);

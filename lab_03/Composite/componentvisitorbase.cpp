@@ -60,7 +60,8 @@ void ScaleVisitor::visit(ModelComponent &component)
 
 void MoveVisitor::visit(ModelComponent &component)
 {
-    CarcassModel *reformTo = dynamic_cast<CarcassModel *>(component.getModel().get());
+    qDebug("Тут?");
+    CarcassModel *reformTo = static_cast<CarcassModel *>((component.getModel()).get());
     reformTo->move(xDelta, yDelta, zDelta);
     shared_ptr<Model> ret(reformTo);
     component.setModel(ret);

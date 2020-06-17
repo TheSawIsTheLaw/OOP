@@ -3,19 +3,22 @@
 #include "defines.h"
 
 //! Instrumnts inits
-QPen initBlackPen(void) {
+QPen initBlackPen(void)
+{
     static QPen blackPen(Qt::black);
     return blackPen;
 }
 
 QGraphicsScene *initScene(const int xRectStart, const int yRectStart,
-                          const int xRectEnd, const int yRectEnd) {
+                          const int xRectEnd, const int yRectEnd)
+{
     QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
     scene->setSceneRect(xRectStart, yRectStart, xRectEnd, yRectEnd);
     return scene;
 }
 
-QVector<QGraphicsLineItem *> initLine(void) {
+QVector<QGraphicsLineItem *> initLine(void)
+{
     QVector<QGraphicsLineItem *> line;
     if (line.length() != 0)
         line.clear();
@@ -27,15 +30,17 @@ QVector<QGraphicsLineItem *> initLine(void) {
 void appendEdgeToScene(QGraphicsScene *const scene,
                        QVector<QGraphicsLineItem *> line,
                        const QPen pen,
-                       nodeT *const nodes, const edgeT edge) {
+                       nodeT *const nodes, const edgeT edge)
+{
     nodeT firstNode = nodes[edge.firstNode];
     nodeT secondNode = nodes[edge.secondNode];
     line.append(scene->addLine(firstNode.xCoord, firstNode.yCoord,
-        secondNode.xCoord, secondNode.yCoord, pen));
+                               secondNode.xCoord, secondNode.yCoord, pen));
 }
 
 //! QT drawer wrap
-int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
+int drawModelQtWrap(const modelT model, const drawRequestT drawRequest)
+{
     int check = SUCCESS;
 
     if (isModelEmpty(model))
@@ -52,7 +57,8 @@ int drawModelQtWrap(const modelT model, const drawRequestT drawRequest) {
 //< End
 
 //! Wrap
-int drawModelWrap(const modelT model, const requestT request) {
+int drawModelWrap(const modelT model, const requestT request)
+{
     int check = drawModelQtWrap(model, request.drawRequest);
 
     if (!check)

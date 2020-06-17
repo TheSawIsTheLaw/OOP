@@ -15,6 +15,8 @@ public:
 
     QGraphicsScene *execute(DrawCommand &);
 
+    QGraphicsScene *execute(TransformModelCommand &);
+
 private:
     UploadManager UploadMan;
     SceneManager SceneMan;
