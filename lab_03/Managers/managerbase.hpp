@@ -5,6 +5,7 @@
 #include <memory>
 
 class ManagerBase
-{};
+{
+};
 
 #endif // MANAGERBASE_H

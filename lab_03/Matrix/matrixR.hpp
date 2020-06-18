@@ -2,7 +2,7 @@
 #include "matrix.hpp"
 #include "time.h"
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 void Matrix<N, T>::resetMatrix()
 {
     for (size_t i = 0; i < N; ++i)
@@ -10,10 +10,10 @@ void Matrix<N, T>::resetMatrix()
             _data[i][j] = i == j ? 1 : 0;
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 void Matrix<N, T>::mulRight(const Matrix<N, T> &matrix)
 {
-    T res[N][N] = {0};
+    T res[N][N] = { 0 };
     for (size_t i = 0; i < N; ++i)
         for (size_t j = 0; j < N; ++j)
             for (size_t k = 0; k < N; ++k)
@@ -24,7 +24,7 @@ void Matrix<N, T>::mulRight(const Matrix<N, T> &matrix)
             _data[i][j] = res[i][j];
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 Matrix<N, T>::Matrix(const std::initializer_list<T> &init_list)
 {
     time_t curTime = time(NULL);
@@ -37,13 +37,13 @@ Matrix<N, T>::Matrix(const std::initializer_list<T> &init_list)
             _data[i][j] = *it++;
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 Matrix<N, T>::Matrix()
 {
     resetMatrix();
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 T &Matrix<N, T>::at(size_t row, size_t column)
 {
     time_t curTime = time(NULL);
@@ -52,7 +52,7 @@ T &Matrix<N, T>::at(size_t row, size_t column)
     return _data[row][column];
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 const T &Matrix<N, T>::at(size_t row, size_t column) const
 {
     time_t curTime = time(NULL);
@@ -61,7 +61,7 @@ const T &Matrix<N, T>::at(size_t row, size_t column) const
     return _data[row][column];
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 T &MathVec<N, T>::at(size_t pos)
 {
     time_t curTime = time(NULL);
@@ -70,7 +70,7 @@ T &MathVec<N, T>::at(size_t pos)
     return _data[pos];
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 const T &MathVec<N, T>::at(size_t pos) const
 {
     time_t curTime = time(NULL);
@@ -79,7 +79,7 @@ const T &MathVec<N, T>::at(size_t pos) const
     return _data[pos];
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 void MathVec<N, T>::resetVec()
 {
     for (size_t i = 0; i < N - 1; ++i)
@@ -87,13 +87,13 @@ void MathVec<N, T>::resetVec()
     _data[N - 1] = 1;
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 MathVec<N, T>::MathVec()
 {
     resetVec();
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 void MathVec<N, T>::mulRight(const Matrix<N, T> &matrix)
 {
     MathVec<N, T> resVec;
@@ -107,7 +107,7 @@ void MathVec<N, T>::mulRight(const Matrix<N, T> &matrix)
         _data[i] = resVec.at(i);
 }
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 MathVec<N, T>::MathVec(const std::initializer_list<T> &init_list)
 {
     time_t curTime = time(NULL);

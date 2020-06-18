@@ -3,10 +3,10 @@
 
 #include <memory>
 
-template<typename T>
+template <typename T>
 using shared_ptr = std::shared_ptr<T>;
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 class Matrix
 {
     T _data[N][N];
@@ -23,7 +23,7 @@ public:
     void mulRight(const Matrix &matrix);
 };
 
-template<size_t N, typename T>
+template <size_t N, typename T>
 class MathVec
 {
     T _data[N];

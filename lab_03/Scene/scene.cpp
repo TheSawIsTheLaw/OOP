@@ -10,7 +10,8 @@ void Scene::addComponent(shared_ptr<Component> component, ComponentName name)
     }
     else if (!component->isComposite())
         components[currentScene]->add(component);
-    else {
+    else
+    {
         time_t curTime = time(NULL);
         throw InvalidComponentName(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }

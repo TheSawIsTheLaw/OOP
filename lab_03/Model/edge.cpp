@@ -1,6 +1,10 @@
 #include "edge.hpp"
 
-Edge::Edge(size_t fNode, size_t sNode) : firstNode(fNode), secondNode(sNode) {}
+Edge::Edge(size_t fNode, size_t sNode)
+    : firstNode(fNode)
+    , secondNode(sNode)
+{
+}
 
 size_t Edge::getFNodeNum()
 {

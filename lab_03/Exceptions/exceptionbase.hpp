@@ -56,10 +56,10 @@ class SceneUploaderException : public std::exception
 {
 public:
     SceneUploaderException(std::string fileName,
-                   std::string className,
-                   int currentLine,
-                   const char *errorTime,
-                   std::string information);
+                           std::string className,
+                           int currentLine,
+                           const char *errorTime,
+                           std::string information);
     virtual const char *what() const noexcept override;
 
     virtual ~SceneUploaderException() {}

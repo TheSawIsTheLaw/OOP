@@ -2,17 +2,30 @@
 #include "../Model/carcassmodel.hpp"
 #include "component.hpp"
 
-RotateVisitor::RotateVisitor(double ang, axis axi) : angle(ang), ax(axi) {}
+RotateVisitor::RotateVisitor(double ang, axis axi)
+    : angle(ang)
+    , ax(axi)
+{
+}
 
 //DrawVisitor::DrawVisitor(shared_ptr<>...)
 
-MoveVisitor::MoveVisitor(double dx, double dy, double dz) : xDelta(dx), yDelta(dy), zDelta(dz) {}
+MoveVisitor::MoveVisitor(double dx, double dy, double dz)
+    : xDelta(dx)
+    , yDelta(dy)
+    , zDelta(dz)
+{
+}
 
-ScaleVisitor::ScaleVisitor(double coef) : coefficient(coef) {}
+ScaleVisitor::ScaleVisitor(double coef)
+    : coefficient(coef)
+{
+}
 
 DrawVisitor::DrawVisitor(shared_ptr<DrawerBase> draw, shared_ptr<CameraBase> cam)
     : drawer(draw), camera(cam)
-{}
+{
+}
 
 void ScaleVisitor::visit(Composite &composite)
 {
@@ -81,7 +94,7 @@ void RotateVisitor::visit(CameraComponent &component)
     reformTo->rotation(angle, ax);
 }
 
-void ScaleVisitor::visit(CameraComponent&) {}
+void ScaleVisitor::visit(CameraComponent &) {}
 
 void DrawVisitor::visit(Composite &composite)
 {

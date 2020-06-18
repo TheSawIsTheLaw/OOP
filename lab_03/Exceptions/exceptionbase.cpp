@@ -7,8 +7,8 @@ VectorException::VectorException(std::string fileName,
                                  std::string information = "Error")
 {
     errorInformation = "\nFile: " + fileName + "\nClass: " + className
-                       + "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime
-                       + "Information about error: " + information;
+        + "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime
+        + "Information about error: " + information;
 }
 
 const char *VectorException::what() const noexcept
@@ -23,8 +23,8 @@ MatrixException::MatrixException(std::string fileName,
                                  std::string information = "Error")
 {
     errorInformation = "\nFile: " + fileName + "\nClass: " + className
-                       + "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime
-                       + "Information about error: " + information;
+        + "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime
+        + "Information about error: " + information;
 }
 
 const char *MatrixException::what() const noexcept
@@ -39,8 +39,8 @@ SceneException::SceneException(std::string fileName,
                                std::string information = "Error")
 {
     errorInformation = "\nFile: " + fileName + "\nClass: " + className
-                       + "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime
-                       + "Information about error: " + information;
+        + "\nAt line: " + std::to_string(currentLine) + "\nTime: " + errorTime
+        + "Information about error: " + information;
 }
 
 const char *SceneException::what() const noexcept

@@ -6,19 +6,19 @@
 #include <cstddef>
 #include <memory>
 
-template<typename T>
+template <typename T>
 using shared_ptr = std::shared_ptr<T>;
 
-template<typename T>
+template <typename T>
 using weak_ptr = std::weak_ptr<T>;
 
-template<typename T>
+template <typename T>
 class VecIterator;
 
-template<typename T>
+template <typename T>
 class ConstIterator;
 
-template<typename Type>
+template <typename Type>
 class Vector : public BaseVector
 {
     shared_ptr<Type[]> _data;
@@ -42,7 +42,7 @@ public:
     ConstIterator<Type> end() const;
 };
 
-template<typename T>
+template <typename T>
 class VecIterator : public std::iterator<std::random_access_iterator_tag, T>
 {
     weak_ptr<T[]> _data;
@@ -72,7 +72,7 @@ public:
     VecIterator<T> operator-(size_t diff) const;
 };
 
-template<typename T>
+template <typename T>
 class ConstIterator : public std::iterator<std::random_access_iterator_tag, T>
 {
     weak_ptr<T[]> _data;
@@ -100,14 +100,16 @@ public:
     ConstIterator<T> operator-(size_t diff) const;
 };
 
-template<typename T>
-VecIterator<T>::VecIterator(){};
+template <typename T>
+VecIterator<T>::VecIterator() {};
 
-template<typename T>
+template <typename T>
 VecIterator<T>::VecIterator(shared_ptr<T[]> data, size_t size, size_t index)
-    : _data(data), _size(size), _index(index){};
+    : _data(data)
+    , _size(size)
+    , _index(index) {};
 
-template<typename T>
+template <typename T>
 T *VecIterator<T>::operator->()
 {
     if (_index >= _size) {
@@ -121,7 +123,7 @@ T *VecIterator<T>::operator->()
     return _data.lock() + _index;
 }
 
-template<typename T>
+template <typename T>
 const T *VecIterator<T>::operator->() const
 {
     if (_index >= _size) {
@@ -135,7 +137,7 @@ const T *VecIterator<T>::operator->() const
     return _data.lock() + _index;
 }
 
-template<typename T>
+template <typename T>
 T &VecIterator<T>::operator*()
 {
     if (_index >= _size) {
@@ -149,7 +151,7 @@ T &VecIterator<T>::operator*()
     return _data.lock()[_index];
 }
 
-template<typename T>
+template <typename T>
 const T &VecIterator<T>::operator*() const
 {
     if (_index >= _size) {
@@ -163,14 +165,14 @@ const T &VecIterator<T>::operator*() const
     return _data.lock()[_index];
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> &VecIterator<T>::operator++()
 {
     ++_index;
     return *this;
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> VecIterator<T>::operator++(int)
 {
     VecIterator<T> it(*this);
@@ -178,14 +180,14 @@ VecIterator<T> VecIterator<T>::operator++(int)
     return it;
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> &VecIterator<T>::operator--()
 {
     --_index;
     return *this;
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> VecIterator<T>::operator--(int)
 {
     VecIterator<T> it(*this);
@@ -193,7 +195,7 @@ VecIterator<T> VecIterator<T>::operator--(int)
     return it;
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> VecIterator<T>::operator+(size_t diff) const
 {
     VecIterator<T> it(*this);
@@ -201,7 +203,7 @@ VecIterator<T> VecIterator<T>::operator+(size_t diff) const
     return it;
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> VecIterator<T>::operator-(size_t diff) const
 {
     VecIterator<T> it(*this);
@@ -209,12 +211,15 @@ VecIterator<T> VecIterator<T>::operator-(size_t diff) const
     return it;
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T>::ConstIterator(shared_ptr<T[]> data, size_t size, size_t index)
-    : _data(data), _size(size), _index(index)
-{}
+    : _data(data)
+    , _size(size)
+    , _index(index)
+{
+}
 
-template<typename T>
+template <typename T>
 const T *ConstIterator<T>::operator->() const
 {
     if (_index >= _size) {
@@ -228,7 +233,7 @@ const T *ConstIterator<T>::operator->() const
     return _data.lock() + _index;
 }
 
-template<typename T>
+template <typename T>
 const T &ConstIterator<T>::operator*() const
 {
     if (_index >= _size) {
@@ -242,7 +247,7 @@ const T &ConstIterator<T>::operator*() const
     return _data.lock()[_index];
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> ConstIterator<T>::operator+(size_t diff) const
 {
     ConstIterator<T> it(*this);
@@ -250,7 +255,7 @@ ConstIterator<T> ConstIterator<T>::operator+(size_t diff) const
     return it;
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> ConstIterator<T>::operator-(size_t diff) const
 {
     ConstIterator<T> it(*this);
@@ -258,14 +263,14 @@ ConstIterator<T> ConstIterator<T>::operator-(size_t diff) const
     return it;
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> &ConstIterator<T>::operator++() const
 {
     ++_index;
     return *this;
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> ConstIterator<T>::operator++(int) const
 {
     ConstIterator<T> it(*this);
@@ -273,14 +278,14 @@ ConstIterator<T> ConstIterator<T>::operator++(int) const
     return it;
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> &ConstIterator<T>::operator--() const
 {
     --_index;
     return *this;
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> ConstIterator<T>::operator--(int) const
 {
     ConstIterator<T> it(*this);
@@ -288,13 +293,16 @@ ConstIterator<T> ConstIterator<T>::operator--(int) const
     return it;
 }
 
-template<typename T>
+template <typename T>
 void Vector<T>::_allocateMemory(size_t size)
 {
     shared_ptr<T[]> tmp;
-    try {
+    try
+    {
         tmp.reset(new T[size]);
-    } catch (std::bad_alloc &) {
+    }
+    catch (std::bad_alloc &)
+    {
         time_t curTime = time(NULL);
         throw MemoryException(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
     }
@@ -305,16 +313,16 @@ void Vector<T>::_allocateMemory(size_t size)
     _size = size;
 }
 
-template<typename T>
-Vector<T>::Vector(){};
+template <typename T>
+Vector<T>::Vector() {};
 
-template<typename T>
+template <typename T>
 Vector<T>::Vector(size_t size)
 {
     _allocateMemory(size);
 }
 
-template<typename T>
+template <typename T>
 Vector<T> &Vector<T>::operator=(const Vector &vec)
 {
     _allocateMemory(vec._size);
@@ -323,7 +331,7 @@ Vector<T> &Vector<T>::operator=(const Vector &vec)
     return *this;
 }
 
-template<typename T>
+template <typename T>
 Vector<T>::Vector(const Vector &vec)
 {
     _allocateMemory(vec._size);
@@ -331,7 +339,7 @@ Vector<T>::Vector(const Vector &vec)
         _data[i] = vec[i];
 };
 
-template<typename T>
+template <typename T>
 T &Vector<T>::operator[](size_t index)
 {
     if (index > _size) {
@@ -341,7 +349,7 @@ T &Vector<T>::operator[](size_t index)
     return _data[index];
 };
 
-template<typename T>
+template <typename T>
 const T &Vector<T>::operator[](size_t index) const
 {
     if (index > _size) {
@@ -351,14 +359,14 @@ const T &Vector<T>::operator[](size_t index) const
     return _data[index];
 };
 
-template<typename T>
+template <typename T>
 void Vector<T>::push_back(T elem)
 {
     _allocateMemory(_size + 1);
     _data[_size - 1] = elem;
 }
 
-template<typename T>
+template <typename T>
 void Vector<T>::erase(VecIterator<T> di)
 {
     auto si = di + 1;
@@ -367,31 +375,31 @@ void Vector<T>::erase(VecIterator<T> di)
     _allocateMemory(_size - 1);
 }
 
-template<typename T>
+template <typename T>
 bool Vector<T>::isEmpty() const
 {
     return true ? this->_size : false;
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> Vector<T>::begin()
 {
     return VecIterator<T>(_data, _size);
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> Vector<T>::begin() const
 {
     return ConstIterator<T>(_data, _size);
 }
 
-template<typename T>
+template <typename T>
 VecIterator<T> Vector<T>::end()
 {
     return VecIterator<T>(_data, _size, _size);
 }
 
-template<typename T>
+template <typename T>
 ConstIterator<T> Vector<T>::end() const
 {
     return ConstIterator<T>(_data, _size, _size);

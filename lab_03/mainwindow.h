@@ -6,7 +6,8 @@
 #include "facade.hpp"
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 QT_END_NAMESPACE

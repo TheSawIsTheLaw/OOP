@@ -15,7 +15,7 @@ public:
 
 private:
     std::shared_ptr<SceneBuilderBase> builder;
-    char fileName[FILE_NAME_LEN] = {0};
+    char fileName[FILE_NAME_LEN] = { 0 };
 };
 
 #endif // SCENEUPLOADER_H

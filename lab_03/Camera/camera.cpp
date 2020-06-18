@@ -4,7 +4,8 @@
 
 Camera::Camera(double xPos, double yPos, double zPos, double xNor, double yNor, double zNor)
     : xPosition(xPos), yPosition(yPos), zPosition(zPos), xNormal(xNor), yNormal(yNor), zNormal(zNor)
-{}
+{
+}
 
 DotXY Camera::getProjection(Dot &dot)
 {
