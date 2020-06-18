@@ -11,17 +11,17 @@ class Facade
 public:
     Facade();
 
-    QGraphicsScene *execute(UploadCommand &);
+    void execute(UploadCommand &);
 
-    QGraphicsScene *execute(DrawCommand &);
+    void execute(DrawCommand &);
 
-    QGraphicsScene *execute(TransformMoveCommand &, ComponentName);
+    void execute(TransformMoveCommand &, ComponentName);
 
-    QGraphicsScene *execute(TransformRotateCommand &, ComponentName);
+    void execute(TransformRotateCommand &, ComponentName);
 
-    QGraphicsScene *execute(TransformScaleCommand &, ComponentName);
+    void execute(TransformScaleCommand &, ComponentName);
 
-    QGraphicsScene *execute(ChangeCurComponentCommand &, ComponentName);
+    void execute(ChangeCurComponentCommand &, ComponentName);
 
 private:
     UploadManager UploadMan;

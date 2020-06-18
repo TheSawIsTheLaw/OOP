@@ -49,8 +49,14 @@ void MainWindow::on_pushButton_clicked()
 
     qDebug("FileName in command: %s\n", command.getFileName());
 
-    QGraphicsScene *scene = facade.execute(command);
+    facade.execute(command);
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 
     ui->radioButton->setEnabled(true);
@@ -66,15 +72,19 @@ void MainWindow::on_goLeftButton_clicked()
     command.setDY(0);
     command.setDZ(0);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -85,15 +95,19 @@ void MainWindow::on_goRightButton_clicked()
     command.setDY(0);
     command.setDZ(0);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -104,15 +118,19 @@ void MainWindow::on_goDownButton_clicked()
     command.setDY(MOVE_MEASURE);
     command.setDZ(0);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -123,14 +141,20 @@ void MainWindow::on_goUpButton_clicked()
     command.setDY(-MOVE_MEASURE);
     command.setDZ(0);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
+
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
+    ui->graphicsView->setScene(scene);
 
     ui->graphicsView->setScene(scene);
 }
@@ -141,15 +165,19 @@ void MainWindow::on_rotateYupButton_clicked()
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(Y);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -159,15 +187,19 @@ void MainWindow::on_rotateYdownButton_clicked()
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Y);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -177,15 +209,19 @@ void MainWindow::on_rotateXLeftButton_clicked()
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(X);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -195,15 +231,19 @@ void MainWindow::on_rotateXRightButton_clicked()
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(X);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -213,15 +253,19 @@ void MainWindow::on_toratateZLeftButton_clicked()
     command.setAngle(-ROTATE_ANGLE);
     command.setAxis(Z);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -231,15 +275,19 @@ void MainWindow::on_rotateZRightButton_clicked()
     command.setAngle(ROTATE_ANGLE);
     command.setAxis(Z);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -248,15 +296,19 @@ void MainWindow::on_plusMasstButton_clicked()
     TransformScaleCommand command;
     command.setCoef(SCALE_COEF_PLUS);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -265,15 +317,19 @@ void MainWindow::on_minusMasstButton_clicked()
     TransformScaleCommand command;
     command.setCoef(SCALE_COEF_MINUS);
 
-    QGraphicsScene *scene = Q_NULLPTR;
-
     if (ui->radioButton->isChecked())
-        scene = facade.execute(command, CAMERA);
+        facade.execute(command, CAMERA);
     else if (ui->radioButton_2->isChecked())
-        scene = facade.execute(command, MODEL);
+        facade.execute(command, MODEL);
     else
         return;
 
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(scene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    facade.execute(comm);
     ui->graphicsView->setScene(scene);
 }
 
@@ -288,7 +344,13 @@ void MainWindow::on_NextButton_clicked()
         facade.execute(command, MODEL);
     else if (ui->radioButton_3->isChecked())
     {
-        QGraphicsScene *scene = facade.execute(command, SCENE);
+        facade.execute(command, SCENE);
+        std::shared_ptr<DrawingFactoryBase> factoryPtr;
+        QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+        scene->setSceneRect(0, 0, 980, 400);
+        factoryPtr.reset(new QTDrawingFactory(scene));
+        DrawCommand comm = DrawCommand(factoryPtr);
+        facade.execute(comm);
         ui->graphicsView->setScene(scene);
     }
 }
@@ -304,7 +366,13 @@ void MainWindow::on_PreviousButton_clicked()
         facade.execute(command, MODEL);
     else if (ui->radioButton_3->isChecked())
     {
-        QGraphicsScene *scene = facade.execute(command, SCENE);
+        facade.execute(command, SCENE);
+        std::shared_ptr<DrawingFactoryBase> factoryPtr;
+        QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
+        scene->setSceneRect(0, 0, 980, 400);
+        factoryPtr.reset(new QTDrawingFactory(scene));
+        DrawCommand comm = DrawCommand(factoryPtr);
+        facade.execute(comm);
         ui->graphicsView->setScene(scene);
     }
 }
