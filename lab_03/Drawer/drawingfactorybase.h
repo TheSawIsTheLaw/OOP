@@ -17,7 +17,6 @@ public:
     virtual std::shared_ptr<DrawerBase> createDrawer() override;
 
 private:
-    QGraphicsScene *const scene;
     std::shared_ptr<DrawerBase> drawer;
 };
 
