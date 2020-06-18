@@ -1,9 +1,9 @@
-#include "sceneuploader.h"
+#include "sceneuploader.hpp"
 #include <fstream>
 #include <iostream>
 #include <string.h>
 
-#include "defines.h"
+#include "defines.hpp"
 
 SceneUploader::SceneUploader(std::shared_ptr<SceneBuilderBase> build, const char name[FILENAME_MAX])
     : builder(build)

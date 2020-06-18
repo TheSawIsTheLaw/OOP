@@ -1,4 +1,4 @@
-#include "exceptionbase.h"
+#include "exceptionbase.hpp"
 
 VectorException::VectorException(std::string fileName,
                                  std::string className,

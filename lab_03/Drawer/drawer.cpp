@@ -1,4 +1,4 @@
-#include "drawer.h"
+#include "drawer.hpp"
 
 QTDrawer::QTDrawer(QGraphicsScene *const scene)
     : grScene(scene)

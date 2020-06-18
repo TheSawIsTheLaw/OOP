@@ -2,7 +2,7 @@
 #define CAMERA_H
 
 #include "../Matrix/matrix.hpp"
-#include "camerabase.h"
+#include "camerabase.hpp"
 
 class Camera : public CameraBase
 {

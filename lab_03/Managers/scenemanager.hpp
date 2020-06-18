@@ -1,8 +1,8 @@
 #ifndef SCENEMANAGER_H
 #define SCENEMANAGER_H
 
-#include "Scene/scene.h"
-#include "managerbase.h"
+#include "Scene/scene.hpp"
+#include "managerbase.hpp"
 
 class SceneManager : public ManagerBase
 {

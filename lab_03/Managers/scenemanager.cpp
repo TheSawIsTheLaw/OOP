@@ -1,4 +1,4 @@
-#include "scenemanager.h"
+#include "scenemanager.hpp"
 
 void SceneManager::addComponent(std::shared_ptr<Component> component, ComponentName name)
 {

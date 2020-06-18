@@ -1,9 +1,9 @@
-#include "commands.h"
+#include "commands.hpp"
 
 #include <string.h>
 
 #include "QFileDialog"
-#include "defines.h"
+#include "defines.hpp"
 
 UploadCommand::UploadCommand(const char *nameOfFile)
 {

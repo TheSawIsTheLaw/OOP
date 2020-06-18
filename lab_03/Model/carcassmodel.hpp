@@ -2,9 +2,9 @@
 #define CARCASSMODEL_H
 
 #include "../Vector/Vector.hpp"
-#include "dot.h"
-#include "edge.h"
-#include "model.h"
+#include "dot.hpp"
+#include "edge.hpp"
+#include "model.hpp"
 
 class CarcassModel : public Model
 {

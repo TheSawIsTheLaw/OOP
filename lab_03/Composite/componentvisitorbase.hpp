@@ -2,8 +2,8 @@
 #define COMPONENTVISITORBASE_H
 
 #include "../Camera/camerabase.h"
-#include "../Drawer/drawer.h"
-#include "defines.h"
+#include "../Drawer/drawer.hpp"
+#include "defines.hpp"
 #include <memory>
 
 class ModelComponent;

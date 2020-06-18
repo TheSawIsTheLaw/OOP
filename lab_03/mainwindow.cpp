@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 
-#include "Commands/commands.h"
+#include "Commands/commands.hpp"
 #include "QFileDialog"
 #include "QMessageBox"
-#include "defines.h"
+#include "defines.hpp"
 #include "string.h"
 #include "ui_mainwindow.h"
 

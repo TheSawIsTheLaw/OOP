@@ -1,4 +1,4 @@
-#include "carcassmodel.h"
+#include "carcassmodel.hpp"
 #include "Matrix/matrix.hpp"
 #include <QDebug>
 

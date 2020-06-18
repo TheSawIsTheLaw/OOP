@@ -1,7 +1,7 @@
 #ifndef TRANSFORMMANAGER_H
 #define TRANSFORMMANAGER_H
 
-#include "managerbase.h"
+#include "managerbase.hpp"
 #include <memory>
 
 class TransformManager : public ManagerBase

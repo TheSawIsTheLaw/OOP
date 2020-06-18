@@ -1,7 +1,7 @@
 #ifndef EXCEPTIONS_H
 #define EXCEPTIONS_H
 
-#include "exceptionbase.h"
+#include "exceptionbase.hpp"
 
 class MemoryException : public VectorException
 {

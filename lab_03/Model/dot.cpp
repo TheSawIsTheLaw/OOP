@@ -1,4 +1,4 @@
-#include "dot.h"
+#include "dot.hpp"
 #include "../Matrix/matrix.hpp"
 #include "math.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Exceptions/exceptions.h"
+#include "Exceptions/exceptions.hpp"
 #include "baseVector.hpp"
 #include "time.h"
 #include <cstddef>

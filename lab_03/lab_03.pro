@@ -41,39 +41,39 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    Camera/camera.h \
-    Camera/camerabase.h \
-    Camera/dotxy.h \
-    Commands/commandbase.h \
-    Commands/commands.h \
-    Composite/component.h \
-    Composite/componentvisitorbase.h \
-    Drawer/drawer.h \
-    Drawer/drawingfactorybase.h \
-    Exceptions/exceptionbase.h \
-    Exceptions/exceptions.h \
-    Managers/drawmanager.h \
-    Managers/managerbase.h \
-    Managers/scenemanager.h \
-    Managers/transformmanager.h \
-    Managers/uploadmanager.h \
+    Camera/camera.hpp \
+    Camera/camerabase.hpp \
+    Camera/dotxy.hpp \
+    Commands/commandbase.hpp \
+    Commands/commands.hpp \
+    Composite/component.hpp \
+    Composite/componentvisitorbase.hpp \
+    Drawer/drawer.hpp \
+    Drawer/drawingfactorybase.hpp \
+    Exceptions/exceptionbase.hpp \
+    Exceptions/exceptions.hpp \
+    Managers/drawmanager.hpp \
+    Managers/managerbase.hpp \
+    Managers/scenemanager.hpp \
+    Managers/transformmanager.hpp \
+    Managers/uploadmanager.hpp \
     Matrix/matrix.hpp \
     Matrix/matrixR.hpp \
-    Model/carcassmodel.h \
-    Model/dot.h \
-    Model/edge.h \
-    Model/model.h \
-    Scene/ComponentName.h \
-    Scene/scene.h \
+    Model/carcassmodel.hpp \
+    Model/dot.hpp \
+    Model/edge.hpp \
+    Model/model.hpp \
+    Scene/ComponentName.hpp \
+    Scene/scene.hpp \
     SceneUploader/objectuploader.hpp \
-    SceneUploader/scenebuilderbase.h \
-    SceneUploader/sceneuploader.h \
+    SceneUploader/scenebuilderbase.hpp \
+    SceneUploader/sceneuploader.hpp \
     Vector/Iterator.hpp \
     Vector/Vector.hpp \
     Vector/VectorR.hpp \
     Vector/baseVector.hpp \
-    defines.h \
-    facade.h \
+    defines.hpp \
+    facade.hpp \
     mainwindow.h
 
 FORMS += \

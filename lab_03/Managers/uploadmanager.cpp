@@ -1,9 +1,9 @@
-#include "UploadManager.h"
+#include "UploadManager.hpp"
 
 #include <QDebug>
 
-#include "SceneUploader/scenebuilderbase.h"
-#include "SceneUploader/sceneuploader.h"
+#include "SceneUploader/scenebuilderbase.hpp"
+#include "SceneUploader/sceneuploader.hpp"
 #include "string.h"
 
 std::shared_ptr<Component> UploadManager::uploadScene(UploadCommand &command)

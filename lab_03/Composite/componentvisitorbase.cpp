@@ -1,6 +1,6 @@
-#include "../Camera/camera.h"
-#include "../Model/carcassmodel.h"
-#include "component.h"
+#include "../Camera/camera.hpp"
+#include "../Model/carcassmodel.hpp"
+#include "component.hpp"
 
 RotateVisitor::RotateVisitor(double ang, axis axi) : angle(ang), ax(axi) {}
 

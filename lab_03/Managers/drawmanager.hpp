@@ -1,8 +1,8 @@
 #ifndef DRAWMANAGER_H
 #define DRAWMANAGER_H
 
-#include "Drawer/drawer.h"
-#include "managerbase.h"
+#include "Drawer/drawer.hpp"
+#include "managerbase.hpp"
 
 class DrawManager : public ManagerBase
 {

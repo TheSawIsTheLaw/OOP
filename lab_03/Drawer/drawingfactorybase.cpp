@@ -1,4 +1,4 @@
-#include "drawingfactorybase.h"
+#include "drawingfactorybase.hpp"
 
 QTDrawingFactory::QTDrawingFactory(QGraphicsScene *const sc)
     : drawer(new QTDrawer(sc))

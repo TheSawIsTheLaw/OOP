@@ -1,9 +1,9 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "../Model/model.h"
+#include "../Model/model.hpp"
 #include "Vector/Vector.hpp"
-#include "componentvisitorbase.h"
+#include "componentvisitorbase.hpp"
 
 class ComponentVisitorBase;
 class Component;

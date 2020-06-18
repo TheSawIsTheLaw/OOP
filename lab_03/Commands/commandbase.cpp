@@ -1,4 +1,4 @@
-#include "commandbase.h"
+#include "commandbase.hpp"
 
 CommandBase::CommandBase() {}
 

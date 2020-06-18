@@ -1,7 +1,7 @@
 #ifndef DOT_H
 #define DOT_H
 
-#include "defines.h"
+#include "defines.hpp"
 
 class Dot
 {

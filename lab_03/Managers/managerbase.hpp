@@ -1,7 +1,7 @@
 #ifndef MANAGERBASE_H
 #define MANAGERBASE_H
 
-#include "Composite/component.h"
+#include "Composite/component.hpp"
 #include <memory>
 
 class ManagerBase

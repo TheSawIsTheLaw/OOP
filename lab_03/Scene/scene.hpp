@@ -1,8 +1,8 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "../Composite/component.h"
-#include "ComponentName.h"
+#include "../Composite/component.hpp"
+#include "ComponentName.hpp"
 
 class Scene
 {

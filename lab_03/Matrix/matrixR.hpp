@@ -1,4 +1,4 @@
-#include "../Exceptions/exceptions.h"
+#include "../Exceptions/exceptions.hpp"
 #include "matrix.hpp"
 #include "time.h"
 

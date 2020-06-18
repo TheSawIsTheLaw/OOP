@@ -1,9 +1,9 @@
 #ifndef SCENEUPLOADER_H
 #define SCENEUPLOADER_H
 
-#include "Composite/component.h"
-#include "defines.h"
-#include "scenebuilderbase.h"
+#include "Composite/component.hpp"
+#include "defines.hpp"
+#include "scenebuilderbase.hpp"
 
 #include <memory>
 

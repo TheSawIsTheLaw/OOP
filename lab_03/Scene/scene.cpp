@@ -1,4 +1,4 @@
-#include "scene.h"
+#include "scene.hpp"
 #include "time.h"
 
 void Scene::addComponent(shared_ptr<Component> component, ComponentName name)

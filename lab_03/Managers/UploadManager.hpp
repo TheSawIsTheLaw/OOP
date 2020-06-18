@@ -1,8 +1,8 @@
 #ifndef UPLOADMANAGER_H
 #define UPLOADMANAGER_H
 
-#include "../Commands/commands.h"
-#include "managerbase.h"
+#include "../Commands/commands.hpp"
+#include "managerbase.hpp"
 #include <memory>
 
 class UploadManager : public ManagerBase

@@ -1,7 +1,7 @@
 #ifndef DRAWER_H
 #define DRAWER_H
 
-#include "../Camera/dotxy.h"
+#include "../Camera/dotxy.hpp"
 #include "QGraphicsScene"
 #include "Vector/Vector.hpp"
 

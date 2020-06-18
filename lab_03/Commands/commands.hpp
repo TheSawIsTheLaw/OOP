@@ -1,10 +1,10 @@
 #ifndef UPLOADCOMMAND_H
 #define UPLOADCOMMAND_H
 
-#include "Composite/component.h"
-#include "Drawer/drawingfactorybase.h"
-#include "commandbase.h"
-#include "defines.h"
+#include "Composite/component.hpp"
+#include "Drawer/drawingfactorybase.hpp"
+#include "commandbase.hpp"
+#include "defines.hpp"
 #include <memory>
 
 class UploadCommand : CommandBase

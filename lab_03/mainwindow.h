@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "facade.h"
+#include "facade.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

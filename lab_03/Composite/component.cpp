@@ -1,4 +1,4 @@
-#include "component.h"
+#include "component.hpp"
 
 bool Component::isVisible() const noexcept
 {

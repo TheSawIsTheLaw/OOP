@@ -1,9 +1,9 @@
 #ifndef OBJECTLOADER_HPP
 #define OBJECTLOADER_HPP
 
-#include "Camera/camera.h"
-#include "Composite/component.h"
-#include "Model/carcassmodel.h"
+#include "Camera/camera.hpp"
+#include "Composite/component.hpp"
+#include "Model/carcassmodel.hpp"
 
 class ObjectBuilderBase
 {
