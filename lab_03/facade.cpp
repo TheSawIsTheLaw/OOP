@@ -77,8 +77,13 @@ QGraphicsScene *Facade::execute(TransformScaleCommand &command, ComponentName na
     return this->execute(comm);
 }
 
-void Facade::execute(ChangeCurComponentCommand &command, ComponentName name)
+QGraphicsScene *Facade::execute(ChangeCurComponentCommand &command, ComponentName name)
 {
-    auto component = SceneMan.getComponent(name);
     SceneMan.changeCurComp(command.getDirection(), name);
+    std::shared_ptr<DrawingFactoryBase> factoryPtr;
+    QGraphicsScene *newScene = new QGraphicsScene(Q_NULLPTR);
+    newScene->setSceneRect(0, 0, 980, 400);
+    factoryPtr.reset(new QTDrawingFactory(newScene));
+    DrawCommand comm = DrawCommand(factoryPtr);
+    return this->execute(comm);
 }

@@ -55,6 +55,7 @@ void MainWindow::on_pushButton_clicked()
 
     ui->radioButton->setEnabled(true);
     ui->radioButton_2->setEnabled(true);
+    ui->radioButton_3->setEnabled(true);
     ui->radioButton->setChecked(true);
 }
 
@@ -69,8 +70,10 @@ void MainWindow::on_goLeftButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -86,8 +89,10 @@ void MainWindow::on_goRightButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -103,8 +108,10 @@ void MainWindow::on_goDownButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -120,8 +127,10 @@ void MainWindow::on_goUpButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -136,8 +145,10 @@ void MainWindow::on_rotateYupButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -152,8 +163,10 @@ void MainWindow::on_rotateYdownButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -168,8 +181,10 @@ void MainWindow::on_rotateXLeftButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -184,8 +199,10 @@ void MainWindow::on_rotateXRightButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -200,8 +217,10 @@ void MainWindow::on_toratateZLeftButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -216,8 +235,10 @@ void MainWindow::on_rotateZRightButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -231,8 +252,10 @@ void MainWindow::on_plusMasstButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -246,8 +269,10 @@ void MainWindow::on_minusMasstButton_clicked()
 
     if (ui->radioButton->isChecked())
         scene = facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         scene = facade.execute(command, MODEL);
+    else
+        return;
 
     ui->graphicsView->setScene(scene);
 }
@@ -259,8 +284,13 @@ void MainWindow::on_NextButton_clicked()
 
     if (ui->radioButton->isChecked())
         facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         facade.execute(command, MODEL);
+    else if (ui->radioButton_3->isChecked())
+    {
+        QGraphicsScene *scene = facade.execute(command, SCENE);
+        ui->graphicsView->setScene(scene);
+    }
 }
 
 void MainWindow::on_PreviousButton_clicked()
@@ -270,6 +300,11 @@ void MainWindow::on_PreviousButton_clicked()
 
     if (ui->radioButton->isChecked())
         facade.execute(command, CAMERA);
-    else
+    else if (ui->radioButton_2->isChecked())
         facade.execute(command, MODEL);
+    else if (ui->radioButton_3->isChecked())
+    {
+        QGraphicsScene *scene = facade.execute(command, SCENE);
+        ui->graphicsView->setScene(scene);
+    }
 }

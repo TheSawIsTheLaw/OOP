@@ -21,7 +21,7 @@ public:
 
     QGraphicsScene *execute(TransformScaleCommand &, ComponentName);
 
-    void execute(ChangeCurComponentCommand &, ComponentName);
+    QGraphicsScene *execute(ChangeCurComponentCommand &, ComponentName);
 
 private:
     UploadManager UploadMan;

@@ -30,10 +30,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>673</x>
-      <y>538</y>
-      <width>111</width>
-      <height>41</height>
+      <x>200</x>
+      <y>540</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -49,10 +49,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>673</x>
-      <y>580</y>
+      <x>200</x>
+      <y>560</y>
       <width>111</width>
-      <height>61</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="tabletTracking">
@@ -360,6 +360,25 @@
     </property>
     <property name="text">
      <string>Next</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_3">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>580</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>Scene</string>
     </property>
    </widget>
   </widget>

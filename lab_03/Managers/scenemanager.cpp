@@ -3,6 +3,9 @@
 void SceneManager::addComponent(std::shared_ptr<Component> component, ComponentName name)
 {
     scene.addComponent(component, name);
+    currentCam = 0;
+    currentModel = 0;
+    currentScene += 1;
 }
 
 void SceneManager::delComponent(ComponentName name)
@@ -26,8 +29,11 @@ void SceneManager::changeCurComp(int moveTo, ComponentName name)
     if (name == SCENE)
     {
         currentScene += moveTo;
+        if (currentScene > scene.compAmount(SCENE))
+            currentScene = 0;
         currentCam = 0;
         currentModel = 0;
+        scene.setScene(currentScene);
     }
     else if (name == MODEL)
     {

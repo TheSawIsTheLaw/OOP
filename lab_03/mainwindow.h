@@ -50,6 +50,8 @@ private slots:
 
     void on_PreviousButton_clicked();
 
+    void on_radioButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     Facade facade;
