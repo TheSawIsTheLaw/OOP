@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     facade = Facade();
+    scene = new QGraphicsScene(Q_NULLPTR);
+    scene->setSceneRect(0, 0, 980, 400);
 }
 
 MainWindow::~MainWindow()
@@ -52,8 +54,7 @@ void MainWindow::on_pushButton_clicked()
     facade.execute(command);
 
     std::shared_ptr<DrawingFactoryBase> factoryPtr;
-    QGraphicsScene *scene = new QGraphicsScene(Q_NULLPTR);
-    scene->setSceneRect(0, 0, 980, 400);
+    scene->clear();
     factoryPtr.reset(new QTDrawingFactory(scene));
     DrawCommand comm = DrawCommand(factoryPtr);
     facade.execute(comm);

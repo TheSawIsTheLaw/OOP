@@ -3,8 +3,6 @@
 
 #define FILE_NAME_LEN 200
 
-#define CONFIG "config.txt"
-
 enum axis { X, Y, Z };
 
 #define MOVE_MEASURE 10

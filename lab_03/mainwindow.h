@@ -55,5 +55,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Facade facade;
+    QGraphicsScene *scene;
 };
 #endif // MAINWINDOW_H
