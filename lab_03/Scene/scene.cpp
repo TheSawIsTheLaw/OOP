@@ -98,3 +98,28 @@ int Scene::setScene(int index)
         currentScene = 0;
     return currentScene;
 }
+
+size_t Scene::compAmount(ComponentName name)
+{
+    if (name == SCENE)
+        return components.size() - 1;
+
+    else if (name == MODEL || name == CAMERA)
+    {
+        size_t cntModels = 0, cntCams = 0;
+
+        auto scene = dynamic_cast<Composite &>(*components[currentScene].get());
+        for (auto elem : scene)
+        {
+            if (elem->isVisible())
+                cntModels++;
+            else if (!elem->isComposite())
+                cntCams++;
+        }
+
+        return name == MODEL ? cntModels : cntCams;
+    }
+
+    time_t curTime = time(NULL);
+    throw InvalidComponentName(__FILE__, typeid(*this).name(), __LINE__, ctime(&curTime));
+}

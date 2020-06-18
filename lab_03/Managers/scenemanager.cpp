@@ -30,9 +30,17 @@ void SceneManager::changeCurComp(int moveTo, ComponentName name)
         currentModel = 0;
     }
     else if (name == MODEL)
+    {
         currentModel += moveTo;
+        if (currentModel >= scene.compAmount(MODEL))
+            currentModel = 0;
+    }
     else if (name == CAMERA)
+    {
         currentCam += moveTo;
+        if (currentCam >= scene.compAmount(CAMERA))
+            currentCam = 0;
+    }
     else
     {
         time_t curTime = time(NULL);

@@ -13,6 +13,8 @@ public:
     shared_ptr<Component> getComponent(int index, ComponentName name);
     int setScene(int index);
 
+    size_t compAmount(ComponentName);
+
 private:
     Vector<std::shared_ptr<Component>> components;
     int currentScene = -1;
