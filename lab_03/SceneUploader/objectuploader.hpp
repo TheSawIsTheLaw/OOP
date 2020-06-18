@@ -27,7 +27,7 @@ private:
     std::shared_ptr<ObjectBuilderBase> builder;
 };
 
-class CameraBuilder : public ObjectBuilderBase
+class TXTCameraBuilder : public ObjectBuilderBase
 {
 public:
     virtual void buildObject() override;
@@ -38,7 +38,7 @@ private:
     std::shared_ptr<CameraBase> camera = nullptr;
 };
 
-class ModelBuilder : public ObjectBuilderBase
+class TXTModelBuilder : public ObjectBuilderBase
 {
 public:
     virtual void buildObject() override;

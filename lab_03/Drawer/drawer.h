@@ -3,6 +3,7 @@
 
 #include "../Camera/dotxy.h"
 #include "QGraphicsScene"
+#include "Vector/Vector.hpp"
 
 class DrawerBase
 {
@@ -21,8 +22,8 @@ public:
 
 private:
     QGraphicsScene *const grScene;
-    QVector<QGraphicsLineItem *> line;
-    QPen blackPen;
+    Vector<QGraphicsLineItem *> line;
+    QPen pen;
 };
 
 #endif // DRAWER_H

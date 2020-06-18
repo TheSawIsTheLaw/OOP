@@ -6,12 +6,12 @@ bool ObjectBuilderBase::isBuilt()
     return isBui;
 }
 
-void CameraBuilder::buildObject()
+void TXTCameraBuilder::buildObject()
 {
     camera.reset(new Camera());
 }
 
-void CameraBuilder::buildData(std::ifstream &input)
+void TXTCameraBuilder::buildData(std::ifstream &input)
 {
     double x, y, z;
     if (input >> x >> y >> z)
@@ -32,18 +32,18 @@ void CameraBuilder::buildData(std::ifstream &input)
     isBui = true;
 }
 
-shared_ptr<Component> CameraBuilder::getObject()
+shared_ptr<Component> TXTCameraBuilder::getObject()
 {
     shared_ptr<Component> component(new CameraComponent(camera));
     return component;
 }
 
-void ModelBuilder::buildObject()
+void TXTModelBuilder::buildObject()
 {
     model.reset(new CarcassModel());
 }
 
-void ModelBuilder::buildData(std::ifstream &input)
+void TXTModelBuilder::buildData(std::ifstream &input)
 {
     CarcassModel &mod = dynamic_cast<CarcassModel &>(*model);
     mod.setDots(buildDots(input));
@@ -51,7 +51,7 @@ void ModelBuilder::buildData(std::ifstream &input)
     isBui = true;
 }
 
-Vector<Dot> ModelBuilder::buildDots(std::ifstream &input)
+Vector<Dot> TXTModelBuilder::buildDots(std::ifstream &input)
 {
     size_t n = 0;
     if (!(input >> n))
@@ -76,7 +76,7 @@ Vector<Dot> ModelBuilder::buildDots(std::ifstream &input)
     return tmp;
 }
 
-Vector<Edge> ModelBuilder::buildEdges(std::ifstream &input)
+Vector<Edge> TXTModelBuilder::buildEdges(std::ifstream &input)
 {
     size_t n = 0;
     if (!(input >> n))
@@ -100,7 +100,7 @@ Vector<Edge> ModelBuilder::buildEdges(std::ifstream &input)
     return tmp;
 }
 
-std::shared_ptr<Component> ModelBuilder::getObject()
+std::shared_ptr<Component> TXTModelBuilder::getObject()
 {
     return shared_ptr<Component>(new ModelComponent(model));
 }

@@ -11,10 +11,10 @@ QTDrawer::QTDrawer(QGraphicsScene *const scene)
 
 void QTDrawer::drawLine(const DotXY &fDot, const DotXY &sDot)
 {
-    line.append(grScene->addLine(fDot.getXCoordinate(),
-                                 fDot.getYCoordinate(),
-                                 sDot.getXCoordinate(),
-                                 sDot.getYCoordinate(), blackPen));
+    line.push_back(grScene->addLine(fDot.getXCoordinate(),
+                                    fDot.getYCoordinate(),
+                                    sDot.getXCoordinate(),
+                                    sDot.getYCoordinate(), pen));
 }
 
 void QTDrawer::clear()

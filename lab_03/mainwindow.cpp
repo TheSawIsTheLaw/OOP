@@ -308,3 +308,7 @@ void MainWindow::on_PreviousButton_clicked()
         ui->graphicsView->setScene(scene);
     }
 }
+
+void MainWindow::on_radioButton_3_clicked()
+{
+}

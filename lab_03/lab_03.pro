@@ -25,7 +25,6 @@ SOURCES += \
     Drawer/drawingfactorybase.cpp \
     Exceptions/exceptionbase.cpp \
     Managers/drawmanager.cpp \
-    Managers/managerbase.cpp \
     Managers/scenemanager.cpp \
     Managers/transformmanager.cpp \
     Managers/uploadmanager.cpp \

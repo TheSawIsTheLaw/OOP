@@ -19,7 +19,7 @@ public:
     void setCurrentPosition(double xPos, double yPos, double zPos) override;
     DotXY getProjection(Dot &dot) override;
 
-protected:
+private:
     double xPosition, yPosition, zPosition;
     double xNormal, yNormal, zNormal;
 };

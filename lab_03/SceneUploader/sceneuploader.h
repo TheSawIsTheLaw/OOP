@@ -10,7 +10,7 @@
 class SceneUploader
 {
 public:
-    explicit SceneUploader(std::shared_ptr<SceneBuilderBase> build, const char name[]);
+    explicit SceneUploader(std::shared_ptr<SceneBuilderBase> build, const char name[FILE_NAME_LEN]);
     std::shared_ptr<Component> getComponent();
 
 private:
