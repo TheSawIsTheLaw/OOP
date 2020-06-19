@@ -11,7 +11,13 @@ Facade::Facade()
 
 template <typename Command>
 void execute(Command &)
-{}
+{
+}
+
+template <typename Command>
+void execute(Command &, ComponentName)
+{
+}
 
 void Facade::execute(DrawCommand &command)
 {
